@@ -24,7 +24,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://disney-trivia.app'),
+  metadataBase: new URL('https://www.disneytrivia.club'),
   title: "Disney Cruise Trivia - Study & Win at Trivia Night",
   description: "The ultimate Disney trivia study app for cruise travelers! Practice 700+ questions on Disney movies, parks, princesses, villains, Marvel, Star Wars, and more. Perfect for Disney cruise trivia nights!",
   keywords: ["Disney trivia", "Disney cruise", "trivia questions", "Disney quiz", "cruise trivia", "Disney movies", "Disney parks", "Disney princesses", "Marvel trivia", "Star Wars trivia"],
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://disney-trivia.app",
+    url: "https://www.disneytrivia.club",
     siteName: "Disney Cruise Trivia",
     title: "Disney Cruise Trivia - Study & Win at Trivia Night",
     description: "Practice 700+ Disney trivia questions. Perfect for cruise trivia nights! Quiz yourself on movies, parks, characters, and more.",

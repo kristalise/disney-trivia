@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://disney-trivia.app/sitemap.xml
+Sitemap: https://www.disneytrivia.club/sitemap.xml
 
 # Disallow API routes
 Disallow: /api/

@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://disney-trivia.app';
+  const baseUrl = 'https://www.disneytrivia.club';
 
   const categories = [
     'animation',
