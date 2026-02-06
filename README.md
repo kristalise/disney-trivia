@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Disney Cruise Trivia Study Hub
+
+A webapp for Disney cruisers to study trivia, take quizzes, and search a Q&A database. Perfect for preparing for onboard trivia games!
+
+## Features
+
+- **Multiple Quiz Categories**: Disney Movies, Parks, Cruise Line, and Mixed
+- **Quiz Modes**: Practice (instant feedback), Timed, and Study modes
+- **Full-Text Search**: Search across all questions and answers
+- **Progress Tracking**: Track your scores with local storage
+- **Disney-Themed UI**: Navy blue and gold color scheme with smooth animations
+
+## Tech Stack
+
+- **Frontend**: Next.js 14 (App Router), React, TypeScript
+- **Styling**: Tailwind CSS
+- **Database**: Supabase (optional - works with local data)
+- **Hosting**: Vercel-ready
 
 ## Getting Started
 
-First, run the development server:
+### 1. Install Dependencies
+
+```bash
+cd disney-trivia
+npm install
+```
+
+### 2. Configure Supabase (Optional)
+
+The app works out of the box with local seed data. To enable Supabase:
+
+1. Create a new Supabase project at https://supabase.com
+2. Run the SQL schema in `supabase-schema.sql` in the Supabase SQL Editor
+3. Copy `.env.local.example` to `.env.local`
+4. Add your Supabase credentials:
+
+```bash
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+```
+
+### 3. Run Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 to see the app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 4. Build for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+disney-trivia/
+├── app/                    # Next.js App Router pages
+│   ├── page.tsx           # Home page
+│   ├── quiz/              # Quiz pages
+│   ├── search/            # Search page
+│   ├── progress/          # Progress tracking page
+│   └── api/               # API routes
+├── components/            # React components
+├── lib/                   # Utility libraries
+│   ├── supabase.ts       # Supabase client
+│   ├── questions.ts      # Question fetching logic
+│   └── progress.ts       # Local progress tracking
+├── data/                  # Seed data
+│   └── seed-questions.json
+├── types/                 # TypeScript types
+└── supabase-schema.sql   # Database schema
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Seeding Additional Questions
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+To add more questions:
 
-## Deploy on Vercel
+1. Edit `data/seed-questions.json` with new questions following the existing format
+2. If using Supabase, import the questions via the Supabase dashboard or API
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Vercel (Recommended)
+
+1. Push to GitHub
+2. Import to Vercel
+3. Add environment variables (if using Supabase)
+4. Deploy
+
+### Other Platforms
+
+The app is a standard Next.js application and can be deployed to any platform that supports Node.js.
+
+## License
+
+MIT
