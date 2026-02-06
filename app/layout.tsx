@@ -5,6 +5,7 @@ import ClientProviders from "@/components/ClientProviders";
 import Navbar from "@/components/Navbar";
 import PWAInstallPrompt from "@/components/PWAInstallPrompt";
 import ServiceWorkerRegistration from "@/components/ServiceWorkerRegistration";
+import EmailSignup from "@/components/EmailSignup";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -163,6 +164,7 @@ export default function RootLayout({
           <main className="max-w-6xl mx-auto px-4 py-8">
             {children}
           </main>
+          <EmailSignup />
         </ClientProviders>
       </body>
     </html>
