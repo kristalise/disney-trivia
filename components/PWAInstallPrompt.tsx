@@ -140,6 +140,20 @@ export default function PWAInstallPrompt() {
                   </div>
                 </div>
               </div>
+              <div className="mt-3 p-3 bg-amber-50 dark:bg-amber-900/20 rounded-xl border border-amber-200 dark:border-amber-800">
+                <p className="text-xs text-amber-800 dark:text-amber-300">
+                  <strong>Note:</strong> Your progress is saved on this device until you clear your cache.{' '}
+                  <a
+                    href="https://forms.gle/B4vdr3fw7Lu58uDx5"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline hover:text-amber-600 dark:hover:text-amber-200"
+                  >
+                    Request login feature
+                  </a>{' '}
+                  to sync across devices.
+                </p>
+              </div>
             </div>
           ) : (
             // Android/Desktop Instructions
@@ -158,6 +172,20 @@ export default function PWAInstallPrompt() {
                   <span className="text-green-500">✓</span> Full-screen experience
                 </li>
               </ul>
+              <div className="mt-2 p-3 bg-amber-50 dark:bg-amber-900/20 rounded-xl border border-amber-200 dark:border-amber-800">
+                <p className="text-xs text-amber-800 dark:text-amber-300">
+                  <strong>Note:</strong> Your progress is saved on this device until you clear your cache.{' '}
+                  <a
+                    href="https://forms.gle/B4vdr3fw7Lu58uDx5"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline hover:text-amber-600 dark:hover:text-amber-200"
+                  >
+                    Request login feature
+                  </a>{' '}
+                  to sync across devices.
+                </p>
+              </div>
             </div>
           )}
         </div>

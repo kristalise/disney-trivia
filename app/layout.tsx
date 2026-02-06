@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import ClientProviders from "@/components/ClientProviders";
 import Navbar from "@/components/Navbar";
 import PWAInstallPrompt from "@/components/PWAInstallPrompt";
 import ServiceWorkerRegistration from "@/components/ServiceWorkerRegistration";
@@ -155,12 +156,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
       >
-        <ServiceWorkerRegistration />
-        <Navbar />
-        <PWAInstallPrompt />
-        <main className="max-w-6xl mx-auto px-4 py-8">
-          {children}
-        </main>
+        <ClientProviders>
+          <ServiceWorkerRegistration />
+          <Navbar />
+          <PWAInstallPrompt />
+          <main className="max-w-6xl mx-auto px-4 py-8">
+            {children}
+          </main>
+        </ClientProviders>
       </body>
     </html>
   );

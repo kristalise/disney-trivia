@@ -8,16 +8,20 @@ import {
   getAccuracyByCategory,
   getTotalQuestionsAnswered,
   getRecentQuizzes,
+  fetchUserProgress,
 } from '@/lib/progress';
 import { Category } from '@/types';
+import { useAuth } from '@/components/AuthProvider';
 
 export default function ProgressPage() {
+  const { user, loading: authLoading } = useAuth();
   const [overallAccuracy, setOverallAccuracy] = useState(0);
   const [totalAnswered, setTotalAnswered] = useState(0);
   const [categoryAccuracy, setCategoryAccuracy] = useState<{ label: string; value: number; color: string }[]>([]);
   const [recentQuizzes, setRecentQuizzes] = useState<ReturnType<typeof getRecentQuizzes>>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [dataSource, setDataSource] = useState<'local' | 'cloud'>('local');
 
   useEffect(() => {
     async function loadData() {
@@ -30,15 +34,38 @@ export default function ProgressPage() {
         console.error('Failed to load categories:', error);
       }
 
-      // Load progress from local storage
+      // Try to load from cloud if user is logged in
+      if (user) {
+        try {
+          const cloudProgress = await fetchUserProgress();
+          if (cloudProgress) {
+            const accuracy = cloudProgress.questionsAnswered > 0
+              ? Math.round((cloudProgress.correctAnswers / cloudProgress.questionsAnswered) * 100)
+              : 0;
+            setOverallAccuracy(accuracy);
+            setTotalAnswered(cloudProgress.questionsAnswered);
+            setRecentQuizzes(cloudProgress.quizSessions.slice(0, 10));
+            setDataSource('cloud');
+            setIsLoaded(true);
+            return;
+          }
+        } catch (error) {
+          console.error('Failed to load cloud progress:', error);
+        }
+      }
+
+      // Fall back to local storage
       setOverallAccuracy(getOverallAccuracy());
       setTotalAnswered(getTotalQuestionsAnswered());
       setRecentQuizzes(getRecentQuizzes(10));
+      setDataSource('local');
       setIsLoaded(true);
     }
 
-    loadData();
-  }, []);
+    if (!authLoading) {
+      loadData();
+    }
+  }, [user, authLoading]);
 
   useEffect(() => {
     if (categories.length > 0) {
@@ -67,7 +94,7 @@ export default function ProgressPage() {
     });
   };
 
-  if (!isLoaded) {
+  if (!isLoaded || authLoading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
@@ -89,6 +116,21 @@ export default function ProgressPage() {
         <p className="text-slate-600 dark:text-slate-400">
           Track your Disney trivia journey
         </p>
+        {user ? (
+          <div className="mt-2 inline-flex items-center gap-2 px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-full text-sm">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            </svg>
+            Progress synced to cloud
+          </div>
+        ) : (
+          <div className="mt-2 inline-flex items-center gap-2 px-3 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400 rounded-full text-sm">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+            </svg>
+            Sign in to sync progress across devices
+          </div>
+        )}
       </div>
 
       {!hasProgress ? (
