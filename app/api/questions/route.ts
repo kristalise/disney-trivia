@@ -16,8 +16,8 @@ export async function GET(request: NextRequest) {
 
     // Get questions by category or random
     if (category && category !== 'mixed') {
-      const questions = await getQuestionsByCategory(category, limit);
-      return NextResponse.json({ questions });
+      const questions = await getQuestionsByCategory(category);
+      return NextResponse.json({ questions, totalCount: questions.length });
     } else {
       const questions = await getRandomQuestions(limit);
       return NextResponse.json({ questions });

@@ -5,6 +5,7 @@ export interface Category {
   description: string | null;
   icon: string | null;
   created_at: string;
+  question_count?: number;
 }
 
 export interface Question {

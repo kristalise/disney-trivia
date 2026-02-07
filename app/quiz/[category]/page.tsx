@@ -1,11 +1,11 @@
 'use client';
 
-import { useState, useEffect, use } from 'react';
+import { useState, useEffect, useCallback, use } from 'react';
 import { useRouter } from 'next/navigation';
 import QuizCard from '@/components/QuizCard';
 import Confetti from '@/components/Confetti';
 import { Question } from '@/types';
-import { saveQuestionAnswer, saveQuizSession } from '@/lib/progress';
+import { saveQuestionAnswer, saveQuizSession, getQuestionPriorities } from '@/lib/progress';
 
 interface QuizPageProps {
   params: Promise<{ category: string }>;
@@ -13,9 +13,19 @@ interface QuizPageProps {
 
 type QuizMode = 'practice' | 'timed' | 'study';
 
+function shuffleArray<T>(array: T[]): T[] {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
 export default function QuizCategoryPage({ params }: QuizPageProps) {
   const { category } = use(params);
   const router = useRouter();
+  const [allQuestions, setAllQuestions] = useState<Question[]>([]);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
@@ -25,13 +35,46 @@ export default function QuizCategoryPage({ params }: QuizPageProps) {
   const [mode, setMode] = useState<QuizMode>('practice');
   const [showModeSelect, setShowModeSelect] = useState(true);
   const [showConfetti, setShowConfetti] = useState(false);
+  const [categoryProgress, setCategoryProgress] = useState({ answered: 0, total: 0 });
+
+  const selectQuestionBatch = useCallback((all: Question[]) => {
+    const allIds = all.map(q => q.id);
+    const priorities = getQuestionPriorities(allIds);
+    const questionsById = new Map(all.map(q => [q.id, q]));
+
+    const correctCount = allIds.filter(id => priorities.get(id) === -1).length;
+    setCategoryProgress({ answered: correctCount, total: all.length });
+
+    //  1 = unseen  → top (asked first)
+    //  0 = incorrect → middle (asked next)
+    // -1 = correct → bottom (asked last)
+    const tier1  = shuffleArray(allIds.filter(id => priorities.get(id) === 1));
+    const tier0  = shuffleArray(allIds.filter(id => priorities.get(id) === 0));
+    const tierN1 = shuffleArray(allIds.filter(id => priorities.get(id) === -1));
+
+    const prioritized = [...tier1, ...tier0, ...tierN1];
+
+    const batchSize = Math.min(10, all.length);
+    const batch = prioritized
+      .slice(0, batchSize)
+      .map(id => questionsById.get(id)!);
+
+    setQuestions(batch);
+  }, []);
 
   useEffect(() => {
     async function loadQuestions() {
       try {
-        const res = await fetch(`/api/questions?category=${category}&limit=10`);
+        const res = await fetch(`/api/questions?category=${category}`);
         const data = await res.json();
-        setQuestions(data.questions || []);
+        const all = data.questions || [];
+        setAllQuestions(all);
+        // Cache question IDs for this category so CategoryCard can show progress
+        localStorage.setItem(
+          `trivia-category-questions-${category}`,
+          JSON.stringify(all.map((q: Question) => q.id))
+        );
+        selectQuestionBatch(all);
       } catch (error) {
         console.error('Failed to load questions:', error);
       } finally {
@@ -40,6 +83,7 @@ export default function QuizCategoryPage({ params }: QuizPageProps) {
     }
 
     loadQuestions();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [category]);
 
   const handleAnswer = (selectedIndex: number, correct: boolean) => {
@@ -59,6 +103,12 @@ export default function QuizCategoryPage({ params }: QuizPageProps) {
       setIsComplete(true);
       const finalScore = correct ? score + 1 : score;
       saveQuizSession(category, finalScore, questions.length);
+
+      // Recalculate progress to reflect newly answered questions
+      const allIds = allQuestions.map(q => q.id);
+      const updatedPriorities = getQuestionPriorities(allIds);
+      const seenCount = allIds.filter(id => updatedPriorities.get(id)! < 1).length;
+      setCategoryProgress(prev => ({ ...prev, answered: seenCount }));
 
       // Show confetti if score is good
       if (finalScore / questions.length >= 0.7) {
@@ -81,6 +131,8 @@ export default function QuizCategoryPage({ params }: QuizPageProps) {
     setIsComplete(false);
     setShowModeSelect(true);
     setShowConfetti(false);
+    // Re-select questions based on updated progress
+    selectQuestionBatch(allQuestions);
   };
 
   const getCategoryName = (slug: string) => {
@@ -126,6 +178,10 @@ export default function QuizCategoryPage({ params }: QuizPageProps) {
 
   // Mode selection screen
   if (showModeSelect) {
+    const progressPercent = categoryProgress.total > 0
+      ? Math.round((categoryProgress.answered / categoryProgress.total) * 100)
+      : 0;
+
     return (
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
@@ -133,7 +189,30 @@ export default function QuizCategoryPage({ params }: QuizPageProps) {
             {getCategoryName(category)}
           </h1>
           <p className="text-slate-600 dark:text-slate-400">
-            {questions.length} questions ready. Choose your quiz mode:
+            {categoryProgress.total > 0
+              ? `${categoryProgress.answered} of ${categoryProgress.total} questions completed`
+              : `${questions.length} questions ready`
+            }
+          </p>
+
+          {/* Progress bar */}
+          {categoryProgress.total > 0 && (
+            <div className="mt-3 max-w-xs mx-auto">
+              <div className="flex justify-between text-xs text-slate-500 dark:text-slate-400 mb-1">
+                <span>Progress</span>
+                <span>{progressPercent}%</span>
+              </div>
+              <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2.5">
+                <div
+                  className="bg-disney-blue dark:bg-disney-gold h-2.5 rounded-full transition-all duration-300"
+                  style={{ width: `${progressPercent}%` }}
+                />
+              </div>
+            </div>
+          )}
+
+          <p className="text-slate-500 dark:text-slate-500 text-sm mt-3">
+            Choose your quiz mode:
           </p>
         </div>
 
@@ -185,6 +264,9 @@ export default function QuizCategoryPage({ params }: QuizPageProps) {
   if (isComplete) {
     const percentage = Math.round((score / questions.length) * 100);
     const incorrectAnswers = answers.filter(a => !a.correct);
+    const completionPercent = categoryProgress.total > 0
+      ? Math.round((categoryProgress.answered / categoryProgress.total) * 100)
+      : 0;
 
     return (
       <div className="max-w-2xl mx-auto">
@@ -210,6 +292,22 @@ export default function QuizCategoryPage({ params }: QuizPageProps) {
               {percentage}% Correct
             </div>
           </div>
+
+          {/* Category completion progress */}
+          {categoryProgress.total > 0 && (
+            <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-4 mb-6">
+              <div className="flex justify-between text-sm text-slate-600 dark:text-slate-400 mb-2">
+                <span>Category Progress</span>
+                <span>{categoryProgress.answered}/{categoryProgress.total} ({completionPercent}%)</span>
+              </div>
+              <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2.5">
+                <div
+                  className="bg-disney-blue dark:bg-disney-gold h-2.5 rounded-full transition-all duration-300"
+                  style={{ width: `${completionPercent}%` }}
+                />
+              </div>
+            </div>
+          )}
 
           {/* Message */}
           <p className="text-slate-600 dark:text-slate-400 mb-6">

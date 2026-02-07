@@ -5,12 +5,15 @@ import seedData from '@/data/seed-questions.json';
 export async function getCategories(): Promise<Category[]> {
   const supabase = getSupabase();
   if (!supabase || !isSupabaseConfigured()) {
-    return seedData.categories as Category[];
+    return seedData.categories.map(c => ({
+      ...c,
+      question_count: seedData.questions.filter(q => q.category_id === c.id).length,
+    })) as Category[];
   }
 
   const { data, error } = await supabase
     .from('categories')
-    .select('*')
+    .select('*, questions(count)')
     .order('name');
 
   if (error) {
@@ -18,12 +21,16 @@ export async function getCategories(): Promise<Category[]> {
     return seedData.categories as Category[];
   }
 
-  return data;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return data.map((c: any) => ({
+    ...c,
+    question_count: c.questions?.[0]?.count ?? 0,
+    questions: undefined,
+  }));
 }
 
 export async function getQuestionsByCategory(
   categorySlug: string,
-  limit: number = 10
 ): Promise<Question[]> {
   const supabase = getSupabase();
   if (!supabase || !isSupabaseConfigured()) {
@@ -34,8 +41,7 @@ export async function getQuestionsByCategory(
       q => q.category_id === category.id
     ) as Question[];
 
-    // Shuffle and return limited questions
-    return shuffleArray(questions).slice(0, limit);
+    return shuffleArray(questions);
   }
 
   const { data: category } = await supabase
@@ -49,8 +55,7 @@ export async function getQuestionsByCategory(
   const { data, error } = await supabase
     .from('questions')
     .select('*, category:categories(*)')
-    .eq('category_id', category.id)
-    .limit(limit);
+    .eq('category_id', category.id);
 
   if (error) {
     console.error('Error fetching questions:', error);
@@ -133,7 +138,7 @@ export async function getRandomQuestions(limit: number = 10): Promise<Question[]
   return shuffleArray(data).slice(0, limit);
 }
 
-function shuffleArray<T>(array: T[]): T[] {
+export function shuffleArray<T>(array: T[]): T[] {
   const shuffled = [...array];
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));

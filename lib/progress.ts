@@ -124,6 +124,29 @@ export function getTotalQuestionsAnswered(): number {
   );
 }
 
+/**
+ * Score each question by priority:
+ *   1 = unseen (never answered) → asked first
+ *   0 = incorrect (last attempt wrong) → asked next
+ *  -1 = correct (last attempt right) → asked last
+ */
+export function getQuestionPriorities(questionIds: string[]): Map<string, number> {
+  const progress = getLocalProgress();
+  const priorities = new Map<string, number>();
+
+  for (const id of questionIds) {
+    const attempts = progress.questionsAnswered[id];
+    if (!attempts || attempts.length === 0) {
+      priorities.set(id, 1);
+    } else {
+      const lastAttempt = attempts[attempts.length - 1];
+      priorities.set(id, lastAttempt.correct ? -1 : 0);
+    }
+  }
+
+  return priorities;
+}
+
 export function getRecentQuizzes(limit: number = 5): LocalProgress['quizSessions'] {
   const progress = getLocalProgress();
   return progress.quizSessions

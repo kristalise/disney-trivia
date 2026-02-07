@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
       questions = await searchQuestions(query, category || undefined);
     } else if (category) {
       // Browse by category
-      questions = await getQuestionsByCategory(category, 50);
+      questions = await getQuestionsByCategory(category);
     } else {
       // Return empty array if no query or category
       questions = [];
