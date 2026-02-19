@@ -9,7 +9,7 @@ if (process.env.NODE_ENV === 'development') {
   ALLOWED_ORIGINS.push('http://localhost:3000');
 }
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   // CSRF protection: verify origin on mutating API requests
   if (
     request.nextUrl.pathname.startsWith('/api/') &&

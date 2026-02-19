@@ -2,6 +2,7 @@ import Link from 'next/link';
 import CategoryCard from '@/components/CategoryCard';
 import { getCategories } from '@/lib/questions';
 import InstallAppBanner from '@/components/InstallAppBanner';
+import QuickStats from '@/components/QuickStats';
 
 export default async function Home() {
   const categories = await getCategories();
@@ -39,27 +40,7 @@ export default async function Home() {
       </section>
 
       {/* Quick Stats */}
-      <section className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {[
-          { label: 'Categories', value: '13', icon: '📚' },
-          { label: 'Questions', value: '700+', icon: '❓' },
-          { label: 'Quiz Modes', value: '3', icon: '🎮' },
-          { label: 'Works Offline', value: 'Yes!', icon: '📱' },
-        ].map((stat) => (
-          <div
-            key={stat.label}
-            className="bg-white dark:bg-slate-800 rounded-xl p-4 text-center shadow-sm border border-slate-200 dark:border-slate-700"
-          >
-            <div className="text-2xl mb-1">{stat.icon}</div>
-            <div className="text-2xl font-bold text-slate-900 dark:text-white">
-              {stat.value}
-            </div>
-            <div className="text-sm text-slate-600 dark:text-slate-400">
-              {stat.label}
-            </div>
-          </div>
-        ))}
-      </section>
+      <QuickStats />
 
       {/* Categories */}
       <section>
