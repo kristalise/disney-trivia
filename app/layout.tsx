@@ -165,6 +165,18 @@ export default function RootLayout({
             {children}
           </main>
           <EmailSignup />
+          <footer className="border-t border-slate-200 dark:border-slate-700 mt-12 py-6 px-4">
+            <div className="max-w-6xl mx-auto text-center text-xs text-slate-500 dark:text-slate-400 space-y-2">
+              <p>
+                This is an unofficial fan-made study tool. It is not affiliated with, endorsed by, or in any way
+                officially connected with The Walt Disney Company, Disney Cruise Line, or any of their subsidiaries or affiliates.
+              </p>
+              <p>
+                All Disney-related trademarks, names, and images are the property of their respective owners. This site is
+                intended solely for personal, non-commercial educational use by trivia enthusiasts.
+              </p>
+            </div>
+          </footer>
         </ClientProviders>
       </body>
     </html>
