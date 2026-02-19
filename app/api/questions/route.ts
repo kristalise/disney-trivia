@@ -4,7 +4,7 @@ import { getCategories, getQuestionsByCategory, getRandomQuestions } from '@/lib
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const category = searchParams.get('category');
-  const limit = parseInt(searchParams.get('limit') || '10', 10);
+  const limit = Math.min(Math.max(parseInt(searchParams.get('limit') || '10', 10) || 10, 1), 50);
   const categoriesOnly = searchParams.get('categoriesOnly');
 
   try {

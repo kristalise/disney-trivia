@@ -1,18 +1,37 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import { checkRateLimit } from '@/lib/rate-limit';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
 function getSupabase() {
-  if (!supabaseUrl || !supabaseKey) {
+  if (!supabaseUrl || !supabaseAnonKey) {
     return null;
   }
-  return createClient(supabaseUrl, supabaseKey);
+  return createClient(supabaseUrl, supabaseAnonKey);
+}
+
+const MAX_QUESTION_LENGTH = 500;
+const MAX_OPTION_LENGTH = 200;
+const MAX_EXPLANATION_LENGTH = 1000;
+const MAX_CRUISE_NAME_LENGTH = 100;
+
+function stripHtml(str: string): string {
+  return str.replace(/<[^>]*>/g, '').trim();
 }
 
 export async function POST(request: NextRequest) {
   try {
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0] ?? 'unknown';
+    const { allowed } = checkRateLimit(`contribute:${ip}`, 5);
+    if (!allowed) {
+      return NextResponse.json(
+        { error: 'Too many requests. Please try again later.' },
+        { status: 429 }
+      );
+    }
+
     const body = await request.json();
     const {
       category_id,
@@ -53,6 +72,19 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Sanitize and enforce length limits
+    const sanitizedQuestion = stripHtml(question).slice(0, MAX_QUESTION_LENGTH);
+    const sanitizedOptions = options.map((opt: string) => stripHtml(String(opt)).slice(0, MAX_OPTION_LENGTH));
+    const sanitizedExplanation = stripHtml(explanation).slice(0, MAX_EXPLANATION_LENGTH);
+    const sanitizedCruiseName = stripHtml(cruise_name).slice(0, MAX_CRUISE_NAME_LENGTH);
+
+    if (!sanitizedQuestion || sanitizedOptions.some((opt: string) => !opt) || !sanitizedExplanation) {
+      return NextResponse.json(
+        { error: 'Fields cannot be empty after sanitization' },
+        { status: 400 }
+      );
+    }
+
     const supabase = getSupabase();
 
     if (!supabase) {
@@ -64,12 +96,12 @@ export async function POST(request: NextRequest) {
         question: {
           id: `local_${Date.now()}`,
           category_id,
-          question,
-          options,
+          question: sanitizedQuestion,
+          options: sanitizedOptions,
           correct_answer,
-          explanation,
+          explanation: sanitizedExplanation,
           difficulty,
-          cruise_name,
+          cruise_name: sanitizedCruiseName,
           is_user_contributed: true,
           contributed_at: new Date().toISOString(),
           reliability_score: 1.0,
@@ -84,12 +116,12 @@ export async function POST(request: NextRequest) {
       .from('questions')
       .insert({
         category_id,
-        question,
-        options,
+        question: sanitizedQuestion,
+        options: sanitizedOptions,
         correct_answer,
-        explanation,
+        explanation: sanitizedExplanation,
         difficulty,
-        cruise_name,
+        cruise_name: sanitizedCruiseName,
         is_user_contributed: true,
         contributed_at: new Date().toISOString(),
         reliability_score: 1.0,

@@ -1,25 +1,36 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import { randomUUID } from 'crypto';
+import { checkRateLimit } from '@/lib/rate-limit';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
 function getSupabase() {
-  if (!supabaseUrl || !supabaseKey) {
+  if (!supabaseUrl || !supabaseAnonKey) {
     return null;
   }
-  return createClient(supabaseUrl, supabaseKey);
+  return createClient(supabaseUrl, supabaseAnonKey);
 }
 
 // Generate a session ID for anonymous users
 function getSessionId(request: NextRequest): string {
   const existingSession = request.cookies.get('trivia_session')?.value;
   if (existingSession) return existingSession;
-  return `anon_${Date.now()}_${Math.random().toString(36).substring(7)}`;
+  return `anon_${randomUUID()}`;
 }
 
 export async function POST(request: NextRequest) {
   try {
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0] ?? 'unknown';
+    const { allowed } = checkRateLimit(`rating:${ip}`, 30);
+    if (!allowed) {
+      return NextResponse.json(
+        { error: 'Too many requests. Please try again later.' },
+        { status: 429 }
+      );
+    }
+
     const body = await request.json();
     const { question_id, is_reliable, suggested_correct_answer, suggested_explanation } = body;
 

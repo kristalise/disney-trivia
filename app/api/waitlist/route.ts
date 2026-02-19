@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
+import { checkRateLimit } from '@/lib/rate-limit';
 
 function getSupabaseClient() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -12,8 +13,17 @@ function getSupabaseClient() {
   return createClient(url, key);
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0] ?? 'unknown';
+    const { allowed } = checkRateLimit(`waitlist:${ip}`, 3);
+    if (!allowed) {
+      return NextResponse.json(
+        { error: 'Too many requests. Please try again later.' },
+        { status: 429 }
+      );
+    }
+
     const supabase = getSupabaseClient();
 
     if (!supabase) {
@@ -26,7 +36,8 @@ export async function POST(request: Request) {
 
     const { email } = await request.json();
 
-    if (!email || !email.includes('@')) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || typeof email !== 'string' || !emailRegex.test(email) || email.length > 254) {
       return NextResponse.json(
         { error: 'Please enter a valid email address' },
         { status: 400 }
