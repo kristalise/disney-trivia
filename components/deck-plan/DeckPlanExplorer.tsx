@@ -3,7 +3,11 @@
 import { useState, useRef } from 'react';
 import ImageViewer, { type ImageViewerHandle } from './ImageViewer';
 import RoomSearchOverlay from './RoomSearchOverlay';
-import { SHIP_DECK_PLAN_IMAGES, SHIP_PAIRS } from '@/lib/deck-plan-utils';
+import {
+  SHIP_DECK_PLAN_IMAGES,
+  SHIP_ROOM_LAYOUT_IMAGES,
+  SHIP_PAIRS,
+} from '@/lib/deck-plan-utils';
 
 const SHIPS = [
   'Disney Magic',
@@ -26,14 +30,18 @@ export default function DeckPlanExplorer({ initialShip }: DeckPlanExplorerProps)
   const [selectedShip, setSelectedShip] = useState<ShipName>(
     (SHIPS.includes(initialShip as ShipName) ? initialShip : 'Disney Wish') as ShipName
   );
+  const [showLayouts, setShowLayouts] = useState(false);
   const viewerRef = useRef<ImageViewerHandle>(null);
+  const layoutViewerRef = useRef<ImageViewerHandle>(null);
 
   const imageSrc = SHIP_DECK_PLAN_IMAGES[selectedShip];
+  const layoutSrc = SHIP_ROOM_LAYOUT_IMAGES[selectedShip];
   const sisterShip = SHIP_PAIRS[selectedShip];
 
   const handleShipChange = (ship: ShipName) => {
     setSelectedShip(ship);
     viewerRef.current?.reset();
+    layoutViewerRef.current?.reset();
   };
 
   return (
@@ -73,6 +81,34 @@ export default function DeckPlanExplorer({ initialShip }: DeckPlanExplorerProps)
         />
         <RoomSearchOverlay ship={selectedShip} />
       </div>
+
+      {/* Room Layouts toggle */}
+      <div className="mb-4">
+        <button
+          onClick={() => setShowLayouts((v) => !v)}
+          className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors w-full sm:w-auto"
+        >
+          <svg
+            className={`w-4 h-4 transition-transform ${showLayouts ? 'rotate-90' : ''}`}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+          Stateroom Categories &amp; Layouts
+        </button>
+      </div>
+
+      {showLayouts && (
+        <div className="mb-4">
+          <ImageViewer
+            ref={layoutViewerRef}
+            src={layoutSrc}
+            alt={`${selectedShip} stateroom category layouts`}
+          />
+        </div>
+      )}
 
       {/* Usage tips */}
       <div className="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-4 text-sm text-slate-600 dark:text-slate-400">

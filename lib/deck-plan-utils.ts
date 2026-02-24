@@ -76,6 +76,18 @@ export const SHIP_DECK_PLAN_IMAGES: Record<string, string> = {
   'Disney Adventure': '/deck-plans/adventure.webp',
 };
 
+/** Maps each ship to its room layouts image in /deck-plans/ */
+export const SHIP_ROOM_LAYOUT_IMAGES: Record<string, string> = {
+  'Disney Magic': '/deck-plans/magic-wonder-layouts.webp',
+  'Disney Wonder': '/deck-plans/magic-wonder-layouts.webp',
+  'Disney Dream': '/deck-plans/dream-fantasy-layouts.webp',
+  'Disney Fantasy': '/deck-plans/dream-fantasy-layouts.webp',
+  'Disney Wish': '/deck-plans/wish-treasure-layouts.webp',
+  'Disney Treasure': '/deck-plans/wish-treasure-layouts.webp',
+  'Disney Destiny': '/deck-plans/destiny-layouts.webp',
+  'Disney Adventure': '/deck-plans/adventure-layouts.webp',
+};
+
 /** Ships that share the same deck plan image */
 export const SHIP_PAIRS: Record<string, string> = {
   'Disney Magic': 'Disney Wonder',
