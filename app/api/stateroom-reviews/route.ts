@@ -1,35 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
 import { checkRateLimit } from '@/lib/rate-limit';
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-function getSupabase(authHeader?: string | null) {
-  if (!supabaseUrl || !supabaseAnonKey) {
-    return null;
-  }
-  return createClient(supabaseUrl, supabaseAnonKey, {
-    global: {
-      headers: authHeader ? { Authorization: authHeader } : {},
-    },
-  });
-}
-
-const VALID_SHIPS = [
-  'Disney Magic',
-  'Disney Wonder',
-  'Disney Dream',
-  'Disney Fantasy',
-  'Disney Wish',
-  'Disney Treasure',
-  'Disney Destiny',
-  'Disney Adventure',
-];
-
-function stripHtml(str: string): string {
-  return str.replace(/<[^>]*>/g, '').trim();
-}
+import {
+  getSupabase,
+  VALID_SHIPS,
+  stripHtml,
+  validateRating,
+  requireAuth,
+  enrichWithProfiles,
+  enrichWithSailingContext,
+} from '@/lib/review-api-utils';
 
 export async function GET(request: NextRequest) {
   try {
@@ -59,7 +38,7 @@ export async function GET(request: NextRequest) {
 
     const { data: reviews, error } = await supabase
       .from('stateroom_reviews')
-      .select('id, ship_name, stateroom_number, sail_start_date, sail_end_date, stateroom_rating, sailing_rating, num_passengers, adults, children, infants, occasions, boarding_port, ports_of_call, departure_port, purchased_from, price_paid, review_text, created_at')
+      .select('id, ship_name, stateroom_number, sail_start_date, sail_end_date, stateroom_rating, sailing_rating, num_passengers, adults, children, infants, occasions, boarding_port, ports_of_call, departure_port, purchased_from, price_paid, review_text, user_id, sailing_id, created_at')
       .eq('ship_name', ship)
       .eq('stateroom_number', roomNum)
       .order('created_at', { ascending: false });
@@ -77,7 +56,11 @@ export async function GET(request: NextRequest) {
         ? Math.round((sailingRatings.reduce((sum, r) => sum + r.sailing_rating, 0) / sailingRatings.length) * 10) / 10
         : null;
 
-    return NextResponse.json({ reviews: reviews ?? [], averageStateroomRating, averageSailingRating, totalReviews });
+    const rawReviews = reviews ?? [];
+    const profileEnriched = await enrichWithProfiles(supabase, rawReviews);
+    const enrichedReviews = await enrichWithSailingContext(supabase, profileEnriched);
+
+    return NextResponse.json({ reviews: enrichedReviews, averageStateroomRating, averageSailingRating, totalReviews });
   } catch (error) {
     console.error('Error fetching stateroom reviews:', error);
     return NextResponse.json(
@@ -107,26 +90,22 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    if (authError || !user) {
-      return NextResponse.json(
-        { error: 'Authentication required. Please sign in.' },
-        { status: 401 }
-      );
-    }
+    const authResult = await requireAuth(supabase);
+    if (authResult.error) return authResult.error;
+    const { user } = authResult;
 
     const body = await request.json();
     const {
-      ship_name,
+      ship_name: body_ship_name,
       stateroom_number,
-      sail_start_date,
-      sail_end_date,
+      sail_start_date: body_sail_start_date,
+      sail_end_date: body_sail_end_date,
       stateroom_rating,
       sailing_rating,
       num_passengers,
-      boarding_port,
-      ports_of_call,
-      departure_port,
+      boarding_port: body_boarding_port,
+      ports_of_call: body_ports_of_call,
+      departure_port: body_departure_port,
       purchased_from,
       price_paid,
       adults,
@@ -134,7 +113,33 @@ export async function POST(request: NextRequest) {
       infants,
       occasions,
       review_text,
+      sailing_id,
     } = body;
+
+    // If sailing_id provided, look up the sailing and auto-populate shared fields
+    let ship_name = body_ship_name;
+    let sail_start_date = body_sail_start_date;
+    let sail_end_date = body_sail_end_date;
+    let boarding_port = body_boarding_port;
+    let ports_of_call = body_ports_of_call;
+    let departure_port = body_departure_port;
+
+    if (sailing_id) {
+      const { data: sailing, error: sailingError } = await supabase
+        .from('sailing_reviews')
+        .select('ship_name, sail_start_date, sail_end_date, embarkation_port, disembarkation_port, ports_of_call')
+        .eq('id', sailing_id)
+        .single();
+      if (sailingError || !sailing) {
+        return NextResponse.json({ error: 'Sailing not found' }, { status: 404 });
+      }
+      ship_name = ship_name || sailing.ship_name;
+      sail_start_date = sail_start_date || sailing.sail_start_date;
+      sail_end_date = sail_end_date || sailing.sail_end_date;
+      boarding_port = boarding_port || sailing.embarkation_port;
+      departure_port = departure_port || sailing.disembarkation_port || sailing.embarkation_port;
+      ports_of_call = ports_of_call || sailing.ports_of_call;
+    }
 
     // Validate required fields
     if (!ship_name || !stateroom_number || !sail_start_date || !sail_end_date || !stateroom_rating || !sailing_rating || !num_passengers || !boarding_port || !departure_port) {
@@ -153,22 +158,14 @@ export async function POST(request: NextRequest) {
     }
 
     // Validate stateroom_rating
-    const stateroomRatingNum = Number(stateroom_rating);
-    if (!Number.isInteger(stateroomRatingNum) || stateroomRatingNum < 1 || stateroomRatingNum > 5) {
-      return NextResponse.json(
-        { error: 'Stateroom rating must be an integer between 1 and 5' },
-        { status: 400 }
-      );
-    }
+    const stateroomRatingResult = validateRating(stateroom_rating, 'Stateroom rating');
+    if (!stateroomRatingResult.valid) return stateroomRatingResult.error;
+    const stateroomRatingNum = stateroomRatingResult.value;
 
     // Validate sailing_rating
-    const sailingRatingNum = Number(sailing_rating);
-    if (!Number.isInteger(sailingRatingNum) || sailingRatingNum < 1 || sailingRatingNum > 5) {
-      return NextResponse.json(
-        { error: 'Sailing rating must be an integer between 1 and 5' },
-        { status: 400 }
-      );
-    }
+    const sailingRatingResult = validateRating(sailing_rating, 'Sailing rating');
+    if (!sailingRatingResult.valid) return sailingRatingResult.error;
+    const sailingRatingNum = sailingRatingResult.value;
 
     // Validate stateroom number
     const roomNum = Number(stateroom_number);
@@ -292,6 +289,7 @@ export async function POST(request: NextRequest) {
         purchased_from: sanitizedPurchasedFrom || null,
         price_paid: sanitizedPricePaid,
         review_text: sanitizedReviewText || null,
+        ...(sailing_id ? { sailing_id } : {}),
       })
       .select()
       .single();

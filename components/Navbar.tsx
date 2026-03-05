@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from './AuthProvider';
 import AuthModal from './AuthModal';
 
@@ -13,13 +13,24 @@ export default function Navbar() {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [authMode, setAuthMode] = useState<'login' | 'signup'>('login');
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [userHandle, setUserHandle] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!user) { setUserHandle(null); return; }
+    fetch(`/api/profiles/${user.id}`)
+      .then(res => res.ok ? res.json() : null)
+      .then(data => { if (data?.profile?.handle) setUserHandle(data.profile.handle); })
+      .catch(() => {});
+  }, [user]);
 
   const navItems = [
     { href: '/', label: 'Home' },
     { href: '/quiz', label: 'Quiz' },
+    { href: '/Secret-menU', label: 'Cruise Guide', mobileLabel: 'Guide' },
     { href: '/search', label: 'Search' },
-    { href: '/contribute', label: 'Contribute' },
-    { href: '/progress', label: 'Progress' },
+    { href: '/contribute', label: 'Contribute', hideOnMobile: true },
+    { href: '/progress', label: 'Progress', hideOnMobile: true },
+    { href: '/users', label: 'Community' },
   ];
 
   const openLogin = () => {
@@ -66,9 +77,16 @@ export default function Navbar() {
                       isActive
                         ? 'bg-white/20 text-white'
                         : 'text-white/80 hover:text-white hover:bg-white/10'
-                    }`}
+                    }${item.hideOnMobile ? ' hidden sm:inline-flex' : ''}`}
                   >
-                    {item.label}
+                    {item.mobileLabel ? (
+                      <>
+                        <span className="hidden sm:inline">{item.label}</span>
+                        <span className="sm:hidden">{item.mobileLabel}</span>
+                      </>
+                    ) : (
+                      item.label
+                    )}
                   </Link>
                 );
               })}
@@ -97,6 +115,20 @@ export default function Navbar() {
                               {user.email}
                             </p>
                           </div>
+                          <Link
+                            href={`/profile/${userHandle || user.id}`}
+                            onClick={() => setShowUserMenu(false)}
+                            className="block px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"
+                          >
+                            My Profile
+                          </Link>
+                          <Link
+                            href="/friends"
+                            onClick={() => setShowUserMenu(false)}
+                            className="block px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"
+                          >
+                            Friends
+                          </Link>
                           <Link
                             href="/progress"
                             onClick={() => setShowUserMenu(false)}

@@ -3,12 +3,15 @@ import CategoryCard from '@/components/CategoryCard';
 import { getCategories } from '@/lib/questions';
 import InstallAppBanner from '@/components/InstallAppBanner';
 import QuickStats from '@/components/QuickStats';
+import OnboardingOverlay from '@/components/OnboardingOverlay';
 
 export default async function Home() {
   const categories = await getCategories();
 
   return (
     <div className="space-y-12">
+      <OnboardingOverlay />
+
       {/* Install App Banner - Shown at top for new visitors */}
       <InstallAppBanner />
 
@@ -41,6 +44,20 @@ export default async function Home() {
 
       {/* Quick Stats */}
       <QuickStats />
+
+      {/* Cruise Guide CTA */}
+      <section className="bg-gradient-to-r from-cyan-600 to-blue-600 rounded-2xl p-8 text-white text-center">
+        <h2 className="text-2xl font-bold mb-3">Planning a Disney Cruise?</h2>
+        <p className="text-white/90 mb-6 max-w-xl mx-auto">
+          Explore staterooms, dining, activities, and more across all 8 Disney ships.
+        </p>
+        <Link
+          href="/Secret-menU"
+          className="inline-block px-6 py-3 rounded-xl font-semibold bg-white text-cyan-600 hover:bg-cyan-50 transition-colors"
+        >
+          Explore Cruise Guide
+        </Link>
+      </section>
 
       {/* Categories */}
       <section>
