@@ -1,0 +1,3696 @@
+{
+  "categories": [
+    {
+      "id": "rotational",
+      "label": "Rotational Dining",
+      "emoji": "🍽️",
+      "color": "blue"
+    },
+    {
+      "id": "quick-service",
+      "label": "Quick Service",
+      "emoji": "🍔",
+      "color": "amber"
+    },
+    {
+      "id": "specialty",
+      "label": "Specialty Dining",
+      "emoji": "🥂",
+      "color": "pink"
+    },
+    {
+      "id": "bars-lounges",
+      "label": "Bars & Lounges",
+      "emoji": "🍹",
+      "color": "violet"
+    },
+    {
+      "id": "tea-character",
+      "label": "Tea & Character Experiences",
+      "emoji": "👑",
+      "color": "rose"
+    }
+  ],
+  "venues": [
+    {
+      "id": "1923",
+      "name": "1923",
+      "category": "rotational",
+      "theme": "Walt Disney Studios",
+      "description": "Named for the year The Walt Disney Company was founded, celebrating the golden age of Disney animation. Features California-inspired cuisine and walls adorned with over 1,000 drawings and props from the Walt Disney Animation Studios.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "status": "current",
+      "years": "2022–present",
+      "price": null,
+      "access": null,
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Wish": {
+          "deck": "3",
+          "section": "Aft"
+        },
+        "Disney Treasure": {
+          "deck": "3",
+          "section": "Aft"
+        },
+        "Disney Destiny": {
+          "deck": "3",
+          "section": "Aft"
+        }
+      }
+    },
+    {
+      "id": "adventure-tea-with-royalty",
+      "name": "Adventure Tea with Royalty",
+      "category": "tea-character",
+      "theme": "Disney Princesses",
+      "description": "An enchanting princess-hosted tea party experience with themed treats, storytelling, and royal meet-and-greets aboard the newer Disney ships.",
+      "ships": [
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": "Extra charge",
+      "access": null,
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": true,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Treasure": {
+          "deck": "3",
+          "section": "Aft"
+        },
+        "Disney Destiny": {
+          "deck": "3",
+          "section": "Aft"
+        }
+      }
+    },
+    {
+      "id": "after-hours",
+      "name": "After Hours",
+      "category": "bars-lounges",
+      "theme": "Nightlife District",
+      "description": "Villains-themed nightlife district with multiple themed areas for adults to enjoy cocktails, dancing, and entertainment. The vibrant heart of the ship's late-night scene.",
+      "ships": [
+        "Disney Magic"
+      ],
+      "status": "historical",
+      "years": "2013–present",
+      "price": null,
+      "access": "Adults (18+)",
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "alley-cat-cafe",
+      "name": "Alley Cat Café",
+      "category": "quick-service",
+      "theme": "Aristocats",
+      "description": "An Aristocats-inspired café serving pastries, sandwiches, and specialty coffee drinks in a charming Parisian cat-themed setting.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "status": "current",
+      "years": "2025–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "animators-palate",
+      "name": "Animator's Palate",
+      "category": "rotational",
+      "theme": "Disney Animation",
+      "description": "Interactive dining experience where the restaurant transforms from black-and-white to full color throughout the meal, featuring beloved Disney animation. On select sailings, guests can create drawings that come to life on screen.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Adventure"
+      ],
+      "status": "current",
+      "years": "1998–present",
+      "price": null,
+      "access": null,
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": true,
+      "liveEntertainment": true,
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "4",
+          "section": "Aft"
+        },
+        "Disney Wonder": {
+          "deck": "4",
+          "section": "Aft"
+        },
+        "Disney Dream": {
+          "deck": "3",
+          "section": "Aft"
+        },
+        "Disney Fantasy": {
+          "deck": "3",
+          "section": "Aft"
+        },
+        "Disney Adventure": {
+          "deck": "3",
+          "section": "Aft"
+        }
+      }
+    },
+    {
+      "id": "animators-table",
+      "name": "Animator's Table",
+      "category": "rotational",
+      "theme": "Disney Animation",
+      "description": "A fresh take on the Animator's Palate concept with next-generation interactive animation technology. Guests' creations come to life in new ways throughout an immersive dining experience.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "status": "current",
+      "years": "2025–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": true,
+      "liveEntertainment": true,
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "3",
+          "section": "Aft"
+        }
+      }
+    },
+    {
+      "id": "arendelle",
+      "name": "Arendelle: A Frozen Dining Adventure",
+      "category": "rotational",
+      "theme": "Frozen",
+      "description": "Immersive Frozen-themed dining with live performances by Elsa, Anna, Kristoff, and Olaf during your meal. Set during an engagement celebration in the kingdom of Arendelle with Nordic-inspired cuisine.",
+      "ships": [
+        "Disney Wish"
+      ],
+      "status": "current",
+      "years": "2022–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": true,
+      "liveEntertainment": true,
+      "deckByShip": {
+        "Disney Wish": {
+          "deck": "3",
+          "section": "Aft"
+        }
+      }
+    },
+    {
+      "id": "aurora-bar",
+      "name": "Aurora Bar",
+      "category": "bars-lounges",
+      "theme": "Northern Lights",
+      "description": "Northern lights-themed cocktail bar with a stunning ceiling that mimics the aurora borealis. Features Scandinavian-inspired cocktails and a magical atmosphere.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "status": "historical",
+      "years": "2025–present",
+      "price": null,
+      "access": "Adults (18+)",
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "azure",
+      "name": "Azure",
+      "category": "bars-lounges",
+      "theme": "Live Entertainment",
+      "description": "Live entertainment venue featuring contemporary music, dancing, and special events in a vibrant atmosphere.",
+      "ships": [
+        "Disney Wonder"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "characterExperience": false,
+      "liveEntertainment": true,
+      "subVenues": null,
+      "deckByShip": {
+        "Disney Wonder": {
+          "deck": "4",
+          "section": "Forward"
+        }
+      }
+    },
+    {
+      "id": "bacha-coffee",
+      "name": "Bacha Coffee",
+      "category": "quick-service",
+      "theme": "Premium Coffee",
+      "description": "Premium coffee house offering an exceptional selection of rare and fine coffees from around the world, paired with elegant pastries and light bites.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "status": "current",
+      "years": "2025–present",
+      "price": "À la carte",
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "beach-blanket-buffet",
+      "name": "Beach Blanket Buffet",
+      "category": "quick-service",
+      "theme": "Beach",
+      "description": "Casual buffet restaurant that served as the predecessor to Cabanas on the Magic and Wonder. Offered a wide variety of breakfast and lunch options.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder"
+      ],
+      "status": "historical",
+      "years": "1998–2013",
+      "price": null,
+      "access": null,
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "beverage-tastings",
+      "name": "Beverage Tastings",
+      "category": "bars-lounges",
+      "theme": "Tastings",
+      "description": "Guided tasting experiences featuring craft cocktails, wines, whiskeys, and other premium beverages offered in various venues across the fleet.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Adventure",
+        "Disney Destiny"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": "Extra charge",
+      "access": null,
+      "exclusive": false,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "subVenues": null,
+      "deckByShip": null
+    },
+    {
+      "id": "bewitching-boba",
+      "name": "Bewitching Boba and Brews",
+      "category": "quick-service",
+      "theme": "Boba Tea",
+      "description": "Specialty boba tea and brewed beverage shop offering creative tea-based drinks with a magical twist.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "status": "current",
+      "years": "2025–present",
+      "price": "À la carte",
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "bon-voyage",
+      "name": "Bon Voyage",
+      "category": "bars-lounges",
+      "theme": "Atrium Bar",
+      "description": "Elegant atrium bar located in the stunning Grand Hall. Perfect for a cocktail while watching the atrium entertainment and the enchanted staircase show.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "status": "current",
+      "years": "2022–present",
+      "price": null,
+      "access": null,
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Dream": {
+          "deck": "3",
+          "section": "Grand Hall"
+        },
+        "Disney Fantasy": {
+          "deck": "3",
+          "section": "Grand Hall"
+        }
+      }
+    },
+    {
+      "id": "buccaneer-bar",
+      "name": "Buccaneer Bar",
+      "category": "bars-lounges",
+      "theme": "Pirates",
+      "description": "Pirate-themed bar serving tropical cocktails and rum-based drinks in a swashbuckling atmosphere.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "subVenues": null,
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "11",
+          "section": "Pool Deck"
+        }
+      }
+    },
+    {
+      "id": "cabanas",
+      "name": "Cabanas",
+      "category": "quick-service",
+      "theme": "Tropical",
+      "description": "Casual buffet-style restaurant with a wide variety of breakfast, lunch, and dinner options. Offers indoor and outdoor seating with ocean views and a relaxed poolside atmosphere.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "status": "current",
+      "years": "2011–present",
+      "price": null,
+      "access": null,
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "9",
+          "section": "Aft"
+        },
+        "Disney Wonder": {
+          "deck": "9",
+          "section": "Aft"
+        },
+        "Disney Dream": {
+          "deck": "11",
+          "section": "Aft"
+        },
+        "Disney Fantasy": {
+          "deck": "11",
+          "section": "Aft"
+        }
+      }
+    },
+    {
+      "id": "cadillac-lounge",
+      "name": "Cadillac Lounge",
+      "category": "bars-lounges",
+      "theme": "Golden Age of Automobiles",
+      "description": "Classic cocktail lounge celebrating the golden age of automobiles with vintage car-inspired decor and live music. A Wonder-exclusive adults retreat with a smooth, nostalgic vibe.",
+      "ships": [
+        "Disney Wonder"
+      ],
+      "status": "current",
+      "years": "1999–present",
+      "price": null,
+      "access": "Adults (18+)",
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": true,
+      "deckByShip": {
+        "Disney Wonder": {
+          "deck": "4",
+          "section": "Forward"
+        }
+      }
+    },
+    {
+      "id": "captain-pete-brunch",
+      "name": "Captain Pete's Boatload Brunch",
+      "category": "tea-character",
+      "theme": "Mickey & Friends",
+      "description": "Character brunch experience featuring Mickey Mouse and friends in their captain's finest. Enjoy a special brunch menu while characters visit your table for photos and autographs.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "status": "historical",
+      "years": "2022–present",
+      "price": "$50/adult, $30/child",
+      "access": null,
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "carioca",
+      "name": "Carioca's",
+      "category": "rotational",
+      "theme": "The Three Caballeros",
+      "description": "The Three Caballeros-themed rotational dining celebrating the vibrant cultures of Latin America. Features a festive atmosphere and Latin American-inspired cuisine.",
+      "ships": [
+        "Disney Magic"
+      ],
+      "status": "historical",
+      "years": "2013–2018",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "cask-cannon",
+      "name": "Cask & Cannon",
+      "category": "bars-lounges",
+      "theme": "Maritime",
+      "description": "A maritime-themed lounge with live entertainment, craft cocktails, and a warm nautical atmosphere.",
+      "ships": [
+        "Disney Destiny"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "characterExperience": false,
+      "liveEntertainment": true,
+      "subVenues": null,
+      "deckByShip": {
+        "Disney Destiny": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "character-breakfast",
+      "name": "Character Breakfast",
+      "category": "tea-character",
+      "theme": "Disney Characters",
+      "description": "Special character dining breakfast where Disney characters visit your table during a buffet-style meal. Available on select mornings during your sailing.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "status": "historical",
+      "years": "1998–present",
+      "price": null,
+      "access": null,
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "castaway-cay-cookies",
+      "name": "Cookies BBQ (Castaway Cay)",
+      "category": "quick-service",
+      "theme": "Beach BBQ",
+      "description": "Open-air barbecue restaurant on Disney's private island Castaway Cay. Serves grilled burgers, ribs, chicken, corn on the cob, and tropical sides. Complimentary for all guests.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "status": "historical",
+      "years": "1998–present",
+      "price": null,
+      "access": "Castaway Cay port day",
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "cosmic-kebabs",
+      "name": "Cosmic Kebabs",
+      "category": "quick-service",
+      "theme": "Space",
+      "description": "Quick-service spot serving flavorful grilled kebabs and Mediterranean-inspired fare with a cosmic twist.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "status": "current",
+      "years": "2025–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "11",
+          "section": "Pool Deck"
+        }
+      }
+    },
+    {
+      "id": "cove-bar",
+      "name": "Cove Bar",
+      "category": "bars-lounges",
+      "theme": "Poolside",
+      "description": "Adults-only poolside bar adjacent to the Quiet Cove Pool. Serves tropical cocktails, frozen drinks, beer, wine, and non-alcoholic beverages in a relaxed outdoor setting.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "status": "historical",
+      "years": "1998–present",
+      "price": null,
+      "access": "Adults (18+)",
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "cove-cafe",
+      "name": "Cove Cafe",
+      "category": "bars-lounges",
+      "theme": "Coffee & Cocktails",
+      "description": "Adults-only coffee bar and lounge serving specialty espresso drinks, pastries, cocktails, and wines. A peaceful retreat near the adult pool area, perfect for quiet mornings or relaxed evenings.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "status": "current",
+      "years": "1998–present",
+      "price": "Premium coffees extra",
+      "access": "Adults (18+)",
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "9",
+          "section": "Forward"
+        },
+        "Disney Wonder": {
+          "deck": "9",
+          "section": "Forward"
+        },
+        "Disney Dream": {
+          "deck": "13",
+          "section": "Forward"
+        },
+        "Disney Fantasy": {
+          "deck": "13",
+          "section": "Forward"
+        },
+        "Disney Wish": {
+          "deck": "13",
+          "section": "Forward"
+        },
+        "Disney Treasure": {
+          "deck": "13",
+          "section": "Forward"
+        },
+        "Disney Destiny": {
+          "deck": "13",
+          "section": "Forward"
+        }
+      }
+    },
+    {
+      "id": "crown-fin",
+      "name": "Crown & Fin Pub",
+      "category": "bars-lounges",
+      "theme": "British Pub",
+      "description": "British-style pub aboard the Wonder with a lively atmosphere, craft beers, pub fare, and sports viewing. A casual hangout with nautical British decor.",
+      "ships": [
+        "Disney Wonder"
+      ],
+      "status": "current",
+      "years": "2016–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Wonder": {
+          "deck": "4",
+          "section": "Forward"
+        }
+      }
+    },
+    {
+      "id": "currents",
+      "name": "Currents",
+      "category": "bars-lounges",
+      "theme": "Poolside",
+      "description": "Open-air sports bar on the upper deck with views of the ocean and pool area. Shows live sports events and serves a full bar menu with snacks.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "status": "current",
+      "years": "2011–present",
+      "price": null,
+      "access": null,
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Dream": {
+          "deck": "13",
+          "section": "Forward"
+        },
+        "Disney Fantasy": {
+          "deck": "13",
+          "section": "Forward"
+        },
+        "Disney Wish": {
+          "deck": "13",
+          "section": "Forward"
+        },
+        "Disney Treasure": {
+          "deck": "13",
+          "section": "Forward"
+        },
+        "Disney Destiny": {
+          "deck": "13",
+          "section": "Forward"
+        }
+      }
+    },
+    {
+      "id": "d-lounge",
+      "name": "D Lounge",
+      "category": "bars-lounges",
+      "theme": "Family Entertainment",
+      "description": "Family-friendly entertainment lounge hosting game shows, trivia, karaoke, family activities, and live performances throughout the day and evening.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Adventure"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": false,
+      "characterExperience": false,
+      "liveEntertainment": true,
+      "subVenues": null,
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "4",
+          "section": "Midship"
+        },
+        "Disney Wonder": {
+          "deck": "4",
+          "section": "Midship"
+        },
+        "Disney Dream": {
+          "deck": "4",
+          "section": "Midship"
+        },
+        "Disney Fantasy": {
+          "deck": "4",
+          "section": "Midship"
+        },
+        "Disney Adventure": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "daisys-de-lites",
+      "name": "Daisy's De-Lites",
+      "category": "quick-service",
+      "theme": "Daisy Duck",
+      "description": "Poolside quick-service spot serving fresh wraps, salads, sandwiches, and seasonal fruit. A lighter alternative to the grill options available on the pool deck.",
+      "ships": [
+        "Disney Wonder"
+      ],
+      "status": "current",
+      "years": "2011–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Wonder": {
+          "deck": "9",
+          "section": "Aft"
+        }
+      }
+    },
+    {
+      "id": "de-vils",
+      "name": "De Vil's",
+      "category": "bars-lounges",
+      "theme": "101 Dalmatians",
+      "description": "A glamorous Cruella de Vil-inspired lounge with live entertainment, signature cocktails, and daring black-and-white decor.",
+      "ships": [
+        "Disney Destiny"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "characterExperience": false,
+      "liveEntertainment": true,
+      "subVenues": null,
+      "deckByShip": {
+        "Disney Destiny": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "district-lounge",
+      "name": "District Lounge",
+      "category": "bars-lounges",
+      "theme": "Modern Chic",
+      "description": "Sleek, modern lounge serving as the hub of the nightlife district. Features live music, signature cocktails, and a sophisticated contemporary atmosphere.",
+      "ships": [
+        "Disney Dream"
+      ],
+      "status": "current",
+      "years": "2011–present",
+      "price": null,
+      "access": "Adults (18+)",
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": true,
+      "deckByShip": {
+        "Disney Dream": {
+          "deck": "4",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "duck-in-diner",
+      "name": "Duck-In Diner",
+      "category": "quick-service",
+      "theme": "Donald Duck",
+      "description": "Donald Duck-themed quick-service diner serving classic comfort food favorites including burgers, sandwiches, and fries.",
+      "ships": [
+        "Disney Magic"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "9",
+          "section": "Pool Deck"
+        }
+      }
+    },
+    {
+      "id": "edna-sweets",
+      "name": "Edna À La Mode Sweets",
+      "category": "quick-service",
+      "theme": "The Incredibles",
+      "description": "An Incredibles-themed dessert and sweets shop inspired by the fabulous Edna Mode. Features stylish confections, gelato, and specialty treats.",
+      "ships": [
+        "Disney Destiny"
+      ],
+      "status": "current",
+      "years": "2025–present",
+      "price": "À la carte",
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Destiny": {
+          "deck": "11",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "enchante",
+      "name": "Enchanté by Chef Arnaud Lallement",
+      "category": "specialty",
+      "theme": "French Fine Dining",
+      "description": "Elegant fine dining featuring French-inspired tasting menus by a world-renowned chef. An intimate adults-only experience with impeccable service and exquisite cuisine.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "status": "current",
+      "years": "2022–present",
+      "price": "$125/person",
+      "access": "Adults (18+)",
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Wish": {
+          "deck": "12",
+          "section": "Aft"
+        },
+        "Disney Treasure": {
+          "deck": "12",
+          "section": "Aft"
+        },
+        "Disney Destiny": {
+          "deck": "12",
+          "section": "Aft"
+        }
+      }
+    },
+    {
+      "id": "enchanted-garden",
+      "name": "Enchanted Garden",
+      "category": "rotational",
+      "theme": "Versailles Gardens",
+      "description": "Versailles-inspired garden room that magically transforms from day to night during dinner with changing lighting, opening flower centerpieces, and a ceiling that shifts from blue sky to starlit night.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "status": "current",
+      "years": "2011–present",
+      "price": null,
+      "access": null,
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Dream": {
+          "deck": "3",
+          "section": "Aft"
+        },
+        "Disney Fantasy": {
+          "deck": "3",
+          "section": "Aft"
+        }
+      }
+    },
+    {
+      "id": "enchanted-summer",
+      "name": "Enchanted Summer Restaurant",
+      "category": "rotational",
+      "theme": "Frozen Summer",
+      "description": "A summer celebration in Arendelle with lighter fare inspired by warm-weather Nordic cuisine. Features a bright, sun-drenched atmosphere celebrating summer in the kingdom.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "status": "current",
+      "years": "2025–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "3",
+          "section": "Aft"
+        }
+      }
+    },
+    {
+      "id": "evolution",
+      "name": "Evolution",
+      "category": "bars-lounges",
+      "theme": "Dance Club",
+      "description": "Modern nightclub and dance venue with a sleek atmosphere, live DJ sets, and themed dance parties.",
+      "ships": [
+        "Disney Dream"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "characterExperience": false,
+      "liveEntertainment": true,
+      "subVenues": null,
+      "deckByShip": {
+        "Disney Dream": {
+          "deck": "4",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "eye-scream",
+      "name": "Eye Scream Treats",
+      "category": "quick-service",
+      "theme": "Monsters, Inc.",
+      "description": "Self-serve soft-serve ice cream station with various toppings. Available throughout the day — a sweet treat that's always free and always popular.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "status": "current",
+      "years": "2011–present",
+      "price": null,
+      "access": null,
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "9",
+          "section": "Pool Deck"
+        },
+        "Disney Wonder": {
+          "deck": "9",
+          "section": "Pool Deck"
+        },
+        "Disney Dream": {
+          "deck": "11",
+          "section": "Pool Deck"
+        },
+        "Disney Fantasy": {
+          "deck": "11",
+          "section": "Pool Deck"
+        }
+      }
+    },
+    {
+      "id": "fathoms",
+      "name": "Fathoms",
+      "category": "bars-lounges",
+      "theme": "Nightclub",
+      "description": "Nightclub and entertainment venue hosting live comedy shows, dance parties, and themed events.",
+      "ships": [
+        "Disney Magic"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "characterExperience": false,
+      "liveEntertainment": true,
+      "subVenues": null,
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "4",
+          "section": "Forward"
+        }
+      }
+    },
+    {
+      "id": "flos-cafe",
+      "name": "Flo's Cafe",
+      "category": "quick-service",
+      "theme": "Cars",
+      "description": "Cars-themed food court hub on the pool deck inspired by Flo's V8 Cafe from Radiator Springs. Multiple stations serve poolside favorites in a fun, automotive-themed setting.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "status": "current",
+      "years": "2011–present",
+      "price": null,
+      "access": null,
+      "exclusive": false,
+      "subVenues": [
+        "Luigi's Pizza",
+        "Tow Mater's Grill",
+        "Fillmore's Favorites"
+      ],
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Dream": {
+          "deck": "11",
+          "section": "Aft"
+        },
+        "Disney Fantasy": {
+          "deck": "11",
+          "section": "Aft"
+        }
+      }
+    },
+    {
+      "id": "french-quarter-lounge",
+      "name": "French Quarter Lounge",
+      "category": "bars-lounges",
+      "theme": "New Orleans",
+      "description": "New Orleans-inspired lounge with a warm, atmospheric setting serving cocktails and hosting live jazz.",
+      "ships": [
+        "Disney Wonder"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "subVenues": null,
+      "deckByShip": {
+        "Disney Wonder": {
+          "deck": "4",
+          "section": "Forward"
+        }
+      }
+    },
+    {
+      "id": "frozone-treats",
+      "name": "Frozone Treats",
+      "category": "quick-service",
+      "theme": "The Incredibles",
+      "description": "Ice cream station named after the coolest superhero in The Incredibles. Serves soft-serve ice cream and frozen treats with a variety of toppings.",
+      "ships": [
+        "Disney Magic",
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "status": "current",
+      "years": "2022–present",
+      "price": null,
+      "access": null,
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "9",
+          "section": "Pool Deck"
+        },
+        "Disney Dream": {
+          "deck": "11",
+          "section": "Pool Deck"
+        },
+        "Disney Fantasy": {
+          "deck": "11",
+          "section": "Pool Deck"
+        }
+      }
+    },
+    {
+      "id": "garden-bar",
+      "name": "Garden Bar",
+      "category": "bars-lounges",
+      "theme": "Garden",
+      "description": "A lush garden-themed bar offering refreshing cocktails, mocktails, and light bites in a relaxed botanical setting.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "status": "current",
+      "years": "2025–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "11",
+          "section": "Pool Deck"
+        }
+      }
+    },
+    {
+      "id": "gastons-tavern",
+      "name": "Gaston's Tavern",
+      "category": "bars-lounges",
+      "theme": "Beauty and the Beast",
+      "description": "A lively pub inspired by Gaston's gathering spot from Beauty and the Beast. Serves hearty pub fare, craft beers, and signature LeFou's Brew in a boisterous tavern setting.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "status": "historical",
+      "years": "2025–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "gramma-talas-kitchen",
+      "name": "Gramma Tala's Kitchen",
+      "category": "quick-service",
+      "theme": "Moana",
+      "description": "Moana-inspired quick-service dining featuring Polynesian-inspired cuisine. Named after Moana's wise grandmother Tala.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "status": "current",
+      "years": "2025–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "11",
+          "section": "Pool Deck"
+        }
+      }
+    },
+    {
+      "id": "haunted-mansion-parlor",
+      "name": "Haunted Mansion Parlor",
+      "category": "bars-lounges",
+      "theme": "Haunted Mansion",
+      "description": "A Haunted Mansion-inspired lounge filled with supernatural surprises, ghostly cocktails, and eerie elegance.",
+      "ships": [
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": false,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "subVenues": null,
+      "deckByShip": {
+        "Disney Treasure": {
+          "deck": "5",
+          "section": "Midship"
+        },
+        "Disney Destiny": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "hollywood-spotlight",
+      "name": "Hollywood Spotlight Club",
+      "category": "rotational",
+      "theme": "Golden Age Hollywood",
+      "description": "A glamorous tribute to Hollywood's golden age featuring classic American cuisine with a modern twist. Live entertainment and cinematic decor transport guests to the era of silver screen legends.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "status": "current",
+      "years": "2025–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "3",
+          "section": "Aft"
+        }
+      }
+    },
+    {
+      "id": "hook-barrel",
+      "name": "Hook & Barrel",
+      "category": "quick-service",
+      "theme": "Poolside Grill",
+      "description": "Poolside grill serving burgers, grilled chicken, hot dogs, and other cookout favorites. A go-to lunch spot on sea days located near the family pool.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "status": "historical",
+      "years": "2022–present",
+      "price": null,
+      "access": null,
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "infinity-bar",
+      "name": "Infinity Bar",
+      "category": "bars-lounges",
+      "theme": "Poolside",
+      "description": "Poolside bar with an infinity-edge design offering cocktails, frozen drinks, and refreshments with ocean views.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "subVenues": null,
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "11",
+          "section": "Pool Deck"
+        }
+      }
+    },
+    {
+      "id": "inside-out-joyful-garden",
+      "name": "Inside Out: Joyful Garden Cafe",
+      "category": "quick-service",
+      "theme": "Inside Out",
+      "description": "Inside Out-themed quick-service cafe with healthy options, salads, wraps, and fresh juices. A colorful, emotion-filled dining environment near the kids' areas.",
+      "ships": [
+        "Disney Wish"
+      ],
+      "status": "historical",
+      "years": "2022–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "joyful-sweets",
+      "name": "Inside Out: Joyful Sweets",
+      "category": "quick-service",
+      "theme": "Inside Out",
+      "description": "Inside Out-themed dessert shop featuring colorful confections, gelato, and baked goods. Each treat is inspired by a different emotion from the film.",
+      "ships": [
+        "Disney Wish"
+      ],
+      "status": "current",
+      "years": "2022–present",
+      "price": "À la carte",
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Wish": {
+          "deck": "11",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "jumbeaux-sweets",
+      "name": "Jumbeaux's Sweets Cafe",
+      "category": "rotational",
+      "theme": "Zootopia",
+      "description": "Zootopia-themed rotational dining inspired by the famous ice cream parlor from the film. Features creative cuisine with oversized decor elements that make guests feel like they've shrunk down to the size of a mouse.",
+      "ships": [
+        "Disney Treasure"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Treasure": {
+          "deck": "3",
+          "section": "Aft"
+        }
+      }
+    },
+    {
+      "id": "keg-compass",
+      "name": "Keg & Compass",
+      "category": "bars-lounges",
+      "theme": "Viking Pub",
+      "description": "Viking-themed pub with nautical maps, compass details, and a warm tavern atmosphere. Offers craft beers, pub fare, and a cozy evening hangout vibe.",
+      "ships": [
+        "Disney Wish"
+      ],
+      "status": "current",
+      "years": "2022–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Wish": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "keys",
+      "name": "Keys",
+      "category": "bars-lounges",
+      "theme": "Jazz Piano Bar",
+      "description": "Sophisticated piano bar inspired by a classic jazz club with live piano music every evening. Features premium cocktails and an intimate atmosphere perfect for a nightcap.",
+      "ships": [
+        "Disney Magic"
+      ],
+      "status": "current",
+      "years": "1998–present",
+      "price": null,
+      "access": "Adults (18+)",
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": true,
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "4",
+          "section": "Forward"
+        }
+      }
+    },
+    {
+      "id": "la-piazza",
+      "name": "La Piazza",
+      "category": "bars-lounges",
+      "theme": "Italian",
+      "description": "Italian-inspired lounge and gathering space in the nightlife district with wine, cocktails, and a European café atmosphere.",
+      "ships": [
+        "Disney Fantasy"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "subVenues": null,
+      "deckByShip": {
+        "Disney Fantasy": {
+          "deck": "4",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "lookout-cay-dining",
+      "name": "Lookout Cay Dining",
+      "category": "quick-service",
+      "theme": "Bahamian Beach",
+      "description": "Open-air dining at Disney's Lookout Cay at Lighthouse Point. Features Bahamian-inspired cuisine including jerk chicken, conch fritters, and tropical sides in a vibrant island setting.",
+      "ships": [
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "status": "historical",
+      "years": "2024–present",
+      "price": null,
+      "access": "Lookout Cay port day",
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "lumieres",
+      "name": "Lumiere's",
+      "category": "rotational",
+      "theme": "Beauty and the Beast",
+      "description": "Elegant French-inspired rotational dining named after the charming candelabra from Beauty and the Beast. Features classic continental cuisine with ornate chandeliers, rich fabrics, and golden accents creating a truly regal atmosphere.",
+      "ships": [
+        "Disney Magic"
+      ],
+      "status": "current",
+      "years": "1998–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "3",
+          "section": "Aft"
+        }
+      }
+    },
+    {
+      "id": "lumiere-kitchen",
+      "name": "Lumiere's Kitchen",
+      "category": "specialty",
+      "theme": "Beauty and the Beast",
+      "description": "A premium version of Lumiere's concept featuring a chef's table experience with tasting menus. Intimate dining in the Beast's private kitchen.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "status": "historical",
+      "years": "2025–present",
+      "price": "$85/person",
+      "access": "Adults (18+)",
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "luna",
+      "name": "Luna",
+      "category": "bars-lounges",
+      "theme": "Nightclub",
+      "description": "Sophisticated lounge with live entertainment, signature cocktails, and a magical evening ambiance.",
+      "ships": [
+        "Disney Wish"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "characterExperience": false,
+      "liveEntertainment": true,
+      "subVenues": null,
+      "deckByShip": {
+        "Disney Wish": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "lunas-festive-foods",
+      "name": "Luna's Festive Foods",
+      "category": "quick-service",
+      "theme": "Coco",
+      "description": "Coco-themed quick-service station offering Mexican-inspired snacks and treats. Features colorful festive decor inspired by the Land of the Dead celebrations.",
+      "ships": [
+        "Disney Treasure"
+      ],
+      "status": "historical",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "marceline-market",
+      "name": "Marceline Market",
+      "category": "quick-service",
+      "theme": "Walt's Hometown",
+      "description": "Food hall-style marketplace named after Walt Disney's childhood hometown of Marceline, Missouri. Features diverse food stations offering everything from pizza to Asian cuisine to fresh pastries.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "status": "current",
+      "years": "2022–present",
+      "price": null,
+      "access": null,
+      "exclusive": false,
+      "subVenues": [
+        "Remy's Boulangerie Patisserie",
+        "Don's Juice Bar",
+        "Pizza Station",
+        "Asian Station",
+        "Deli Station"
+      ],
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Wish": {
+          "deck": "11",
+          "section": "Midship"
+        },
+        "Disney Treasure": {
+          "deck": "11",
+          "section": "Midship"
+        },
+        "Disney Destiny": {
+          "deck": "11",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "market-bar",
+      "name": "Market Bar",
+      "category": "bars-lounges",
+      "theme": "Market",
+      "description": "Casual bar located in the market dining area offering cocktails, wine, beer, and refreshing beverages.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "status": "current",
+      "years": "2025–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "11",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "meridian",
+      "name": "Meridian",
+      "category": "bars-lounges",
+      "theme": "Cocktail Lounge",
+      "description": "Sophisticated cocktail lounge with artisan cocktails, premium spirits, and a refined ambiance. Located near the specialty dining restaurants, making it perfect for a pre-dinner drink.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "status": "current",
+      "years": "2011–present",
+      "price": null,
+      "access": "Adults (18+)",
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Dream": {
+          "deck": "12",
+          "section": "Aft"
+        },
+        "Disney Fantasy": {
+          "deck": "12",
+          "section": "Aft"
+        }
+      }
+    },
+    {
+      "id": "mickey-friends-festival-of-foods",
+      "name": "Mickey & Friends Festival of Foods",
+      "category": "quick-service",
+      "theme": "Mickey & Friends",
+      "description": "Outdoor food court area on the upper decks with multiple quick-service windows. A central hub for poolside dining with options for every taste.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "status": "current",
+      "years": "2022–present",
+      "price": null,
+      "access": null,
+      "exclusive": false,
+      "subVenues": [
+        "Mickey's Smokestack Barbecue",
+        "Donald's Cantina",
+        "Goofy's Grill",
+        "Daisy's Pizza Pies"
+      ],
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Wish": {
+          "deck": "11",
+          "section": "Pool Deck"
+        },
+        "Disney Treasure": {
+          "deck": "11",
+          "section": "Pool Deck"
+        },
+        "Disney Destiny": {
+          "deck": "11",
+          "section": "Pool Deck"
+        }
+      }
+    },
+    {
+      "id": "mickeys-pool-bar",
+      "name": "Mickey's Pool Bar",
+      "category": "quick-service",
+      "theme": "Mickey Mouse",
+      "description": "Poolside quick service serving burgers, hot dogs, chicken tenders, and refreshing beverages. The go-to spot for grabbing a bite between pool sessions.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "status": "historical",
+      "years": "2022–present",
+      "price": null,
+      "access": null,
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "mike-sulleys-asia",
+      "name": "Mike and Sulley's Flavors of Asia",
+      "category": "quick-service",
+      "theme": "Monsters, Inc.",
+      "description": "Monsters, Inc.-themed Asian quick-service restaurant offering noodles, stir-fry, sushi, and other Pan-Asian favorites.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "status": "current",
+      "years": "2025–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "11",
+          "section": "Pool Deck"
+        }
+      }
+    },
+    {
+      "id": "mowglis-eatery",
+      "name": "Mowgli's Eatery",
+      "category": "quick-service",
+      "theme": "The Jungle Book",
+      "description": "Jungle Book-inspired eatery serving fresh, vibrant dishes with Indian and Southeast Asian flavors.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "status": "current",
+      "years": "2025–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "11",
+          "section": "Pool Deck"
+        }
+      }
+    },
+    {
+      "id": "navigators-club",
+      "name": "Navigator's Club",
+      "category": "rotational",
+      "theme": "Adventure & Exploration",
+      "description": "Adventure-themed rotational dining celebrating the spirit of exploration with global cuisine. Features cartography-inspired decor and an atmosphere of maritime discovery.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "status": "current",
+      "years": "2025–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "3",
+          "section": "Aft"
+        }
+      }
+    },
+    {
+      "id": "nightingales",
+      "name": "Nightingale's",
+      "category": "bars-lounges",
+      "theme": "Speakeasy",
+      "description": "Upscale piano bar inspired by a secret speakeasy, with craft cocktails and live piano music. Features a hidden entrance and sophisticated ambiance for adults seeking an elegant evening.",
+      "ships": [
+        "Disney Wish"
+      ],
+      "status": "current",
+      "years": "2022–present",
+      "price": null,
+      "access": "Adults (18+)",
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": true,
+      "deckByShip": {
+        "Disney Wish": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "o-gills",
+      "name": "O'Gills Pub",
+      "category": "bars-lounges",
+      "theme": "Irish Pub",
+      "description": "Irish-themed pub with a warm, convivial atmosphere named after a character from the Darby O'Gill films. Features draught beers, pub snacks, and live sports on screen.",
+      "ships": [
+        "Disney Magic",
+        "Disney Fantasy"
+      ],
+      "status": "current",
+      "years": "1998–present",
+      "price": null,
+      "access": null,
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "4",
+          "section": "Forward"
+        },
+        "Disney Fantasy": {
+          "deck": "4",
+          "section": "Forward"
+        }
+      }
+    },
+    {
+      "id": "olafs-royal-picnic",
+      "name": "Olaf's Royal Picnic",
+      "category": "tea-character",
+      "theme": "Frozen",
+      "description": "An exclusive Frozen-themed tea party hosted by Olaf. Young guests enjoy themed snacks, activities, and a surprise visit from Frozen characters. Advance reservation required.",
+      "ships": [
+        "Disney Wish"
+      ],
+      "status": "current",
+      "years": "2022–present",
+      "price": "$69/child",
+      "access": "Ages 3-12 (adults free)",
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": true,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Wish": {
+          "deck": "11",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "ooh-la-la",
+      "name": "Ooh La La",
+      "category": "bars-lounges",
+      "theme": "Champagne Bar",
+      "description": "Elegant champagne bar inspired by the chic lounges of Paris, serving premium champagnes, wines, and cocktails.",
+      "ships": [
+        "Disney Fantasy"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "subVenues": null,
+      "deckByShip": {
+        "Disney Fantasy": {
+          "deck": "4",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "outlook-bar",
+      "name": "Outlook Bar",
+      "category": "bars-lounges",
+      "theme": "Ocean Views",
+      "description": "Open-air bar at the stern of the ship offering sweeping ocean views and fresh breezes. Serves cocktails, wine, and light snacks in a breezy setting.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "status": "historical",
+      "years": "2011–present",
+      "price": null,
+      "access": null,
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "outlook-cafe",
+      "name": "Outlook Cafe",
+      "category": "bars-lounges",
+      "theme": "Coffee & Wine",
+      "description": "A small, intimate cafe and wine bar located at the stern of the ship with sweeping ocean views. Serves specialty coffees, pastries, wines, and cocktails.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "status": "historical",
+      "years": "2011–present",
+      "price": "Premium items extra",
+      "access": null,
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "p-and-j-cantina",
+      "name": "P&J Cantina",
+      "category": "bars-lounges",
+      "theme": "Lilo & Stitch",
+      "description": "Lilo & Stitch-inspired tropical tiki bar serving exotic cocktails and Hawaiian-inspired drinks. Features fun tiki decor and a laid-back island party atmosphere.",
+      "ships": [
+        "Disney Treasure"
+      ],
+      "status": "historical",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "palo",
+      "name": "Palo",
+      "category": "specialty",
+      "theme": "Northern Italian",
+      "description": "The original DCL specialty restaurant since 1998, serving Northern Italian cuisine with stunning ocean views. Offers both brunch and dinner seatings. Named after the Venetian mooring poles.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "status": "current",
+      "years": "1998–present",
+      "price": "$55/person",
+      "access": "Adults (18+)",
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "10",
+          "section": "Aft"
+        },
+        "Disney Wonder": {
+          "deck": "10",
+          "section": "Aft"
+        },
+        "Disney Dream": {
+          "deck": "12",
+          "section": "Aft"
+        },
+        "Disney Fantasy": {
+          "deck": "12",
+          "section": "Aft"
+        }
+      }
+    },
+    {
+      "id": "palo-cafe",
+      "name": "Palo Café",
+      "category": "specialty",
+      "theme": "Italian Café",
+      "description": "A casual Italian café extension of the Palo brand offering espresso, pastries, paninis, and light Italian fare throughout the day.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "status": "current",
+      "years": "2025–present",
+      "price": "À la carte",
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "12",
+          "section": "Aft"
+        }
+      }
+    },
+    {
+      "id": "palo-steakhouse",
+      "name": "Palo Steakhouse",
+      "category": "specialty",
+      "theme": "Italian Steakhouse",
+      "description": "Premium steakhouse evolution of the classic Palo concept. Features fine cuts of steak with Italian influences, handmade pasta, and ocean views in an elegant adults-only setting.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "status": "current",
+      "years": "2022–present",
+      "price": "$55/person",
+      "access": "Adults (18+)",
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Wish": {
+          "deck": "12",
+          "section": "Aft"
+        },
+        "Disney Treasure": {
+          "deck": "12",
+          "section": "Aft"
+        },
+        "Disney Destiny": {
+          "deck": "12",
+          "section": "Aft"
+        }
+      }
+    },
+    {
+      "id": "palo-trattoria",
+      "name": "Palo Trattoria",
+      "category": "specialty",
+      "theme": "Italian Trattoria",
+      "description": "An upscale Italian trattoria offering a refined take on classic Italian cuisine. A premium adults-only dining experience in the Palo family.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "status": "current",
+      "years": "2025–present",
+      "price": "$55/person",
+      "access": "Adults (18+)",
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "12",
+          "section": "Aft"
+        }
+      }
+    },
+    {
+      "id": "parrot-cay",
+      "name": "Parrot Cay",
+      "category": "rotational",
+      "theme": "Caribbean",
+      "description": "Caribbean-themed rotational dining with tropical decor, lush greenery, and a relaxed island atmosphere. Features a blend of Caribbean and American cuisine.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder"
+      ],
+      "status": "historical",
+      "years": "1998–2018",
+      "price": null,
+      "access": null,
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "periscope-pub",
+      "name": "Periscope Pub",
+      "category": "bars-lounges",
+      "theme": "Nautical Pub",
+      "description": "Nautical-themed pub with craft beers, pub fare, and a maritime explorer atmosphere.",
+      "ships": [
+        "Disney Treasure"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "subVenues": null,
+      "deckByShip": {
+        "Disney Treasure": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "perla-de-coco",
+      "name": "Perla de Coco",
+      "category": "bars-lounges",
+      "theme": "Coco",
+      "description": "Coco-inspired lounge celebrating the vibrant world of the Land of the Dead. Features festive cocktails, live entertainment, and colorful decor inspired by the beloved Pixar film.",
+      "ships": [
+        "Disney Treasure"
+      ],
+      "status": "historical",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "petes-boiler-bites",
+      "name": "Pete's Boiler Bites",
+      "category": "quick-service",
+      "theme": "Steamboat Willie",
+      "description": "Steamboat-themed quick-service spot serving snacks, bites, and quick meals on the pool deck.",
+      "ships": [
+        "Disney Wonder"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Wonder": {
+          "deck": "9",
+          "section": "Pool Deck"
+        }
+      }
+    },
+    {
+      "id": "pink-champagne",
+      "name": "Pink: Wine and Champagne Bar",
+      "category": "bars-lounges",
+      "theme": "Champagne",
+      "description": "Chic pink-hued champagne and wine bar serving premium bubbly, rosé wines, and sparkling cocktails.",
+      "ships": [
+        "Disney Dream"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "subVenues": null,
+      "deckByShip": {
+        "Disney Dream": {
+          "deck": "4",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "pinocchios-pizzeria",
+      "name": "Pinocchio's Pizzeria",
+      "category": "quick-service",
+      "theme": "Pinocchio",
+      "description": "Classic pizza spot serving personal-sized pies with a variety of toppings. A popular late-night option that's often open until midnight.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder"
+      ],
+      "status": "current",
+      "years": "1998–present",
+      "price": null,
+      "access": null,
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "9",
+          "section": "Aft"
+        },
+        "Disney Wonder": {
+          "deck": "9",
+          "section": "Aft"
+        }
+      }
+    },
+    {
+      "id": "pixar-market",
+      "name": "Pixar Market Restaurant",
+      "category": "rotational",
+      "theme": "Pixar",
+      "description": "Colorful market-style rotational dining celebrating the world of Pixar. Features culinary creations inspired by beloved Pixar films in a lively, festive setting.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "status": "current",
+      "years": "2025–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "3",
+          "section": "Aft"
+        }
+      }
+    },
+    {
+      "id": "pizza-planet",
+      "name": "Pizza Planet",
+      "category": "quick-service",
+      "theme": "Toy Story",
+      "description": "Toy Story-inspired pizza restaurant serving personal pizzas with a variety of toppings in a fun, arcade-inspired atmosphere.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "status": "current",
+      "years": "2025–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "11",
+          "section": "Pool Deck"
+        }
+      }
+    },
+    {
+      "id": "plaza-de-coco",
+      "name": "Plaza de Coco",
+      "category": "rotational",
+      "theme": "Coco",
+      "description": "Vibrant Coco-themed restaurant celebrating the Land of the Dead with Mexican-inspired cuisine and live music. Features colorful papel picado, marigold decorations, and performances inspired by the film.",
+      "ships": [
+        "Disney Treasure"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Treasure": {
+          "deck": "3",
+          "section": "Aft"
+        }
+      }
+    },
+    {
+      "id": "plutos-dog-house",
+      "name": "Pluto's Dog House",
+      "category": "quick-service",
+      "theme": "Pluto",
+      "description": "Quick-service window serving hot dogs, bratwursts, and sausages with assorted toppings. A classic cruise snack spot perfect for poolside munching.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder"
+      ],
+      "status": "historical",
+      "years": "1998–present",
+      "price": null,
+      "access": null,
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "preludes",
+      "name": "Preludes",
+      "category": "bars-lounges",
+      "theme": "Theatre Bar",
+      "description": "Pre-show cocktail bar located near the Walt Disney Theatre. Perfect for a drink before the evening's Broadway-style entertainment.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "status": "current",
+      "years": "2011–present",
+      "price": null,
+      "access": null,
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "4",
+          "section": "Forward"
+        },
+        "Disney Wonder": {
+          "deck": "4",
+          "section": "Forward"
+        },
+        "Disney Dream": {
+          "deck": "3",
+          "section": "Forward"
+        },
+        "Disney Fantasy": {
+          "deck": "3",
+          "section": "Forward"
+        },
+        "Disney Wish": {
+          "deck": "3",
+          "section": "Forward"
+        },
+        "Disney Treasure": {
+          "deck": "3",
+          "section": "Forward"
+        },
+        "Disney Destiny": {
+          "deck": "3",
+          "section": "Forward"
+        }
+      }
+    },
+    {
+      "id": "pridelands",
+      "name": "Pride Lands: Feast of The Lion King",
+      "category": "rotational",
+      "theme": "The Lion King",
+      "description": "A Lion King-themed rotational dining experience that transports guests to the Pride Lands. Features African-inspired cuisine and immersive entertainment celebrating the Circle of Life.",
+      "ships": [
+        "Disney Destiny"
+      ],
+      "status": "current",
+      "years": "2025–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Destiny": {
+          "deck": "3",
+          "section": "Aft"
+        }
+      }
+    },
+    {
+      "id": "promenade-lounge",
+      "name": "Promenade Lounge",
+      "category": "bars-lounges",
+      "theme": "Classic Lounge",
+      "description": "Relaxed lounge along the promenade deck with ocean views, live music, and a full bar. A great spot for people-watching and casual drinks.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder"
+      ],
+      "status": "historical",
+      "years": "1998–present",
+      "price": null,
+      "access": null,
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "pub-687",
+      "name": "Pub 687",
+      "category": "bars-lounges",
+      "theme": "Classic Pub",
+      "description": "Named after Walt Disney's original Burbank studio address, this classic pub offers craft beers, cocktails, and a relaxed atmosphere for sports viewing and socializing.",
+      "ships": [
+        "Disney Dream"
+      ],
+      "status": "current",
+      "years": "2011–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Dream": {
+          "deck": "4",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "rapunzels-royal-table",
+      "name": "Rapunzel's Royal Table",
+      "category": "rotational",
+      "theme": "Tangled",
+      "description": "Tangled-themed dining with live entertainment featuring Flynn Rider and the Snuggly Duckling Thugs performing musical numbers. Enjoy German-inspired cuisine in a festive atmosphere inspired by the kingdom of Corona.",
+      "ships": [
+        "Disney Magic"
+      ],
+      "status": "current",
+      "years": "2018–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "3",
+          "section": "Aft"
+        }
+      }
+    },
+    {
+      "id": "remy",
+      "name": "Remy",
+      "category": "specialty",
+      "theme": "Ratatouille",
+      "description": "Ratatouille-inspired premium French restaurant offering multi-course tasting menus crafted with the finest ingredients. The most upscale dining experience on the Dream and Fantasy class ships.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "status": "current",
+      "years": "2011–present",
+      "price": "$125/person",
+      "access": "Adults (18+)",
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Dream": {
+          "deck": "12",
+          "section": "Aft"
+        },
+        "Disney Fantasy": {
+          "deck": "12",
+          "section": "Aft"
+        }
+      }
+    },
+    {
+      "id": "room-service",
+      "name": "Room Service",
+      "category": "quick-service",
+      "theme": "Stateroom Dining",
+      "description": "24-hour complimentary room service delivered to your stateroom. Continental breakfast is available on a door-hanger order, and a full menu is available by phone throughout the day and evening.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Adventure",
+        "Disney Destiny"
+      ],
+      "status": "current",
+      "years": "1998–present",
+      "price": null,
+      "access": null,
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "route-66",
+      "name": "Route 66",
+      "category": "bars-lounges",
+      "theme": "Cars",
+      "description": "Cars-themed nightlife area with multiple lounges and bars. Features a fun, Route 66-inspired atmosphere with live entertainment and themed cocktails.",
+      "ships": [
+        "Disney Wonder"
+      ],
+      "status": "historical",
+      "years": "2016–present",
+      "price": null,
+      "access": "Adults (18+)",
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "royal-court",
+      "name": "Royal Court",
+      "category": "rotational",
+      "theme": "Disney Princesses",
+      "description": "Elegant princess-themed dining room celebrating the stories of Cinderella, Snow White, Belle, and Aurora. Features beautiful artwork and a regal atmosphere with French-inspired cuisine.",
+      "ships": [
+        "Disney Fantasy"
+      ],
+      "status": "current",
+      "years": "2012–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Fantasy": {
+          "deck": "3",
+          "section": "Aft"
+        }
+      }
+    },
+    {
+      "id": "royal-court-lounge",
+      "name": "Royal Court Lounge",
+      "category": "bars-lounges",
+      "theme": "Royal",
+      "description": "An elegant royal-themed lounge offering refined cocktails and a regal atmosphere.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "subVenues": null,
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "royal-court-tea-party",
+      "name": "Royal Court Royal Tea",
+      "category": "tea-character",
+      "theme": "Disney Princesses",
+      "description": "An enchanting princess-hosted tea party with themed treats, storytelling, and princess meet-and-greets. Children receive a princess gift set. Advance reservation required.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "status": "current",
+      "years": "2012–present",
+      "price": "$319/child",
+      "access": "Ages 3-12",
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": true,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "3",
+          "section": "Aft"
+        },
+        "Disney Wonder": {
+          "deck": "3",
+          "section": "Aft"
+        },
+        "Disney Dream": {
+          "deck": "3",
+          "section": "Aft"
+        },
+        "Disney Fantasy": {
+          "deck": "3",
+          "section": "Aft"
+        }
+      }
+    },
+    {
+      "id": "royal-palace",
+      "name": "Royal Palace",
+      "category": "rotational",
+      "theme": "Cinderella",
+      "description": "Regal Cinderella-inspired dining room with classic fairy tale elegance, French-influenced cuisine, and stunning decor featuring glass slipper details and ornate ballroom styling.",
+      "ships": [
+        "Disney Dream"
+      ],
+      "status": "current",
+      "years": "2011–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Dream": {
+          "deck": "3",
+          "section": "Aft"
+        }
+      }
+    },
+    {
+      "id": "royal-society-tea",
+      "name": "Royal Society for Friendship and Tea",
+      "category": "tea-character",
+      "theme": "Disney Princesses",
+      "description": "An elegant tea party experience celebrating friendship and Disney royalty. Features themed treats, fine teas, and character interactions.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "status": "current",
+      "years": "2025–present",
+      "price": "Extra charge",
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": true,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "saga",
+      "name": "Saga",
+      "category": "bars-lounges",
+      "theme": "Adventure",
+      "description": "Live entertainment lounge with themed shows, music performances, and signature cocktails.",
+      "ships": [
+        "Disney Destiny"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "characterExperience": false,
+      "liveEntertainment": true,
+      "subVenues": null,
+      "deckByShip": {
+        "Disney Destiny": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "sarabi",
+      "name": "Sarabi",
+      "category": "bars-lounges",
+      "theme": "The Lion King",
+      "description": "Lion King-inspired lounge named after Simba's mother, featuring African-inspired cocktails and live entertainment.",
+      "ships": [
+        "Disney Treasure"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "characterExperience": false,
+      "liveEntertainment": true,
+      "subVenues": null,
+      "deckByShip": {
+        "Disney Treasure": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "scat-cat-lounge",
+      "name": "Scat Cat Lounge",
+      "category": "bars-lounges",
+      "theme": "Aristocats Jazz",
+      "description": "Aristocats-inspired jazz lounge with live music performances, craft cocktails, and a New Orleans jazz club atmosphere.",
+      "ships": [
+        "Disney Treasure"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "characterExperience": false,
+      "liveEntertainment": true,
+      "subVenues": null,
+      "deckByShip": {
+        "Disney Treasure": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "scoops",
+      "name": "Scoops",
+      "category": "quick-service",
+      "theme": "Ice Cream",
+      "description": "Premium ice cream shop serving hand-scooped ice cream, sundaes, and specialty frozen treats. Available for an extra charge with a rotating selection of flavors.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder"
+      ],
+      "status": "historical",
+      "years": "2013–present",
+      "price": "À la carte",
+      "access": null,
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "castaway-cay-serenity",
+      "name": "Serenity Bay BBQ (Castaway Cay)",
+      "category": "quick-service",
+      "theme": "Adult Beach BBQ",
+      "description": "Adults-only barbecue area on the secluded Serenity Bay beach at Castaway Cay. Serves the same great BBQ as Cookies but in a tranquil, adults-only setting.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "status": "historical",
+      "years": "1998–present",
+      "price": null,
+      "access": "Adults (18+), Castaway Cay port day",
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "shiki",
+      "name": "Shiki",
+      "category": "specialty",
+      "theme": "Japanese",
+      "description": "Japanese-inspired specialty dining offering sushi, sashimi, and teppanyaki-style cuisine. Features elegant Japanese decor and premium sake selections.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "status": "historical",
+      "years": "2025–present",
+      "price": "$65/person",
+      "access": "Adults (18+)",
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "signals",
+      "name": "Signals",
+      "category": "bars-lounges",
+      "theme": "Poolside",
+      "description": "Main pool deck bar serving cocktails, frozen drinks, beer, and specialty beverages. Conveniently located by the family pool for easy access while enjoying deck activities.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder"
+      ],
+      "status": "current",
+      "years": "1998–present",
+      "price": null,
+      "access": null,
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "9",
+          "section": "Pool Deck"
+        },
+        "Disney Wonder": {
+          "deck": "9",
+          "section": "Pool Deck"
+        }
+      }
+    },
+    {
+      "id": "silk-road",
+      "name": "Silk Road",
+      "category": "quick-service",
+      "theme": "Asian Fusion",
+      "description": "Asian-inspired quick-service dining featuring sushi, noodles, and Pan-Asian cuisine. A fresh dining option available on the pool deck.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "status": "historical",
+      "years": "2011–present",
+      "price": null,
+      "access": null,
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "skipper-society",
+      "name": "Skipper Society",
+      "category": "bars-lounges",
+      "theme": "Jungle Cruise",
+      "description": "Jungle Cruise-inspired lounge with explorer-themed decor, craft cocktails, and witty entertainment.",
+      "ships": [
+        "Disney Treasure"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "characterExperience": false,
+      "liveEntertainment": true,
+      "subVenues": null,
+      "deckByShip": {
+        "Disney Treasure": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "skyline",
+      "name": "Skyline",
+      "category": "bars-lounges",
+      "theme": "Cityscapes",
+      "description": "Unique bar with floor-to-ceiling digital windows showing cityscapes from around the world that change throughout the evening.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": false,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "subVenues": null,
+      "deckByShip": {
+        "Disney Dream": {
+          "deck": "4",
+          "section": "Midship"
+        },
+        "Disney Fantasy": {
+          "deck": "4",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "snack-shack",
+      "name": "Snack Shack",
+      "category": "quick-service",
+      "theme": "Poolside Snacks",
+      "description": "Quick snack window near the pool deck serving popcorn, pretzels, nachos, and other snacks throughout the day. A convenient grab-and-go spot.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder"
+      ],
+      "status": "historical",
+      "years": "1998–present",
+      "price": null,
+      "access": null,
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "soul-cat-lounge",
+      "name": "Soul Cat Lounge",
+      "category": "bars-lounges",
+      "theme": "Soul & Jazz",
+      "description": "Live entertainment lounge featuring soul, R&B, and jazz performances in a hip, intimate setting.",
+      "ships": [
+        "Disney Magic"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "characterExperience": false,
+      "liveEntertainment": true,
+      "subVenues": null,
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "4",
+          "section": "Forward"
+        }
+      }
+    },
+    {
+      "id": "spellbound",
+      "name": "Spellbound",
+      "category": "bars-lounges",
+      "theme": "Magic",
+      "description": "Enchanting lounge with a magical atmosphere, specialty cocktails, and mystical theming.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "subVenues": null,
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "springtime-terrace",
+      "name": "Springtime Terrace",
+      "category": "quick-service",
+      "theme": "Garden",
+      "description": "Fresh-air dining terrace with a farm-to-table inspired menu featuring seasonal salads, grain bowls, and fresh juices. A healthy dining option with garden views.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "status": "historical",
+      "years": "2025–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "hyperspace-lounge",
+      "name": "Star Wars: Hyperspace Lounge",
+      "category": "bars-lounges",
+      "theme": "Star Wars",
+      "description": "Immersive lounge set aboard a Star Wars starcruiser with a viewport showing hyperspace travel across the galaxy. Features themed cocktails and a unique galactic atmosphere. Ticketed entry required for certain time slots.",
+      "ships": [
+        "Disney Wish"
+      ],
+      "status": "current",
+      "years": "2022–present",
+      "price": null,
+      "access": "Adults (ticketed)",
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": true,
+      "deckByShip": {
+        "Disney Wish": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "stitchs-ohana-grill",
+      "name": "Stitch's Ohana Grill",
+      "category": "quick-service",
+      "theme": "Lilo & Stitch",
+      "description": "Lilo & Stitch-themed grill serving Hawaiian-inspired favorites including grilled meats, poke bowls, and tropical sides.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "status": "current",
+      "years": "2025–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "11",
+          "section": "Pool Deck"
+        }
+      }
+    },
+    {
+      "id": "sulley-sips",
+      "name": "Sulley's Sips",
+      "category": "quick-service",
+      "theme": "Monsters, Inc.",
+      "description": "Monsters, Inc.-themed smoothie and juice bar serving fresh-blended smoothies, juices, and frozen beverages. Located near the family pool area.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "status": "historical",
+      "years": "2022–present",
+      "price": "À la carte",
+      "access": null,
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "sweet-on-you",
+      "name": "Sweet on You",
+      "category": "quick-service",
+      "theme": "Confections",
+      "description": "Artisan gelato and candy shop featuring hand-crafted gelato, bespoke chocolates, cupcakes, and confections. Premium desserts are available for an extra charge.",
+      "ships": [
+        "Disney Fantasy"
+      ],
+      "status": "current",
+      "years": "2011–present",
+      "price": "À la carte",
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Fantasy": {
+          "deck": "11",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "taverna-portorosso",
+      "name": "Taverna Portorosso",
+      "category": "bars-lounges",
+      "theme": "Luca",
+      "description": "Luca-inspired Italian seaside taverna serving wine, cocktails, and light Italian bites in a charming Portorosso setting.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "subVenues": null,
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "bayou",
+      "name": "The Bayou",
+      "category": "bars-lounges",
+      "theme": "The Princess and the Frog",
+      "description": "Princess and the Frog-themed lounge with a Louisiana bayou atmosphere, craft cocktails, and live jazz. Located adjacent to Tiana's Place.",
+      "ships": [
+        "Disney Wish"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": null,
+      "access": "Adults (18+)",
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Wish": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "the-district",
+      "name": "The District",
+      "category": "bars-lounges",
+      "theme": "Nightlife District",
+      "description": "Adult entertainment district featuring multiple themed venues for cocktails, dancing, and nightlife. The social hub of the Dream and Fantasy after dark.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "status": "historical",
+      "years": "2011–present",
+      "price": null,
+      "access": "Adults (18+)",
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "the-rose",
+      "name": "The Rose",
+      "category": "specialty",
+      "theme": "Beauty and the Beast",
+      "description": "Beauty and the Beast-inspired lounge and wine bar offering premium wines, champagnes, and a curated menu of small plates. An elegant pre-dinner or after-dinner retreat.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "status": "current",
+      "years": "2022–present",
+      "price": "À la carte",
+      "access": "Adults (18+)",
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Wish": {
+          "deck": "12",
+          "section": "Aft"
+        },
+        "Disney Treasure": {
+          "deck": "12",
+          "section": "Aft"
+        },
+        "Disney Destiny": {
+          "deck": "12",
+          "section": "Aft"
+        }
+      }
+    },
+    {
+      "id": "the-sanctum",
+      "name": "The Sanctum",
+      "category": "bars-lounges",
+      "theme": "Doctor Strange",
+      "description": "A mysterious, immersive lounge with live entertainment and craft cocktails in a dark, atmospheric setting inspired by the Sanctum Sanctorum.",
+      "ships": [
+        "Disney Destiny"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "characterExperience": false,
+      "liveEntertainment": true,
+      "subVenues": null,
+      "deckByShip": {
+        "Disney Destiny": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "the-tube",
+      "name": "The Tube",
+      "category": "bars-lounges",
+      "theme": "British Invasion",
+      "description": "Mod London-inspired nightclub with a vibrant British Invasion theme, dancing, and themed party nights.",
+      "ships": [
+        "Disney Fantasy"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "subVenues": null,
+      "deckByShip": {
+        "Disney Fantasy": {
+          "deck": "4",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "tianas-bayou-lounge",
+      "name": "Tiana's Bayou Lounge",
+      "category": "bars-lounges",
+      "theme": "Princess and the Frog",
+      "description": "Princess and the Frog-inspired lounge with a Louisiana bayou atmosphere and jazz-influenced cocktails.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "subVenues": null,
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "tianas-place",
+      "name": "Tiana's Place",
+      "category": "rotational",
+      "theme": "The Princess and the Frog",
+      "description": "Princess Tiana's New Orleans jazz club brought to life with Cajun and Creole-inspired cuisine, live jazz performances, and a visit from Princess Tiana herself. The most immersive rotational restaurant on any Disney ship.",
+      "ships": [
+        "Disney Wonder"
+      ],
+      "status": "current",
+      "years": "2016–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Wonder": {
+          "deck": "3",
+          "section": "Aft"
+        }
+      }
+    },
+    {
+      "id": "tide-bar",
+      "name": "Tide Bar",
+      "category": "bars-lounges",
+      "theme": "Poolside",
+      "description": "Family pool deck bar serving frozen cocktails, mocktails, smoothies, and other refreshing beverages. Conveniently located for easy access from the pool.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "status": "historical",
+      "years": "2022–present",
+      "price": null,
+      "access": null,
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "tiffins",
+      "name": "Tiffins Talks & Tastes",
+      "category": "specialty",
+      "theme": "World Cuisine",
+      "description": "Premium dining experience offering world-inspired tasting menus with wine pairings. An intimate venue celebrating global culinary traditions.",
+      "ships": [
+        "Disney Treasure"
+      ],
+      "status": "historical",
+      "years": "2024–present",
+      "price": "$75/person",
+      "access": "Adults (18+)",
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "topside-bar-grill",
+      "name": "Topside Bar & Grill",
+      "category": "quick-service",
+      "theme": "Poolside",
+      "description": "Pool deck quick-service spot serving classic American grill fare including burgers, chicken strips, hot dogs, and fries. Open for lunch on sea days.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder"
+      ],
+      "status": "historical",
+      "years": "1998–present",
+      "price": null,
+      "access": null,
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "tots-play-cafe",
+      "name": "Tot's Play Cafe",
+      "category": "quick-service",
+      "theme": "Toy Story",
+      "description": "Toy Story-themed family cafe near the kids' play areas. Serves kid-friendly favorites and has an attached play space for toddlers.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "status": "historical",
+      "years": "2025–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "triton-lounge",
+      "name": "Triton Lounge",
+      "category": "bars-lounges",
+      "theme": "The Little Mermaid",
+      "description": "Sophisticated lounge offering craft cocktails, premium spirits, and a refined maritime atmosphere with subtle Little Mermaid theming.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": false,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "subVenues": null,
+      "deckByShip": {
+        "Disney Wish": {
+          "deck": "5",
+          "section": "Midship"
+        },
+        "Disney Treasure": {
+          "deck": "5",
+          "section": "Midship"
+        },
+        "Disney Destiny": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "tritons",
+      "name": "Triton's",
+      "category": "rotational",
+      "theme": "The Little Mermaid",
+      "description": "Under-the-sea themed dining inspired by The Little Mermaid with elegant oceanic decor. Features a stunning mosaic of Ariel and intricate deep-sea details creating a magical undersea atmosphere.",
+      "ships": [
+        "Disney Wonder"
+      ],
+      "status": "current",
+      "years": "1999–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Wonder": {
+          "deck": "3",
+          "section": "Aft"
+        }
+      }
+    },
+    {
+      "id": "twg-tea",
+      "name": "TWG Tea",
+      "category": "quick-service",
+      "theme": "Premium Tea",
+      "description": "Luxury tea salon offering an extensive collection of fine teas from around the world, paired with elegant pastries and tea-time treats.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "status": "current",
+      "years": "2025–present",
+      "price": "À la carte",
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "vanellopes",
+      "name": "Vanellope's Sweets & Treats",
+      "category": "quick-service",
+      "theme": "Wreck-It Ralph",
+      "description": "Wreck-It Ralph themed dessert shop with artisan gelato, hand-decorated candy apples, and specialty confections. A fun, pixel-art themed environment.",
+      "ships": [
+        "Disney Dream"
+      ],
+      "status": "current",
+      "years": "2016–present",
+      "price": "À la carte",
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Dream": {
+          "deck": "11",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "vista-cafe",
+      "name": "Vista Café",
+      "category": "quick-service",
+      "theme": "Coffee & Bites",
+      "description": "Quick-service coffee bar located in the main atrium serving specialty coffees, teas, pastries, and light bites. A convenient grab-and-go option for morning caffeine.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "status": "current",
+      "years": "1998–present",
+      "price": "Premium coffees extra",
+      "access": null,
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": true,
+      "deckByShip": {
+        "Disney Dream": {
+          "deck": "4",
+          "section": "Midship"
+        },
+        "Disney Fantasy": {
+          "deck": "4",
+          "section": "Midship"
+        }
+      }
+    },
+    {
+      "id": "wayfinder-bar",
+      "name": "Wayfinder Bar",
+      "category": "bars-lounges",
+      "theme": "Moana",
+      "description": "Poolside bar with a Moana-inspired wayfinding theme, serving tropical cocktails and refreshments with ocean views.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "status": "current",
+      "years": "2024–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "subVenues": null,
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "11",
+          "section": "Pool Deck"
+        }
+      }
+    },
+    {
+      "id": "wheezys-freezies",
+      "name": "Wheezy's Freezies",
+      "category": "quick-service",
+      "theme": "Toy Story",
+      "description": "Toy Story-themed frozen treats station named after the lovable penguin toy Wheezy. Serves soft-serve ice cream, frozen beverages, and specialty frozen treats.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Adventure",
+        "Disney Destiny"
+      ],
+      "status": "current",
+      "years": "2022–present",
+      "price": null,
+      "access": null,
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": {
+        "Disney Wish": {
+          "deck": "11",
+          "section": "Pool Deck"
+        },
+        "Disney Treasure": {
+          "deck": "11",
+          "section": "Pool Deck"
+        },
+        "Disney Adventure": {
+          "deck": "11",
+          "section": "Pool Deck"
+        },
+        "Disney Destiny": {
+          "deck": "11",
+          "section": "Pool Deck"
+        }
+      }
+    },
+    {
+      "id": "wishing-star-cafe",
+      "name": "Wishing Star Cafe",
+      "category": "quick-service",
+      "theme": "Wish",
+      "description": "Wish-inspired quick-service cafe serving fresh sandwiches, salads, and baked goods. A charming spot for a lighter meal with wishing star decor.",
+      "ships": [
+        "Disney Wish"
+      ],
+      "status": "historical",
+      "years": "2022–present",
+      "price": null,
+      "access": null,
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "wonderland-tea-party",
+      "name": "Wonderland Tea Party",
+      "category": "tea-character",
+      "theme": "Alice in Wonderland",
+      "description": "A whimsical Alice in Wonderland-themed tea party for children featuring themed treats, crafts, and a surprise visit from characters. An enchanting experience down the rabbit hole.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "status": "historical",
+      "years": "2025–present",
+      "price": "$75/child",
+      "access": "Ages 3-12",
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    },
+    {
+      "id": "worlds-of-marvel",
+      "name": "Worlds of Marvel",
+      "category": "rotational",
+      "theme": "Marvel Cinematic Universe",
+      "description": "Marvel Cinematic Universe themed dining with an interactive Avengers storyline that unfolds throughout dinner. Features quantum core technology and special effects that bring the MCU to life around you.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "status": "current",
+      "years": "2022–present",
+      "price": null,
+      "access": null,
+      "exclusive": false,
+      "subVenues": null,
+      "characterExperience": true,
+      "liveEntertainment": true,
+      "deckByShip": {
+        "Disney Wish": {
+          "deck": "3",
+          "section": "Aft"
+        },
+        "Disney Treasure": {
+          "deck": "3",
+          "section": "Aft"
+        },
+        "Disney Destiny": {
+          "deck": "3",
+          "section": "Aft"
+        }
+      }
+    },
+    {
+      "id": "zenith",
+      "name": "Zenith",
+      "category": "bars-lounges",
+      "theme": "Rooftop Lounge",
+      "description": "Premium rooftop-style lounge on the upper deck offering craft cocktails, small plates, and panoramic ocean views. A sophisticated venue for sunset drinks.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "status": "historical",
+      "years": "2025–present",
+      "price": null,
+      "access": "Adults (18+)",
+      "exclusive": true,
+      "subVenues": null,
+      "characterExperience": false,
+      "liveEntertainment": false,
+      "deckByShip": null
+    }
+  ],
+  "adventureRotations": {
+    "1": [
+      "pixar-market",
+      "navigators-club",
+      "animators-palate"
+    ],
+    "2": [
+      "enchanted-summer",
+      "hollywood-spotlight",
+      "animators-table"
+    ]
+  }
+}

@@ -1,0 +1,2409 @@
+{
+  "activities": [
+    {
+      "id": "1923",
+      "name": "1923",
+      "type": "dining",
+      "description": "Upscale signature dining inspired by the golden age of Hollywood and Walt Disney's journey to California.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": null,
+      "venueId": "1923"
+    },
+    {
+      "id": "3-wishes-shop",
+      "name": "3 Wishes",
+      "type": "shop",
+      "description": "Onboard gift shop featuring Disney merchandise, souvenirs, collectibles, and cruise-exclusive items.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Adventure",
+        "Disney Destiny"
+      ],
+      "ip": null,
+      "venueId": "3-wishes"
+    },
+    {
+      "id": "adventure-tea-with-royalty",
+      "name": "Adventure Tea with Royalty",
+      "type": "character",
+      "description": "Elegant tea party experience with Disney Princesses featuring themed treats, storytelling, and a royal keepsake. Surcharge applies.",
+      "ships": [
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "alley-cat-cafe",
+      "name": "Alley Cat Café",
+      "type": "dining",
+      "description": "Casual dining café inspired by the world of The Aristocats with light bites and beverages.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": "The Aristocats",
+      "venueId": null
+    },
+    {
+      "id": "animators-palate",
+      "name": "Animator's Palate",
+      "type": "dining",
+      "description": "Interactive rotational dining restaurant where the artwork comes to life around you during the meal.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Adventure"
+      ],
+      "ip": null,
+      "venueId": "animators-palate"
+    },
+    {
+      "id": "animators-table",
+      "name": "Animator's Table",
+      "type": "dining",
+      "description": "Character dining experience at Animator's Table with appearances by Disney characters and themed entertainment.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": null,
+      "venueId": "animators-table"
+    },
+    {
+      "id": "aquaduck",
+      "name": "AquaDuck",
+      "type": "pool",
+      "description": "Thrilling transparent water coaster that extends over the edge of the ship with ocean views.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ip": null,
+      "venueId": "aquaduck"
+    },
+    {
+      "id": "aquadunk",
+      "name": "AquaDunk",
+      "type": "pool",
+      "description": "Exhilarating body slide with a thrilling drop-door start, plunging riders through a clear tube over the side of the ship.",
+      "ships": [
+        "Disney Magic"
+      ],
+      "ip": null,
+      "venueId": "aquadunk"
+    },
+    {
+      "id": "aqualab",
+      "name": "AquaLab",
+      "type": "pool",
+      "description": "Water playground splash zone with pop jets, geysers, and water features for kids and families.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Fantasy"
+      ],
+      "ip": null,
+      "venueId": "aqualab"
+    },
+    {
+      "id": "aquamouse",
+      "name": "AquaMouse",
+      "type": "pool",
+      "description": "First-ever Disney attraction at sea — a wild water ride with show scenes, special effects, and twists.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": null,
+      "venueId": "aquamouse"
+    },
+    {
+      "id": "arendelle-frozen-dining",
+      "name": "Arendelle: A Frozen Dining Adventure",
+      "type": "dining",
+      "description": "Immersive Frozen-themed rotational dining with live entertainment, character appearances, and Nordic-inspired cuisine.",
+      "ships": [
+        "Disney Wish"
+      ],
+      "ip": "Frozen",
+      "venueId": "arendelle"
+    },
+    {
+      "id": "avengers-assemble",
+      "name": "Avengers Assemble!",
+      "type": "show",
+      "description": "Action-packed Marvel stage show where the Avengers team up to save the day with spectacular effects and stunts.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": "Marvel",
+      "venueId": null
+    },
+    {
+      "id": "azure",
+      "name": "Azure",
+      "type": "lounge",
+      "description": "Sophisticated adults-only lounge with live entertainment and handcrafted cocktails.",
+      "ships": [
+        "Disney Wonder"
+      ],
+      "ip": null,
+      "venueId": "azure"
+    },
+    {
+      "id": "bacha-coffee",
+      "name": "Bacha Coffee",
+      "type": "dining",
+      "description": "Premium coffee experience featuring rare and specialty coffees from around the world.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "baymax-cinemas",
+      "name": "Baymax Cinemas",
+      "type": "show",
+      "description": "State-of-the-art cinema aboard the ship showing first-run films and Disney classics.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": "Big Hero 6",
+      "venueId": "san-fransokyo-cinema"
+    },
+    {
+      "id": "baymax-super-exercise-expo",
+      "name": "Baymax Super Exercise Expo",
+      "type": "show",
+      "description": "Interactive family show led by Baymax with fun exercises, dance moves, and healthy living tips.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": "Big Hero 6",
+      "venueId": null
+    },
+    {
+      "id": "beauty-beast-show",
+      "name": "Beauty and the Beast",
+      "type": "show",
+      "description": "Lavish stage production of the beloved tale with dazzling costumes and sets.",
+      "ships": [
+        "Disney Dream",
+        "Disney Treasure"
+      ],
+      "ip": "Beauty and the Beast",
+      "venueId": "walt-disney-theatre"
+    },
+    {
+      "id": "beverage-tastings",
+      "name": "Beverage Tastings",
+      "type": "lounge",
+      "description": "Curated tasting experiences featuring wines, spirits, cocktails, or craft beers guided by expert mixologists. Surcharge applies.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Adventure",
+        "Disney Destiny"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "bewitching-boba-brews",
+      "name": "Bewitching Boba and Brews",
+      "type": "dining",
+      "description": "Specialty beverage spot serving themed boba teas, coffees, and unique brewed drinks.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "bibbidi-bobbidi-boutique",
+      "name": "Bibbidi Bobbidi Boutique",
+      "type": "shop",
+      "description": "Princess and knight makeover experience for kids ages 3-12 with hairstyling, makeup, and costumes. Surcharge applies.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Adventure",
+        "Disney Destiny"
+      ],
+      "ip": "Cinderella",
+      "venueId": "bibbidi-bobbidi-boutique"
+    },
+    {
+      "id": "bon-voyage",
+      "name": "Bon Voyage",
+      "type": "lounge",
+      "description": "Stylish cocktail bar perfect for pre-dinner drinks and socializing in an elegant setting.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "buccaneer-bar",
+      "name": "Buccaneer Bar",
+      "type": "lounge",
+      "description": "Pirate-themed bar and lounge with themed cocktails and a swashbuckling atmosphere.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "buena-vista-theatre",
+      "name": "Buena Vista Theatre",
+      "type": "show",
+      "description": "Onboard cinema showing first-run Disney, Pixar, Marvel, and Star Wars films in a classic movie theater setting.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ip": null,
+      "venueId": "buena-vista-theatre"
+    },
+    {
+      "id": "cabanas",
+      "name": "Cabanas",
+      "type": "dining",
+      "description": "Casual buffet-style restaurant offering a wide variety of dishes for breakfast, lunch, and dinner with ocean views.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ip": null,
+      "venueId": "cabanas"
+    },
+    {
+      "id": "cadillac-lounge",
+      "name": "Cadillac Lounge",
+      "type": "lounge",
+      "description": "Retro-themed adults-only lounge inspired by classic Cadillac automobiles with live piano music and cocktails.",
+      "ships": [
+        "Disney Wonder"
+      ],
+      "ip": null,
+      "venueId": "cadillac-lounge"
+    },
+    {
+      "id": "carriage-jewels",
+      "name": "Carriage Jewels",
+      "type": "shop",
+      "description": "Upscale jewelry shop featuring fine jewelry, watches, and Disney-themed accessories.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "cask-and-cannon",
+      "name": "Cask & Cannon",
+      "type": "lounge",
+      "description": "Nautical-themed bar and lounge with craft cocktails and live entertainment.",
+      "ships": [
+        "Disney Destiny"
+      ],
+      "ip": null,
+      "venueId": "cask-and-cannon"
+    },
+    {
+      "id": "castle-collection",
+      "name": "Castle Collection",
+      "type": "shop",
+      "description": "Gift shop featuring Disney merchandise, apparel, and collectibles.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "character-greetings",
+      "name": "Character Greetings",
+      "type": "character",
+      "description": "Meet and greet opportunities with favorite Disney, Pixar, Marvel, and Star Wars characters throughout the ship.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "cosmic-kebabs",
+      "name": "Cosmic Kebabs",
+      "type": "dining",
+      "description": "Quick-service eatery serving flavorful kebabs and Mediterranean-inspired street food.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "cove-cafe",
+      "name": "Cove Café",
+      "type": "lounge",
+      "description": "Adults-only coffee bar and lounge serving specialty coffees, teas, pastries, and cocktails in a relaxed setting.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": null,
+      "venueId": "cove-cafe"
+    },
+    {
+      "id": "crown-and-fin-pub",
+      "name": "Crown & Fin Pub",
+      "type": "lounge",
+      "description": "British-inspired pub with craft beers, pub fare, and a cozy atmosphere.",
+      "ships": [
+        "Disney Wonder"
+      ],
+      "ip": null,
+      "venueId": "crown-and-fin-pub"
+    },
+    {
+      "id": "currents",
+      "name": "Currents",
+      "type": "lounge",
+      "description": "Open-air bar serving tropical cocktails, frozen drinks, and refreshments by the pool.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": null,
+      "venueId": "currents-bar"
+    },
+    {
+      "id": "d-lounge",
+      "name": "D Lounge",
+      "type": "show",
+      "description": "Family entertainment venue hosting game shows, dance parties, trivia, karaoke, and family activities.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Adventure"
+      ],
+      "ip": null,
+      "venueId": "d-lounge"
+    },
+    {
+      "id": "daisys-de-lites",
+      "name": "Daisy's De-Lites",
+      "type": "dining",
+      "description": "Quick-service dining spot offering fresh salads, wraps, sandwiches, and light fare.",
+      "ships": [
+        "Disney Wonder"
+      ],
+      "ip": "Mickey & Friends",
+      "venueId": "daisys-de-lites"
+    },
+    {
+      "id": "de-vils",
+      "name": "De Vil's",
+      "type": "lounge",
+      "description": "Villains-inspired cocktail lounge with dramatic décor and themed signature drinks.",
+      "ships": [
+        "Disney Destiny"
+      ],
+      "ip": "101 Dalmatians",
+      "venueId": "de-vils"
+    },
+    {
+      "id": "diamonds-and-wishes",
+      "name": "Diamonds and Wishes",
+      "type": "shop",
+      "description": "Duty-free jewelry and watch shop featuring designer brands and Disney-themed fine jewelry.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Adventure"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "disney-seas-the-adventure",
+      "name": "Disney Seas the Adventure",
+      "type": "show",
+      "description": "Original show starring Captain Minnie Mouse on a grand adventure across Disney stories.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Adventure",
+        "Disney Destiny"
+      ],
+      "ip": "Mickey & Friends",
+      "venueId": "walt-disney-theatre"
+    },
+    {
+      "id": "disney-studio-royal-studio",
+      "name": "Disney Studio and Royal Studio",
+      "type": "shop",
+      "description": "Professional photo studio offering portrait sessions with themed backdrops and Disney character encounters.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "disney-tale-of-moana",
+      "name": "Disney The Tale of Moana",
+      "type": "show",
+      "description": "Immersive theatrical retelling of Moana's journey featuring stunning visuals and Polynesian music.",
+      "ships": [
+        "Disney Treasure"
+      ],
+      "ip": "Moana",
+      "venueId": "walt-disney-theatre"
+    },
+    {
+      "id": "disney-dreams-enchanted-classic",
+      "name": "Disney Dreams – An Enchanted Classic",
+      "type": "show",
+      "description": "A classic Disney stage show where a young girl is visited by characters from Peter Pan, Aladdin, The Little Mermaid, and more in her dreams.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder"
+      ],
+      "ip": null,
+      "venueId": "walt-disney-theatre"
+    },
+    {
+      "id": "disney-hercules",
+      "name": "Disney Hercules",
+      "type": "show",
+      "description": "Broadway-style musical spectacular retelling the story of Hercules with the Muses, Hades, and iconic songs.",
+      "ships": [
+        "Disney Destiny"
+      ],
+      "ip": "Hercules",
+      "venueId": "walt-disney-theatre"
+    },
+    {
+      "id": "disneys-believe",
+      "name": "Disney's Believe",
+      "type": "show",
+      "description": "Heartwarming stage show about a father who rediscovers the magic of Disney through his daughter's eyes.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ip": null,
+      "venueId": "walt-disney-theatre"
+    },
+    {
+      "id": "oceaneers-club",
+      "name": "Disney's Oceaneer Club",
+      "type": "kids",
+      "description": "Supervised kids' club for ages 3-12 with themed activity rooms, games, crafts, and character visits.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Adventure",
+        "Disney Destiny"
+      ],
+      "ip": null,
+      "venueId": "oceaneer-club"
+    },
+    {
+      "id": "oceaneers-lab",
+      "name": "Disney's Oceaneer Lab",
+      "type": "kids",
+      "description": "Interactive lab space for kids with hands-on science experiments, crafts, and creative activities.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ip": null,
+      "venueId": "oceaneer-lab"
+    },
+    {
+      "id": "district-lounge",
+      "name": "District Lounge",
+      "type": "lounge",
+      "description": "Chic adults-only cocktail lounge in the nightlife district with live music and craft drinks.",
+      "ships": [
+        "Disney Dream"
+      ],
+      "ip": null,
+      "venueId": "district-lounge"
+    },
+    {
+      "id": "donalds-pool",
+      "name": "Donald's Pool",
+      "type": "pool",
+      "description": "Family-friendly pool area themed around Donald Duck with splash zones for all ages.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ip": "Mickey & Friends",
+      "venueId": "donalds-pool"
+    },
+    {
+      "id": "dorys-forget-me-knots",
+      "name": "Dory's Forget-Me-Knots",
+      "type": "shop",
+      "description": "Onboard shop featuring Disney, Pixar, and cruise-exclusive merchandise and gifts.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": "Pixar (Finding Nemo/Dory)",
+      "venueId": null
+    },
+    {
+      "id": "duck-in-diner",
+      "name": "Duck-In Diner",
+      "type": "dining",
+      "description": "Quick-service counter offering burgers, chicken strips, fries, and classic American fare.",
+      "ships": [
+        "Disney Magic"
+      ],
+      "ip": null,
+      "venueId": "duck-in-diner"
+    },
+    {
+      "id": "duffy-and-friends-shop",
+      "name": "Duffy and Friends Shop",
+      "type": "shop",
+      "description": "Shop dedicated to Duffy the Disney Bear and friends with exclusive plush toys and merchandise.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": "Duffy",
+      "venueId": null
+    },
+    {
+      "id": "duffy-friend-ship",
+      "name": "Duffy and The Friend Ship",
+      "type": "show",
+      "description": "Charming stage show featuring Duffy the Disney Bear and friends on a heartwarming journey of friendship.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": "Duffy",
+      "venueId": null
+    },
+    {
+      "id": "edna-a-la-mode-sweets",
+      "name": "Edna À La Mode Sweets",
+      "type": "dining",
+      "description": "Incredibles-themed sweets shop serving ice cream, gelato, pastries, and designer confections.",
+      "ships": [
+        "Disney Destiny"
+      ],
+      "ip": "The Incredibles",
+      "venueId": "edna-a-la-mode-sweets"
+    },
+    {
+      "id": "enchante",
+      "name": "Enchanté by Chef Arnaud Lallement",
+      "type": "dining",
+      "description": "Premium signature dining by Michelin-starred Chef Arnaud Lallement with French-inspired haute cuisine. Surcharge applies.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": null,
+      "venueId": "enchante"
+    },
+    {
+      "id": "enchanted-castle-jewels",
+      "name": "Enchanted Castle Jewels",
+      "type": "shop",
+      "description": "Fine jewelry shop featuring Disney-themed pieces, luxury watches, and exclusive cruise collections.",
+      "ships": [
+        "Disney Wish"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "enchanted-garden",
+      "name": "Enchanted Garden",
+      "type": "dining",
+      "description": "Rotational dining restaurant with an enchanting garden theme that transforms from day to night during dinner.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ip": null,
+      "venueId": "enchanted-garden"
+    },
+    {
+      "id": "enchanted-summer-restaurant",
+      "name": "Enchanted Summer Restaurant",
+      "type": "dining",
+      "description": "Dining restaurant with a magical summer garden ambiance and seasonal cuisine.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": null,
+      "venueId": "enchanted-summer"
+    },
+    {
+      "id": "evolution",
+      "name": "Evolution",
+      "type": "lounge",
+      "description": "Sleek adults-only dance club and lounge with a modern design, DJ music, and themed party nights.",
+      "ships": [
+        "Disney Dream"
+      ],
+      "ip": null,
+      "venueId": "evolution"
+    },
+    {
+      "id": "eye-scream-treats",
+      "name": "Eye Scream Treats",
+      "type": "dining",
+      "description": "Complimentary soft-serve ice cream station with toppings, perfect for a poolside treat.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ip": null,
+      "venueId": "eye-scream"
+    },
+    {
+      "id": "fathoms",
+      "name": "Fathoms",
+      "type": "lounge",
+      "description": "Adults-only nightclub and entertainment venue with live shows, comedy nights, and dancing.",
+      "ships": [
+        "Disney Magic"
+      ],
+      "ip": null,
+      "venueId": "fathoms"
+    },
+    {
+      "id": "fitness-center",
+      "name": "Fitness Center",
+      "type": "recreation",
+      "description": "Full-service gym with cardio equipment, weights, ocean-view treadmills, and fitness classes.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Adventure",
+        "Disney Destiny"
+      ],
+      "ip": null,
+      "venueId": "fitness-center"
+    },
+    {
+      "id": "flos-cafe",
+      "name": "Flo's Cafe",
+      "type": "dining",
+      "description": "Cars-themed quick-service dining with multiple counters offering pizza, burgers, and other casual fare.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ip": "Pixar (Cars)",
+      "venueId": "flos-v8-cafe"
+    },
+    {
+      "id": "french-quarter-lounge",
+      "name": "French Quarter Lounge",
+      "type": "lounge",
+      "description": "New Orleans-inspired lounge with jazz music, Bayou-themed cocktails, and Southern charm.",
+      "ships": [
+        "Disney Wonder"
+      ],
+      "ip": "Princess and the Frog",
+      "venueId": "french-quarter-lounge"
+    },
+    {
+      "id": "frozen-deck-party",
+      "name": "Frozen Deck Party",
+      "type": "party",
+      "description": "Magical deck party celebrating Frozen with appearances by Anna, Elsa, and friends, plus music and snow effects.",
+      "ships": [
+        "Disney Wonder"
+      ],
+      "ip": "Frozen",
+      "venueId": null
+    },
+    {
+      "id": "frozen-musical",
+      "name": "Frozen, A Musical Spectacular",
+      "type": "show",
+      "description": "Broadway-style retelling of Frozen with stunning special effects, puppetry, and original songs.",
+      "ships": [
+        "Disney Wonder",
+        "Disney Fantasy",
+        "Disney Destiny"
+      ],
+      "ip": "Frozen",
+      "venueId": "walt-disney-theatre"
+    },
+    {
+      "id": "frozone-treats",
+      "name": "Frozone Treats",
+      "type": "dining",
+      "description": "Incredibles-themed frozen treat station serving ice cream, smoothies, and refreshing snacks.",
+      "ships": [
+        "Disney Magic",
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ip": "The Incredibles",
+      "venueId": "frozone-treats"
+    },
+    {
+      "id": "funnel-puddle",
+      "name": "Funnel Puddle",
+      "type": "pool",
+      "description": "Splash pad area near the funnel with gentle water features for young children.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "garden-bar",
+      "name": "Garden Bar",
+      "type": "dining",
+      "description": "Open-air bar with refreshing drinks and light snacks in a garden-like setting.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "garden-stage",
+      "name": "Garden Stage",
+      "type": "show",
+      "description": "Outdoor entertainment stage hosting live performances, shows, and special events.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": null,
+      "venueId": "imagination-garden-stage"
+    },
+    {
+      "id": "goofys-pool",
+      "name": "Goofy's Pool",
+      "type": "pool",
+      "description": "Family-friendly pool with water slides and splash areas for all ages.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder"
+      ],
+      "ip": "Mickey & Friends",
+      "venueId": "goofys-pool"
+    },
+    {
+      "id": "goofys-sports-deck",
+      "name": "Goofy's Sports Deck",
+      "type": "recreation",
+      "description": "Outdoor sports area with basketball, mini-golf, and other sporting activities.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ip": "Mickey & Friends",
+      "venueId": "goofys-sports-deck"
+    },
+    {
+      "id": "gramma-talas-kitchen",
+      "name": "Gramma Tala's Kitchen",
+      "type": "dining",
+      "description": "Moana-inspired dining venue featuring Polynesian and Pacific Island-inspired cuisine.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": "Moana",
+      "venueId": "gramma-talas-kitchen"
+    },
+    {
+      "id": "grand-hall-collection",
+      "name": "Grand Hall Collection",
+      "type": "shop",
+      "description": "Premium shop in the Grand Hall featuring exclusive Disney merchandise and collectibles.",
+      "ships": [
+        "Disney Destiny"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "groot-galaxy-spin",
+      "name": "Groot Galaxy Spin",
+      "type": "recreation",
+      "description": "Guardians of the Galaxy-themed spinning ride attraction aboard the ship.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": "Marvel",
+      "venueId": "groot-galaxy-spin"
+    },
+    {
+      "id": "halloween-on-the-high-seas",
+      "name": "Halloween on the High Seas",
+      "type": "seasonal",
+      "description": "Spooky seasonal celebration with trick-or-treating, costume parties, haunted stories, pumpkin carving, and villain-themed events.",
+      "ships": [
+        "Disney Magic",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "haunted-mansion-parlor",
+      "name": "Haunted Mansion Parlor",
+      "type": "lounge",
+      "description": "Haunted Mansion-themed cocktail lounge with spooky décor, themed drinks, and eerie ambiance.",
+      "ships": [
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": "The Haunted Mansion",
+      "venueId": "haunted-mansion-parlor"
+    },
+    {
+      "id": "hero-zone",
+      "name": "Hero Zone",
+      "type": "recreation",
+      "description": "Indoor sports arena for dodgeball, basketball, ping pong, and other active games.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": null,
+      "venueId": "hero-zone"
+    },
+    {
+      "id": "hollywood-spotlight-club",
+      "name": "Hollywood Spotlight Club",
+      "type": "dining",
+      "description": "Hollywood-inspired dining venue with entertainment and character experiences.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "hooks-barbery",
+      "name": "Hook's Barbery",
+      "type": "spa",
+      "description": "Captain Hook-themed barber shop offering grooming services, shaves, and men's spa treatments.",
+      "ships": [
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Destiny"
+      ],
+      "ip": "Captain Hook/Peter Pan",
+      "venueId": "senses-spa"
+    },
+    {
+      "id": "infinite-bliss-spa",
+      "name": "Infinite Bliss Spa - Elemis at Sea",
+      "type": "spa",
+      "description": "Premium spa experience with Elemis treatments, massages, facials, and wellness therapies.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "infinity-bar",
+      "name": "Infinity Bar",
+      "type": "lounge",
+      "description": "Pool-side bar with stunning infinity pool views and refreshing cocktails.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "infinity-pool",
+      "name": "Infinity Pool",
+      "type": "pool",
+      "description": "Adults-only infinity-edge pool with panoramic ocean views and a luxurious relaxation area.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": null,
+      "venueId": "marvel-infinity-pool"
+    },
+    {
+      "id": "inside-out-joyful-sweets",
+      "name": "Inside Out: Joyful Sweets",
+      "type": "dining",
+      "description": "Inside Out-themed confectionery shop serving colorful candies, sweets, and emotion-inspired treats.",
+      "ships": [
+        "Disney Wish"
+      ],
+      "ip": "Pixar (Inside Out)",
+      "venueId": null
+    },
+    {
+      "id": "ironcycle-test-run",
+      "name": "Ironcycle Test Run",
+      "type": "recreation",
+      "description": "Marvel-themed cycling experience and fitness activity aboard the ship.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": "Marvel",
+      "venueId": "ironcycle-test-run"
+    },
+    {
+      "id": "its-a-cruise-holiday",
+      "name": "It's a Cruise Holiday - Off We Go!",
+      "type": "party",
+      "description": "Festive holiday-themed deck party celebrating the season with music, characters, and holiday cheer.",
+      "ships": [
+        "Disney Wonder"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "jack-sparrow-siren-queen",
+      "name": "Jack Sparrow and the Siren Queen",
+      "type": "show",
+      "description": "Swashbuckling Pirates of the Caribbean stage adventure featuring Captain Jack Sparrow in an original story.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": "Pirates of the Caribbean",
+      "venueId": null
+    },
+    {
+      "id": "jumbeauxs-sweets",
+      "name": "Jumbeaux's Sweets",
+      "type": "dining",
+      "description": "Zootopia-themed sweets parlor serving ice cream, candies, and desserts.",
+      "ships": [
+        "Disney Treasure"
+      ],
+      "ip": "Zootopia",
+      "venueId": "jumbeaux-sweets"
+    },
+    {
+      "id": "keg-and-compass",
+      "name": "Keg & Compass",
+      "type": "lounge",
+      "description": "Nautical-themed pub with craft beers, cocktails, and a maritime atmosphere.",
+      "ships": [
+        "Disney Wish"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "keys",
+      "name": "Keys",
+      "type": "lounge",
+      "description": "Elegant adults-only piano bar with live music, classic cocktails, and sophisticated ambiance.",
+      "ships": [
+        "Disney Magic"
+      ],
+      "ip": null,
+      "venueId": "keys"
+    },
+    {
+      "id": "la-piazza",
+      "name": "La Piazza",
+      "type": "lounge",
+      "description": "Italian-inspired lounge and bar reminiscent of a charming Italian piazza with wines and cocktails.",
+      "ships": [
+        "Disney Fantasy"
+      ],
+      "ip": null,
+      "venueId": "la-piazza"
+    },
+    {
+      "id": "lets-set-sail",
+      "name": "Let's Set Sail",
+      "type": "show",
+      "description": "Fun-filled musical variety show celebrating the start of your Disney cruise adventure.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "lumieres",
+      "name": "Lumiere's",
+      "type": "dining",
+      "description": "Beauty and the Beast-inspired elegant rotational dining with French-influenced cuisine and grand décor.",
+      "ships": [
+        "Disney Magic"
+      ],
+      "ip": "Beauty and the Beast",
+      "venueId": "lumieres"
+    },
+    {
+      "id": "luna",
+      "name": "Luna",
+      "type": "lounge",
+      "description": "Celestial-themed entertainment lounge with live shows, music, and nightlife experiences.",
+      "ships": [
+        "Disney Wish"
+      ],
+      "ip": null,
+      "venueId": "luna"
+    },
+    {
+      "id": "marceline-market",
+      "name": "Marceline Market",
+      "type": "dining",
+      "description": "Marketplace-style buffet dining with multiple food stations offering diverse cuisine options.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": null,
+      "venueId": "marceline-market"
+    },
+    {
+      "id": "market-bar",
+      "name": "Market Bar",
+      "type": "dining",
+      "description": "Casual bar adjacent to the market dining area serving beverages and light fare.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "marvel-day-at-sea",
+      "name": "Marvel Day at Sea",
+      "type": "seasonal",
+      "description": "Special themed day featuring Marvel character meet & greets, shows, activities, and an epic deck party with fireworks.",
+      "ships": [
+        "Disney Magic"
+      ],
+      "ip": "Marvel",
+      "venueId": null
+    },
+    {
+      "id": "marvel-style-studio",
+      "name": "Marvel Style Studio",
+      "type": "shop",
+      "description": "Marvel-themed retail store with exclusive superhero merchandise, apparel, and collectibles.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": "Marvel",
+      "venueId": null
+    },
+    {
+      "id": "meridian",
+      "name": "Meridian",
+      "type": "lounge",
+      "description": "Sophisticated cocktail lounge with Art Deco styling and handcrafted drinks, perfect for pre-dinner cocktails.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ip": null,
+      "venueId": "meridian"
+    },
+    {
+      "id": "mickey-friends-festival-of-foods",
+      "name": "Mickey & Friends Festival of Foods",
+      "type": "dining",
+      "description": "Outdoor quick-service dining area with multiple food stations offering global street food and snacks.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": "Mickey & Friends",
+      "venueId": "mickey-and-friends-festival-of-foods"
+    },
+    {
+      "id": "mickeys-color-spin-dance-party",
+      "name": "Mickey's Color Spin Dance Party",
+      "type": "party",
+      "description": "High-energy deck party with Mickey and friends featuring colorful lights, music, and dancing under the stars.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Treasure",
+        "Disney Adventure"
+      ],
+      "ip": "Mickey & Friends",
+      "venueId": null
+    },
+    {
+      "id": "mickeys-mainsail",
+      "name": "Mickey's Mainsail",
+      "type": "shop",
+      "description": "Flagship onboard gift shop with a wide selection of Disney merchandise, apparel, and souvenirs.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": "Mickey & Friends",
+      "venueId": "mickeys-mainsail"
+    },
+    {
+      "id": "mickeys-pool",
+      "name": "Mickey's Pool",
+      "type": "pool",
+      "description": "Themed family pool area with a Mickey Mouse slide and fun water features for all ages.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ip": "Mickey & Friends",
+      "venueId": "mickeys-pool"
+    },
+    {
+      "id": "mickeys-sail-a-wave-party",
+      "name": "Mickey's Sail-A-Wave Party!… A Bon Voyage Celebration",
+      "type": "party",
+      "description": "Lively deck party hosted by Mickey and friends with music, dancing, and character appearances to kick off the voyage.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder"
+      ],
+      "ip": "Mickey & Friends",
+      "venueId": null
+    },
+    {
+      "id": "midship-detective-agency",
+      "name": "Midship Detective Agency",
+      "type": "recreation",
+      "description": "Interactive shipwide mystery game where guests solve clues using enchanted art pieces throughout the ship.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "mike-sulleys-flavors-of-asia",
+      "name": "Mike and Sulley's Flavors of Asia",
+      "type": "dining",
+      "description": "Monsters, Inc.-themed Asian fusion quick-service dining with noodles, stir-fries, and Asian street food.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": "Pixar (Monsters Inc)",
+      "venueId": null
+    },
+    {
+      "id": "moana-call-of-the-sea",
+      "name": "Moana: Call of the Sea",
+      "type": "show",
+      "description": "Musical stage show bringing Moana's ocean adventure to life with stunning effects and choreography.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": "Moana",
+      "venueId": null
+    },
+    {
+      "id": "mowglis-eatery",
+      "name": "Mowgli's Eatery",
+      "type": "dining",
+      "description": "Jungle Book-inspired dining venue serving flavorful dishes inspired by Indian and Southeast Asian cuisine.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": "Jungle Book",
+      "venueId": "mowglis-eatery"
+    },
+    {
+      "id": "navigators-club",
+      "name": "Navigator's Club",
+      "type": "dining",
+      "description": "Dining venue with a nautical explorer theme and globally-inspired menu.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "nemos-reef",
+      "name": "Nemo's Reef",
+      "type": "pool",
+      "description": "Finding Nemo-themed splash zone for toddlers and young children with gentle water features.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ip": "Pixar (Finding Nemo/Dory)",
+      "venueId": "nemos-reef"
+    },
+    {
+      "id": "never-land-cinema",
+      "name": "Never Land Cinema",
+      "type": "show",
+      "description": "Peter Pan-themed cinema showing the latest Disney films and classic favorites.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": "Peter Pan",
+      "venueId": "never-land-cinema"
+    },
+    {
+      "id": "new-years-eve-at-sea",
+      "name": "New Year's Eve",
+      "type": "seasonal",
+      "description": "Ring in the New Year with a gala evening, countdown celebrations, fireworks at sea, and festive parties across the ship.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "nightingales",
+      "name": "Nightingale's",
+      "type": "lounge",
+      "description": "Secret speakeasy-style lounge hidden behind a bookcase with craft cocktails and an intimate atmosphere.",
+      "ships": [
+        "Disney Wish"
+      ],
+      "ip": null,
+      "venueId": "nightingales"
+    },
+    {
+      "id": "olafs-royal-picnic",
+      "name": "Olaf's Royal Picnic",
+      "type": "character",
+      "description": "Whimsical Frozen-themed dining experience hosted by Olaf with themed food, activities, and character appearances. Surcharge applies.",
+      "ships": [
+        "Disney Wish"
+      ],
+      "ip": "Frozen",
+      "venueId": null
+    },
+    {
+      "id": "once-upon-a-time",
+      "name": "Once Upon a Time",
+      "type": "shop",
+      "description": "Storybook-themed shop featuring Disney merchandise, princess items, and magical keepsakes.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": null,
+      "venueId": "once-upon-a-time"
+    },
+    {
+      "id": "ooh-la-la",
+      "name": "Ooh La La",
+      "type": "lounge",
+      "description": "Glamorous Parisian-themed champagne bar with bubbly cocktails and elegant French décor.",
+      "ships": [
+        "Disney Fantasy"
+      ],
+      "ip": null,
+      "venueId": "ooh-la-la"
+    },
+    {
+      "id": "opulence-spa",
+      "name": "Opulence Spa - Elemis at Sea",
+      "type": "spa",
+      "description": "Concierge-level premium spa with exclusive Elemis treatments and luxury wellness experiences.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": null,
+      "venueId": "opulence-spa"
+    },
+    {
+      "id": "ogills-pub",
+      "name": "O'Gills Pub",
+      "type": "lounge",
+      "description": "Irish-themed pub with draught beers, pub grub, and sports on big screens.",
+      "ships": [
+        "Disney Magic",
+        "Disney Fantasy"
+      ],
+      "ip": null,
+      "venueId": "ogills-pub"
+    },
+    {
+      "id": "palace-treasures",
+      "name": "Palace Treasures",
+      "type": "shop",
+      "description": "Gift shop featuring Disney collectibles, artwork, and premium merchandise.",
+      "ships": [
+        "Disney Treasure",
+        "Disney Adventure"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "palo",
+      "name": "Palo",
+      "type": "dining",
+      "description": "Adults-only signature Italian restaurant with northern Italian cuisine, handmade pasta, and ocean views. Surcharge applies.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ip": null,
+      "venueId": "palo"
+    },
+    {
+      "id": "palo-cafe",
+      "name": "Palo Café",
+      "type": "dining",
+      "description": "Casual Italian café experience with espresso drinks, pastries, and light Italian fare.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": null,
+      "venueId": "palo"
+    },
+    {
+      "id": "palo-steakhouse",
+      "name": "Palo Steakhouse",
+      "type": "dining",
+      "description": "Premium steakhouse dining with Italian influences, prime cuts, and an extensive wine list. Surcharge applies.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": null,
+      "venueId": "palo"
+    },
+    {
+      "id": "palo-trattoria",
+      "name": "Palo Trattoria",
+      "type": "dining",
+      "description": "Italian trattoria-style dining with classic Italian dishes in a warm, inviting atmosphere.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": null,
+      "venueId": "palo"
+    },
+    {
+      "id": "periscope-pub",
+      "name": "Periscope Pub",
+      "type": "lounge",
+      "description": "Nautical-themed pub with submarine-inspired décor, craft beers, and pub fare.",
+      "ships": [
+        "Disney Treasure"
+      ],
+      "ip": null,
+      "venueId": "periscope-pub"
+    },
+    {
+      "id": "pics-photo-shop",
+      "name": "Pics Photo Shop",
+      "type": "shop",
+      "description": "Photo services shop where guests can purchase professional photos taken throughout the voyage.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "pirate-night",
+      "name": "Pirate Night",
+      "type": "party",
+      "description": "Swashbuckling deck party with fireworks at sea, live music, character appearances, and pirate-themed festivities.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": "Pirates of the Caribbean",
+      "venueId": null
+    },
+    {
+      "id": "pixar-day-at-sea",
+      "name": "Pixar Day at Sea",
+      "type": "seasonal",
+      "description": "Special themed day celebrating Pixar with character meet & greets, shows, activities, and a Pixar-themed deck party.",
+      "ships": [
+        "Disney Fantasy"
+      ],
+      "ip": "Pixar",
+      "venueId": null
+    },
+    {
+      "id": "pixar-market-restaurant",
+      "name": "Pixar Market Restaurant",
+      "type": "dining",
+      "description": "Pixar-themed dining venue with fun décor and a menu inspired by favorite Pixar films.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": "Pixar",
+      "venueId": "pixar-market"
+    },
+    {
+      "id": "pizza-planet",
+      "name": "Pizza Planet",
+      "type": "dining",
+      "description": "Toy Story-themed pizza restaurant serving fresh-made pizzas, calzones, and Italian favorites.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": "Pixar (Toy Story)",
+      "venueId": null
+    },
+    {
+      "id": "plaza-de-coco",
+      "name": "Plaza de Coco",
+      "type": "dining",
+      "description": "Coco-inspired Mexican dining venue with vibrant décor and authentic Mexican cuisine.",
+      "ships": [
+        "Disney Treasure"
+      ],
+      "ip": "Coco",
+      "venueId": "plaza-de-coco"
+    },
+    {
+      "id": "pride-lands-feast",
+      "name": "Pride Lands: Feast of The Lion King",
+      "type": "dining",
+      "description": "Lion King-themed rotational dining with African-inspired cuisine and immersive Pridelands décor.",
+      "ships": [
+        "Disney Destiny"
+      ],
+      "ip": "The Lion King",
+      "venueId": "pride-lands"
+    },
+    {
+      "id": "private-karaoke-rooms",
+      "name": "Private Karaoke Rooms",
+      "type": "show",
+      "description": "Private karaoke suites where groups can sing their favorite songs in a fun, themed setting.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "pym-quantum-racers",
+      "name": "Pym Quantum Racers",
+      "type": "recreation",
+      "description": "Marvel Ant-Man & The Wasp-themed racing attraction with size-shifting thrills.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": "Marvel",
+      "venueId": "pym-quantum-racers"
+    },
+    {
+      "id": "rapunzels-royal-table",
+      "name": "Rapunzel's Royal Table",
+      "type": "dining",
+      "description": "Tangled-themed rotational dining with a royal banquet, live entertainment, and lantern-lit ambiance.",
+      "ships": [
+        "Disney Magic"
+      ],
+      "ip": "Tangled",
+      "venueId": "rapunzels-royal-table"
+    },
+    {
+      "id": "remember",
+      "name": "Remember",
+      "type": "show",
+      "description": "Live entertainment venue featuring musical performances, shows, and special events.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "royal-court-lounge",
+      "name": "Royal Court Lounge",
+      "type": "lounge",
+      "description": "Elegant lounge with regal décor, cocktails, and live entertainment in a royal court setting.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "royal-court-royal-tea",
+      "name": "Royal Court Royal Tea",
+      "type": "character",
+      "description": "Princess-hosted tea party experience with themed treats, storytelling, and royal keepsakes. Surcharge applies.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "royal-regalia",
+      "name": "Royal Regalia",
+      "type": "shop",
+      "description": "Premium jewelry and accessories shop with Disney-themed fine jewelry and luxury items.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": null,
+      "venueId": "royal-regalia"
+    },
+    {
+      "id": "royal-society-friendship-tea",
+      "name": "Royal Society for Friendship and Tea",
+      "type": "character",
+      "description": "Charming tea party experience with Disney characters featuring themed refreshments and activities.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": null,
+      "venueId": "royal-society-tea"
+    },
+    {
+      "id": "saga",
+      "name": "Saga",
+      "type": "lounge",
+      "description": "Viking-inspired lounge and entertainment venue with themed drinks and live performances.",
+      "ships": [
+        "Disney Destiny"
+      ],
+      "ip": null,
+      "venueId": "saga"
+    },
+    {
+      "id": "sail-away-party",
+      "name": "Sailing Away Deck Party",
+      "type": "party",
+      "description": "Embarkation day deck party with music, dancing, characters, and horn blasts as the ship departs.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "sarabi",
+      "name": "Sarabi",
+      "type": "lounge",
+      "description": "Lion King-inspired lounge with African-themed décor, cocktails, and live entertainment.",
+      "ships": [
+        "Disney Treasure"
+      ],
+      "ip": "The Lion King",
+      "venueId": "sarabi"
+    },
+    {
+      "id": "scat-cat-lounge",
+      "name": "Scat Cat Lounge",
+      "type": "lounge",
+      "description": "Jazz-themed lounge inspired by The Aristocats with live jazz music and craft cocktails.",
+      "ships": [
+        "Disney Treasure"
+      ],
+      "ip": "The Aristocats",
+      "venueId": "scat-cat-lounge"
+    },
+    {
+      "id": "senses-spa",
+      "name": "Senses Spa & Salon",
+      "type": "spa",
+      "description": "Full-service spa offering massages, facials, body treatments, and salon services. Adults only. Surcharge applies.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": null,
+      "venueId": "senses-spa"
+    },
+    {
+      "id": "set-sail-bluey-bingo",
+      "name": "Set Sail with Bluey and Bingo",
+      "type": "character",
+      "description": "Interactive character experience with Bluey and Bingo featuring games, activities, and meet & greets. Select sailings from Florida.",
+      "ships": [
+        "Disney Dream",
+        "Disney Wish"
+      ],
+      "ip": "Bluey",
+      "venueId": null
+    },
+    {
+      "id": "skipper-society",
+      "name": "Skipper Society",
+      "type": "lounge",
+      "description": "Jungle Cruise-inspired lounge with adventurous cocktails and explorer-themed décor.",
+      "ships": [
+        "Disney Treasure"
+      ],
+      "ip": "Disney Parks (Jungle Cruise)",
+      "venueId": "skipper-society"
+    },
+    {
+      "id": "skyline",
+      "name": "Skyline",
+      "type": "lounge",
+      "description": "Sophisticated lounge with digital cityscapes that change throughout the evening and handcrafted cocktails.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ip": null,
+      "venueId": "skyline-lounge"
+    },
+    {
+      "id": "soul-cat-lounge",
+      "name": "Soul Cat Lounge",
+      "type": "lounge",
+      "description": "Soul music-inspired lounge with live performances and soulful cocktails.",
+      "ships": [
+        "Disney Magic"
+      ],
+      "ip": "Soul",
+      "venueId": "soul-cat-lounge"
+    },
+    {
+      "id": "spellbound",
+      "name": "Spellbound",
+      "type": "lounge",
+      "description": "Enchanting lounge with magical themed cocktails and mystical ambiance.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": null,
+      "venueId": "spellbound"
+    },
+    {
+      "id": "star-wars-hyperspace-lounge",
+      "name": "Star Wars: Hyperspace Lounge",
+      "type": "lounge",
+      "description": "Immersive Star Wars-themed lounge where guests travel to iconic planets while enjoying galactic cocktails. Adults only.",
+      "ships": [
+        "Disney Wish"
+      ],
+      "ip": "Star Wars",
+      "venueId": "star-wars-hyperspace-lounge"
+    },
+    {
+      "id": "stitchs-ohana-grill",
+      "name": "Stitch's Ohana Grill",
+      "type": "dining",
+      "description": "Lilo & Stitch-themed Hawaiian barbecue restaurant with tropical flavors and island-style fare.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": "Lilo & Stitch",
+      "venueId": null
+    },
+    {
+      "id": "satellite-falls",
+      "name": "Satellite Falls",
+      "type": "pool",
+      "description": "Adults-only pool area with a cascading water feature and peaceful relaxation space.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ip": null,
+      "venueId": "satellite-falls"
+    },
+    {
+      "id": "taverna-portorosso",
+      "name": "Taverna Portorosso",
+      "type": "lounge",
+      "description": "Luca-inspired Italian seaside taverna with Mediterranean cocktails and coastal charm.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": "Luca",
+      "venueId": null
+    },
+    {
+      "id": "thanksgiving-at-sea",
+      "name": "Thanksgiving at Sea",
+      "type": "seasonal",
+      "description": "Special Thanksgiving celebration with traditional holiday feasts, themed activities, and festive entertainment.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "the-bayou",
+      "name": "The Bayou",
+      "type": "lounge",
+      "description": "Princess and the Frog-inspired cocktail lounge with Southern bayou ambiance and jazz-influenced drinks.",
+      "ships": [
+        "Disney Wish"
+      ],
+      "ip": "Princess and the Frog",
+      "venueId": "the-bayou"
+    },
+    {
+      "id": "the-hideaway",
+      "name": "The Hideaway",
+      "type": "kids",
+      "description": "Youth club space for tweens and teens with games, activities, and hangout areas.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": null,
+      "venueId": "the-hideaway"
+    },
+    {
+      "id": "the-lion-king-celebration",
+      "name": "The Lion King: Celebration in the Sky",
+      "type": "party",
+      "description": "Spectacular Lion King-themed deck party with fireworks, music, and character appearances under the stars.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": "The Lion King",
+      "venueId": null
+    },
+    {
+      "id": "disney-the-little-mermaid",
+      "name": "The Little Mermaid",
+      "type": "show",
+      "description": "Enchanting stage adaptation of The Little Mermaid with underwater effects and beloved songs.",
+      "ships": [
+        "Disney Wish"
+      ],
+      "ip": "The Little Mermaid",
+      "venueId": "walt-disney-theatre"
+    },
+    {
+      "id": "the-national-geographic-store",
+      "name": "The National Geographic Store",
+      "type": "shop",
+      "description": "National Geographic-branded retail store with adventure gear, apparel, and exploration-themed merchandise.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "the-rose",
+      "name": "The Rose",
+      "type": "lounge",
+      "description": "Beauty and the Beast-inspired elegant bar with roses, enchanted décor, and premium cocktails.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": "Beauty and the Beast",
+      "venueId": "the-rose"
+    },
+    {
+      "id": "the-sanctum",
+      "name": "The Sanctum",
+      "type": "lounge",
+      "description": "Doctor Strange-inspired mystical lounge with otherworldly décor and themed cocktails.",
+      "ships": [
+        "Disney Destiny"
+      ],
+      "ip": "Marvel",
+      "venueId": "the-sanctum"
+    },
+    {
+      "id": "tianas-bayou-lounge",
+      "name": "Tiana's Bayou Lounge",
+      "type": "lounge",
+      "description": "Princess and the Frog-themed lounge with New Orleans-inspired cocktails and bayou charm.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": "Princess and the Frog",
+      "venueId": null
+    },
+    {
+      "id": "tianas-place",
+      "name": "Tiana's Place",
+      "type": "dining",
+      "description": "Princess and the Frog-themed rotational dining with Southern-inspired cuisine, live jazz, and character visits.",
+      "ships": [
+        "Disney Wonder"
+      ],
+      "ip": "Princess and the Frog",
+      "venueId": "tianas-place"
+    },
+    {
+      "id": "treasures-untold",
+      "name": "Treasures Untold",
+      "type": "shop",
+      "description": "Little Mermaid-themed shop featuring Disney merchandise, gifts, and cruise souvenirs.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Adventure",
+        "Disney Destiny"
+      ],
+      "ip": "The Little Mermaid",
+      "venueId": null
+    },
+    {
+      "id": "triton-lounge",
+      "name": "Triton Lounge",
+      "type": "lounge",
+      "description": "Little Mermaid-inspired cocktail lounge with underwater-themed décor and refreshing drinks.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": "The Little Mermaid",
+      "venueId": "triton-lounge"
+    },
+    {
+      "id": "twg-tea",
+      "name": "TWG Tea",
+      "type": "dining",
+      "description": "Premium tea salon offering luxury teas from around the world with pastries and light bites.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "wayfinder-bar",
+      "name": "Wayfinder Bar",
+      "type": "lounge",
+      "description": "Moana-inspired pool bar with tropical cocktails and Polynesian-themed refreshments.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": "Moana",
+      "venueId": null
+    },
+    {
+      "id": "wheezys-freezies",
+      "name": "Wheezy's Freezies",
+      "type": "dining",
+      "description": "Toy Story-themed frozen treat station serving ice cream, frozen beverages, and sweet snacks.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Adventure",
+        "Disney Destiny"
+      ],
+      "ip": "Pixar (Toy Story)",
+      "venueId": "wheezys-freezies"
+    },
+    {
+      "id": "white-caps",
+      "name": "White Caps",
+      "type": "shop",
+      "description": "Gift shop featuring Disney apparel, accessories, and cruise-themed merchandise.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream"
+      ],
+      "ip": null,
+      "venueId": "white-caps"
+    },
+    {
+      "id": "wonderland-cinema",
+      "name": "Wonderland Cinema",
+      "type": "show",
+      "description": "Alice in Wonderland-themed cinema showing the latest films in a whimsical setting.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": "Alice in Wonderland",
+      "venueId": "wonderland-cinema"
+    },
+    {
+      "id": "world-of-disney",
+      "name": "World of Disney",
+      "type": "shop",
+      "description": "Flagship Disney retail store with the largest selection of Disney merchandise aboard the ship.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": null,
+      "venueId": "world-of-disney"
+    },
+    {
+      "id": "world-of-disney-too",
+      "name": "World of Disney Too",
+      "type": "shop",
+      "description": "Extended Disney retail space with additional merchandise, apparel, and exclusive cruise items.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "worlds-of-marvel",
+      "name": "Worlds of Marvel",
+      "type": "dining",
+      "description": "Marvel-themed rotational dining with immersive Avengers technology, interactive screens, and heroic cuisine.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": "Marvel",
+      "venueId": "worlds-of-marvel"
+    },
+    {
+      "id": "edge",
+      "name": "Edge",
+      "type": "kids",
+      "description": "Tweens-only hangout for ages 11-14 with video games, activities, and social events.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Adventure",
+        "Disney Destiny"
+      ],
+      "ip": null,
+      "venueId": "edge"
+    },
+    {
+      "id": "vibe",
+      "name": "Vibe",
+      "type": "kids",
+      "description": "Teens-only lounge for ages 14-17 with a coffee bar, games, movies, and teen-exclusive activities.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": null,
+      "venueId": "vibe"
+    },
+    {
+      "id": "its-a-small-world-nursery",
+      "name": "It's a Small World Nursery",
+      "type": "kids",
+      "description": "Supervised nursery for infants and toddlers ages 6 months to 3 years. Fee applies.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": null,
+      "venueId": "its-a-small-world-nursery"
+    },
+    {
+      "id": "rainforest-room",
+      "name": "Rainforest Room",
+      "type": "spa",
+      "description": "Tropical-themed relaxation area with heated loungers, aromatherapy showers, and rain forest mist. Day pass available.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": null,
+      "venueId": "rainforest-room"
+    },
+    {
+      "id": "castaway-cay",
+      "name": "Castaway Cay",
+      "type": "excursion",
+      "description": "Disney's private island in the Bahamas with beaches, water sports, bike trails, and exclusive character experiences.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "lookout-cay",
+      "name": "Lookout Cay at Lighthouse Point",
+      "type": "excursion",
+      "description": "Disney's second private destination in the Bahamas inspired by Bahamian culture with beaches and cultural experiences.",
+      "ships": [
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "movie-under-stars",
+      "name": "Movies Under the Stars",
+      "type": "party",
+      "description": "Outdoor movie screenings on the pool deck showing first-run Disney films and classics under the night sky.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny",
+        "Disney Adventure"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "toy-story-splash-zone",
+      "name": "Toy Story Splash Zone",
+      "type": "pool",
+      "description": "Toy Story-themed water play area for young children with fountains and gentle water features.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": "Pixar (Toy Story)",
+      "venueId": "toy-story-splash-zone"
+    },
+    {
+      "id": "meet-princesses",
+      "name": "Princess Gathering",
+      "type": "character",
+      "description": "Meet and greet with Disney Princesses in their royal attire for photos and autographs.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "meet-marvel-heroes",
+      "name": "Marvel Super Heroes Meet & Greet",
+      "type": "character",
+      "description": "Meet Spider-Man, Iron Man, Black Panther, and other Marvel heroes for photos.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure"
+      ],
+      "ip": "Marvel",
+      "venueId": null
+    },
+    {
+      "id": "character-breakfast",
+      "name": "Character Breakfast",
+      "type": "character",
+      "description": "Breakfast with beloved Disney characters who visit your table for photos and autographs.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "snorkeling-excursion",
+      "name": "Snorkeling Excursions",
+      "type": "excursion",
+      "description": "Guided snorkeling at various ports of call including Castaway Cay, Caribbean ports, and Mediterranean stops.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "sweet-on-you",
+      "name": "Sweet on You",
+      "type": "dining",
+      "description": "Artisan candy and ice cream shop with handcrafted confections, gelato, and sweet treats.",
+      "ships": [
+        "Disney Fantasy"
+      ],
+      "ip": null,
+      "venueId": null
+    },
+    {
+      "id": "vanellopes-sweets-treats",
+      "name": "Vanellope's Sweets & Treats",
+      "type": "dining",
+      "description": "Wreck-It Ralph-themed candy and ice cream shop with handmade gelato and colorful confections.",
+      "ships": [
+        "Disney Dream"
+      ],
+      "ip": "Wreck-It Ralph",
+      "venueId": null
+    },
+    {
+      "id": "sea-treasures",
+      "name": "Sea Treasures",
+      "type": "shop",
+      "description": "Onboard shop with Disney merchandise, cruise souvenirs, and nautical-themed gifts.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ip": null,
+      "venueId": "sea-treasures"
+    },
+    {
+      "id": "shutters-photography",
+      "name": "Shutters Photography Shop",
+      "type": "shop",
+      "description": "Professional photography service where guests can view and purchase photos from throughout the cruise.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": null,
+      "venueId": "shutters-photo-studio"
+    },
+    {
+      "id": "aladdin-musical",
+      "name": "Disney's Aladdin - A Musical Spectacular",
+      "type": "show",
+      "description": "High-energy musical retelling of Aladdin with a magic carpet ride and spectacular Genie performance.",
+      "ships": [
+        "Disney Fantasy",
+        "Disney Wish"
+      ],
+      "ip": "Aladdin",
+      "venueId": "walt-disney-theatre"
+    },
+    {
+      "id": "tangled-musical",
+      "name": "Tangled: The Musical",
+      "type": "show",
+      "description": "Original Broadway-style musical adaptation of Tangled with new songs and spectacular staging.",
+      "ships": [
+        "Disney Magic"
+      ],
+      "ip": "Tangled",
+      "venueId": "walt-disney-theatre"
+    },
+    {
+      "id": "moana-one-ocean",
+      "name": "Moana — One Ocean",
+      "type": "show",
+      "description": "Musical celebration of Moana's voyage with Polynesian-inspired music and spectacular water effects.",
+      "ships": [
+        "Disney Treasure"
+      ],
+      "ip": "Moana",
+      "venueId": "walt-disney-theatre"
+    },
+    {
+      "id": "treasure-of-marvel",
+      "name": "Heroes Unite: A Marvel Showcase",
+      "type": "show",
+      "description": "Action-packed Marvel stage show featuring Avengers heroes with special effects and stunts.",
+      "ships": [
+        "Disney Treasure"
+      ],
+      "ip": "Marvel",
+      "venueId": "walt-disney-theatre"
+    }
+  ],
+  "types": {
+    "show": {
+      "label": "Live Shows & Entertainment",
+      "emoji": "🎭"
+    },
+    "character": {
+      "label": "Character Experience",
+      "emoji": "🎪"
+    },
+    "pool": {
+      "label": "Pools & Water",
+      "emoji": "🏊"
+    },
+    "kids": {
+      "label": "Youth Clubs",
+      "emoji": "👶"
+    },
+    "spa": {
+      "label": "Spa & Salon",
+      "emoji": "💆"
+    },
+    "excursion": {
+      "label": "Port Excursion",
+      "emoji": "🏝"
+    },
+    "party": {
+      "label": "Deck Party & Event",
+      "emoji": "🎉"
+    },
+    "dining": {
+      "label": "Dining",
+      "emoji": "🍽"
+    },
+    "lounge": {
+      "label": "Nightclubs & Lounges",
+      "emoji": "🍸"
+    },
+    "shop": {
+      "label": "Shops",
+      "emoji": "🛍"
+    },
+    "recreation": {
+      "label": "Sports & Recreation",
+      "emoji": "🏃"
+    },
+    "seasonal": {
+      "label": "Seasonal Event",
+      "emoji": "🎃"
+    }
+  }
+}

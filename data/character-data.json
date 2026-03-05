@@ -1,0 +1,593 @@
+{
+  "categories": [
+    {
+      "id": "classic",
+      "label": "Disney Classic",
+      "emoji": "🏰",
+      "color": "blue",
+      "subcategories": [
+        {
+          "id": "classic-default",
+          "label": "Classic",
+          "characters": [
+            { "id": "mickey", "name": "Mickey Mouse" },
+            { "id": "minnie", "name": "Minnie Mouse" },
+            { "id": "donald", "name": "Donald Duck" },
+            { "id": "daisy", "name": "Daisy Duck" },
+            { "id": "goofy", "name": "Goofy" },
+            { "id": "pluto", "name": "Pluto" },
+            { "id": "chip", "name": "Chip" },
+            { "id": "dale", "name": "Dale" }
+          ]
+        },
+        {
+          "id": "classic-captain",
+          "label": "Captain",
+          "characters": [
+            { "id": "mickey-captain", "name": "Captain Mickey" },
+            { "id": "minnie-captain", "name": "Captain Minnie" }
+          ]
+        },
+        {
+          "id": "classic-pirate",
+          "label": "Pirate",
+          "characters": [
+            { "id": "mickey-pirate", "name": "Pirate Mickey" },
+            { "id": "minnie-pirate", "name": "Pirate Minnie" },
+            { "id": "donald-pirate", "name": "Pirate Donald" },
+            { "id": "goofy-pirate", "name": "Pirate Goofy" }
+          ]
+        },
+        {
+          "id": "classic-safari",
+          "label": "Safari",
+          "characters": [
+            { "id": "mickey-safari", "name": "Safari Mickey" },
+            { "id": "minnie-safari", "name": "Safari Minnie" },
+            { "id": "donald-safari", "name": "Safari Donald" },
+            { "id": "goofy-safari", "name": "Safari Goofy" }
+          ]
+        },
+        {
+          "id": "classic-formal",
+          "label": "Formal",
+          "characters": [
+            { "id": "mickey-formal", "name": "Formal Mickey" },
+            { "id": "minnie-formal", "name": "Formal Minnie" },
+            { "id": "donald-formal", "name": "Formal Donald" },
+            { "id": "daisy-formal", "name": "Formal Daisy" }
+          ]
+        },
+        {
+          "id": "classic-hawaiian",
+          "label": "Hawaiian",
+          "characters": [
+            { "id": "mickey-hawaiian", "name": "Hawaiian Mickey" },
+            { "id": "minnie-hawaiian", "name": "Hawaiian Minnie" },
+            { "id": "goofy-hawaiian", "name": "Hawaiian Goofy" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "princess",
+      "label": "Disney Princesses",
+      "emoji": "👑",
+      "color": "pink",
+      "subcategories": [
+        {
+          "id": "princess-all",
+          "label": "Princesses",
+          "characters": [
+            { "id": "snow-white", "name": "Snow White" },
+            { "id": "cinderella", "name": "Cinderella" },
+            { "id": "aurora", "name": "Aurora" },
+            { "id": "ariel", "name": "Ariel" },
+            { "id": "belle", "name": "Belle" },
+            { "id": "jasmine", "name": "Jasmine" },
+            { "id": "pocahontas", "name": "Pocahontas" },
+            { "id": "mulan", "name": "Mulan" },
+            { "id": "tiana", "name": "Tiana" },
+            { "id": "rapunzel", "name": "Rapunzel" },
+            { "id": "merida", "name": "Merida" },
+            { "id": "moana", "name": "Moana" },
+            { "id": "elena", "name": "Elena" },
+            { "id": "elsa", "name": "Elsa" },
+            { "id": "anna", "name": "Anna" },
+            { "id": "raya", "name": "Raya" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "frozen",
+      "label": "Frozen",
+      "emoji": "❄️",
+      "color": "cyan",
+      "subcategories": [
+        {
+          "id": "frozen-all",
+          "label": "Frozen",
+          "characters": [
+            { "id": "elsa", "name": "Elsa" },
+            { "id": "anna", "name": "Anna" },
+            { "id": "olaf", "name": "Olaf" },
+            { "id": "kristoff", "name": "Kristoff" },
+            { "id": "sven", "name": "Sven" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "films",
+      "label": "Disney Films",
+      "emoji": "🎬",
+      "color": "violet",
+      "subcategories": [
+        {
+          "id": "films-snow-white",
+          "label": "Snow White",
+          "characters": [
+            { "id": "snow-white", "name": "Snow White" },
+            { "id": "doc", "name": "Doc" },
+            { "id": "grumpy", "name": "Grumpy" },
+            { "id": "dopey", "name": "Dopey" }
+          ]
+        },
+        {
+          "id": "films-cinderella",
+          "label": "Cinderella",
+          "characters": [
+            { "id": "cinderella", "name": "Cinderella" },
+            { "id": "prince-charming", "name": "Prince Charming" },
+            { "id": "fairy-godmother", "name": "Fairy Godmother" }
+          ]
+        },
+        {
+          "id": "films-sleeping-beauty",
+          "label": "Sleeping Beauty",
+          "characters": [
+            { "id": "aurora", "name": "Aurora" },
+            { "id": "maleficent", "name": "Maleficent" }
+          ]
+        },
+        {
+          "id": "films-little-mermaid",
+          "label": "The Little Mermaid",
+          "characters": [
+            { "id": "ariel", "name": "Ariel" },
+            { "id": "prince-eric", "name": "Prince Eric" },
+            { "id": "sebastian", "name": "Sebastian" },
+            { "id": "ursula", "name": "Ursula" }
+          ]
+        },
+        {
+          "id": "films-beauty-beast",
+          "label": "Beauty and the Beast",
+          "characters": [
+            { "id": "belle", "name": "Belle" },
+            { "id": "beast", "name": "Beast" },
+            { "id": "gaston", "name": "Gaston" },
+            { "id": "lumiere", "name": "Lumiere" }
+          ]
+        },
+        {
+          "id": "films-aladdin",
+          "label": "Aladdin",
+          "characters": [
+            { "id": "jasmine", "name": "Jasmine" },
+            { "id": "aladdin", "name": "Aladdin" },
+            { "id": "genie", "name": "Genie" },
+            { "id": "jafar", "name": "Jafar" }
+          ]
+        },
+        {
+          "id": "films-lion-king",
+          "label": "The Lion King",
+          "characters": [
+            { "id": "simba", "name": "Simba" },
+            { "id": "nala", "name": "Nala" },
+            { "id": "timon", "name": "Timon" },
+            { "id": "pumbaa", "name": "Pumbaa" }
+          ]
+        },
+        {
+          "id": "films-pocahontas",
+          "label": "Pocahontas",
+          "characters": [
+            { "id": "pocahontas", "name": "Pocahontas" },
+            { "id": "meeko", "name": "Meeko" }
+          ]
+        },
+        {
+          "id": "films-hercules",
+          "label": "Hercules",
+          "characters": [
+            { "id": "hercules", "name": "Hercules" },
+            { "id": "hades", "name": "Hades" }
+          ]
+        },
+        {
+          "id": "films-mulan",
+          "label": "Mulan",
+          "characters": [
+            { "id": "mulan", "name": "Mulan" },
+            { "id": "mushu", "name": "Mushu" }
+          ]
+        },
+        {
+          "id": "films-princess-frog",
+          "label": "The Princess and the Frog",
+          "characters": [
+            { "id": "tiana", "name": "Tiana" },
+            { "id": "prince-naveen", "name": "Prince Naveen" },
+            { "id": "dr-facilier", "name": "Dr. Facilier" }
+          ]
+        },
+        {
+          "id": "films-tangled",
+          "label": "Tangled",
+          "characters": [
+            { "id": "rapunzel", "name": "Rapunzel" },
+            { "id": "flynn-rider", "name": "Flynn Rider" },
+            { "id": "mother-gothel", "name": "Mother Gothel" }
+          ]
+        },
+        {
+          "id": "films-brave",
+          "label": "Brave",
+          "characters": [
+            { "id": "merida", "name": "Merida" }
+          ]
+        },
+        {
+          "id": "films-moana",
+          "label": "Moana",
+          "characters": [
+            { "id": "moana", "name": "Moana" },
+            { "id": "maui", "name": "Maui" }
+          ]
+        },
+        {
+          "id": "films-encanto",
+          "label": "Encanto",
+          "characters": [
+            { "id": "mirabel", "name": "Mirabel" },
+            { "id": "bruno", "name": "Bruno" }
+          ]
+        },
+        {
+          "id": "films-lilo-stitch",
+          "label": "Lilo & Stitch",
+          "characters": [
+            { "id": "stitch", "name": "Stitch" },
+            { "id": "lilo", "name": "Lilo" },
+            { "id": "angel", "name": "Angel" }
+          ]
+        },
+        {
+          "id": "films-big-hero",
+          "label": "Big Hero 6",
+          "characters": [
+            { "id": "baymax", "name": "Baymax" },
+            { "id": "hiro", "name": "Hiro Hamada" }
+          ]
+        },
+        {
+          "id": "films-wreck-it-ralph",
+          "label": "Wreck-It Ralph",
+          "characters": [
+            { "id": "vanellope", "name": "Vanellope" }
+          ]
+        },
+        {
+          "id": "films-peter-pan",
+          "label": "Peter Pan",
+          "characters": [
+            { "id": "peter-pan", "name": "Peter Pan" },
+            { "id": "tinker-bell", "name": "Tinker Bell" },
+            { "id": "captain-hook", "name": "Captain Hook" },
+            { "id": "mr-smee", "name": "Mr. Smee" }
+          ]
+        },
+        {
+          "id": "films-alice",
+          "label": "Alice in Wonderland",
+          "characters": [
+            { "id": "alice", "name": "Alice" },
+            { "id": "mad-hatter", "name": "Mad Hatter" },
+            { "id": "queen-of-hearts", "name": "Queen of Hearts" }
+          ]
+        },
+        {
+          "id": "films-pooh",
+          "label": "Winnie the Pooh",
+          "characters": [
+            { "id": "pooh", "name": "Pooh" },
+            { "id": "tigger", "name": "Tigger" },
+            { "id": "eeyore", "name": "Eeyore" },
+            { "id": "piglet", "name": "Piglet" }
+          ]
+        },
+        {
+          "id": "films-zootopia",
+          "label": "Zootopia",
+          "characters": [
+            { "id": "judy-hopps", "name": "Judy Hopps" },
+            { "id": "nick-wilde", "name": "Nick Wilde" }
+          ]
+        },
+        {
+          "id": "films-pirates",
+          "label": "Pirates of the Caribbean",
+          "characters": [
+            { "id": "jack-sparrow", "name": "Captain Jack Sparrow" }
+          ]
+        },
+        {
+          "id": "films-other",
+          "label": "Other",
+          "characters": [
+            { "id": "mary-poppins", "name": "Mary Poppins" },
+            { "id": "pinocchio", "name": "Pinocchio" },
+            { "id": "jiminy-cricket", "name": "Jiminy Cricket" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pixar",
+      "label": "Pixar",
+      "emoji": "🚀",
+      "color": "emerald",
+      "subcategories": [
+        {
+          "id": "pixar-toy-story",
+          "label": "Toy Story",
+          "characters": [
+            { "id": "woody", "name": "Woody" },
+            { "id": "buzz", "name": "Buzz Lightyear" },
+            { "id": "jessie", "name": "Jessie" },
+            { "id": "rex", "name": "Rex" },
+            { "id": "wheezy", "name": "Wheezy" },
+            { "id": "trixie", "name": "Trixie" }
+          ]
+        },
+        {
+          "id": "pixar-monsters",
+          "label": "Monsters Inc",
+          "characters": [
+            { "id": "sulley", "name": "Sulley" },
+            { "id": "mike", "name": "Mike Wazowski" }
+          ]
+        },
+        {
+          "id": "pixar-incredibles",
+          "label": "The Incredibles",
+          "characters": [
+            { "id": "mr-incredible", "name": "Mr. Incredible" },
+            { "id": "elastigirl", "name": "Elastigirl" }
+          ]
+        },
+        {
+          "id": "pixar-inside-out",
+          "label": "Inside Out",
+          "characters": [
+            { "id": "joy", "name": "Joy" },
+            { "id": "sadness", "name": "Sadness" },
+            { "id": "anger", "name": "Anger" },
+            { "id": "fear", "name": "Fear" },
+            { "id": "disgust", "name": "Disgust" },
+            { "id": "anxiety", "name": "Anxiety" },
+            { "id": "envy", "name": "Envy" }
+          ]
+        },
+        {
+          "id": "pixar-up",
+          "label": "Up",
+          "characters": [
+            { "id": "dug", "name": "Dug" },
+            { "id": "russell", "name": "Russell" }
+          ]
+        },
+        {
+          "id": "pixar-nemo",
+          "label": "Finding Nemo",
+          "characters": [
+            { "id": "nemo", "name": "Nemo" },
+            { "id": "dory", "name": "Dory" }
+          ]
+        },
+        {
+          "id": "pixar-coco",
+          "label": "Coco",
+          "characters": [
+            { "id": "miguel", "name": "Miguel" }
+          ]
+        },
+        {
+          "id": "pixar-cars",
+          "label": "Cars",
+          "characters": [
+            { "id": "lightning-mcqueen", "name": "Lightning McQueen" },
+            { "id": "mater", "name": "Mater" }
+          ]
+        },
+        {
+          "id": "pixar-ratatouille",
+          "label": "Ratatouille",
+          "characters": [
+            { "id": "remy", "name": "Remy" }
+          ]
+        },
+        {
+          "id": "pixar-luca",
+          "label": "Luca",
+          "characters": [
+            { "id": "luca", "name": "Luca" },
+            { "id": "alberto", "name": "Alberto" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "marvel",
+      "label": "Marvel",
+      "emoji": "🦸",
+      "color": "red",
+      "subcategories": [
+        {
+          "id": "marvel-avengers",
+          "label": "Avengers",
+          "characters": [
+            { "id": "iron-man", "name": "Iron Man" },
+            { "id": "captain-america", "name": "Captain America" },
+            { "id": "thor", "name": "Thor" },
+            { "id": "black-panther", "name": "Black Panther" },
+            { "id": "captain-marvel", "name": "Captain Marvel" },
+            { "id": "black-widow", "name": "Black Widow" },
+            { "id": "hulk", "name": "Hulk" },
+            { "id": "loki", "name": "Loki" }
+          ]
+        },
+        {
+          "id": "marvel-more",
+          "label": "More Heroes",
+          "characters": [
+            { "id": "doctor-strange", "name": "Doctor Strange" },
+            { "id": "ant-man", "name": "Ant-Man" },
+            { "id": "the-wasp", "name": "The Wasp" },
+            { "id": "shang-chi", "name": "Shang-Chi" },
+            { "id": "ms-marvel", "name": "Ms. Marvel" },
+            { "id": "kate-bishop", "name": "Kate Bishop" }
+          ]
+        },
+        {
+          "id": "marvel-spider",
+          "label": "Spider-Man",
+          "characters": [
+            { "id": "spider-man", "name": "Spider-Man" }
+          ]
+        },
+        {
+          "id": "marvel-guardians",
+          "label": "Guardians",
+          "characters": [
+            { "id": "groot", "name": "Groot" },
+            { "id": "star-lord", "name": "Star-Lord" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "star-wars",
+      "label": "Star Wars",
+      "emoji": "⚔️",
+      "color": "amber",
+      "subcategories": [
+        {
+          "id": "sw-heroes",
+          "label": "Heroes",
+          "characters": [
+            { "id": "chewbacca", "name": "Chewbacca" },
+            { "id": "rey", "name": "Rey" },
+            { "id": "r2d2", "name": "R2-D2" },
+            { "id": "bb8", "name": "BB-8" },
+            { "id": "grogu", "name": "Grogu" }
+          ]
+        },
+        {
+          "id": "sw-dark-side",
+          "label": "Dark Side",
+          "characters": [
+            { "id": "darth-vader", "name": "Darth Vader" },
+            { "id": "kylo-ren", "name": "Kylo Ren" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "villain",
+      "label": "Disney Villains",
+      "emoji": "😈",
+      "color": "fuchsia",
+      "subcategories": [
+        {
+          "id": "villain-all",
+          "label": "Villains",
+          "characters": [
+            { "id": "maleficent", "name": "Maleficent" },
+            { "id": "evil-queen", "name": "Evil Queen" },
+            { "id": "cruella", "name": "Cruella de Vil" },
+            { "id": "captain-hook", "name": "Captain Hook" },
+            { "id": "gaston", "name": "Gaston" },
+            { "id": "ursula", "name": "Ursula" },
+            { "id": "jafar", "name": "Jafar" },
+            { "id": "hades", "name": "Hades" },
+            { "id": "dr-facilier", "name": "Dr. Facilier" },
+            { "id": "oogie-boogie", "name": "Oogie Boogie" },
+            { "id": "mother-gothel", "name": "Mother Gothel" },
+            { "id": "queen-of-hearts", "name": "Queen of Hearts" },
+            { "id": "scar", "name": "Scar" },
+            { "id": "chernabog", "name": "Chernabog" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "junior",
+      "label": "Disney Junior",
+      "emoji": "🌟",
+      "color": "orange",
+      "subcategories": [
+        {
+          "id": "junior-all",
+          "label": "Disney Junior",
+          "characters": [
+            { "id": "sofia", "name": "Sofia the First" },
+            { "id": "vampirina", "name": "Vampirina" },
+            { "id": "doc-mcstuffins", "name": "Doc McStuffins" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "parks",
+      "label": "Disney Parks",
+      "emoji": "🧸",
+      "color": "teal",
+      "subcategories": [
+        {
+          "id": "parks-all",
+          "label": "Disney Parks",
+          "characters": [
+            { "id": "duffy", "name": "Duffy the Disney Bear" },
+            { "id": "shelliemay", "name": "ShellieMay" },
+            { "id": "gelatoni", "name": "Gelatoni" },
+            { "id": "stellalou", "name": "StellaLou" },
+            { "id": "cookieann", "name": "CookieAnn" },
+            { "id": "olu-mel", "name": "'Olu Mel" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bluey",
+      "label": "Bluey",
+      "emoji": "🐕",
+      "color": "sky",
+      "subcategories": [
+        {
+          "id": "bluey-all",
+          "label": "Bluey",
+          "characters": [
+            { "id": "bluey", "name": "Bluey" },
+            { "id": "bingo", "name": "Bingo" },
+            { "id": "bandit", "name": "Bandit" },
+            { "id": "chilli", "name": "Chilli" }
+          ]
+        }
+      ]
+    }
+  ]
+}

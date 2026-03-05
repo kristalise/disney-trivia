@@ -1,0 +1,354 @@
+{
+  "categories": [
+    {
+      "id": "merchandise",
+      "label": "Disney Merchandise",
+      "emoji": "🏰",
+      "color": "blue"
+    },
+    {
+      "id": "jewelry",
+      "label": "Jewelry & Accessories",
+      "emoji": "💎",
+      "color": "pink"
+    },
+    {
+      "id": "makeover",
+      "label": "Makeover & Boutique",
+      "emoji": "👑",
+      "color": "rose"
+    },
+    {
+      "id": "photo",
+      "label": "Photo & Memories",
+      "emoji": "📸",
+      "color": "violet"
+    },
+    {
+      "id": "specialty",
+      "label": "Specialty & Branded",
+      "emoji": "🌟",
+      "color": "amber"
+    }
+  ],
+  "shops": [
+    {
+      "id": "3-wishes",
+      "name": "3 Wishes",
+      "category": "merchandise",
+      "description": "The main onboard Disney merchandise shop carrying exclusive Disney Cruise Line souvenirs, apparel, plush toys, pins, and collectibles.",
+      "ships": ["Disney Wish", "Disney Treasure", "Disney Adventure", "Disney Destiny"],
+      "ip": null,
+      "status": "current",
+      "deckByShip": {
+        "Disney Wish": { "deck": "3", "section": "Grand Hall" },
+        "Disney Treasure": { "deck": "3", "section": "Grand Hall" },
+        "Disney Destiny": { "deck": "3", "section": "Grand Hall" },
+        "Disney Adventure": { "deck": "3", "section": "Grand Hall" }
+      }
+    },
+    {
+      "id": "mickeys-mainsail",
+      "name": "Mickey's Mainsail",
+      "category": "merchandise",
+      "description": "The original DCL merchandise shop carrying Disney Cruise Line exclusive souvenirs, apparel, plush toys, ornaments, and collectibles.",
+      "ships": ["Disney Magic", "Disney Wonder", "Disney Dream", "Disney Fantasy", "Disney Wish", "Disney Treasure", "Disney Destiny"],
+      "ip": "Mickey & Friends",
+      "status": "current",
+      "deckByShip": {
+        "Disney Magic": { "deck": "4", "section": "Forward" },
+        "Disney Wonder": { "deck": "4", "section": "Forward" },
+        "Disney Dream": { "deck": "4", "section": "Forward" },
+        "Disney Fantasy": { "deck": "4", "section": "Forward" },
+        "Disney Wish": { "deck": "3", "section": "Grand Hall" },
+        "Disney Treasure": { "deck": "3", "section": "Grand Hall" },
+        "Disney Destiny": { "deck": "3", "section": "Grand Hall" }
+      }
+    },
+    {
+      "id": "once-upon-a-time",
+      "name": "Once Upon a Time",
+      "category": "merchandise",
+      "description": "A specialty Disney merchandise shop featuring premium collectibles, artwork, and limited-edition items in a fairy-tale themed setting.",
+      "ships": ["Disney Wish", "Disney Treasure", "Disney Destiny"],
+      "ip": null,
+      "status": "current",
+      "deckByShip": {
+        "Disney Wish": { "deck": "3", "section": "Grand Hall" },
+        "Disney Treasure": { "deck": "3", "section": "Grand Hall" },
+        "Disney Destiny": { "deck": "3", "section": "Grand Hall" }
+      }
+    },
+    {
+      "id": "dorys-forget-me-knots",
+      "name": "Dory's Forget-Me-Knots",
+      "category": "merchandise",
+      "description": "A nautical-themed retail shop carrying resort wear, sundries, swimwear, and everyday essentials with a Finding Dory twist.",
+      "ships": ["Disney Wish", "Disney Treasure", "Disney Destiny"],
+      "ip": "Finding Dory",
+      "status": "current",
+      "deckByShip": {
+        "Disney Wish": { "deck": "11", "section": "Pool Deck" },
+        "Disney Treasure": { "deck": "11", "section": "Pool Deck" },
+        "Disney Destiny": { "deck": "11", "section": "Pool Deck" }
+      }
+    },
+    {
+      "id": "grand-hall-collection",
+      "name": "Grand Hall Collection",
+      "category": "merchandise",
+      "description": "A curated Disney merchandise shop in the Grand Hall featuring premium souvenirs and exclusive Disney Destiny collectibles.",
+      "ships": ["Disney Destiny"],
+      "ip": null,
+      "status": "current",
+      "deckByShip": {
+        "Disney Destiny": { "deck": "3", "section": "Grand Hall" }
+      }
+    },
+    {
+      "id": "royal-regalia",
+      "name": "Royal Regalia",
+      "category": "merchandise",
+      "description": "A regal-themed shop featuring Disney apparel, accessories, and gifts in an elegant setting inspired by Disney royalty.",
+      "ships": ["Disney Wish", "Disney Treasure", "Disney Destiny"],
+      "ip": null,
+      "status": "current",
+      "deckByShip": {
+        "Disney Wish": { "deck": "3", "section": "Grand Hall" },
+        "Disney Treasure": { "deck": "3", "section": "Grand Hall" },
+        "Disney Destiny": { "deck": "3", "section": "Grand Hall" }
+      }
+    },
+    {
+      "id": "white-caps",
+      "name": "White Caps",
+      "category": "merchandise",
+      "description": "A poolside shop on the classic and dream-class ships carrying swimwear, sundries, sunscreen, and casual resort wear.",
+      "ships": ["Disney Magic", "Disney Wonder", "Disney Dream"],
+      "ip": null,
+      "status": "current",
+      "deckByShip": {
+        "Disney Magic": { "deck": "9", "section": "Pool Deck" },
+        "Disney Wonder": { "deck": "9", "section": "Pool Deck" },
+        "Disney Dream": { "deck": "11", "section": "Pool Deck" }
+      }
+    },
+    {
+      "id": "sea-treasures",
+      "name": "Sea Treasures",
+      "category": "merchandise",
+      "description": "An ocean-themed retail shop on the classic and dream-class ships carrying souvenirs, gifts, and Disney Cruise Line branded items.",
+      "ships": ["Disney Magic", "Disney Wonder", "Disney Dream", "Disney Fantasy"],
+      "ip": null,
+      "status": "current",
+      "deckByShip": {
+        "Disney Magic": { "deck": "4", "section": "Forward" },
+        "Disney Wonder": { "deck": "4", "section": "Forward" },
+        "Disney Dream": { "deck": "4", "section": "Forward" },
+        "Disney Fantasy": { "deck": "4", "section": "Forward" }
+      }
+    },
+    {
+      "id": "world-of-disney",
+      "name": "World of Disney",
+      "category": "merchandise",
+      "description": "The flagship Disney retail store aboard the Disney Adventure, carrying a massive selection of merchandise, apparel, and collectibles.",
+      "ships": ["Disney Adventure"],
+      "ip": null,
+      "status": "current",
+      "deckByShip": {
+        "Disney Adventure": { "deck": "4", "section": "Midship" }
+      }
+    },
+    {
+      "id": "world-of-disney-too",
+      "name": "World of Disney Too",
+      "category": "merchandise",
+      "description": "A second World of Disney location aboard the Disney Adventure with additional merchandise, gifts, and souvenirs.",
+      "ships": ["Disney Adventure"],
+      "ip": null,
+      "status": "current",
+      "deckByShip": {
+        "Disney Adventure": { "deck": "4", "section": "Midship" }
+      }
+    },
+    {
+      "id": "castle-collection",
+      "name": "Castle Collection",
+      "category": "merchandise",
+      "description": "An enchanting shop aboard the Disney Adventure featuring castle-inspired Disney merchandise, premium collectibles, and exclusive items.",
+      "ships": ["Disney Adventure"],
+      "ip": null,
+      "status": "current",
+      "deckByShip": {
+        "Disney Adventure": { "deck": "4", "section": "Midship" }
+      }
+    },
+    {
+      "id": "diamonds-and-wishes",
+      "name": "Diamonds and Wishes",
+      "category": "jewelry",
+      "description": "An upscale jewelry shop offering fine diamonds, watches, designer brands, and duty-free jewelry at special cruise prices.",
+      "ships": ["Disney Magic", "Disney Wonder", "Disney Dream", "Disney Fantasy", "Disney Adventure"],
+      "ip": null,
+      "status": "current",
+      "deckByShip": {
+        "Disney Magic": { "deck": "4", "section": "Forward" },
+        "Disney Wonder": { "deck": "4", "section": "Forward" },
+        "Disney Dream": { "deck": "4", "section": "Forward" },
+        "Disney Fantasy": { "deck": "4", "section": "Forward" },
+        "Disney Adventure": { "deck": "4", "section": "Midship" }
+      }
+    },
+    {
+      "id": "carriage-jewels",
+      "name": "Carriage Jewels",
+      "category": "jewelry",
+      "description": "A Cinderella carriage-inspired jewelry boutique on the dream-class ships, offering duty-free fine jewelry, watches, and accessories.",
+      "ships": ["Disney Dream", "Disney Fantasy"],
+      "ip": "Cinderella",
+      "status": "current",
+      "deckByShip": {
+        "Disney Dream": { "deck": "4", "section": "Forward" },
+        "Disney Fantasy": { "deck": "4", "section": "Forward" }
+      }
+    },
+    {
+      "id": "enchanted-castle-jewels",
+      "name": "Enchanted Castle Jewels",
+      "category": "jewelry",
+      "description": "A premium jewelry boutique aboard the Disney Wish offering fine diamonds, watches, and designer accessories in a castle-themed setting.",
+      "ships": ["Disney Wish"],
+      "ip": null,
+      "status": "current",
+      "deckByShip": {
+        "Disney Wish": { "deck": "3", "section": "Grand Hall" }
+      }
+    },
+    {
+      "id": "bibbidi-bobbidi-boutique",
+      "name": "Bibbidi Bobbidi Boutique",
+      "category": "makeover",
+      "description": "A magical makeover salon where children ages 3–12 are transformed into princesses, knights, or pirates with hairstyling, makeup, costumes, and accessories.",
+      "ships": ["Disney Magic", "Disney Wonder", "Disney Dream", "Disney Fantasy", "Disney Wish", "Disney Treasure", "Disney Adventure", "Disney Destiny"],
+      "ip": "Cinderella",
+      "status": "current",
+      "deckByShip": {
+        "Disney Magic": { "deck": "10", "section": "Midship" },
+        "Disney Wonder": { "deck": "10", "section": "Midship" },
+        "Disney Dream": { "deck": "5", "section": "Midship" },
+        "Disney Fantasy": { "deck": "5", "section": "Midship" },
+        "Disney Wish": { "deck": "5", "section": "Midship" },
+        "Disney Treasure": { "deck": "5", "section": "Midship" },
+        "Disney Destiny": { "deck": "5", "section": "Midship" },
+        "Disney Adventure": { "deck": "5", "section": "Midship" }
+      }
+    },
+    {
+      "id": "palace-treasures",
+      "name": "Palace Treasures",
+      "category": "merchandise",
+      "description": "A treasure-themed shop featuring exclusive merchandise, collectibles, and curated Disney items in a palace-inspired setting.",
+      "ships": ["Disney Treasure", "Disney Adventure"],
+      "ip": null,
+      "status": "current",
+      "deckByShip": {
+        "Disney Treasure": { "deck": "3", "section": "Grand Hall" },
+        "Disney Adventure": { "deck": "4", "section": "Midship" }
+      }
+    },
+    {
+      "id": "treasures-untold",
+      "name": "Treasures Untold",
+      "category": "merchandise",
+      "description": "A Little Mermaid-inspired shop offering unique Disney souvenirs, gifts, and exclusive cruise merchandise — treasures you won't find on land.",
+      "ships": ["Disney Wish", "Disney Treasure", "Disney Adventure", "Disney Destiny"],
+      "ip": "The Little Mermaid",
+      "status": "current",
+      "deckByShip": {
+        "Disney Wish": { "deck": "3", "section": "Grand Hall" },
+        "Disney Treasure": { "deck": "3", "section": "Grand Hall" },
+        "Disney Destiny": { "deck": "3", "section": "Grand Hall" },
+        "Disney Adventure": { "deck": "4", "section": "Midship" }
+      }
+    },
+    {
+      "id": "disney-studio-royal-studio",
+      "name": "Disney Studio and Royal Studio",
+      "category": "merchandise",
+      "description": "A dual-concept retail space aboard the Disney Adventure featuring Disney studio-themed merchandise alongside royal-inspired gifts and collectibles.",
+      "ships": ["Disney Adventure"],
+      "ip": null,
+      "status": "current",
+      "deckByShip": {
+        "Disney Adventure": { "deck": "4", "section": "Midship" }
+      }
+    },
+    {
+      "id": "duffy-and-friends-shop",
+      "name": "Duffy and Friends Shop",
+      "category": "specialty",
+      "description": "A dedicated shop for Duffy the Disney Bear and friends — ShellieMay, StellaLou, CookieAnn, and more — with exclusive plush, apparel, and accessories.",
+      "ships": ["Disney Adventure"],
+      "ip": "Duffy & Friends",
+      "status": "current",
+      "deckByShip": {
+        "Disney Adventure": { "deck": "4", "section": "Midship" }
+      }
+    },
+    {
+      "id": "marvel-style-studio",
+      "name": "Marvel Style Studio",
+      "category": "specialty",
+      "description": "A Marvel-themed retail experience aboard the Disney Adventure featuring Super Hero apparel, collectibles, and exclusive Marvel Cruise Line merchandise.",
+      "ships": ["Disney Adventure"],
+      "ip": "Marvel",
+      "status": "current",
+      "deckByShip": {
+        "Disney Adventure": { "deck": "5", "section": "Midship" }
+      }
+    },
+    {
+      "id": "national-geographic-store",
+      "name": "The National Geographic Store",
+      "category": "specialty",
+      "description": "A National Geographic-branded shop aboard the Disney Adventure with exploration-themed merchandise, apparel, and nature-inspired gifts.",
+      "ships": ["Disney Adventure"],
+      "ip": "National Geographic",
+      "status": "current",
+      "deckByShip": {
+        "Disney Adventure": { "deck": "4", "section": "Midship" }
+      }
+    },
+    {
+      "id": "pics-photo-shop",
+      "name": "Pics Photo Shop",
+      "category": "photo",
+      "description": "A dedicated photo shop aboard the Disney Adventure where guests can view, purchase, and pick up their professional onboard photos and photo packages.",
+      "ships": ["Disney Adventure"],
+      "ip": null,
+      "status": "current",
+      "deckByShip": {
+        "Disney Adventure": { "deck": "4", "section": "Midship" }
+      }
+    },
+    {
+      "id": "shutters-photography",
+      "name": "Shutters Photography Shop",
+      "category": "photo",
+      "description": "The onboard photo center where guests view, purchase, and pick up professional photos taken throughout the voyage, including character meet-and-greet shots and port photos.",
+      "ships": ["Disney Magic", "Disney Wonder", "Disney Dream", "Disney Fantasy", "Disney Wish", "Disney Treasure", "Disney Destiny"],
+      "ip": null,
+      "status": "current",
+      "deckByShip": {
+        "Disney Magic": { "deck": "4", "section": "Forward" },
+        "Disney Wonder": { "deck": "4", "section": "Forward" },
+        "Disney Dream": { "deck": "4", "section": "Forward" },
+        "Disney Fantasy": { "deck": "4", "section": "Forward" },
+        "Disney Wish": { "deck": "3", "section": "Grand Hall" },
+        "Disney Treasure": { "deck": "3", "section": "Grand Hall" },
+        "Disney Destiny": { "deck": "3", "section": "Grand Hall" }
+      }
+    }
+  ]
+}

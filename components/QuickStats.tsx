@@ -20,6 +20,9 @@ export default function QuickStats() {
     setTapCount(next);
     if (next >= 5) {
       setRevealed(true);
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('secret-menu-unlocked', 'true');
+      }
     }
   }, [tapCount, revealed]);
 
@@ -31,16 +34,16 @@ export default function QuickStats() {
         if (isQuestionsStat && revealed) {
           return (
             <Link
-              key="stateroom-link"
-              href="/stateroom"
+              key="secret-menu-link"
+              href="/Secret-menU"
               className="bg-white dark:bg-slate-800 rounded-xl p-4 text-center shadow-sm border border-slate-200 dark:border-slate-700 animate-pulse-once hover:border-disney-blue dark:hover:border-disney-gold transition-colors"
             >
-              <div className="text-2xl mb-1">🚢</div>
+              <div className="text-2xl mb-1">✨</div>
               <div className="text-lg font-bold text-disney-blue dark:text-disney-gold">
-                Stateroom Lookup
+                Secret Menu
               </div>
               <div className="text-sm text-slate-600 dark:text-slate-400">
-                Secret tool!
+                You found it!
               </div>
             </Link>
           );

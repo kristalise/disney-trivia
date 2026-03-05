@@ -40,7 +40,7 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// Fetch with network-first strategy, fallback to cache
+// Fetch handler with strategy per request type
 self.addEventListener('fetch', (event) => {
   // Skip non-GET requests
   if (event.request.method !== 'GET') return;
@@ -48,6 +48,24 @@ self.addEventListener('fetch', (event) => {
   // Skip API requests (always fetch fresh)
   if (event.request.url.includes('/api/')) return;
 
+  // Cache-first for Supabase storage (character photos)
+  if (event.request.url.includes('supabase.co/storage')) {
+    event.respondWith(
+      caches.match(event.request).then((cached) => {
+        if (cached) return cached;
+        return fetch(event.request).then((response) => {
+          const responseClone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, responseClone);
+          });
+          return response;
+        });
+      })
+    );
+    return;
+  }
+
+  // Network-first for everything else, fallback to cache
   event.respondWith(
     fetch(event.request)
       .then((response) => {

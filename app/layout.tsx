@@ -139,6 +139,7 @@ export default function RootLayout({
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
+        suppressHydrationWarning
       >
         {/* Google Analytics */}
         {process.env.NEXT_PUBLIC_GA_ID && (
@@ -167,13 +168,10 @@ export default function RootLayout({
           <footer className="border-t border-slate-200 dark:border-slate-700 mt-12 py-6 px-4">
             <div className="max-w-6xl mx-auto text-center text-xs text-slate-500 dark:text-slate-400 space-y-2">
               <p>
-                This is an unofficial fan-made study tool. It is not affiliated with, endorsed by, or in any way
-                officially connected with The Walt Disney Company, Disney Cruise Line, or any of their subsidiaries or affiliates.
+                Unofficial fan-made tool — not affiliated with or endorsed by The Walt Disney Company or Disney Cruise Line.
+                All trademarks and images belong to their respective owners. For personal, non-commercial use only.
               </p>
-              <p>
-                All Disney-related trademarks, names, and images are the property of their respective owners. This site is
-                intended solely for personal, non-commercial educational use by trivia enthusiasts.
-              </p>
+              <p>&copy; 2026 Disney Cruise Trivia. All rights reserved.</p>
             </div>
           </footer>
         </ClientProviders>

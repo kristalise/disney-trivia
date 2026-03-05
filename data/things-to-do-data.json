@@ -1,0 +1,1093 @@
+{
+  "categories": [
+    {
+      "id": "pools",
+      "label": "Pools & Water",
+      "emoji": "🏊",
+      "color": "sky"
+    },
+    {
+      "id": "water-rides",
+      "label": "Water Rides & Slides",
+      "emoji": "🎢",
+      "color": "blue"
+    },
+    {
+      "id": "rides",
+      "label": "Rides & Attractions",
+      "emoji": "🎠",
+      "color": "violet"
+    },
+    {
+      "id": "sports",
+      "label": "Sports & Games",
+      "emoji": "🏀",
+      "color": "amber"
+    },
+    {
+      "id": "fitness",
+      "label": "Fitness & Wellness",
+      "emoji": "💪",
+      "color": "rose"
+    },
+    {
+      "id": "youth-clubs",
+      "label": "Youth Clubs",
+      "emoji": "🧒",
+      "color": "emerald"
+    }
+  ],
+  "ageGroups": [
+    {
+      "id": "all-ages",
+      "label": "All Ages"
+    },
+    {
+      "id": "families",
+      "label": "Families"
+    },
+    {
+      "id": "kids",
+      "label": "Kids (3–12)"
+    },
+    {
+      "id": "tweens",
+      "label": "Tweens (11–14)"
+    },
+    {
+      "id": "teens",
+      "label": "Teens (14–17)"
+    },
+    {
+      "id": "adults",
+      "label": "Adults (18+)"
+    },
+    {
+      "id": "toddlers",
+      "label": "Toddlers & Infants"
+    }
+  ],
+  "activities": [
+    {
+      "id": "aquaduck",
+      "name": "AquaDuck",
+      "category": "water-rides",
+      "description": "A thrilling 765-foot-long water coaster that propels riders in a clear tube over the side of the ship, with sweeping ocean views and four decks of twists and turns.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ageGroup": "families",
+      "heightReq": "42 inches (107 cm)",
+      "ip": "Donald Duck",
+      "deckByShip": {
+        "Disney Dream": {
+          "deck": "12",
+          "section": "Aft"
+        },
+        "Disney Fantasy": {
+          "deck": "12",
+          "section": "Aft"
+        }
+      },
+      "seasonal": null,
+      "status": "current"
+    },
+    {
+      "id": "aquadunk",
+      "name": "AquaDunk",
+      "category": "water-rides",
+      "description": "A high-speed body slide with a trapdoor launch that plunges riders through a transparent tube extending over the side of the ship.",
+      "ships": [
+        "Disney Magic"
+      ],
+      "ageGroup": "families",
+      "heightReq": "48 inches (122 cm)",
+      "ip": "Huey, Dewey & Louie",
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "9",
+          "section": "Aft"
+        }
+      },
+      "seasonal": null,
+      "status": "current"
+    },
+    {
+      "id": "aqualab",
+      "name": "AquaLab",
+      "category": "pools",
+      "description": "An interactive water play area on the upper deck with pop jets, geysers, bubblers, and water pipes — a splash zone for kids to cool off.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Fantasy"
+      ],
+      "ageGroup": "kids",
+      "heightReq": null,
+      "ip": null,
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "9",
+          "section": "Pool Deck"
+        },
+        "Disney Wonder": {
+          "deck": "9",
+          "section": "Pool Deck"
+        },
+        "Disney Fantasy": {
+          "deck": "11",
+          "section": "Pool Deck"
+        }
+      },
+      "seasonal": null,
+      "status": "current"
+    },
+    {
+      "id": "aquamouse",
+      "name": "AquaMouse",
+      "category": "water-rides",
+      "description": "A Disney-first attraction at sea — a tube slide adventure with show scenes, special effects, and storylines featuring Mickey and friends in a wild water ride experience.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ageGroup": "families",
+      "heightReq": "40 inches (102 cm)",
+      "ip": "Mickey & Friends",
+      "deckByShip": {
+        "Disney Wish": {
+          "deck": "12",
+          "section": "Aft"
+        },
+        "Disney Treasure": {
+          "deck": "12",
+          "section": "Aft"
+        },
+        "Disney Destiny": {
+          "deck": "12",
+          "section": "Aft"
+        }
+      },
+      "seasonal": null,
+      "status": "current"
+    },
+    {
+      "id": "donalds-pool",
+      "name": "Donald's Pool",
+      "category": "pools",
+      "description": "A family-friendly main pool on the pool deck featuring a large Donald Duck funnel slide, perfect for families swimming and playing together.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ageGroup": "families",
+      "heightReq": null,
+      "ip": "Donald Duck",
+      "deckByShip": {
+        "Disney Dream": {
+          "deck": "11",
+          "section": "Pool Deck"
+        },
+        "Disney Fantasy": {
+          "deck": "11",
+          "section": "Pool Deck"
+        }
+      },
+      "seasonal": null,
+      "status": "current"
+    },
+    {
+      "id": "funnel-puddle",
+      "name": "Funnel Puddle",
+      "category": "pools",
+      "description": "A shallow splash area for little ones located high up on the ship near the funnel, with gentle water features and ocean views.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ageGroup": "toddlers",
+      "heightReq": null,
+      "ip": null,
+      "deckByShip": {
+        "Disney Dream": {
+          "deck": "12",
+          "section": "Aft"
+        },
+        "Disney Fantasy": {
+          "deck": "12",
+          "section": "Aft"
+        }
+      },
+      "seasonal": null,
+      "status": "current"
+    },
+    {
+      "id": "goofys-pool",
+      "name": "Goofy's Pool",
+      "category": "pools",
+      "description": "The main family pool on the classic ships, a large freshwater pool on the pool deck with a Goofy-themed slide for all-ages fun.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder"
+      ],
+      "ageGroup": "families",
+      "heightReq": null,
+      "ip": "Goofy",
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "9",
+          "section": "Pool Deck"
+        },
+        "Disney Wonder": {
+          "deck": "9",
+          "section": "Pool Deck"
+        }
+      },
+      "seasonal": null,
+      "status": "current"
+    },
+    {
+      "id": "goofys-sports-deck",
+      "name": "Goofy's Sports Deck",
+      "category": "sports",
+      "description": "An open-air sports complex on the top deck with basketball courts, mini golf, foosball, table tennis, and shuffleboard.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ageGroup": "all-ages",
+      "heightReq": null,
+      "ip": "Goofy",
+      "deckByShip": {
+        "Disney Dream": {
+          "deck": "13",
+          "section": "Forward"
+        },
+        "Disney Fantasy": {
+          "deck": "13",
+          "section": "Forward"
+        }
+      },
+      "seasonal": null,
+      "status": "current"
+    },
+    {
+      "id": "groot-galaxy-spin",
+      "name": "Groot Galaxy Spin",
+      "category": "rides",
+      "description": "A Marvel-themed spinning ride aboard the Disney Adventure where guests ride with Groot on a galactic adventure.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ageGroup": "families",
+      "heightReq": null,
+      "ip": "Guardians of the Galaxy",
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      },
+      "seasonal": null,
+      "status": "current"
+    },
+    {
+      "id": "hero-zone",
+      "name": "Hero Zone",
+      "category": "sports",
+      "description": "A flexible, multi-use sports arena hosting basketball, dodgeball, game shows, and family competitions in a high-energy setting.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ageGroup": "all-ages",
+      "heightReq": null,
+      "ip": null,
+      "deckByShip": {
+        "Disney Wish": {
+          "deck": "2",
+          "section": "Midship"
+        },
+        "Disney Treasure": {
+          "deck": "2",
+          "section": "Midship"
+        },
+        "Disney Destiny": {
+          "deck": "2",
+          "section": "Midship"
+        }
+      },
+      "seasonal": null,
+      "status": "current"
+    },
+    {
+      "id": "infinity-pool",
+      "name": "Infinity Pool",
+      "category": "pools",
+      "description": "A stunning infinity-edge pool aboard the Disney Adventure with sweeping ocean views, designed for relaxation and serene swimming.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ageGroup": "adults",
+      "heightReq": null,
+      "ip": null,
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "11",
+          "section": "Pool Deck"
+        }
+      },
+      "seasonal": null,
+      "status": "current"
+    },
+    {
+      "id": "ironcycle-test-run",
+      "name": "Ironcycle Test Run",
+      "category": "rides",
+      "description": "A Marvel-themed cycling attraction aboard the Disney Adventure where guests ride Iron Man-inspired cycles on an elevated track.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ageGroup": "families",
+      "heightReq": null,
+      "ip": "Iron Man",
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      },
+      "seasonal": null,
+      "status": "current"
+    },
+    {
+      "id": "mickeys-pool",
+      "name": "Mickey's Pool",
+      "category": "pools",
+      "description": "A whimsical kids' pool with a Mickey Mouse-themed water slide, shallow water, and playful water features on the pool deck.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ageGroup": "kids",
+      "heightReq": null,
+      "ip": "Mickey Mouse",
+      "deckByShip": {
+        "Disney Dream": {
+          "deck": "11",
+          "section": "Pool Deck"
+        },
+        "Disney Fantasy": {
+          "deck": "11",
+          "section": "Pool Deck"
+        }
+      },
+      "seasonal": null,
+      "status": "current"
+    },
+    {
+      "id": "midship-detective-agency",
+      "name": "Midship Detective Agency",
+      "category": "rides",
+      "description": "An interactive self-guided mystery adventure throughout the ship using enchanted artwork that comes to life, where guests solve cases with the help of Disney characters.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ageGroup": "families",
+      "heightReq": null,
+      "ip": "Disney Classic",
+      "deckByShip": null,
+      "seasonal": null,
+      "status": "current"
+    },
+    {
+      "id": "nemos-reef",
+      "name": "Nemo's Reef",
+      "category": "pools",
+      "description": "A Finding Nemo-themed splash zone for toddlers and little ones with gentle water jets, sprayers, and colorful coral reef elements.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ageGroup": "toddlers",
+      "heightReq": null,
+      "ip": "Finding Nemo",
+      "deckByShip": {
+        "Disney Dream": {
+          "deck": "11",
+          "section": "Pool Deck"
+        },
+        "Disney Fantasy": {
+          "deck": "11",
+          "section": "Pool Deck"
+        }
+      },
+      "seasonal": null,
+      "status": "current"
+    },
+    {
+      "id": "pym-quantum-racers",
+      "name": "Pym Quantum Racers",
+      "category": "rides",
+      "description": "A Marvel-themed ride aboard the Disney Adventure where guests shrink down and race through Pym Technologies on a high-speed adventure.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ageGroup": "families",
+      "heightReq": null,
+      "ip": "Ant-Man",
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      },
+      "seasonal": null,
+      "status": "current"
+    },
+    {
+      "id": "quiet-cove-pool",
+      "name": "Quiet Cove Pool",
+      "category": "pools",
+      "description": "An adults-only pool and lounge area offering a peaceful retreat with a serene pool, hot tubs, the Cove Bar, and comfortable loungers.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ageGroup": "adults",
+      "heightReq": null,
+      "ip": null,
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "9",
+          "section": "Forward"
+        },
+        "Disney Wonder": {
+          "deck": "9",
+          "section": "Forward"
+        },
+        "Disney Dream": {
+          "deck": "13",
+          "section": "Forward"
+        },
+        "Disney Fantasy": {
+          "deck": "13",
+          "section": "Forward"
+        },
+        "Disney Wish": {
+          "deck": "13",
+          "section": "Forward"
+        },
+        "Disney Treasure": {
+          "deck": "13",
+          "section": "Forward"
+        },
+        "Disney Destiny": {
+          "deck": "13",
+          "section": "Forward"
+        }
+      },
+      "seasonal": null,
+      "status": "current"
+    },
+    {
+      "id": "satellite-falls",
+      "name": "Satellite Falls",
+      "category": "pools",
+      "description": "An adults-only splash pool on the upper deck shaped like a satellite dish with a gentle waterfall curtain — a hidden gem for relaxation.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ageGroup": "adults",
+      "heightReq": null,
+      "ip": null,
+      "deckByShip": {
+        "Disney Dream": {
+          "deck": "13",
+          "section": "Forward"
+        },
+        "Disney Fantasy": {
+          "deck": "13",
+          "section": "Forward"
+        }
+      },
+      "seasonal": null,
+      "status": "current"
+    },
+    {
+      "id": "wide-world-of-sports",
+      "name": "Wide World of Sports",
+      "category": "sports",
+      "description": "An outdoor sports area on the classic ships with basketball, volleyball, shuffleboard, table tennis, and a running track.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder"
+      ],
+      "ageGroup": "all-ages",
+      "heightReq": null,
+      "ip": null,
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "10",
+          "section": "Forward"
+        },
+        "Disney Wonder": {
+          "deck": "10",
+          "section": "Forward"
+        }
+      },
+      "seasonal": null,
+      "status": "current"
+    },
+    {
+      "id": "fitness-center",
+      "name": "Fitness Center",
+      "category": "fitness",
+      "description": "A state-of-the-art gym with ocean-view cardio machines, free weights, and group fitness classes including yoga, Pilates, and cycling.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Adventure",
+        "Disney Destiny"
+      ],
+      "ageGroup": "adults",
+      "heightReq": null,
+      "ip": null,
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "9",
+          "section": "Forward"
+        },
+        "Disney Wonder": {
+          "deck": "9",
+          "section": "Forward"
+        },
+        "Disney Dream": {
+          "deck": "13",
+          "section": "Forward"
+        },
+        "Disney Fantasy": {
+          "deck": "13",
+          "section": "Forward"
+        },
+        "Disney Wish": {
+          "deck": "13",
+          "section": "Forward"
+        },
+        "Disney Treasure": {
+          "deck": "13",
+          "section": "Forward"
+        },
+        "Disney Adventure": {
+          "deck": "13",
+          "section": "Forward"
+        },
+        "Disney Destiny": {
+          "deck": "13",
+          "section": "Forward"
+        }
+      },
+      "seasonal": null,
+      "status": "current"
+    },
+    {
+      "id": "disneys-oceaneer-club-activity",
+      "name": "Disney's Oceaneer Club",
+      "category": "youth-clubs",
+      "description": "An immersive supervised kids' club for ages 3–12 with themed activity rooms, character visits, games, arts and crafts, and interactive adventures.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Adventure",
+        "Disney Destiny"
+      ],
+      "ageGroup": "kids",
+      "heightReq": null,
+      "ip": "Disney Classic",
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "5",
+          "section": "Midship"
+        },
+        "Disney Wonder": {
+          "deck": "5",
+          "section": "Midship"
+        },
+        "Disney Dream": {
+          "deck": "5",
+          "section": "Midship"
+        },
+        "Disney Fantasy": {
+          "deck": "5",
+          "section": "Midship"
+        },
+        "Disney Wish": {
+          "deck": "5",
+          "section": "Midship"
+        },
+        "Disney Treasure": {
+          "deck": "5",
+          "section": "Midship"
+        },
+        "Disney Adventure": {
+          "deck": "5",
+          "section": "Midship"
+        },
+        "Disney Destiny": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      },
+      "seasonal": null,
+      "status": "current"
+    },
+    {
+      "id": "disneys-oceaneer-lab-activity",
+      "name": "Disney's Oceaneer Lab",
+      "category": "youth-clubs",
+      "description": "A hands-on activity space for kids ages 3–12 featuring science experiments, creative projects, animator workshops, and interactive Disney-themed experiences.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ageGroup": "kids",
+      "heightReq": null,
+      "ip": "Disney Classic",
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "5",
+          "section": "Midship"
+        },
+        "Disney Wonder": {
+          "deck": "5",
+          "section": "Midship"
+        },
+        "Disney Dream": {
+          "deck": "5",
+          "section": "Midship"
+        },
+        "Disney Fantasy": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      },
+      "seasonal": null,
+      "status": "current"
+    },
+    {
+      "id": "edge",
+      "name": "Edge",
+      "category": "youth-clubs",
+      "description": "A hangout for tweens ages 11–14 with video games, music mixing stations, sports activities, movies, and themed events in a cool modern space.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Adventure",
+        "Disney Destiny"
+      ],
+      "ageGroup": "tweens",
+      "heightReq": null,
+      "ip": null,
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "9",
+          "section": "Midship"
+        },
+        "Disney Wonder": {
+          "deck": "9",
+          "section": "Midship"
+        },
+        "Disney Dream": {
+          "deck": "13",
+          "section": "Midship"
+        },
+        "Disney Fantasy": {
+          "deck": "13",
+          "section": "Midship"
+        },
+        "Disney Wish": {
+          "deck": "13",
+          "section": "Midship"
+        },
+        "Disney Treasure": {
+          "deck": "13",
+          "section": "Midship"
+        },
+        "Disney Adventure": {
+          "deck": "13",
+          "section": "Midship"
+        },
+        "Disney Destiny": {
+          "deck": "13",
+          "section": "Midship"
+        }
+      },
+      "seasonal": null,
+      "status": "current"
+    },
+    {
+      "id": "the-hideaway",
+      "name": "The Hideaway",
+      "category": "youth-clubs",
+      "description": "A laid-back lounge for tweens and teens with gaming consoles, activities, dance parties, and social events in a trendy setting.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ageGroup": "tweens",
+      "heightReq": null,
+      "ip": null,
+      "deckByShip": {
+        "Disney Wish": {
+          "deck": "2",
+          "section": "Midship"
+        },
+        "Disney Treasure": {
+          "deck": "2",
+          "section": "Midship"
+        },
+        "Disney Destiny": {
+          "deck": "2",
+          "section": "Midship"
+        }
+      },
+      "seasonal": null,
+      "status": "current"
+    },
+    {
+      "id": "vibe",
+      "name": "Vibe",
+      "category": "youth-clubs",
+      "description": "An exclusive teens-only lounge for ages 14–17 with a chill vibe, video games, music, movies, pool parties, and social events.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Adventure",
+        "Disney Destiny"
+      ],
+      "ageGroup": "teens",
+      "heightReq": null,
+      "ip": null,
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "11",
+          "section": "Forward"
+        },
+        "Disney Wonder": {
+          "deck": "11",
+          "section": "Forward"
+        },
+        "Disney Dream": {
+          "deck": "5",
+          "section": "Forward"
+        },
+        "Disney Fantasy": {
+          "deck": "5",
+          "section": "Forward"
+        },
+        "Disney Wish": {
+          "deck": "5",
+          "section": "Forward"
+        },
+        "Disney Treasure": {
+          "deck": "5",
+          "section": "Forward"
+        },
+        "Disney Adventure": {
+          "deck": "5",
+          "section": "Forward"
+        },
+        "Disney Destiny": {
+          "deck": "5",
+          "section": "Forward"
+        }
+      },
+      "seasonal": null,
+      "status": "current"
+    },
+    {
+      "id": "small-world-nursery",
+      "name": "“it’s a small world” nursery",
+      "category": "youth-clubs",
+      "description": "A supervised nursery for infants and toddlers ages 6 months to 3 years, offering gentle play, nap areas, and trained counselors in a soothing small world-themed setting.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Adventure",
+        "Disney Destiny"
+      ],
+      "ageGroup": "toddlers",
+      "heightReq": null,
+      "ip": "it's a small world",
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "5",
+          "section": "Midship"
+        },
+        "Disney Wonder": {
+          "deck": "5",
+          "section": "Midship"
+        },
+        "Disney Dream": {
+          "deck": "5",
+          "section": "Midship"
+        },
+        "Disney Fantasy": {
+          "deck": "5",
+          "section": "Midship"
+        },
+        "Disney Wish": {
+          "deck": "5",
+          "section": "Midship"
+        },
+        "Disney Treasure": {
+          "deck": "5",
+          "section": "Midship"
+        },
+        "Disney Adventure": {
+          "deck": "5",
+          "section": "Midship"
+        },
+        "Disney Destiny": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      },
+      "seasonal": null,
+      "status": "current"
+    },
+    {
+      "id": "toy-story-splash-zone",
+      "name": "Toy Story Splash Zone",
+      "category": "pools",
+      "description": "A Toy Story-themed water play area with pop jets, sprayers, and colorful splash features, where kids can play amongst oversized toys.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny",
+        "Disney Adventure"
+      ],
+      "ageGroup": "kids",
+      "heightReq": null,
+      "ip": "Toy Story",
+      "seasonal": null,
+      "status": "current",
+      "deckByShip": {
+        "Disney Wish": {
+          "deck": "11",
+          "section": "Pool Deck"
+        },
+        "Disney Treasure": {
+          "deck": "11",
+          "section": "Pool Deck"
+        },
+        "Disney Destiny": {
+          "deck": "11",
+          "section": "Pool Deck"
+        },
+        "Disney Adventure": {
+          "deck": "11",
+          "section": "Pool Deck"
+        }
+      }
+    },
+    {
+      "id": "nephews-splash-zone",
+      "name": "Nephews' Splash Zone",
+      "category": "pools",
+      "description": "A Donald's nephews-themed splash area for young children with gentle water features, pop jets, and interactive play on the pool deck.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder"
+      ],
+      "ageGroup": "kids",
+      "heightReq": null,
+      "ip": "Huey, Dewey & Louie",
+      "seasonal": null,
+      "status": "current",
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "9",
+          "section": "Pool Deck"
+        },
+        "Disney Wonder": {
+          "deck": "9",
+          "section": "Pool Deck"
+        }
+      }
+    },
+    {
+      "id": "dorys-reef",
+      "name": "Dory's Reef",
+      "category": "pools",
+      "description": "A Finding Dory-themed splash zone for toddlers and little ones with gentle water features, sprayers, and colorful coral reef play elements.",
+      "ships": [
+        "Disney Wonder"
+      ],
+      "ageGroup": "toddlers",
+      "heightReq": null,
+      "ip": "Finding Dory",
+      "seasonal": null,
+      "status": "current",
+      "deckByShip": {
+        "Disney Wonder": {
+          "deck": "9",
+          "section": "Pool Deck"
+        }
+      }
+    },
+    {
+      "id": "wayfinder-bay-pool",
+      "name": "Wayfinder Bay Pool",
+      "category": "pools",
+      "description": "A Moana-inspired family pool aboard the Disney Adventure with Polynesian theming and relaxing tropical atmosphere.",
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ageGroup": "families",
+      "heightReq": null,
+      "ip": "Moana",
+      "seasonal": null,
+      "status": "current",
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "11",
+          "section": "Pool Deck"
+        }
+      }
+    },
+    {
+      "id": "slide-a-saurus-rex",
+      "name": "Slide-a-saurus Rex",
+      "category": "water-rides",
+      "description": "A family-friendly body slide on the pool deck themed to Rex from Toy Story, sending riders on a splashing descent.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ageGroup": "families",
+      "heightReq": null,
+      "ip": "Toy Story",
+      "seasonal": null,
+      "status": "current",
+      "deckByShip": {
+        "Disney Wish": {
+          "deck": "11",
+          "section": "Pool Deck"
+        },
+        "Disney Treasure": {
+          "deck": "11",
+          "section": "Pool Deck"
+        },
+        "Disney Destiny": {
+          "deck": "11",
+          "section": "Pool Deck"
+        }
+      }
+    },
+    {
+      "id": "twist-n-spout",
+      "name": "Twist 'n' Spout",
+      "category": "water-rides",
+      "description": "A classic water slide on the pool deck of the classic ships, providing a fun twisting ride for kids and families.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder"
+      ],
+      "ageGroup": "kids",
+      "heightReq": null,
+      "ip": null,
+      "seasonal": null,
+      "status": "current",
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "9",
+          "section": "Pool Deck"
+        },
+        "Disney Wonder": {
+          "deck": "9",
+          "section": "Pool Deck"
+        }
+      }
+    },
+    {
+      "id": "pelican-plunge",
+      "name": "Pelican Plunge",
+      "category": "water-rides",
+      "description": "A water slide that launched from a pelican-shaped platform extending over the side of the ship, replaced during the 2013 reimagining.",
+      "ships": [
+        "Disney Magic"
+      ],
+      "ageGroup": "families",
+      "heightReq": null,
+      "ip": null,
+      "seasonal": null,
+      "status": "historical",
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "9",
+          "section": "Pool Deck"
+        }
+      }
+    },
+    {
+      "id": "mickeys-water-slide-classic",
+      "name": "Mickey's Water Slide",
+      "category": "water-rides",
+      "description": "The original Mickey Mouse-themed water slide on the classic ships' pool deck, a simple but beloved slide for younger guests.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder"
+      ],
+      "ageGroup": "kids",
+      "heightReq": null,
+      "ip": "Mickey Mouse",
+      "seasonal": null,
+      "status": "historical",
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "9",
+          "section": "Pool Deck"
+        },
+        "Disney Wonder": {
+          "deck": "9",
+          "section": "Pool Deck"
+        }
+      }
+    }
+  ]
+}

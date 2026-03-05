@@ -1,0 +1,6291 @@
+{
+  "categories": {
+    "bar-lounge": {
+      "label": "Bar & Lounge",
+      "emoji": "🍸"
+    },
+    "restaurant": {
+      "label": "Restaurant",
+      "emoji": "🍽"
+    },
+    "quick-service": {
+      "label": "Quick Service",
+      "emoji": "🍔"
+    },
+    "theatre": {
+      "label": "Theatre",
+      "emoji": "🎬"
+    },
+    "entertainment": {
+      "label": "Entertainment",
+      "emoji": "🎭"
+    },
+    "pool": {
+      "label": "Pool & Water",
+      "emoji": "🏊"
+    },
+    "attraction": {
+      "label": "Attraction",
+      "emoji": "🎢"
+    },
+    "spa": {
+      "label": "Spa & Wellness",
+      "emoji": "💆"
+    },
+    "youth-club": {
+      "label": "Youth Club",
+      "emoji": "👶"
+    },
+    "shop": {
+      "label": "Shop",
+      "emoji": "🛍"
+    },
+    "recreation": {
+      "label": "Recreation",
+      "emoji": "🏃"
+    },
+    "concierge": {
+      "label": "Concierge",
+      "emoji": "🌟"
+    },
+    "general": {
+      "label": "General",
+      "emoji": "ℹ️"
+    }
+  },
+  "venues": [
+    {
+      "id": "palo",
+      "name": "Palo",
+      "category": "restaurant",
+      "description": "Upscale adult-exclusive Italian dining available across the Disney fleet.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Palo",
+          "decks": [
+            10
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Fine Italian dining with panoramic ocean views.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "Palo",
+          "decks": [
+            10
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Upscale Italian restaurant with views of the sea.",
+          "current": true
+        },
+        {
+          "ship": "Disney Dream",
+          "name": "Palo",
+          "decks": [
+            12
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Elegant Italian dining on Deck 12.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Palo",
+          "decks": [
+            12
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Italian fine dining with ocean views on Deck 12.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wish",
+          "name": "Palo Steakhouse",
+          "decks": [
+            12
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Reimagined as an upscale steakhouse with Italian roots.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Palo Steakhouse",
+          "decks": [
+            12
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Premium steakhouse experience with Italian inspiration.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Palo Steakhouse",
+          "decks": [
+            12
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Upscale steakhouse with signature Italian touches.",
+          "current": true
+        },
+        {
+          "ship": "Disney Adventure",
+          "name": "Palo Trattoria",
+          "decks": [
+            11
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Authentic Italian trattoria with a Luca-inspired setting.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "animators-palate",
+      "name": "Animator's Palate",
+      "category": "restaurant",
+      "description": "Interactive dining experience where the restaurant transforms around you.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Animator's Palate",
+          "decks": [
+            4
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "The walls come alive with animation during dinner.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "Animator's Palate",
+          "decks": [
+            4
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Interactive dining where the room transforms around you.",
+          "current": true
+        },
+        {
+          "ship": "Disney Dream",
+          "name": "Animator's Palate",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Animated dining experience with interactive show elements.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Animator's Palate",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "The restaurant comes alive with character animation.",
+          "current": true
+        },
+        {
+          "ship": "Disney Adventure",
+          "name": "Animator's Palate",
+          "decks": [
+            5
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Classic animated dining reimagined for the newest ship.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "walt-disney-theatre",
+      "name": "Walt Disney Theatre",
+      "category": "theatre",
+      "description": "Broadway-caliber live shows and musicals.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Walt Disney Theatre",
+          "decks": [
+            4,
+            5
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Broadway-style shows across two decks.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "Walt Disney Theatre",
+          "decks": [
+            4,
+            5
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Two-deck theater showcasing original musicals.",
+          "current": true
+        },
+        {
+          "ship": "Disney Dream",
+          "name": "Walt Disney Theatre",
+          "decks": [
+            3,
+            4
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Grand theater for Broadway-quality productions.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Walt Disney Theatre",
+          "decks": [
+            3,
+            4
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Stunning theater for full-scale musical shows.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wish",
+          "name": "Walt Disney Theatre",
+          "decks": [
+            3,
+            4,
+            5
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Three-deck theater with state-of-the-art effects.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Walt Disney Theatre",
+          "decks": [
+            3,
+            4,
+            5
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Grand three-deck theater for original productions.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Walt Disney Theatre",
+          "decks": [
+            3,
+            4,
+            5
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Immersive three-deck theater experience.",
+          "current": true
+        },
+        {
+          "ship": "Disney Adventure",
+          "name": "Walt Disney Theatre",
+          "decks": [
+            5
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "The largest Walt Disney Theatre in the fleet.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "oceaneer-club",
+      "name": "Oceaneer Club",
+      "category": "youth-club",
+      "description": "Themed youth activity center for kids ages 3–12.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Oceaneer Club",
+          "decks": [
+            5
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Themed play areas and supervised activities.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "Oceaneer Club",
+          "decks": [
+            5
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Interactive kids' club with themed spaces.",
+          "current": true
+        },
+        {
+          "ship": "Disney Dream",
+          "name": "Oceaneer Club",
+          "decks": [
+            5
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Expansive youth club with multiple themed rooms.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Oceaneer Club",
+          "decks": [
+            5
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Adventure-filled kids' club with character visits.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wish",
+          "name": "Oceaneer Club",
+          "decks": [
+            2
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "The largest Oceaneer Club at sea with dedicated zones.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Oceaneer Club",
+          "decks": [
+            2
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Multi-zone kids' club inspired by adventure.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Oceaneer Club",
+          "decks": [
+            2
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Heroes and villains themed Oceaneer Club.",
+          "current": true
+        },
+        {
+          "ship": "Disney Adventure",
+          "name": "Oceaneer Club",
+          "decks": [
+            8
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Themed youth club in the heart of the ship.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "oceaneer-lab",
+      "name": "Oceaneer Lab",
+      "category": "youth-club",
+      "description": "Science and creativity-focused space for kids ages 3–12.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Oceaneer Lab",
+          "decks": [
+            5
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Hands-on experiments and creative activities.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "Oceaneer Lab",
+          "decks": [
+            5
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Science experiments and creative play space.",
+          "current": true
+        },
+        {
+          "ship": "Disney Dream",
+          "name": "Oceaneer Lab",
+          "decks": [
+            5
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Innovation lab with experiments and building activities.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Oceaneer Lab",
+          "decks": [
+            5
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Creative lab for science, art, and discovery.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "senses-spa",
+      "name": "Senses Spa & Salon",
+      "category": "spa",
+      "description": "Full-service spa offering treatments, salon services, and relaxation.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Senses Spa & Salon",
+          "decks": [
+            10
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Spa retreat with ocean-view treatment rooms.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "Senses Spa & Salon",
+          "decks": [
+            10
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Full-service spa and salon with rainforest room.",
+          "current": true
+        },
+        {
+          "ship": "Disney Dream",
+          "name": "Senses Spa & Salon",
+          "decks": [
+            11
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Luxurious spa with thermal suite and treatments.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Senses Spa & Salon",
+          "decks": [
+            11
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Relaxing spa featuring rainforest room and treatments.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wish",
+          "name": "Senses Spa & Salon",
+          "decks": [
+            5
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Premium spa experience with panoramic views.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Senses Spa & Salon",
+          "decks": [
+            5
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Tranquil spa featuring signature treatments.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Senses Spa & Salon",
+          "decks": [
+            5
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Spa and wellness retreat with ocean views.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "cove-cafe",
+      "name": "Cove Café",
+      "category": "bar-lounge",
+      "description": "Adults-only coffee bar and lounge in the quiet pool area.",
+      "ip": null,
+      "parentId": "quiet-cove",
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Cove Café",
+          "decks": [
+            9
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Relaxing coffee bar near the adult pool.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "Cove Café",
+          "decks": [
+            9
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Cozy café with specialty coffees and cocktails.",
+          "current": true
+        },
+        {
+          "ship": "Disney Dream",
+          "name": "Cove Café",
+          "decks": [
+            11
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Premium café serving coffees, teas, and cocktails.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Cove Café",
+          "decks": [
+            11
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Adult-only café with specialty drinks.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wish",
+          "name": "Cove Café",
+          "decks": [
+            13
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Quiet café retreat near the adults-only pool.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Cove Café",
+          "decks": [
+            13
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Specialty coffee bar in the quiet cove.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Cove Café",
+          "decks": [
+            13
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Relaxing café near the adult pool area.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "cove-bar",
+      "name": "Cove Bar",
+      "category": "bar-lounge",
+      "description": "Poolside bar in the adults-only quiet cove area.",
+      "ip": null,
+      "parentId": "quiet-cove",
+      "shipInstances": [
+        {
+          "ship": "Disney Dream",
+          "name": "Cove Bar",
+          "decks": [
+            11
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Open-air bar near the adult pool.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Cove Bar",
+          "decks": [
+            11
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Refreshments and cocktails poolside.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wish",
+          "name": "Cove Bar",
+          "decks": [
+            13
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Adults-only poolside bar.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Cove Bar",
+          "decks": [
+            13
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Relaxing poolside bar for grown-ups.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Cove Bar",
+          "decks": [
+            13
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Cocktails and drinks near the quiet pool.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "quiet-cove-pool",
+      "name": "Quiet Cove Pool",
+      "category": "pool",
+      "description": "Adults-only pool for a peaceful retreat.",
+      "ip": null,
+      "parentId": "quiet-cove",
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Quiet Cove Pool",
+          "decks": [
+            9
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Serene adults-only pool area.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "Quiet Cove Pool",
+          "decks": [
+            9
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Peaceful pool exclusively for adults.",
+          "current": true
+        },
+        {
+          "ship": "Disney Dream",
+          "name": "Quiet Cove Pool",
+          "decks": [
+            11
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Adult pool with spacious sun deck.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Quiet Cove Pool",
+          "decks": [
+            11
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Tranquil pool area for grown-ups.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wish",
+          "name": "Quiet Cove Pool",
+          "decks": [
+            13
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Adults-only pool with infinity edge views.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Quiet Cove Pool",
+          "decks": [
+            13
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Peaceful retreat pool for adults.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Quiet Cove Pool",
+          "decks": [
+            13
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Serene adult pool with ocean views.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "quiet-cove",
+      "name": "Quiet Cove",
+      "category": "general",
+      "description": "Adults-only relaxation area with pool, bar, and café.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Quiet Cove",
+          "decks": [
+            9
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Tranquil adults-only area on Deck 9.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "Quiet Cove",
+          "decks": [
+            9
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Adult retreat with pool and lounge.",
+          "current": true
+        },
+        {
+          "ship": "Disney Dream",
+          "name": "Quiet Cove",
+          "decks": [
+            11
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Spacious adults-only area on Deck 11.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Quiet Cove",
+          "decks": [
+            11
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Relaxing adult oasis midship.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wish",
+          "name": "Quiet Cove",
+          "decks": [
+            13
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Premium adults-only area on the upper decks.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Quiet Cove",
+          "decks": [
+            13
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Adult relaxation zone at the aft.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Quiet Cove",
+          "decks": [
+            13
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Peaceful adults-only retreat.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "preludes",
+      "name": "Preludes",
+      "category": "bar-lounge",
+      "description": "Pre-show bar near the Walt Disney Theatre.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Preludes",
+          "decks": [
+            4
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Cocktails before the evening show.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "Preludes",
+          "decks": [
+            4
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Pre-show drinks near the theatre.",
+          "current": true
+        },
+        {
+          "ship": "Disney Dream",
+          "name": "Preludes",
+          "decks": [
+            3
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Elegant pre-show cocktail bar.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Preludes",
+          "decks": [
+            3
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Drinks and appetizers before showtime.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wish",
+          "name": "Preludes",
+          "decks": [
+            3
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Stylish bar near the Walt Disney Theatre.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Preludes",
+          "decks": [
+            3
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Pre-show refreshments near the theater.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Preludes",
+          "decks": [
+            3
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Cocktail bar steps from the theater.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "1923",
+      "name": "1923",
+      "category": "restaurant",
+      "description": "Elegant dining named for the year The Walt Disney Company was founded.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Wish",
+          "name": "1923",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Classic American dining celebrating Disney's founding year.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "1923",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Refined dining honoring Walt Disney's legacy.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "1923",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Heritage-inspired dining celebrating Disney history.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "worlds-of-marvel",
+      "name": "Worlds of Marvel",
+      "category": "restaurant",
+      "description": "Marvel-themed immersive dining adventure.",
+      "ip": "Marvel",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Wish",
+          "name": "Worlds of Marvel",
+          "decks": [
+            4
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Cinematic dining with Marvel heroes and interactive elements.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Worlds of Marvel",
+          "decks": [
+            4
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Immersive Marvel dining experience.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Worlds of Marvel",
+          "decks": [
+            4
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Action-packed Marvel themed dinner show.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "enchante",
+      "name": "Enchanté",
+      "category": "restaurant",
+      "description": "Exquisite French-inspired fine dining by a Michelin-starred chef.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Wish",
+          "name": "Enchanté",
+          "decks": [
+            12
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Premium French fine dining with ocean views.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Enchanté",
+          "decks": [
+            12
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Exclusive French-inspired restaurant.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Enchanté",
+          "decks": [
+            12
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Intimate fine dining with French cuisine.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "concierge-lounge",
+      "name": "Concierge Lounge",
+      "category": "concierge",
+      "description": "Exclusive lounge for concierge-level guests.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Concierge Lounge",
+          "decks": [
+            10
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Private lounge for concierge guests.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "Concierge Lounge",
+          "decks": [
+            10
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Exclusive lounge with complimentary refreshments.",
+          "current": true
+        },
+        {
+          "ship": "Disney Dream",
+          "name": "Concierge Lounge",
+          "decks": [
+            12
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Concierge lounge with premium amenities.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Concierge Lounge",
+          "decks": [
+            12
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Private lounge for suite and concierge guests.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wish",
+          "name": "Concierge Lounge",
+          "decks": [
+            12
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Upscale concierge lounge with snacks and drinks.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Concierge Lounge",
+          "decks": [
+            12
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Premium concierge lounge experience.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Concierge Lounge",
+          "decks": [
+            12
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Exclusive retreat for concierge guests.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "vibe",
+      "name": "Vibe",
+      "category": "youth-club",
+      "description": "Teen-exclusive hangout for ages 14–17.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Vibe",
+          "decks": [
+            11
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Teen lounge with activities and music.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "Vibe",
+          "decks": [
+            11
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Exclusive teen hangout space.",
+          "current": true
+        },
+        {
+          "ship": "Disney Dream",
+          "name": "Vibe",
+          "decks": [
+            5
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Teen club with DJ booth and activities.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Vibe",
+          "decks": [
+            5
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "High-energy teen hangout.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wish",
+          "name": "Vibe",
+          "decks": [
+            12
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Modern teen lounge with games and events.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Vibe",
+          "decks": [
+            13
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Teen-only space with music and games.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Vibe",
+          "decks": [
+            13
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Teen club designed for fun and socializing.",
+          "current": true
+        },
+        {
+          "ship": "Disney Adventure",
+          "name": "Vibe",
+          "decks": [
+            7
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Teen lounge with activities and entertainment.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "edge",
+      "name": "Edge",
+      "category": "youth-club",
+      "description": "Tween club for ages 11–14.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Edge",
+          "decks": [
+            9
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Tween hangout with games and activities.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "Edge",
+          "decks": [
+            9
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Interactive club space for tweens.",
+          "current": true
+        },
+        {
+          "ship": "Disney Dream",
+          "name": "Edge",
+          "decks": [
+            5
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Tech-savvy tween club.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Edge",
+          "decks": [
+            5
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Fun-filled tween hangout.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wish",
+          "name": "Edge",
+          "decks": [
+            5
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Modern tween club with creative activities.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Edge",
+          "decks": [
+            13
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Tween space with games and social activities.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Edge",
+          "decks": [
+            13
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Tween club for fun and exploration.",
+          "current": true
+        },
+        {
+          "ship": "Disney Adventure",
+          "name": "Edge",
+          "decks": [
+            7
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Tween hangout with interactive experiences.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "its-a-small-world-nursery",
+      "name": "It's a Small World Nursery",
+      "category": "youth-club",
+      "description": "Supervised nursery for infants and toddlers (6 months to 3 years).",
+      "ip": "It's a Small World",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "It's a Small World Nursery",
+          "decks": [
+            5
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Themed nursery for the youngest cruisers.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "It's a Small World Nursery",
+          "decks": [
+            5
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Caring nursery with themed play areas.",
+          "current": true
+        },
+        {
+          "ship": "Disney Dream",
+          "name": "It's a Small World Nursery",
+          "decks": [
+            5
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Charming nursery inspired by the classic attraction.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "It's a Small World Nursery",
+          "decks": [
+            5
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Whimsical nursery for babies and toddlers.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wish",
+          "name": "It's a Small World Nursery",
+          "decks": [
+            2
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Colorful nursery with supervised care.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "It's a Small World Nursery",
+          "decks": [
+            2
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Themed nursery for infants and toddlers.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "It's a Small World Nursery",
+          "decks": [
+            2
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Supervised nursery with global theming.",
+          "current": true
+        },
+        {
+          "ship": "Disney Adventure",
+          "name": "It's a Small World Nursery",
+          "decks": [
+            8
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Nursery care for the youngest guests.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "bibbidi-bobbidi-boutique",
+      "name": "Bibbidi Bobbidi Boutique",
+      "category": "shop",
+      "description": "Makeover salon where kids transform into princes, princesses, and pirates.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Bibbidi Bobbidi Boutique",
+          "decks": [
+            10
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Royal makeovers on Deck 10.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "Bibbidi Bobbidi Boutique",
+          "decks": [
+            10
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Princess and pirate makeover experience.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Bibbidi Bobbidi Boutique",
+          "decks": [
+            5
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Magical makeover salon for kids.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wish",
+          "name": "Bibbidi Bobbidi Boutique",
+          "decks": [
+            4
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Enchanting makeover experience.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Bibbidi Bobbidi Boutique",
+          "decks": [
+            4
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Character transformation salon.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Bibbidi Bobbidi Boutique",
+          "decks": [
+            4
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Royal and adventure makeovers for kids.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "mickeys-pool",
+      "name": "Mickey's Pool",
+      "category": "pool",
+      "description": "Family pool area themed to Mickey Mouse.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Mickey's Pool",
+          "decks": [
+            9
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Iconic Mickey-shaped family pool.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "Mickey's Pool",
+          "decks": [
+            9
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Classic Mickey pool for families.",
+          "current": true
+        },
+        {
+          "ship": "Disney Dream",
+          "name": "Mickey's Pool",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Family-friendly Mickey pool.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Mickey's Pool",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Main family pool on the pool deck.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wish",
+          "name": "Mickey's Pool",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Family pool in the center of the pool deck.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Mickey's Pool",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Central family pool area.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Mickey's Pool",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Main family pool on Deck 11.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "eye-scream",
+      "name": "Eye Scream",
+      "category": "quick-service",
+      "description": "Incredibles-themed soft serve ice cream stand.",
+      "ip": "The Incredibles",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Eye Scream",
+          "decks": [
+            9
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Soft serve ice cream on the pool deck.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "Eye Scream",
+          "decks": [
+            9
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Self-serve ice cream treats.",
+          "current": true
+        },
+        {
+          "ship": "Disney Dream",
+          "name": "Eye Scream",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Soft serve station on the pool deck.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Eye Scream",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Self-serve ice cream near the pools.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "frozone-treats",
+      "name": "Frozone Treats",
+      "category": "quick-service",
+      "description": "Frozen treats and smoothies inspired by Frozone.",
+      "ip": "The Incredibles",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Frozone Treats",
+          "decks": [
+            9
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Frozen smoothies and treats.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "Frozone Treats",
+          "decks": [
+            9
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Icy beverages and frozen treats.",
+          "current": true
+        },
+        {
+          "ship": "Disney Dream",
+          "name": "Frozone Treats",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Smoothies and frozen drinks.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Frozone Treats",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Frozen beverages on the pool deck.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wish",
+          "name": "Frozone Treats",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Frozen treats and smoothies.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "funnel-vision-stage",
+      "name": "Funnel Vision Stage",
+      "category": "entertainment",
+      "description": "Outdoor entertainment stage on the pool deck.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Funnel Vision Stage",
+          "decks": [
+            9
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Poolside stage for movies and shows.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "Funnel Vision Stage",
+          "decks": [
+            9
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "LED screen stage on the pool deck.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wish",
+          "name": "Funnel Vision Stage",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Giant LED screen and stage for pool parties.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Funnel Vision Stage",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Outdoor stage for entertainment and movies.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Funnel Vision Stage",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Pool deck entertainment stage.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "hero-zone",
+      "name": "Hero Zone",
+      "category": "recreation",
+      "description": "Active recreation space for sports and games.",
+      "ip": "The Incredibles",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Wish",
+          "name": "Hero Zone",
+          "decks": [
+            12
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Indoor sports and game arena.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Hero Zone",
+          "decks": [
+            12
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Multipurpose recreation zone.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Hero Zone",
+          "decks": [
+            12
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Active sports and games area.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "aquamouse",
+      "name": "AquaMouse",
+      "category": "attraction",
+      "description": "Show-and-ride water attraction.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Wish",
+          "name": "AquaMouse",
+          "decks": [
+            13
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "First-ever Disney attraction at sea.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "AquaMouse",
+          "decks": [
+            13
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Immersive water coaster experience.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "AquaMouse",
+          "decks": [
+            13
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Thrilling water ride with show elements.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "aquaduck",
+      "name": "AquaDuck",
+      "category": "attraction",
+      "description": "Transparent water coaster that extends over the side of the ship.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Dream",
+          "name": "AquaDuck",
+          "decks": [
+            11,
+            12
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "The first water coaster at sea.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "AquaDuck",
+          "decks": [
+            11,
+            12
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Thrilling water coaster high above the ocean.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "toy-story-splash-zone",
+      "name": "Toy Story Splash Zone",
+      "category": "pool",
+      "description": "Toy Story-themed water play area for kids.",
+      "ip": "Toy Story",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Wish",
+          "name": "Toy Story Splash Zone",
+          "decks": [
+            12
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Splash and play in Andy's backyard.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Toy Story Splash Zone",
+          "decks": [
+            12
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Toy Story themed water play area.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Toy Story Splash Zone",
+          "decks": [
+            12
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Kids' splash zone with Toy Story theming.",
+          "current": true
+        },
+        {
+          "ship": "Disney Adventure",
+          "name": "Toy Story Splash Zone",
+          "decks": [
+            17
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Toy Story water play area.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "slide-a-saurus-rex",
+      "name": "Slide-a-saurus Rex",
+      "category": "attraction",
+      "description": "Kids' water slide themed to Rex from Toy Story.",
+      "ip": "Toy Story",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Wish",
+          "name": "Slide-a-saurus Rex",
+          "decks": [
+            12
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Dinosaur-themed water slide for kids.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Slide-a-saurus Rex",
+          "decks": [
+            12
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Fun slide inspired by Rex.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Slide-a-saurus Rex",
+          "decks": [
+            12
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Rex-themed water slide attraction.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "haunted-mansion-parlor",
+      "name": "Haunted Mansion Parlor",
+      "category": "bar-lounge",
+      "description": "Immersive lounge themed to the Haunted Mansion attraction.",
+      "ip": "The Haunted Mansion",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Treasure",
+          "name": "Haunted Mansion Parlor",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Ghostly cocktails in a hauntingly themed lounge.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Haunted Mansion Parlor",
+          "decks": [
+            3
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Step inside the Haunted Mansion for spirited drinks.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "marceline-market",
+      "name": "Marceline Market",
+      "category": "quick-service",
+      "description": "Food hall named after Walt Disney's childhood hometown.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Treasure",
+          "name": "Marceline Market",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Casual food hall with diverse options.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Marceline Market",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Walk-up dining with varied cuisine.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "cabanas",
+      "name": "Cabanas",
+      "category": "restaurant",
+      "description": "Casual buffet restaurant with ocean views.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Cabanas",
+          "decks": [
+            9
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Casual dining with panoramic views.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "Cabanas",
+          "decks": [
+            9
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Breezy buffet restaurant.",
+          "current": true
+        },
+        {
+          "ship": "Disney Dream",
+          "name": "Cabanas",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Spacious casual buffet on the pool deck.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Cabanas",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Relaxed dining with ocean views.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "d-lounge",
+      "name": "D Lounge",
+      "category": "entertainment",
+      "description": "Family entertainment lounge for game shows and activities.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "D Lounge",
+          "decks": [
+            4
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Family game shows and live entertainment.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "D Lounge",
+          "decks": [
+            4
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Interactive family entertainment venue.",
+          "current": true
+        },
+        {
+          "ship": "Disney Dream",
+          "name": "D Lounge",
+          "decks": [
+            4
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Game shows, trivia, and family fun.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "D Lounge",
+          "decks": [
+            4
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Family-friendly entertainment space.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "mickeys-mainsail",
+      "name": "Mickey's Mainsail",
+      "category": "shop",
+      "description": "Main gift shop with Disney merchandise and cruise souvenirs.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Mickey's Mainsail",
+          "decks": [
+            4
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Disney merchandise and souvenirs.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "Mickey's Mainsail",
+          "decks": [
+            4
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Ship's main gift shop.",
+          "current": true
+        },
+        {
+          "ship": "Disney Dream",
+          "name": "Mickey's Mainsail",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Cruise-exclusive Disney merchandise.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Mickey's Mainsail",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Disney gifts and cruise memorabilia.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wish",
+          "name": "Mickey's Mainsail",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Official Disney cruise merchandise.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Mickey's Mainsail",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Souvenirs and Disney collectibles.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Mickey's Mainsail",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Disney merchandise and exclusive items.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "white-caps",
+      "name": "White Caps",
+      "category": "shop",
+      "description": "Fashion and accessories shop.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "White Caps",
+          "decks": [
+            4
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Fashion accessories and apparel.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "White Caps",
+          "decks": [
+            4
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Clothing and fashion accessories.",
+          "current": true
+        },
+        {
+          "ship": "Disney Dream",
+          "name": "White Caps",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Designer fashion and accessories.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "White Caps",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Apparel and accessories boutique.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "buena-vista-theatre",
+      "name": "Buena Vista Theatre",
+      "category": "theatre",
+      "description": "Movie theater showing first-run and classic Disney films.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Buena Vista Theatre",
+          "decks": [
+            5
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "First-run movies and Disney classics.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "Buena Vista Theatre",
+          "decks": [
+            5
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Movie theater with plush seating.",
+          "current": true
+        },
+        {
+          "ship": "Disney Dream",
+          "name": "Buena Vista Theatre",
+          "decks": [
+            4
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Cinema showing new releases and classics.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Buena Vista Theatre",
+          "decks": [
+            4
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Movie theater with stadium seating.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "the-hideaway",
+      "name": "The Hideaway",
+      "category": "bar-lounge",
+      "description": "Casual outdoor bar and lounge.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Wish",
+          "name": "The Hideaway",
+          "decks": [
+            12
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Laid-back outdoor lounge space.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "The Hideaway",
+          "decks": [
+            12
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Casual bar with open-air seating.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "The Hideaway",
+          "decks": [
+            12
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Relaxed outdoor lounge and bar.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "concierge-sun-deck",
+      "name": "Concierge Sun Deck",
+      "category": "concierge",
+      "description": "Private sun deck for concierge guests.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Dream",
+          "name": "Concierge Sun Deck",
+          "decks": [
+            13
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Exclusive sun deck for suite guests.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Concierge Sun Deck",
+          "decks": [
+            13
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Private outdoor area for concierge level.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wish",
+          "name": "Concierge Sun Deck",
+          "decks": [
+            13,
+            14
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Multi-level private sun deck.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Concierge Sun Deck",
+          "decks": [
+            13,
+            14
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Premium private sun deck.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Concierge Sun Deck",
+          "decks": [
+            13,
+            14
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Exclusive concierge outdoor space.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "currents-bar",
+      "name": "Currents Bar",
+      "category": "bar-lounge",
+      "description": "Open-air bar on the upper sun deck.",
+      "ip": null,
+      "parentId": "concierge-sun-deck",
+      "shipInstances": [
+        {
+          "ship": "Disney Dream",
+          "name": "Currents Bar",
+          "decks": [
+            13
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Breezy bar on the top deck.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Currents Bar",
+          "decks": [
+            13
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Open-air drinks with ocean views.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wish",
+          "name": "Currents Bar",
+          "decks": [
+            14
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Top-deck bar with panoramic views.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Currents Bar",
+          "decks": [
+            14
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Sun deck bar above the pools.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Currents Bar",
+          "decks": [
+            14
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Upper deck cocktail bar.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "goofys-pool",
+      "name": "Goofy's Pool",
+      "category": "pool",
+      "description": "Main family pool.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Goofy's Pool",
+          "decks": [
+            9
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Goofy-themed family pool.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "Goofy's Pool",
+          "decks": [
+            9
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Family pool on the main deck.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "signals",
+      "name": "Signals",
+      "category": "bar-lounge",
+      "description": "Adults-only poolside bar.",
+      "ip": null,
+      "parentId": "quiet-cove",
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Signals",
+          "decks": [
+            9
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Cocktails near the adult pool.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "Signals",
+          "decks": [
+            9
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Adult poolside refreshments.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "wide-world-of-sports-deck",
+      "name": "Wide World of Sports Deck",
+      "category": "recreation",
+      "description": "Outdoor sports area with basketball, mini-golf, and more.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Wide World of Sports Deck",
+          "decks": [
+            10
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Basketball, shuffleboard, and sports.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "Wide World of Sports Deck",
+          "decks": [
+            10
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Outdoor sports and activities deck.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "fitness-center",
+      "name": "Fitness Center",
+      "category": "recreation",
+      "description": "Gym and fitness facility.",
+      "ip": null,
+      "parentId": "senses-spa",
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Fitness Center",
+          "decks": [
+            10
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Ocean-view gym on Deck 10.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "Fitness Center",
+          "decks": [
+            10
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Full gym with cardio and weights.",
+          "current": true
+        },
+        {
+          "ship": "Disney Dream",
+          "name": "Fitness Center",
+          "decks": [
+            11
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Modern fitness center with ocean views.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Fitness Center",
+          "decks": [
+            11
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "State-of-the-art gym facilities.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "senses-fitness-center",
+      "name": "Senses Fitness Center",
+      "category": "recreation",
+      "description": "Fitness center within the spa complex.",
+      "ip": null,
+      "parentId": "senses-spa",
+      "shipInstances": [
+        {
+          "ship": "Disney Wish",
+          "name": "Senses Fitness Center",
+          "decks": [
+            5
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Premium fitness facility in the spa.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Senses Fitness Center",
+          "decks": [
+            5
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Modern gym within the spa area.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Senses Fitness Center",
+          "decks": [
+            5
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Fitness center with spa access.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "rainforest-room",
+      "name": "Rainforest Room",
+      "category": "spa",
+      "description": "Tropical steam and sauna room within the spa.",
+      "ip": null,
+      "parentId": "senses-spa",
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Rainforest Room",
+          "decks": [
+            10
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Tropical steam room and rain showers.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "Rainforest Room",
+          "decks": [
+            10
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Rainforest-themed relaxation area.",
+          "current": true
+        },
+        {
+          "ship": "Disney Dream",
+          "name": "Rainforest Room",
+          "decks": [
+            11
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Steam, sauna, and heated loungers.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Rainforest Room",
+          "decks": [
+            11
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Tropical spa relaxation retreat.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "aqualab",
+      "name": "AquaLab",
+      "category": "pool",
+      "description": "Interactive water play area for kids.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "AquaLab",
+          "decks": [
+            9
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Splash zone for kids on the pool deck.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "AquaLab",
+          "decks": [
+            9
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Interactive water play area.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "AquaLab",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Water playground for young cruisers.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "nephews-splash-zone",
+      "name": "Nephews' Splash Zone",
+      "category": "pool",
+      "description": "Toddler splash area themed to Huey, Dewey, and Louie.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Nephews' Splash Zone",
+          "decks": [
+            9
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Gentle splash area for little ones.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "Nephews' Splash Zone",
+          "decks": [
+            9
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Toddler-friendly water play.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "twist-n-spout",
+      "name": "Twist 'n' Spout",
+      "category": "attraction",
+      "description": "Kid-friendly water slide.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Twist 'n' Spout",
+          "decks": [
+            9
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Fun water slide for kids.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "Twist 'n' Spout",
+          "decks": [
+            9
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Twisting slide on the pool deck.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "shutters-photo-studio",
+      "name": "Shutters Photo Studio",
+      "category": "shop",
+      "description": "Professional photography studio.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Shutters Photo Studio",
+          "decks": [
+            4
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Photo packages and portrait studio.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "Shutters Photo Studio",
+          "decks": [
+            4
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Professional photos and prints.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "satellite-falls",
+      "name": "Satellite Falls",
+      "category": "pool",
+      "description": "Adults-only splash pool.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Dream",
+          "name": "Satellite Falls",
+          "decks": [
+            12
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Peaceful adults-only pool with waterfall.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Satellite Falls",
+          "decks": [
+            12
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Serene splash pool for grown-ups.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "sea-treasures",
+      "name": "Sea Treasures",
+      "category": "shop",
+      "description": "Jewelry and accessories shop.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Sea Treasures",
+          "decks": [
+            4
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Jewelry and fine accessories.",
+          "current": true
+        },
+        {
+          "ship": "Disney Dream",
+          "name": "Sea Treasures",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Premium jewelry and watches.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Sea Treasures",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Fine jewelry and accessories.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "meridian",
+      "name": "Meridian",
+      "category": "bar-lounge",
+      "description": "Elegant cocktail lounge near the upscale restaurants.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Dream",
+          "name": "Meridian",
+          "decks": [
+            12
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Sophisticated cocktails near Palo and Remy.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Meridian",
+          "decks": [
+            12
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Refined lounge with artisanal cocktails.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "remy",
+      "name": "Remy",
+      "category": "restaurant",
+      "description": "Premium French restaurant inspired by the film Ratatouille.",
+      "ip": "Ratatouille",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Dream",
+          "name": "Remy",
+          "decks": [
+            12
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Exquisite French cuisine by a world-class chef.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Remy",
+          "decks": [
+            12
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Fine French dining inspired by Ratatouille.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "enchanted-garden",
+      "name": "Enchanted Garden",
+      "category": "restaurant",
+      "description": "Main dining room that transforms from day to night.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Dream",
+          "name": "Enchanted Garden",
+          "decks": [
+            2
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Restaurant that blooms from morning to evening.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Enchanted Garden",
+          "decks": [
+            2
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Magical venue that transforms throughout dinner.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "donalds-pool",
+      "name": "Donald's Pool",
+      "category": "pool",
+      "description": "Family splash pool.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Dream",
+          "name": "Donald's Pool",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Family splash pool on the main deck.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Donald's Pool",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Fun family pool area.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "nemos-reef",
+      "name": "Nemo's Reef",
+      "category": "pool",
+      "description": "Finding Nemo themed water play area for toddlers.",
+      "ip": "Finding Nemo",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Dream",
+          "name": "Nemo's Reef",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Gentle water play for little ones.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Nemo's Reef",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Undersea-themed splash area for toddlers.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "skyline-lounge",
+      "name": "Skyline Lounge",
+      "category": "bar-lounge",
+      "description": "Bar with virtual cityscapes that change throughout the evening.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Dream",
+          "name": "Skyline Lounge",
+          "decks": [
+            4
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Virtual windows showcasing world cities.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Skyline Lounge",
+          "decks": [
+            4
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Rotating cityscapes on virtual screens.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "ogills-pub",
+      "name": "O'Gills Pub",
+      "category": "bar-lounge",
+      "description": "Classic Irish-style pub.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "O'Gills Pub",
+          "decks": [
+            3
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Traditional pub in the After Hours nightlife area.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "O'Gills Pub",
+          "decks": [
+            4
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Irish pub in the Europa entertainment district.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "goofys-sports-deck",
+      "name": "Goofy's Sports Deck",
+      "category": "recreation",
+      "description": "Outdoor sports and recreation area.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Dream",
+          "name": "Goofy's Sports Deck",
+          "decks": [
+            13
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Basketball, mini-golf, and more.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Goofy's Sports Deck",
+          "decks": [
+            13
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Outdoor sports complex.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "flos-v8-cafe",
+      "name": "Flo's V8 Café",
+      "category": "quick-service",
+      "description": "Cars-themed quick-service food court.",
+      "ip": "Cars",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Dream",
+          "name": "Flo's V8 Café",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Radiator Springs-inspired food court.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Flo's V8 Café",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Cars-themed poolside food court.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "tow-maters-grill",
+      "name": "Tow Mater's Grill",
+      "category": "quick-service",
+      "description": "Burgers and grill items in the Cars food court.",
+      "ip": "Cars",
+      "parentId": "flos-v8-cafe",
+      "shipInstances": [
+        {
+          "ship": "Disney Dream",
+          "name": "Tow Mater's Grill",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Grilled burgers and hot dogs.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Tow Mater's Grill",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Classic American grill fare.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "luigis-pizza",
+      "name": "Luigi's Pizza",
+      "category": "quick-service",
+      "description": "Pizza counter in the Cars food court.",
+      "ip": "Cars",
+      "parentId": "flos-v8-cafe",
+      "shipInstances": [
+        {
+          "ship": "Disney Dream",
+          "name": "Luigi's Pizza",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Fresh pizza by the slice.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Luigi's Pizza",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Italian-style pizza on the pool deck.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "fillmores-favorites",
+      "name": "Fillmore's Favorites",
+      "category": "quick-service",
+      "description": "Healthy options in the Cars food court.",
+      "ip": "Cars",
+      "parentId": "flos-v8-cafe",
+      "shipInstances": [
+        {
+          "ship": "Disney Dream",
+          "name": "Fillmore's Favorites",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Fresh wraps, salads, and fruit.",
+          "current": true
+        },
+        {
+          "ship": "Disney Fantasy",
+          "name": "Fillmore's Favorites",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Healthy bites and fresh snacks.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "the-rose",
+      "name": "The Rose",
+      "category": "bar-lounge",
+      "description": "Elegant cocktail lounge themed to Beauty and the Beast.",
+      "ip": "Beauty and the Beast",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Wish",
+          "name": "The Rose",
+          "decks": [
+            12
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Enchanting lounge with signature cocktails.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "The Rose",
+          "decks": [
+            12
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Romantic cocktail lounge.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "The Rose",
+          "decks": [
+            12
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Tale as old as time, in cocktail form.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "mickey-and-friends-festival-of-foods",
+      "name": "Mickey & Friends Festival of Foods",
+      "category": "quick-service",
+      "description": "Poolside food court with multiple quick-service counters.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Wish",
+          "name": "Mickey & Friends Festival of Foods",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Central food court on the pool deck.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Mickey & Friends Festival of Foods",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Quick-service food hall near the pools.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Mickey & Friends Festival of Foods",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Poolside food court with varied options.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "mickeys-smokestack-bbq",
+      "name": "Mickey's Smokestack BBQ",
+      "category": "quick-service",
+      "description": "Barbecue counter.",
+      "ip": null,
+      "parentId": "mickey-and-friends-festival-of-foods",
+      "shipInstances": [
+        {
+          "ship": "Disney Wish",
+          "name": "Mickey's Smokestack BBQ",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Smoked meats and BBQ fare.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Mickey's Smokestack BBQ",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "BBQ ribs, chicken, and sides.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Mickey's Smokestack BBQ",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Poolside barbecue favorites.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "donalds-cantina",
+      "name": "Donald's Cantina",
+      "category": "quick-service",
+      "description": "Mexican-inspired counter.",
+      "ip": null,
+      "parentId": "mickey-and-friends-festival-of-foods",
+      "shipInstances": [
+        {
+          "ship": "Disney Wish",
+          "name": "Donald's Cantina",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Tacos, burritos, and Mexican flavors.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Donald's Cantina",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Quick-service Mexican cuisine.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Donald's Cantina",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Fresh Mexican bites by the pool.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "daisys-pizza-pies",
+      "name": "Daisy's Pizza Pies",
+      "category": "quick-service",
+      "description": "Pizza counter.",
+      "ip": null,
+      "parentId": "mickey-and-friends-festival-of-foods",
+      "shipInstances": [
+        {
+          "ship": "Disney Wish",
+          "name": "Daisy's Pizza Pies",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Fresh pizza made to order.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Daisy's Pizza Pies",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Pizza by the slice or whole pie.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Daisy's Pizza Pies",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Classic pizza on the pool deck.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "goofys-grill",
+      "name": "Goofy's Grill",
+      "category": "quick-service",
+      "description": "Burgers and grill items.",
+      "ip": null,
+      "parentId": "mickey-and-friends-festival-of-foods",
+      "shipInstances": [
+        {
+          "ship": "Disney Wish",
+          "name": "Goofy's Grill",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Burgers, hot dogs, and fries.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Goofy's Grill",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Classic American grill fare.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Goofy's Grill",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Grilled favorites poolside.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "sweet-minnies-ice-cream",
+      "name": "Sweet Minnie's Ice Cream",
+      "category": "quick-service",
+      "description": "Ice cream and frozen treats.",
+      "ip": null,
+      "parentId": "mickey-and-friends-festival-of-foods",
+      "shipInstances": [
+        {
+          "ship": "Disney Wish",
+          "name": "Sweet Minnie's Ice Cream",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Scooped ice cream and sundaes.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Sweet Minnie's Ice Cream",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Premium ice cream treats.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Sweet Minnie's Ice Cream",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Ice cream and frozen desserts.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "wonderland-cinema",
+      "name": "Wonderland Cinema",
+      "category": "theatre",
+      "description": "Small cinema themed to Alice in Wonderland.",
+      "ip": "Alice in Wonderland",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Wish",
+          "name": "Wonderland Cinema",
+          "decks": [
+            4
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Whimsical cinema with Wonderland decor.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Wonderland Cinema",
+          "decks": [
+            4
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Alice in Wonderland themed cinema.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Wonderland Cinema",
+          "decks": [
+            4
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Wonderland-inspired movie theater.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "never-land-cinema",
+      "name": "Never Land Cinema",
+      "category": "theatre",
+      "description": "Small cinema themed to Peter Pan.",
+      "ip": "Peter Pan",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Wish",
+          "name": "Never Land Cinema",
+          "decks": [
+            4
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Cinema with Peter Pan theming.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Never Land Cinema",
+          "decks": [
+            4
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Never Land themed movie space.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Never Land Cinema",
+          "decks": [
+            4
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Peter Pan inspired cinema.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "grand-hall",
+      "name": "Grand Hall",
+      "category": "general",
+      "description": "Main atrium lobby.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Wish",
+          "name": "Grand Hall",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Stunning Cinderella-themed atrium.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Grand Hall",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Adventure-inspired grand atrium.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Grand Hall",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Heroes and villains themed lobby.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "3-wishes",
+      "name": "3 Wishes",
+      "category": "shop",
+      "description": "Accessories and gift shop.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Wish",
+          "name": "3 Wishes",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Accessories, bags, and gifts.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "3 Wishes",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Fashion accessories and souvenirs.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "3 Wishes",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Gifts and Disney accessories.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "once-upon-a-time",
+      "name": "Once Upon A Time",
+      "category": "shop",
+      "description": "Character merchandise shop.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Wish",
+          "name": "Once Upon A Time",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Disney character apparel and gifts.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Once Upon A Time",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Storybook-themed merchandise.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Once Upon A Time",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Character-themed souvenirs and apparel.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "royal-regalia",
+      "name": "Royal Regalia",
+      "category": "shop",
+      "description": "Jewelry and fine gifts.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Wish",
+          "name": "Royal Regalia",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Fine jewelry and collectibles.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Royal Regalia",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Premium jewelry and keepsakes.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Royal Regalia",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Royal-quality jewelry and gifts.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "wheezys-freezies",
+      "name": "Wheezy's Freezies",
+      "category": "quick-service",
+      "description": "Frozen treats themed to Wheezy from Toy Story.",
+      "ip": "Toy Story",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Wish",
+          "name": "Wheezy's Freezies",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Frozen treats and ice cream.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Wheezy's Freezies",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Frozen desserts on the pool deck.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Wheezy's Freezies",
+          "decks": [
+            12
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Icy treats and frozen beverages.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "marvel-super-hero-academy",
+      "name": "Marvel Super Hero Academy",
+      "category": "youth-club",
+      "description": "Marvel-themed zone in the Oceaneer Club.",
+      "ip": "Marvel",
+      "parentId": "oceaneer-club",
+      "shipInstances": [
+        {
+          "ship": "Disney Wish",
+          "name": "Marvel Super Hero Academy",
+          "decks": [
+            2
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Train alongside Marvel superheroes.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Marvel Super Hero Academy",
+          "decks": [
+            2
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Super hero training for young recruits.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Marvel Super Hero Academy",
+          "decks": [
+            2
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Marvel hero missions and activities.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "star-wars-cargo-bay",
+      "name": "Star Wars: Cargo Bay",
+      "category": "youth-club",
+      "description": "Star Wars-themed zone in the Oceaneer Club.",
+      "ip": "Star Wars",
+      "parentId": "oceaneer-club",
+      "shipInstances": [
+        {
+          "ship": "Disney Wish",
+          "name": "Star Wars: Cargo Bay",
+          "decks": [
+            2
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Galactic missions in a galaxy far, far away.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Star Wars: Cargo Bay",
+          "decks": [
+            2
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Star Wars adventures for young padawans.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Star Wars: Cargo Bay",
+          "decks": [
+            2
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Cargo bay missions in the Star Wars universe.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "fairytale-hall",
+      "name": "Fairytale Hall",
+      "category": "youth-club",
+      "description": "Disney Princess-themed creative space.",
+      "ip": "Disney Princess",
+      "parentId": "oceaneer-club",
+      "shipInstances": [
+        {
+          "ship": "Disney Wish",
+          "name": "Fairytale Hall",
+          "decks": [
+            2
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Arts, crafts, and royal storytelling.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Fairytale Hall",
+          "decks": [
+            2
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Princess-themed creative activities.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Fairytale Hall",
+          "decks": [
+            2
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Royal arts and storytelling space.",
+          "current": true
+        },
+        {
+          "ship": "Disney Adventure",
+          "name": "Fairytale Hall",
+          "decks": [
+            8
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Princess-themed activities and play.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "walt-disney-imagineering-lab",
+      "name": "Walt Disney Imagineering Lab",
+      "category": "youth-club",
+      "description": "Innovation and design space for kids.",
+      "ip": null,
+      "parentId": "oceaneer-club",
+      "shipInstances": [
+        {
+          "ship": "Disney Wish",
+          "name": "Walt Disney Imagineering Lab",
+          "decks": [
+            2
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Design and build like an Imagineer.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Walt Disney Imagineering Lab",
+          "decks": [
+            2
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Creative engineering for young Imagineers.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Walt Disney Imagineering Lab",
+          "decks": [
+            2
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Hands-on Imagineering projects.",
+          "current": true
+        },
+        {
+          "ship": "Disney Adventure",
+          "name": "Walt Disney Imagineering Lab",
+          "decks": [
+            8
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Design challenges and creative building.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "mickey-and-minnie-captains-deck",
+      "name": "Mickey & Minnie Captain's Deck",
+      "category": "youth-club",
+      "description": "Nautical-themed play area for toddlers.",
+      "ip": "Mickey Mouse",
+      "parentId": "oceaneer-club",
+      "shipInstances": [
+        {
+          "ship": "Disney Wish",
+          "name": "Mickey & Minnie Captain's Deck",
+          "decks": [
+            2
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Captain-themed play for little ones.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Mickey & Minnie Captain's Deck",
+          "decks": [
+            2
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Nautical play area for young kids.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Mickey & Minnie Captain's Deck",
+          "decks": [
+            2
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Mickey and Minnie themed toddler area.",
+          "current": true
+        },
+        {
+          "ship": "Disney Adventure",
+          "name": "Mickey & Minnie Captain's Deck",
+          "decks": [
+            8
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Captain's play space for young guests.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "triton-lounge",
+      "name": "Triton Lounge",
+      "category": "bar-lounge",
+      "description": "Sophisticated entertainment lounge.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Wish",
+          "name": "Triton Lounge",
+          "decks": [
+            5
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Elegant lounge with live entertainment.",
+          "current": true
+        },
+        {
+          "ship": "Disney Treasure",
+          "name": "Triton Lounge",
+          "decks": [
+            5
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Stylish lounge for cocktails and music.",
+          "current": true
+        },
+        {
+          "ship": "Disney Destiny",
+          "name": "Triton Lounge",
+          "decks": [
+            5
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Sophisticated evening lounge.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "health-center",
+      "name": "Health Center",
+      "category": "general",
+      "description": "Onboard medical facility.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Health Center",
+          "decks": [
+            1
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Medical center for guest health needs.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "Health Center",
+          "decks": [
+            1
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Ship's medical facility.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "atrium-lobby",
+      "name": "Atrium Lobby",
+      "category": "general",
+      "description": "Grand multi-deck lobby at the heart of the ship.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Atrium Lobby",
+          "decks": [
+            3,
+            4,
+            5
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Classic three-deck atrium.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "Atrium Lobby",
+          "decks": [
+            3,
+            4,
+            5
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Multi-deck lobby with grand staircase.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "lumieres",
+      "name": "Lumiere's",
+      "category": "restaurant",
+      "description": "Elegant main dining room inspired by Beauty and the Beast.",
+      "ip": "Beauty and the Beast",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Lumiere's",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "French-inspired fine dining.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "rapunzels-royal-table",
+      "name": "Rapunzel's Royal Table",
+      "category": "restaurant",
+      "description": "Tangled-themed rotational dining.",
+      "ip": "Tangled",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Rapunzel's Royal Table",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Enchanting dining with Tangled theming.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "soul-cat-lounge",
+      "name": "Soul Cat Lounge",
+      "category": "bar-lounge",
+      "description": "Jazz-inspired lounge themed to the movie Soul.",
+      "ip": "Soul (Pixar)",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Soul Cat Lounge",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Soulful jazz lounge with cocktails.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "after-hours",
+      "name": "After Hours",
+      "category": "entertainment",
+      "description": "Adult nightlife district.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "After Hours",
+          "decks": [
+            3
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Nightlife area with multiple bars and clubs.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "After Hours",
+          "decks": [
+            3
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Adult entertainment district.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "keys",
+      "name": "Keys",
+      "category": "bar-lounge",
+      "description": "Piano bar in the nightlife district.",
+      "ip": null,
+      "parentId": "after-hours",
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Keys",
+          "decks": [
+            3
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Live piano music and cocktails.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "fathoms",
+      "name": "Fathoms",
+      "category": "bar-lounge",
+      "description": "Dance club and lounge.",
+      "ip": null,
+      "parentId": "after-hours",
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Fathoms",
+          "decks": [
+            3
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Dance club with themed events.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "pinocchios-pizzeria",
+      "name": "Pinocchio's Pizzeria",
+      "category": "quick-service",
+      "description": "Poolside pizza counter.",
+      "ip": "Pinocchio",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Pinocchio's Pizzeria",
+          "decks": [
+            9
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Fresh pizza by the pool.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "Pinocchio's Pizzeria",
+          "decks": [
+            9
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Quick-service pizza on the pool deck.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "goofys-galley",
+      "name": "Goofy's Galley",
+      "category": "quick-service",
+      "description": "Quick-service sandwich and snack counter.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Goofy's Galley",
+          "decks": [
+            9
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Wraps, paninis, and snacks.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "Goofy's Galley",
+          "decks": [
+            9
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Quick bites and sandwiches.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "daisys-de-lites",
+      "name": "Daisy's De-Lites",
+      "category": "quick-service",
+      "description": "Light fare and healthy options.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Daisy's De-Lites",
+          "decks": [
+            9
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Salads, wraps, and fresh fruit.",
+          "current": true
+        },
+        {
+          "ship": "Disney Wonder",
+          "name": "Daisy's De-Lites",
+          "decks": [
+            9
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Healthy quick-service options.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "duck-in-diner",
+      "name": "Duck-In Diner",
+      "category": "quick-service",
+      "description": "Quick-service grill near the family pools.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "Duck-In Diner",
+          "decks": [
+            9
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Burgers, chicken strips, and fries.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "aquadunk",
+      "name": "AquaDunk",
+      "category": "attraction",
+      "description": "Body slide with a thrilling drop start.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Magic",
+          "name": "AquaDunk",
+          "decks": [
+            10
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Trapdoor drop slide high above the ship.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "tianas-place",
+      "name": "Tiana's Place",
+      "category": "restaurant",
+      "description": "Southern-inspired dining with live jazz.",
+      "ip": "The Princess and the Frog",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Wonder",
+          "name": "Tiana's Place",
+          "decks": [
+            3
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "New Orleans-style dining with live music.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "tritons",
+      "name": "Triton's",
+      "category": "restaurant",
+      "description": "Elegant dining inspired by The Little Mermaid.",
+      "ip": "The Little Mermaid",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Wonder",
+          "name": "Triton's",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Undersea-themed fine dining.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "french-quarter-lounge",
+      "name": "French Quarter Lounge",
+      "category": "bar-lounge",
+      "description": "New Orleans-style lounge.",
+      "ip": "The Princess and the Frog",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Wonder",
+          "name": "French Quarter Lounge",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Cajun-inspired cocktails and ambiance.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "azure",
+      "name": "Azure",
+      "category": "bar-lounge",
+      "description": "Sleek cocktail lounge.",
+      "ip": null,
+      "parentId": "after-hours",
+      "shipInstances": [
+        {
+          "ship": "Disney Wonder",
+          "name": "Azure",
+          "decks": [
+            3
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Modern cocktail lounge.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "cadillac-lounge",
+      "name": "Cadillac Lounge",
+      "category": "bar-lounge",
+      "description": "Retro-style lounge with live music.",
+      "ip": null,
+      "parentId": "after-hours",
+      "shipInstances": [
+        {
+          "ship": "Disney Wonder",
+          "name": "Cadillac Lounge",
+          "decks": [
+            3
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Classic car-themed lounge with live piano.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "crown-and-fin-pub",
+      "name": "Crown & Fin Pub",
+      "category": "bar-lounge",
+      "description": "British-style pub.",
+      "ip": null,
+      "parentId": "after-hours",
+      "shipInstances": [
+        {
+          "ship": "Disney Wonder",
+          "name": "Crown & Fin Pub",
+          "decks": [
+            3
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Cozy English pub with craft beers.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "dorys-reef",
+      "name": "Dory's Reef",
+      "category": "pool",
+      "description": "Finding Nemo themed splash area.",
+      "ip": "Finding Nemo",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Wonder",
+          "name": "Dory's Reef",
+          "decks": [
+            9
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Gentle water play for young kids.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "petes-boiler-bites",
+      "name": "Pete's Boiler Bites",
+      "category": "quick-service",
+      "description": "Poolside snack counter.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Wonder",
+          "name": "Pete's Boiler Bites",
+          "decks": [
+            9
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Quick-service bites near the family pools.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "the-district",
+      "name": "The District",
+      "category": "entertainment",
+      "description": "Adult nightlife area on Disney Dream.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Dream",
+          "name": "The District",
+          "decks": [
+            4
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Nightlife district with themed bars and clubs.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "district-lounge",
+      "name": "District Lounge",
+      "category": "bar-lounge",
+      "description": "Central bar in The District.",
+      "ip": null,
+      "parentId": "the-district",
+      "shipInstances": [
+        {
+          "ship": "Disney Dream",
+          "name": "District Lounge",
+          "decks": [
+            4
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Hub of the nightlife district.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "687-pub",
+      "name": "687 Pub",
+      "category": "bar-lounge",
+      "description": "Sports pub.",
+      "ip": null,
+      "parentId": "the-district",
+      "shipInstances": [
+        {
+          "ship": "Disney Dream",
+          "name": "687 Pub",
+          "decks": [
+            4
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Sports bar with games and brews.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "pink",
+      "name": "Pink",
+      "category": "bar-lounge",
+      "description": "Champagne and wine bar.",
+      "ip": null,
+      "parentId": "the-district",
+      "shipInstances": [
+        {
+          "ship": "Disney Dream",
+          "name": "Pink",
+          "decks": [
+            4
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Bubbly champagne and wine lounge.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "evolution",
+      "name": "Evolution",
+      "category": "entertainment",
+      "description": "Dance club.",
+      "ip": null,
+      "parentId": "the-district",
+      "shipInstances": [
+        {
+          "ship": "Disney Dream",
+          "name": "Evolution",
+          "decks": [
+            4
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "High-energy dance club with DJ.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "royal-palace",
+      "name": "Royal Palace",
+      "category": "restaurant",
+      "description": "Disney Princess-themed main dining room.",
+      "ip": "Disney Princess",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Dream",
+          "name": "Royal Palace",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Regal dining fit for royalty.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "europa",
+      "name": "Europa",
+      "category": "entertainment",
+      "description": "European-themed nightlife district.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Fantasy",
+          "name": "Europa",
+          "decks": [
+            4
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Sophisticated nightlife area with themed lounges.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "la-piazza",
+      "name": "La Piazza",
+      "category": "bar-lounge",
+      "description": "Italian-themed bar.",
+      "ip": null,
+      "parentId": "europa",
+      "shipInstances": [
+        {
+          "ship": "Disney Fantasy",
+          "name": "La Piazza",
+          "decks": [
+            4
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Italian piazza-inspired cocktail bar.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "ooh-la-la",
+      "name": "Ooh La La",
+      "category": "bar-lounge",
+      "description": "French-inspired champagne bar.",
+      "ip": null,
+      "parentId": "europa",
+      "shipInstances": [
+        {
+          "ship": "Disney Fantasy",
+          "name": "Ooh La La",
+          "decks": [
+            4
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Parisian-style champagne lounge.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "the-tube",
+      "name": "The Tube",
+      "category": "entertainment",
+      "description": "London Underground-themed dance club.",
+      "ip": null,
+      "parentId": "europa",
+      "shipInstances": [
+        {
+          "ship": "Disney Fantasy",
+          "name": "The Tube",
+          "decks": [
+            4
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "London-style dance club with DJ.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "royal-court",
+      "name": "Royal Court",
+      "category": "restaurant",
+      "description": "Disney Princess-themed main dining room.",
+      "ip": "Disney Princess",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Fantasy",
+          "name": "Royal Court",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Elegant dining in a royal court setting.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "star-wars-hyperspace-lounge",
+      "name": "Star Wars: Hyperspace Lounge",
+      "category": "bar-lounge",
+      "description": "Immersive Star Wars-themed lounge with galactic cocktails.",
+      "ip": "Star Wars",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Wish",
+          "name": "Star Wars: Hyperspace Lounge",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Jump to lightspeed while sipping craft cocktails.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "nightingales",
+      "name": "Nightingale's",
+      "category": "bar-lounge",
+      "description": "Elegant speakeasy-style lounge.",
+      "ip": "Cinderella",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Wish",
+          "name": "Nightingale's",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Hidden cocktail lounge with Cinderella theming.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "the-bayou",
+      "name": "The Bayou",
+      "category": "bar-lounge",
+      "description": "New Orleans-themed bar.",
+      "ip": "The Princess and the Frog",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Wish",
+          "name": "The Bayou",
+          "decks": [
+            3
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Bayou-inspired cocktails and ambiance.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "arendelle",
+      "name": "Arendelle: A Frozen Dining Adventure",
+      "category": "restaurant",
+      "description": "Frozen-themed immersive dining with live entertainment.",
+      "ip": "Frozen",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Wish",
+          "name": "Arendelle: A Frozen Dining Adventure",
+          "decks": [
+            3
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Dine in Arendelle with Anna and Elsa.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "luna",
+      "name": "Luna",
+      "category": "entertainment",
+      "description": "Multi-deck entertainment venue.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Wish",
+          "name": "Luna",
+          "decks": [
+            4,
+            5
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Versatile entertainment space for shows and events.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "scat-cat-lounge",
+      "name": "Scat Cat Lounge",
+      "category": "bar-lounge",
+      "description": "Jazz-inspired lounge themed to The Aristocats.",
+      "ip": "The Aristocats",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Treasure",
+          "name": "Scat Cat Lounge",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Swinging jazz lounge with Aristocats charm.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "skipper-society",
+      "name": "Skipper Society",
+      "category": "bar-lounge",
+      "description": "Jungle Cruise-themed bar.",
+      "ip": "Jungle Cruise",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Treasure",
+          "name": "Skipper Society",
+          "decks": [
+            3
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Adventure-themed bar with Skipper humor.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "sarabi",
+      "name": "Sarabi",
+      "category": "entertainment",
+      "description": "Multi-deck entertainment venue themed to The Lion King.",
+      "ip": "The Lion King",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Treasure",
+          "name": "Sarabi",
+          "decks": [
+            4,
+            5
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Grand entertainment space with Lion King theming.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "plaza-de-coco",
+      "name": "Plaza de Coco",
+      "category": "restaurant",
+      "description": "Coco-themed dining experience.",
+      "ip": "Coco",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Treasure",
+          "name": "Plaza de Coco",
+          "decks": [
+            5
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Vibrant dining celebrating the Land of the Dead.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "periscope-pub",
+      "name": "Periscope Pub",
+      "category": "bar-lounge",
+      "description": "Nautical bar themed to 20,000 Leagues Under the Sea.",
+      "ip": "20,000 Leagues Under the Sea",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Treasure",
+          "name": "Periscope Pub",
+          "decks": [
+            5
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Submarine-themed bar with craft cocktails.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "jade-cricket-cafe",
+      "name": "Jade Cricket Café",
+      "category": "bar-lounge",
+      "description": "Mulan-inspired tea and cocktail lounge.",
+      "ip": "Mulan",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Treasure",
+          "name": "Jade Cricket Café",
+          "decks": [
+            5
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Asian-inspired teas and cocktails.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "hei-hei-cafe",
+      "name": "Hei Hei Café",
+      "category": "bar-lounge",
+      "description": "Moana-themed café and bar.",
+      "ip": "Moana",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Treasure",
+          "name": "Hei Hei Café",
+          "decks": [
+            4
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Tropical drinks and island vibes.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "jumbeaux-sweets",
+      "name": "Jumbeaux's Sweets",
+      "category": "quick-service",
+      "description": "Zootopia-themed ice cream and treats.",
+      "ip": "Zootopia",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Treasure",
+          "name": "Jumbeaux's Sweets",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Zootopia-inspired frozen treats.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "the-sanctum",
+      "name": "The Sanctum",
+      "category": "bar-lounge",
+      "description": "Doctor Strange-themed mystical lounge.",
+      "ip": "Doctor Strange / Marvel",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Destiny",
+          "name": "The Sanctum",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Mystical cocktails in a multiverse setting.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "de-vils",
+      "name": "De Vil's",
+      "category": "bar-lounge",
+      "description": "101 Dalmatians villain-themed lounge.",
+      "ip": "101 Dalmatians",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Destiny",
+          "name": "De Vil's",
+          "decks": [
+            3
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Cruella-inspired cocktail lounge.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "saga",
+      "name": "Saga",
+      "category": "entertainment",
+      "description": "Multi-deck entertainment venue themed to Black Panther.",
+      "ip": "Black Panther / Marvel",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Destiny",
+          "name": "Saga",
+          "decks": [
+            4,
+            5
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Wakanda-inspired entertainment space.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "pride-lands",
+      "name": "Pride Lands: Feast of the Lion King",
+      "category": "restaurant",
+      "description": "Lion King-themed dining.",
+      "ip": "The Lion King",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Destiny",
+          "name": "Pride Lands: Feast of the Lion King",
+          "decks": [
+            5
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Celebrate the Circle of Life through cuisine.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "cask-and-cannon",
+      "name": "Cask and Cannon",
+      "category": "bar-lounge",
+      "description": "Pirates of the Caribbean-themed bar.",
+      "ip": "Pirates of the Caribbean",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Destiny",
+          "name": "Cask and Cannon",
+          "decks": [
+            5
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Pirate-themed rum bar and lounge.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "edna-a-la-mode-sweets",
+      "name": "Edna À La Mode Sweets",
+      "category": "quick-service",
+      "description": "Incredibles-themed treats.",
+      "ip": "The Incredibles",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Destiny",
+          "name": "Edna À La Mode Sweets",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Sweet treats designed by the one and only Edna.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "imagination-garden-stage",
+      "name": "Imagination Garden Stage",
+      "category": "entertainment",
+      "description": "Outdoor entertainment stage.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Adventure",
+          "name": "Imagination Garden Stage",
+          "decks": [
+            11
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Open-air stage for shows and performances.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "royal-society-tea",
+      "name": "Royal Society for Friendship & Tea",
+      "category": "restaurant",
+      "description": "Disney Princess tea party dining.",
+      "ip": "Disney Princess",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Adventure",
+          "name": "Royal Society for Friendship & Tea",
+          "decks": [
+            6
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Elegant tea service with Disney Princesses.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "enchanted-summer",
+      "name": "Enchanted Summer",
+      "category": "restaurant",
+      "description": "Seasonal dining experience.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Adventure",
+          "name": "Enchanted Summer",
+          "decks": [
+            6
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Fresh and seasonal dining in an enchanted setting.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "maximus-dining-hall",
+      "name": "Maximus Dining Hall",
+      "category": "restaurant",
+      "description": "Tangled-themed dining hall.",
+      "ip": "Tangled",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Adventure",
+          "name": "Maximus Dining Hall",
+          "decks": [
+            6
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Hearty dining in a Snuggly Duckling-style hall.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "olaf-dining-hall",
+      "name": "Olaf Dining Hall",
+      "category": "restaurant",
+      "description": "Frozen-themed casual dining.",
+      "ip": "Frozen",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Adventure",
+          "name": "Olaf Dining Hall",
+          "decks": [
+            6
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Warm hugs and cozy dining with Olaf theming.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "spellbound",
+      "name": "Spellbound",
+      "category": "bar-lounge",
+      "description": "Snow White-themed cocktail lounge.",
+      "ip": "Snow White",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Adventure",
+          "name": "Spellbound",
+          "decks": [
+            6
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Enchanting cocktails in a fairy tale setting.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "san-fransokyo-cinema",
+      "name": "San Fransokyo Cinema",
+      "category": "theatre",
+      "description": "Big Hero 6-themed cinema.",
+      "ip": "Big Hero 6",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Adventure",
+          "name": "San Fransokyo Cinema",
+          "decks": [
+            7
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Movies in a San Fransokyo setting.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "san-fransokyo-market",
+      "name": "San Fransokyo Market",
+      "category": "shop",
+      "description": "Big Hero 6-themed shopping.",
+      "ip": "Big Hero 6",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Adventure",
+          "name": "San Fransokyo Market",
+          "decks": [
+            7
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Tech-inspired merchandise and souvenirs.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "wayfinder-bay-pool",
+      "name": "Wayfinder Bay Pool",
+      "category": "pool",
+      "description": "Moana-themed pool area.",
+      "ip": "Moana",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Adventure",
+          "name": "Wayfinder Bay Pool",
+          "decks": [
+            10,
+            11
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Tropical pool inspired by Moana's ocean.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "voyager-bar",
+      "name": "Voyager Bar",
+      "category": "bar-lounge",
+      "description": "Moana-themed poolside bar.",
+      "ip": "Moana",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Adventure",
+          "name": "Voyager Bar",
+          "decks": [
+            10
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Tropical cocktails by the Wayfinder Bay pool.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "gramma-talas-kitchen",
+      "name": "Gramma Tala's Kitchen",
+      "category": "restaurant",
+      "description": "Moana-themed dining.",
+      "ip": "Moana",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Adventure",
+          "name": "Gramma Tala's Kitchen",
+          "decks": [
+            10
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Island-inspired cuisine in a cozy setting.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "pixar-market",
+      "name": "Pixar Market",
+      "category": "restaurant",
+      "description": "Pixar-themed food court.",
+      "ip": "Pixar",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Adventure",
+          "name": "Pixar Market",
+          "decks": [
+            17
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Diverse dining options with Pixar theming.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "ironcycle-test-run",
+      "name": "Ironcycle Test Run",
+      "category": "attraction",
+      "description": "Marvel-themed roller coaster.",
+      "ip": "Marvel",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Adventure",
+          "name": "Ironcycle Test Run",
+          "decks": [
+            19
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "High-speed coaster on the top deck.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "pym-quantum-racers",
+      "name": "Pym Quantum Racers",
+      "category": "attraction",
+      "description": "Ant-Man themed ride.",
+      "ip": "Marvel",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Adventure",
+          "name": "Pym Quantum Racers",
+          "decks": [
+            18
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Shrinking and growing racing adventure.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "groot-galaxy-spin",
+      "name": "Groot Galaxy Spin",
+      "category": "attraction",
+      "description": "Guardians of the Galaxy spinning ride.",
+      "ip": "Marvel",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Adventure",
+          "name": "Groot Galaxy Spin",
+          "decks": [
+            19
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Spinning ride with Groot and friends.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "marvel-infinity-pool",
+      "name": "Marvel Infinity Pool",
+      "category": "pool",
+      "description": "Marvel-themed pool on the top deck.",
+      "ip": "Marvel",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Adventure",
+          "name": "Marvel Infinity Pool",
+          "decks": [
+            18
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Infinity pool with Marvel theming.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "animators-table",
+      "name": "Animator's Table",
+      "category": "restaurant",
+      "description": "Character dining experience.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Adventure",
+          "name": "Animator's Table",
+          "decks": [
+            9
+          ],
+          "position": [
+            "aft"
+          ],
+          "description": "Interactive character dining.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "mowglis-eatery",
+      "name": "Mowgli's Eatery",
+      "category": "restaurant",
+      "description": "Jungle Book-themed dining.",
+      "ip": "The Jungle Book",
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Adventure",
+          "name": "Mowgli's Eatery",
+          "decks": [
+            10
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "Jungle-inspired cuisine and ambiance.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "world-of-disney",
+      "name": "World of Disney",
+      "category": "shop",
+      "description": "Flagship Disney retail store.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Adventure",
+          "name": "World of Disney",
+          "decks": [
+            5
+          ],
+          "position": [
+            "mid"
+          ],
+          "description": "The largest Disney shop at sea.",
+          "current": true
+        }
+      ]
+    },
+    {
+      "id": "opulence-spa",
+      "name": "Opulence Spa",
+      "category": "spa",
+      "description": "Premium spa experience by Elemis.",
+      "ip": null,
+      "parentId": null,
+      "shipInstances": [
+        {
+          "ship": "Disney Adventure",
+          "name": "Opulence Spa",
+          "decks": [
+            18
+          ],
+          "position": [
+            "fwd"
+          ],
+          "description": "Luxury spa treatments and relaxation.",
+          "current": true
+        }
+      ]
+    }
+  ]
+}

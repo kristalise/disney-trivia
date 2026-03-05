@@ -1,0 +1,1985 @@
+{
+  "categories": [
+    {
+      "id": "character-experiences",
+      "label": "Character Experiences",
+      "emoji": "🤝",
+      "color": "pink"
+    },
+    {
+      "id": "live-shows",
+      "label": "Live Shows",
+      "emoji": "🎭",
+      "color": "indigo"
+    },
+    {
+      "id": "deck-parties",
+      "label": "Deck Parties",
+      "emoji": "🎉",
+      "color": "amber"
+    },
+    {
+      "id": "nightclub-lounges",
+      "label": "Nightclub & Lounge Entertainment",
+      "emoji": "🍹",
+      "color": "violet"
+    }
+  ],
+  "ips": [
+    "101 Dalmatians",
+    "Aladdin",
+    "Aristocats",
+    "Beauty and the Beast",
+    "Big Hero 6",
+    "Bluey",
+    "Cars",
+    "Cinderella",
+    "Disney",
+    "Disney Classic",
+    "Disney Cruise Line",
+    "Disney Princess",
+    "Disney Villains",
+    "Doctor Strange",
+    "Duffy & Friends",
+    "Frozen",
+    "Hercules",
+    "Jungle Cruise",
+    "Marvel",
+    "Mickey & Friends",
+    "Moana",
+    "Pirates of the Caribbean",
+    "Pixar",
+    "Star Wars",
+    "Tangled",
+    "The Lion King",
+    "The Little Mermaid",
+    "Toy Story"
+  ],
+  "experiences": [
+    {
+      "id": "adventure-tea-with-royalty",
+      "name": "Adventure Tea with Royalty",
+      "types": [
+        "character-experiences",
+        "dining"
+      ],
+      "ships": [
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": "Disney Classic",
+      "description": "An enchanting tea party experience where guests enjoy tea, treats, and royal encounters with Disney princesses in an elegant setting.",
+      "deckByShip": {
+        "Disney Treasure": {
+          "deck": "12",
+          "section": "Aft"
+        },
+        "Disney Destiny": {
+          "deck": "12",
+          "section": "Aft"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "animators-palate-show",
+      "name": "Animator's Palate",
+      "types": [
+        "character-experiences",
+        "live-shows",
+        "dining"
+      ],
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Adventure"
+      ],
+      "ip": "Disney Classic",
+      "description": "Rotational dining restaurant featuring interactive animation entertainment where the black-and-white room transforms into full color as you dine, with character appearances.",
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "4",
+          "section": "Aft"
+        },
+        "Disney Wonder": {
+          "deck": "4",
+          "section": "Aft"
+        },
+        "Disney Dream": {
+          "deck": "3",
+          "section": "Aft"
+        },
+        "Disney Fantasy": {
+          "deck": "3",
+          "section": "Aft"
+        },
+        "Disney Adventure": {
+          "deck": "3",
+          "section": "Aft"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "animators-table-show",
+      "name": "Animator's Table",
+      "types": [
+        "character-experiences",
+        "live-shows",
+        "dining"
+      ],
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": "Disney Classic",
+      "description": "Disney Adventure's signature dining experience with live entertainment and character interactions in an immersive animation-themed setting.",
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "3",
+          "section": "Aft"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "arendelle-show",
+      "name": "Arendelle: A Frozen Dining Adventure",
+      "types": [
+        "character-experiences",
+        "live-shows",
+        "dining"
+      ],
+      "ships": [
+        "Disney Wish"
+      ],
+      "ip": "Frozen",
+      "description": "Immersive Frozen-themed rotational dining with live performances by Elsa, Anna, Kristoff, and Olaf while you enjoy a Nordic-inspired feast in an Arendelle ballroom.",
+      "deckByShip": {
+        "Disney Wish": {
+          "deck": "3",
+          "section": "Aft"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "avengers-assemble",
+      "name": "Avengers Assemble!",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": "Marvel",
+      "description": "A spectacular Marvel-themed live action show featuring the Avengers in an epic battle experience aboard the Disney Adventure.",
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "3",
+          "section": "Forward"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "azure-entertainment",
+      "name": "Azure",
+      "types": [
+        "nightclub-lounges"
+      ],
+      "ships": [
+        "Disney Wonder"
+      ],
+      "ip": "Disney Cruise Line",
+      "description": "Live entertainment venue on the Disney Wonder featuring contemporary music, dancing, and special events in a vibrant atmosphere.",
+      "deckByShip": {
+        "Disney Wonder": {
+          "deck": "4",
+          "section": "Forward"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "baymax-super-exercise-expo",
+      "name": "Baymax Super Exercise Expo",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": "Big Hero 6",
+      "description": "An interactive fitness experience led by Baymax where guests join in fun exercises and health-themed activities.",
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "beauty-and-the-beast-show",
+      "name": "Beauty and the Beast",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Dream",
+        "Disney Treasure"
+      ],
+      "ip": "Beauty and the Beast",
+      "description": "A full-scale Broadway-style musical production of the beloved tale as old as time, performed in the Walt Disney Theatre.",
+      "deckByShip": {
+        "Disney Dream": {
+          "deck": "3",
+          "section": "Forward"
+        },
+        "Disney Treasure": {
+          "deck": "3",
+          "section": "Forward"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "cadillac-lounge-entertainment",
+      "name": "Cadillac Lounge",
+      "types": [
+        "nightclub-lounges"
+      ],
+      "ships": [
+        "Disney Wonder"
+      ],
+      "ip": "Cars",
+      "description": "A sophisticated lounge on the Disney Wonder with live music performances, cocktails, and a classic Americana atmosphere.",
+      "deckByShip": {
+        "Disney Wonder": {
+          "deck": "4",
+          "section": "Forward"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "cask-cannon-entertainment",
+      "name": "Cask & Cannon",
+      "types": [
+        "nightclub-lounges"
+      ],
+      "ships": [
+        "Disney Destiny"
+      ],
+      "ip": "Disney Cruise Line",
+      "description": "A maritime-themed lounge on the Disney Destiny with live entertainment, craft cocktails, and a warm nautical atmosphere.",
+      "deckByShip": {
+        "Disney Destiny": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "character-greetings",
+      "name": "Character Greetings",
+      "types": [
+        "character-experiences",
+        "deck-parties",
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure"
+      ],
+      "ip": "Mickey & Friends",
+      "description": "Meet beloved Disney, Pixar, Marvel, and Star Wars characters throughout the ship at scheduled meet-and-greet locations for photos and autographs.",
+      "deckByShip": null,
+      "status": "current"
+    },
+    {
+      "id": "d-lounge-entertainment",
+      "name": "D Lounge",
+      "types": [
+        "nightclub-lounges"
+      ],
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Adventure"
+      ],
+      "ip": "Disney Cruise Line",
+      "description": "Family-friendly entertainment lounge hosting game shows, trivia, karaoke, family activities, and live performances throughout the day and evening.",
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "4",
+          "section": "Midship"
+        },
+        "Disney Wonder": {
+          "deck": "4",
+          "section": "Midship"
+        },
+        "Disney Dream": {
+          "deck": "4",
+          "section": "Midship"
+        },
+        "Disney Fantasy": {
+          "deck": "4",
+          "section": "Midship"
+        },
+        "Disney Adventure": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "de-vils-entertainment",
+      "name": "De Vil's",
+      "types": [
+        "nightclub-lounges"
+      ],
+      "ships": [
+        "Disney Destiny"
+      ],
+      "ip": "101 Dalmatians",
+      "description": "A glamorous Cruella de Vil-inspired lounge with live entertainment, signature cocktails, and daring black-and-white decor on the Disney Destiny.",
+      "deckByShip": {
+        "Disney Destiny": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "disney-dreams-enchanted-classic",
+      "name": "Disney Dreams – An Enchanted Classic",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder"
+      ],
+      "ip": "Disney Classic",
+      "description": "A heartwarming stage spectacular featuring Peter Pan guiding a young girl through classic Disney stories including The Little Mermaid, Aladdin, The Lion King, and more.",
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "4",
+          "section": "Forward"
+        },
+        "Disney Wonder": {
+          "deck": "4",
+          "section": "Forward"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "disney-hercules",
+      "name": "Disney Hercules",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Destiny"
+      ],
+      "ip": "Hercules",
+      "description": "A brand-new Broadway-style musical production based on the beloved Disney film Hercules, debuting on the Disney Destiny.",
+      "deckByShip": {
+        "Disney Destiny": {
+          "deck": "3",
+          "section": "Forward"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "disney-seas-the-adventure",
+      "name": "Disney Seas the Adventure",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Adventure",
+        "Disney Destiny"
+      ],
+      "ip": "Disney Classic",
+      "description": "A spectacular stage show featuring Captain Minnie Mouse leading guests on a magical adventure through beloved Disney stories with dazzling effects.",
+      "deckByShip": {
+        "Disney Wish": {
+          "deck": "3",
+          "section": "Forward"
+        },
+        "Disney Treasure": {
+          "deck": "3",
+          "section": "Forward"
+        },
+        "Disney Adventure": {
+          "deck": "3",
+          "section": "Forward"
+        },
+        "Disney Destiny": {
+          "deck": "3",
+          "section": "Forward"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "disney-tale-of-moana",
+      "name": "Disney The Tale of Moana",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Treasure"
+      ],
+      "ip": "Moana",
+      "description": "An original Broadway-style musical production telling Moana's story of wayfinding and adventure, exclusive to the Disney Treasure.",
+      "deckByShip": {
+        "Disney Treasure": {
+          "deck": "3",
+          "section": "Forward"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "disneys-aladdin-musical",
+      "name": "Disney's Aladdin – A Musical Spectacular",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Fantasy",
+        "Disney Wish"
+      ],
+      "ip": "Aladdin",
+      "description": "A dazzling Broadway-caliber production of the classic Aladdin story featuring the Genie, magic carpet ride, and iconic songs.",
+      "deckByShip": {
+        "Disney Fantasy": {
+          "deck": "3",
+          "section": "Forward"
+        },
+        "Disney Wish": {
+          "deck": "3",
+          "section": "Forward"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "disneys-believe",
+      "name": "Disney's Believe",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ip": "Disney Classic",
+      "description": "A heartwarming stage show about a father who rediscovers the magic of believing through encounters with beloved Disney characters.",
+      "deckByShip": {
+        "Disney Dream": {
+          "deck": "3",
+          "section": "Forward"
+        },
+        "Disney Fantasy": {
+          "deck": "3",
+          "section": "Forward"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "disneys-oceaneer-club",
+      "name": "Disney's Oceaneer Club",
+      "types": [
+        "character-experiences"
+      ],
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Adventure",
+        "Disney Destiny"
+      ],
+      "ip": "Disney Classic",
+      "description": "An immersive supervised kids' club for ages 3–12 with themed activity rooms, character visits, games, arts and crafts, and interactive adventures.",
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "5",
+          "section": "Midship"
+        },
+        "Disney Wonder": {
+          "deck": "5",
+          "section": "Midship"
+        },
+        "Disney Dream": {
+          "deck": "5",
+          "section": "Midship"
+        },
+        "Disney Fantasy": {
+          "deck": "5",
+          "section": "Midship"
+        },
+        "Disney Wish": {
+          "deck": "5",
+          "section": "Midship"
+        },
+        "Disney Treasure": {
+          "deck": "5",
+          "section": "Midship"
+        },
+        "Disney Adventure": {
+          "deck": "5",
+          "section": "Midship"
+        },
+        "Disney Destiny": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "disneys-oceaneer-lab",
+      "name": "Disney's Oceaneer Lab",
+      "types": [
+        "character-experiences"
+      ],
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ip": "Disney Classic",
+      "description": "A hands-on activity space for kids featuring science experiments, creative projects, and interactive experiences with Disney character appearances.",
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "5",
+          "section": "Midship"
+        },
+        "Disney Wonder": {
+          "deck": "5",
+          "section": "Midship"
+        },
+        "Disney Dream": {
+          "deck": "5",
+          "section": "Midship"
+        },
+        "Disney Fantasy": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "district-lounge-entertainment",
+      "name": "District Lounge",
+      "types": [
+        "nightclub-lounges"
+      ],
+      "ships": [
+        "Disney Dream"
+      ],
+      "ip": "Disney Cruise Line",
+      "description": "A sophisticated lounge in the Dream's nightlife district with live music, craft cocktails, and an intimate atmosphere.",
+      "deckByShip": {
+        "Disney Dream": {
+          "deck": "4",
+          "section": "Midship"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "duffy-friend-ship",
+      "name": "Duffy and The Friend Ship",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": "Duffy & Friends",
+      "description": "A charming live show aboard the Disney Adventure featuring Duffy the Disney Bear and friends in a heartwarming friendship-themed performance.",
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "3",
+          "section": "Forward"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "evolution-entertainment",
+      "name": "Evolution",
+      "types": [
+        "nightclub-lounges"
+      ],
+      "ships": [
+        "Disney Dream"
+      ],
+      "ip": "Disney Cruise Line",
+      "description": "A modern nightclub and dance venue on the Disney Dream with live DJ sets, themed dance parties, and a sleek atmosphere.",
+      "deckByShip": {
+        "Disney Dream": {
+          "deck": "4",
+          "section": "Midship"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "fathoms-entertainment",
+      "name": "Fathoms",
+      "types": [
+        "nightclub-lounges"
+      ],
+      "ships": [
+        "Disney Magic"
+      ],
+      "ip": "Disney Cruise Line",
+      "description": "Nightclub and entertainment venue on the Disney Magic hosting live comedy shows, dance parties, and themed events.",
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "4",
+          "section": "Forward"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "frozen-deck-party",
+      "name": "Frozen Deck Party",
+      "types": [
+        "character-experiences",
+        "deck-parties"
+      ],
+      "ships": [
+        "Disney Wonder"
+      ],
+      "ip": "Frozen",
+      "description": "A magical open-air celebration on the pool deck featuring Elsa, Anna, Olaf, and other Frozen characters with snow effects, music, and dancing.",
+      "deckByShip": {
+        "Disney Wonder": {
+          "deck": "9",
+          "section": "Pool Deck"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "frozen-musical-spectacular",
+      "name": "Frozen, A Musical Spectacular",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Wonder",
+        "Disney Fantasy",
+        "Disney Destiny"
+      ],
+      "ip": "Frozen",
+      "description": "A spectacular Broadway-style adaptation of Frozen featuring stunning costumes, puppetry, special effects, and all the beloved songs.",
+      "deckByShip": {
+        "Disney Wonder": {
+          "deck": "4",
+          "section": "Forward"
+        },
+        "Disney Fantasy": {
+          "deck": "3",
+          "section": "Forward"
+        },
+        "Disney Destiny": {
+          "deck": "3",
+          "section": "Forward"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "garden-stage",
+      "name": "Garden Stage",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": "Disney Cruise Line",
+      "description": "An outdoor entertainment stage aboard the Disney Adventure hosting a variety of live performances, music acts, and special events.",
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "11",
+          "section": "Pool Deck"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "halloween-on-the-high-seas",
+      "name": "Halloween on the High Seas",
+      "types": [
+        "character-experiences",
+        "deck-parties"
+      ],
+      "ships": [
+        "Disney Magic",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": "Disney Villains",
+      "description": "Seasonal Halloween celebration with costume contests, trick-or-treating, a villains-themed deck party, spooky décor, and special character meet-and-greets on select fall sailings.",
+      "deckByShip": null,
+      "status": "current"
+    },
+    {
+      "id": "its-a-cruise-holiday",
+      "name": "It's a Cruise Holiday – Off We Go!",
+      "types": [
+        "character-experiences",
+        "deck-parties"
+      ],
+      "ships": [
+        "Disney Wonder"
+      ],
+      "ip": "Mickey & Friends",
+      "description": "A festive holiday-themed deck party celebration aboard the Disney Wonder featuring Mickey and friends in holiday attire with special seasonal entertainment.",
+      "deckByShip": {
+        "Disney Wonder": {
+          "deck": "9",
+          "section": "Pool Deck"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "keys-entertainment",
+      "name": "Keys",
+      "types": [
+        "nightclub-lounges"
+      ],
+      "ships": [
+        "Disney Magic"
+      ],
+      "ip": "Disney Cruise Line",
+      "description": "An elegant adults-only piano bar on the Disney Magic with live music, cocktails, and a sophisticated atmosphere.",
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "4",
+          "section": "Forward"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "lets-set-sail",
+      "name": "Let's Set Sail",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": "Disney Cruise Line",
+      "description": "An exciting embarkation show aboard the Disney Adventure welcoming guests aboard with music, dancing, and Disney character appearances.",
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "3",
+          "section": "Forward"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "luna-entertainment",
+      "name": "Luna",
+      "types": [
+        "nightclub-lounges"
+      ],
+      "ships": [
+        "Disney Wish"
+      ],
+      "ip": "Disney Cruise Line",
+      "description": "A sophisticated lounge on the Disney Wish with live entertainment, signature cocktails, and a magical evening ambiance.",
+      "deckByShip": {
+        "Disney Wish": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "marvel-day-at-sea",
+      "name": "Marvel Day at Sea",
+      "types": [
+        "character-experiences",
+        "deck-parties"
+      ],
+      "ships": [
+        "Disney Magic"
+      ],
+      "ip": "Marvel",
+      "description": "A full-day Marvel-themed celebration with superhero meet-and-greets, stunt shows, themed entertainment, exclusive merchandise, and an epic deck party on select sailings.",
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "9",
+          "section": "Pool Deck"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "mickeys-color-spin-dance-party",
+      "name": "Mickey's Color Spin Dance Party",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Treasure",
+        "Disney Adventure"
+      ],
+      "ip": "Mickey & Friends",
+      "description": "A high-energy dance party featuring Mickey and friends with vibrant colors, music, and interactive fun for the whole family.",
+      "deckByShip": {
+        "Disney Dream": {
+          "deck": "11",
+          "section": "Pool Deck"
+        },
+        "Disney Fantasy": {
+          "deck": "11",
+          "section": "Pool Deck"
+        },
+        "Disney Treasure": {
+          "deck": "11",
+          "section": "Pool Deck"
+        },
+        "Disney Adventure": {
+          "deck": "11",
+          "section": "Pool Deck"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "mickeys-sail-a-wave-party",
+      "name": "Mickey's Sail-A-Wave Party!... A Bon Voyage Celebration",
+      "types": [
+        "character-experiences",
+        "deck-parties"
+      ],
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder"
+      ],
+      "ip": "Mickey & Friends",
+      "description": "The iconic sailaway deck party as your ship departs port, featuring Mickey and the gang leading music, dancing, and a festive bon voyage celebration.",
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "9",
+          "section": "Pool Deck"
+        },
+        "Disney Wonder": {
+          "deck": "9",
+          "section": "Pool Deck"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "moana-call-of-the-sea",
+      "name": "Moana: Call of the Sea",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": "Moana",
+      "description": "A stunning live performance aboard the Disney Adventure bringing Moana's ocean voyage to life with music, choreography, and spectacular effects.",
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "3",
+          "section": "Forward"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "new-years-eve-celebration",
+      "name": "New Year's Eve",
+      "types": [
+        "character-experiences",
+        "deck-parties"
+      ],
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ip": "Disney Cruise Line",
+      "description": "A spectacular New Year's Eve celebration at sea with a special deck party, midnight countdown, fireworks, character appearances, and festive entertainment.",
+      "deckByShip": null,
+      "status": "current"
+    },
+    {
+      "id": "nightingales-entertainment",
+      "name": "Nightingale's",
+      "types": [
+        "nightclub-lounges"
+      ],
+      "ships": [
+        "Disney Wish"
+      ],
+      "ip": "Disney Classic",
+      "description": "An enchanting speakeasy-style lounge on the Disney Wish featuring live music, premium cocktails, and an elegant atmosphere.",
+      "deckByShip": {
+        "Disney Wish": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "olafs-royal-picnic-show",
+      "name": "Olaf's Royal Picnic",
+      "types": [
+        "character-experiences",
+        "dining"
+      ],
+      "ships": [
+        "Disney Wish"
+      ],
+      "ip": "Frozen",
+      "description": "A delightful character dining experience hosted by Olaf where families enjoy a whimsical picnic with appearances by Frozen royalty.",
+      "deckByShip": {
+        "Disney Wish": {
+          "deck": "12",
+          "section": "Aft"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "pirate-night",
+      "name": "Pirate Night",
+      "types": [
+        "character-experiences",
+        "deck-parties"
+      ],
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": "Pirates of the Caribbean",
+      "description": "A swashbuckling evening celebration with pirate-themed dining, a spectacular fireworks show at sea, Captain Jack Sparrow meet-and-greets, and a lively deck party.",
+      "deckByShip": null,
+      "status": "current"
+    },
+    {
+      "id": "pixar-day-at-sea",
+      "name": "Pixar Day at Sea",
+      "types": [
+        "character-experiences",
+        "deck-parties"
+      ],
+      "ships": [
+        "Disney Fantasy"
+      ],
+      "ip": "Pixar",
+      "description": "A full day of Pixar fun with rare character meet-and-greets, themed activities, Pixar movie screenings, and a colorful deck party on select sailings.",
+      "deckByShip": {
+        "Disney Fantasy": {
+          "deck": "11",
+          "section": "Pool Deck"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "private-karaoke-rooms",
+      "name": "Private Karaoke Rooms",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": "Disney Cruise Line",
+      "description": "Private karaoke suites aboard the Disney Adventure where groups can sing their hearts out to Disney classics and popular hits.",
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "remember",
+      "name": "Remember",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": "Disney Classic",
+      "description": "An original live stage production aboard the Disney Adventure celebrating cherished Disney memories through music, storytelling, and stunning theatrical effects.",
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "3",
+          "section": "Forward"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "royal-court-royal-tea-show",
+      "name": "Royal Court Royal Tea",
+      "types": [
+        "character-experiences",
+        "dining"
+      ],
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ip": "Disney Classic",
+      "description": "A premium character tea party experience with Disney princesses, featuring elegant refreshments, gifts, and royal interactions for guests of all ages.",
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "10",
+          "section": "Aft"
+        },
+        "Disney Wonder": {
+          "deck": "10",
+          "section": "Aft"
+        },
+        "Disney Dream": {
+          "deck": "12",
+          "section": "Aft"
+        },
+        "Disney Fantasy": {
+          "deck": "12",
+          "section": "Aft"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "royal-society-friendship-tea-show",
+      "name": "Royal Society for Friendship and Tea",
+      "types": [
+        "character-experiences",
+        "dining"
+      ],
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": "Disney Classic",
+      "description": "A charming tea party aboard the Disney Adventure where guests enjoy an enchanting afternoon with Disney characters, treats, and keepsakes.",
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "12",
+          "section": "Aft"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "saga-entertainment",
+      "name": "Saga",
+      "types": [
+        "nightclub-lounges"
+      ],
+      "ships": [
+        "Disney Destiny"
+      ],
+      "ip": "Disney Cruise Line",
+      "description": "A live entertainment lounge on the Disney Destiny with themed shows, music performances, and signature cocktails.",
+      "deckByShip": {
+        "Disney Destiny": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "sailing-away-deck-party",
+      "name": "Sailing Away Deck Party",
+      "types": [
+        "character-experiences",
+        "deck-parties"
+      ],
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ip": "Mickey & Friends",
+      "description": "A festive sailaway celebration on the pool deck as the ship departs, featuring Disney characters, live music, and dancing to kick off the cruise.",
+      "deckByShip": {
+        "Disney Dream": {
+          "deck": "11",
+          "section": "Pool Deck"
+        },
+        "Disney Fantasy": {
+          "deck": "11",
+          "section": "Pool Deck"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "sarabi-entertainment",
+      "name": "Sarabi",
+      "types": [
+        "nightclub-lounges"
+      ],
+      "ships": [
+        "Disney Treasure"
+      ],
+      "ip": "The Lion King",
+      "description": "A Lion King-inspired lounge on the Disney Treasure named after Simba's mother, featuring African-inspired cocktails and live entertainment.",
+      "deckByShip": {
+        "Disney Treasure": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "scat-cat-lounge-entertainment",
+      "name": "Scat Cat Lounge",
+      "types": [
+        "nightclub-lounges"
+      ],
+      "ships": [
+        "Disney Treasure"
+      ],
+      "ip": "Aristocats",
+      "description": "An Aristocats-inspired jazz lounge with live music performances, craft cocktails, and a New Orleans jazz club atmosphere.",
+      "deckByShip": {
+        "Disney Treasure": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "set-sail-bluey-bingo",
+      "name": "Set Sail with Bluey and Bingo",
+      "types": [
+        "character-experiences",
+        "deck-parties"
+      ],
+      "ships": [
+        "Disney Dream",
+        "Disney Wish"
+      ],
+      "ip": "Bluey",
+      "description": "A fun-filled deck party featuring Bluey and Bingo with games, dancing, and interactive activities on select sailings from Florida.",
+      "deckByShip": {
+        "Disney Dream": {
+          "deck": "11",
+          "section": "Pool Deck"
+        },
+        "Disney Wish": {
+          "deck": "11",
+          "section": "Pool Deck"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "skipper-society-entertainment",
+      "name": "Skipper Society",
+      "types": [
+        "nightclub-lounges"
+      ],
+      "ships": [
+        "Disney Treasure"
+      ],
+      "ip": "Jungle Cruise",
+      "description": "A Jungle Cruise-inspired lounge with explorer-themed decor, live entertainment, craft cocktails, and the Skippers' signature witty humor.",
+      "deckByShip": {
+        "Disney Treasure": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "soul-cat-lounge-entertainment",
+      "name": "Soul Cat Lounge",
+      "types": [
+        "nightclub-lounges"
+      ],
+      "ships": [
+        "Disney Magic"
+      ],
+      "ip": "Disney Cruise Line",
+      "description": "A live entertainment lounge on the Disney Magic featuring soul, R&B, and jazz performances in a hip, intimate setting.",
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "4",
+          "section": "Forward"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "hyperspace-lounge-entertainment",
+      "name": "Star Wars: Hyperspace Lounge",
+      "types": [
+        "nightclub-lounges"
+      ],
+      "ships": [
+        "Disney Wish"
+      ],
+      "ip": "Star Wars",
+      "description": "An immersive Star Wars-themed lounge set aboard a luxurious starcruiser, featuring galaxy-inspired cocktails and a viewport showing hyperspace jumps to iconic Star Wars planets.",
+      "deckByShip": {
+        "Disney Wish": {
+          "deck": "5",
+          "section": "Midship"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "tangled-the-musical",
+      "name": "Tangled: The Musical",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Magic"
+      ],
+      "ip": "Tangled",
+      "description": "A Broadway-style musical adaptation of Rapunzel's adventure featuring original songs, stunning sets, and the beloved characters.",
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "4",
+          "section": "Forward"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "thanksgiving-at-sea",
+      "name": "Thanksgiving at Sea",
+      "types": [
+        "character-experiences"
+      ],
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish"
+      ],
+      "ip": "Disney Cruise Line",
+      "description": "A special Thanksgiving celebration at sea with a traditional feast, themed activities, character appearances in pilgrim costumes, and seasonal décor.",
+      "deckByShip": null,
+      "status": "current"
+    },
+    {
+      "id": "the-golden-mickeys",
+      "name": "The Golden Mickeys",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Wonder",
+        "Disney Dream"
+      ],
+      "ip": "Mickey & Friends",
+      "description": "An award show-style stage spectacular celebrating the golden moments of Disney films with live performances, music, and stunning special effects.",
+      "deckByShip": {
+        "Disney Wonder": {
+          "deck": "4",
+          "section": "Forward"
+        },
+        "Disney Dream": {
+          "deck": "3",
+          "section": "Forward"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "lion-king-celebration-in-the-sky",
+      "name": "The Lion King: Celebration in the Sky",
+      "types": [
+        "character-experiences",
+        "deck-parties"
+      ],
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": "The Lion King",
+      "description": "A spectacular outdoor celebration bringing The Lion King to life with live performances, character appearances, music, and a dazzling sky show aboard the Disney Adventure.",
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "11",
+          "section": "Pool Deck"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "the-little-mermaid-show",
+      "name": "The Little Mermaid",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Wish"
+      ],
+      "ip": "The Little Mermaid",
+      "description": "A captivating Broadway-style musical production of Ariel's underwater adventure, exclusively aboard the Disney Wish.",
+      "deckByShip": {
+        "Disney Wish": {
+          "deck": "3",
+          "section": "Forward"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "the-sanctum-entertainment",
+      "name": "The Sanctum",
+      "types": [
+        "nightclub-lounges"
+      ],
+      "ships": [
+        "Disney Destiny"
+      ],
+      "ip": "Doctor Strange",
+      "description": "A mysterious, immersive lounge on the Disney Destiny inspired by the Sanctum Sanctorum, with live entertainment and craft cocktails in a dark, atmospheric setting.",
+      "deckByShip": null,
+      "status": "current"
+    },
+    {
+      "id": "twice-charmed",
+      "name": "Twice Charmed: An Original Twist on the Cinderella Story",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Magic"
+      ],
+      "ip": "Cinderella",
+      "description": "An original stage musical that reimagines the Cinderella story with a twist — the Fairy Godmother's wand is stolen, creating a brand-new adventure.",
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "4",
+          "section": "Forward"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "very-merrytime-cruises",
+      "name": "Very Merrytime Cruises",
+      "types": [
+        "character-experiences"
+      ],
+      "ships": [
+        "Disney Magic",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": "Disney Cruise Line",
+      "description": "Seasonal holiday celebration with festive décor, a tree-lighting ceremony, Santa character appearances, holiday-themed entertainment, and a special New Year's Eve party on select winter sailings.",
+      "deckByShip": null,
+      "status": "current"
+    },
+    {
+      "id": "vista-cafe-entertainment",
+      "name": "Vista Café",
+      "types": [
+        "nightclub-lounges"
+      ],
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ip": "Disney Cruise Line",
+      "description": "A casual café and lounge with live entertainment, coffee, cocktails, and a relaxed atmosphere in the nightlife district.",
+      "deckByShip": {
+        "Disney Dream": {
+          "deck": "4",
+          "section": "Midship"
+        },
+        "Disney Fantasy": {
+          "deck": "4",
+          "section": "Midship"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "worlds-of-marvel-show",
+      "name": "Worlds of Marvel",
+      "types": [
+        "character-experiences",
+        "live-shows",
+        "dining"
+      ],
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": "Marvel",
+      "description": "An immersive Marvel cinematic dining adventure where guests join Ant-Man and The Wasp on an interactive mission with special effects transforming the restaurant around you.",
+      "deckByShip": {
+        "Disney Wish": {
+          "deck": "3",
+          "section": "Aft"
+        },
+        "Disney Treasure": {
+          "deck": "3",
+          "section": "Aft"
+        },
+        "Disney Destiny": {
+          "deck": "3",
+          "section": "Aft"
+        }
+      },
+      "status": "current"
+    },
+    {
+      "id": "aladdin-musical",
+      "name": "Disney's Aladdin — A Musical Spectacular",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Fantasy"
+      ],
+      "ip": "Aladdin",
+      "description": "A Broadway-caliber stage adaptation of Aladdin featuring dazzling sets, magic carpet illusions, and iconic songs performed in the Walt Disney Theatre.",
+      "status": "current",
+      "deckByShip": {
+        "Disney Fantasy": {
+          "deck": "3",
+          "section": "Forward"
+        }
+      }
+    },
+    {
+      "id": "moana-one-ocean",
+      "name": "Moana — One Ocean",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Treasure"
+      ],
+      "ip": "Moana",
+      "description": "A spectacular live show celebrating the story of Moana with stunning visuals, music, and choreography in the Walt Disney Theatre.",
+      "status": "current",
+      "deckByShip": {
+        "Disney Treasure": {
+          "deck": "3",
+          "section": "Forward"
+        }
+      }
+    },
+    {
+      "id": "heroes-unite",
+      "name": "Heroes Unite: A Marvel Showcase",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Treasure"
+      ],
+      "ip": "Marvel",
+      "description": "An action-packed live show bringing Marvel Super Heroes to the stage with special effects, stunts, and an original storyline.",
+      "status": "current",
+      "deckByShip": {
+        "Disney Treasure": {
+          "deck": "3",
+          "section": "Forward"
+        }
+      }
+    },
+    {
+      "id": "jack-sparrow-siren-queen",
+      "name": "Jack Sparrow and the Siren Queen",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": "Pirates of the Caribbean",
+      "description": "A swashbuckling live show featuring Captain Jack Sparrow in an original adventure with the mysterious Siren Queen.",
+      "status": "current",
+      "deckByShip": {
+        "Disney Adventure": {
+          "deck": "3",
+          "section": "Forward"
+        }
+      }
+    },
+    {
+      "id": "princess-gathering",
+      "name": "Princess Gathering",
+      "types": [
+        "character-experiences"
+      ],
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": "Disney Princess",
+      "description": "Meet multiple Disney Princesses at a dedicated meet-and-greet location for photos, autographs, and magical moments.",
+      "status": "current",
+      "deckByShip": null
+    },
+    {
+      "id": "marvel-meet-greet",
+      "name": "Marvel Super Heroes Meet & Greet",
+      "types": [
+        "character-experiences"
+      ],
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure"
+      ],
+      "ip": "Marvel",
+      "description": "Meet Marvel Super Heroes like Spider-Man, Captain America, and more for photos and autographs in a Marvel-themed area.",
+      "status": "current",
+      "deckByShip": null
+    },
+    {
+      "id": "sail-a-wave-party",
+      "name": "Mickey's Sail-A-Wave Party",
+      "types": [
+        "deck-parties"
+      ],
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder"
+      ],
+      "ip": "Mickey & Friends",
+      "description": "A lively sail-away deck party featuring Mickey and friends as the ship sets off, with music, dancing, and confetti on the pool deck.",
+      "status": "current",
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "9",
+          "section": "Pool Deck"
+        },
+        "Disney Wonder": {
+          "deck": "9",
+          "section": "Pool Deck"
+        }
+      }
+    },
+    {
+      "id": "movies-under-stars",
+      "name": "Movies Under the Stars",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny",
+        "Disney Adventure"
+      ],
+      "ip": "Disney",
+      "description": "Watch Disney and Pixar films on the big outdoor Funnel Vision screen on the pool deck under the stars, with complimentary popcorn and blankets.",
+      "status": "current",
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "9",
+          "section": "Pool Deck"
+        },
+        "Disney Wonder": {
+          "deck": "9",
+          "section": "Pool Deck"
+        },
+        "Disney Dream": {
+          "deck": "11",
+          "section": "Pool Deck"
+        },
+        "Disney Fantasy": {
+          "deck": "11",
+          "section": "Pool Deck"
+        },
+        "Disney Wish": {
+          "deck": "11",
+          "section": "Pool Deck"
+        },
+        "Disney Treasure": {
+          "deck": "11",
+          "section": "Pool Deck"
+        },
+        "Disney Destiny": {
+          "deck": "11",
+          "section": "Pool Deck"
+        },
+        "Disney Adventure": {
+          "deck": "11",
+          "section": "Pool Deck"
+        }
+      }
+    },
+    {
+      "id": "villains-tonight",
+      "name": "Villains Tonight!",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Dream"
+      ],
+      "ip": "Disney Villains",
+      "description": "A wickedly fun stage show starring Hades and a cast of Disney Villains in the Walt Disney Theatre. Replaced by newer productions.",
+      "status": "historical",
+      "deckByShip": {
+        "Disney Dream": {
+          "deck": "3",
+          "section": "Forward"
+        }
+      }
+    },
+    {
+      "id": "twice-charmed",
+      "name": "Twice Charmed: An Original Twist on the Cinderella Story",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Magic"
+      ],
+      "ip": "Cinderella",
+      "description": "An original stage musical that imagined what would happen if the Fairy Godmother's wand fell into the wrong hands, performed in the Walt Disney Theatre until 2014.",
+      "status": "historical",
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "3",
+          "section": "Forward"
+        }
+      }
+    },
+    {
+      "id": "toy-story-musical",
+      "name": "Toy Story — The Musical",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Wonder"
+      ],
+      "ip": "Toy Story",
+      "description": "A stage musical retelling the story of Woody, Buzz, and the toys with original songs and puppetry, performed in the Walt Disney Theatre.",
+      "status": "historical",
+      "deckByShip": {
+        "Disney Wonder": {
+          "deck": "3",
+          "section": "Forward"
+        }
+      }
+    },
+    {
+      "id": "disney-dreams-classic",
+      "name": "Disney Dreams — An Enchanted Classic",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ip": "Disney Classic",
+      "description": "A beloved bedtime story brought to life with Peter Pan guiding a young girl through classic Disney moments. One of the original DCL signature shows.",
+      "status": "historical",
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "3",
+          "section": "Forward"
+        },
+        "Disney Wonder": {
+          "deck": "3",
+          "section": "Forward"
+        },
+        "Disney Dream": {
+          "deck": "3",
+          "section": "Forward"
+        },
+        "Disney Fantasy": {
+          "deck": "3",
+          "section": "Forward"
+        }
+      }
+    },
+    {
+      "id": "golden-mickeys",
+      "name": "The Golden Mickeys",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder"
+      ],
+      "ip": "Disney Classic",
+      "description": "An award show-themed stage production celebrating the best of Disney music and storytelling, one of the original DCL entertainment offerings.",
+      "status": "historical",
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "3",
+          "section": "Forward"
+        },
+        "Disney Wonder": {
+          "deck": "3",
+          "section": "Forward"
+        }
+      }
+    },
+    {
+      "id": "all-aboard",
+      "name": "All Aboard! Let the Magic Begin",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder"
+      ],
+      "ip": "Disney Classic",
+      "description": "The original DCL variety show featuring Disney characters in a musical celebration, one of the fleet's earliest Walt Disney Theatre productions.",
+      "status": "historical",
+      "deckByShip": {
+        "Disney Magic": {
+          "deck": "3",
+          "section": "Forward"
+        },
+        "Disney Wonder": {
+          "deck": "3",
+          "section": "Forward"
+        }
+      }
+    },
+    {
+      "id": "believe",
+      "name": "Believe",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ip": "Disney Classic",
+      "description": "A stage spectacular about a father rediscovering the magic of Disney through his daughter, featuring Aladdin's Genie as the magical guide.",
+      "status": "historical",
+      "deckByShip": {
+        "Disney Dream": {
+          "deck": "3",
+          "section": "Forward"
+        },
+        "Disney Fantasy": {
+          "deck": "3",
+          "section": "Forward"
+        }
+      }
+    },
+    {
+      "id": "walt-disney-theatre",
+      "name": "Walt Disney Theatre",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny",
+        "Disney Adventure"
+      ],
+      "ip": "Disney Cruise Line",
+      "description": "The main Broadway-style theatre aboard each ship, hosting full-scale musical productions, variety shows, and live entertainment throughout every sailing.",
+      "status": "current",
+      "deckByShip": {
+        "Disney Magic": { "deck": "4", "section": "Forward" },
+        "Disney Wonder": { "deck": "4", "section": "Forward" },
+        "Disney Dream": { "deck": "3", "section": "Forward" },
+        "Disney Fantasy": { "deck": "3", "section": "Forward" },
+        "Disney Wish": { "deck": "3", "section": "Forward" },
+        "Disney Treasure": { "deck": "3", "section": "Forward" },
+        "Disney Destiny": { "deck": "3", "section": "Forward" },
+        "Disney Adventure": { "deck": "3", "section": "Forward" }
+      }
+    },
+    {
+      "id": "buena-vista-theatre",
+      "name": "Buena Vista Theatre",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ip": "Disney Cruise Line",
+      "description": "A full-size cinema showing first-run Disney, Pixar, and Marvel films along with classic favorites throughout your cruise.",
+      "status": "current",
+      "deckByShip": {
+        "Disney Magic": { "deck": "5", "section": "Forward" },
+        "Disney Wonder": { "deck": "5", "section": "Forward" },
+        "Disney Dream": { "deck": "4", "section": "Forward" },
+        "Disney Fantasy": { "deck": "4", "section": "Forward" }
+      }
+    },
+    {
+      "id": "never-land-cinema",
+      "name": "Never Land Cinema",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "ip": "Disney Cruise Line",
+      "description": "An intimate onboard cinema screening the latest Disney, Pixar, and Marvel movies in a cozy, immersive setting.",
+      "status": "current",
+      "deckByShip": {
+        "Disney Wish": { "deck": "5", "section": "Forward" },
+        "Disney Treasure": { "deck": "5", "section": "Forward" },
+        "Disney Destiny": { "deck": "5", "section": "Forward" }
+      }
+    },
+    {
+      "id": "baymax-cinemas",
+      "name": "Baymax Cinemas",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Adventure"
+      ],
+      "ip": "Big Hero 6",
+      "description": "A Big Hero 6-themed cinema complex aboard the Disney Adventure, screening the latest Disney, Pixar, and Marvel films.",
+      "status": "current",
+      "deckByShip": {
+        "Disney Adventure": { "deck": "5", "section": "Forward" }
+      }
+    },
+    {
+      "id": "atrium-lobby",
+      "name": "Atrium Lobby",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "ip": "Disney Cruise Line",
+      "description": "The grand multi-deck lobby at the heart of the ship, hosting live entertainment, character appearances, and special events.",
+      "status": "current",
+      "deckByShip": {
+        "Disney Magic": { "deck": "3", "section": "Midship" },
+        "Disney Wonder": { "deck": "3", "section": "Midship" },
+        "Disney Dream": { "deck": "3", "section": "Midship" },
+        "Disney Fantasy": { "deck": "3", "section": "Midship" }
+      }
+    },
+    {
+      "id": "grand-hall",
+      "name": "Grand Hall",
+      "types": [
+        "live-shows"
+      ],
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny",
+        "Disney Adventure"
+      ],
+      "ip": "Disney Cruise Line",
+      "description": "The stunning grand atrium and central gathering space featuring themed décor, live entertainment, character greetings, and special events.",
+      "status": "current",
+      "deckByShip": {
+        "Disney Wish": { "deck": "3", "section": "Grand Hall" },
+        "Disney Treasure": { "deck": "3", "section": "Grand Hall" },
+        "Disney Destiny": { "deck": "3", "section": "Grand Hall" },
+        "Disney Adventure": { "deck": "3", "section": "Grand Hall" }
+      }
+    }
+  ]
+}

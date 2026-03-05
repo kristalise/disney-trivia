@@ -1,0 +1,371 @@
+{
+  "restaurants": [
+    {
+      "id": "animators-palate",
+      "name": "Animator's Palate",
+      "type": "rotational",
+      "description": "Interactive dining experience where the restaurant transforms from black-and-white to full color throughout the meal, featuring beloved Disney animation.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "venueId": "animators-palate"
+    },
+    {
+      "id": "lumiere",
+      "name": "Lumiere's",
+      "type": "rotational",
+      "description": "Elegant French-inspired rotational dining room named after the charming candelabra from Beauty and the Beast.",
+      "ships": [
+        "Disney Magic"
+      ],
+      "venueId": "lumieres"
+    },
+    {
+      "id": "rapunzels-royal-table",
+      "name": "Rapunzel's Royal Table",
+      "type": "rotational",
+      "description": "Tangled-themed dining with live entertainment featuring Flynn Rider and friends performing musical numbers.",
+      "ships": [
+        "Disney Magic"
+      ],
+      "venueId": "rapunzels-royal-table"
+    },
+    {
+      "id": "tritons",
+      "name": "Triton's",
+      "type": "rotational",
+      "description": "Under-the-sea themed dining inspired by The Little Mermaid with elegant oceanic decor.",
+      "ships": [
+        "Disney Wonder"
+      ],
+      "venueId": "tritons"
+    },
+    {
+      "id": "tiana-place",
+      "name": "Tiana's Place",
+      "type": "rotational",
+      "description": "Princess and the Frog themed restaurant with New Orleans jazz, Cajun-inspired cuisine, and live entertainment.",
+      "ships": [
+        "Disney Wonder"
+      ],
+      "venueId": "tianas-place"
+    },
+    {
+      "id": "royal-palace",
+      "name": "Royal Palace",
+      "type": "rotational",
+      "description": "Regal Cinderella-inspired dining room with classic fairy tale elegance and French-influenced cuisine.",
+      "ships": [
+        "Disney Dream"
+      ],
+      "venueId": "royal-palace"
+    },
+    {
+      "id": "enchanted-garden",
+      "name": "Enchanted Garden",
+      "type": "rotational",
+      "description": "Versailles-inspired garden room that transforms from day to night during dinner with changing lighting and decor.",
+      "ships": [
+        "Disney Dream"
+      ],
+      "venueId": "enchanted-garden"
+    },
+    {
+      "id": "royal-court",
+      "name": "Royal Court",
+      "type": "rotational",
+      "description": "Elegant Princess-themed dining room featuring beautiful artwork and regal atmosphere.",
+      "ships": [
+        "Disney Fantasy"
+      ],
+      "venueId": "royal-court"
+    },
+    {
+      "id": "enchanted-garden-fantasy",
+      "name": "Enchanted Garden",
+      "type": "rotational",
+      "description": "Whimsical garden-themed restaurant that transitions from daytime greenhouse to evening garden party.",
+      "ships": [
+        "Disney Fantasy"
+      ],
+      "venueId": "enchanted-garden"
+    },
+    {
+      "id": "arendelle",
+      "name": "Arendelle: A Frozen Dining Adventure",
+      "type": "rotational",
+      "description": "Immersive Frozen-themed dining with live performances by Elsa, Anna, Kristoff, and Olaf during your meal.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "venueId": "arendelle"
+    },
+    {
+      "id": "worlds-of-marvel",
+      "name": "Worlds of Marvel",
+      "type": "rotational",
+      "description": "Marvel Cinematic Universe themed dining with an interactive Avengers storyline and special effects throughout dinner.",
+      "ships": [
+        "Disney Wish"
+      ],
+      "venueId": "worlds-of-marvel"
+    },
+    {
+      "id": "1923",
+      "name": "1923",
+      "type": "rotational",
+      "description": "Named for the year The Walt Disney Company was founded, celebrating the golden age of Disney animation.",
+      "ships": [
+        "Disney Wish"
+      ],
+      "venueId": "1923"
+    },
+    {
+      "id": "plaza-de-coco",
+      "name": "Plaza de Coco",
+      "type": "rotational",
+      "description": "Vibrant Coco-themed restaurant celebrating the Land of the Dead with Mexican-inspired cuisine and live music.",
+      "ships": [
+        "Disney Treasure"
+      ],
+      "venueId": "plaza-de-coco"
+    },
+    {
+      "id": "jumbeaux-cafe",
+      "name": "Jumbeaux's Sweets Cafe",
+      "type": "rotational",
+      "description": "Zootopia-themed rotational dining inspired by the famous ice cream parlor from the film.",
+      "ships": [
+        "Disney Treasure"
+      ],
+      "venueId": "jumbeaux-sweets"
+    },
+    {
+      "id": "cabanas",
+      "name": "Cabanas",
+      "type": "quick-service",
+      "description": "Casual buffet-style restaurant with a wide variety of breakfast, lunch, and dinner options.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Magic",
+        "Disney Wonder"
+      ],
+      "venueId": "cabanas"
+    },
+    {
+      "id": "marceline-market",
+      "name": "Marceline Market",
+      "type": "quick-service",
+      "description": "Food hall-style marketplace named after Walt Disney's childhood hometown with diverse food stations.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "venueId": "marceline-market"
+    },
+    {
+      "id": "daisy-de-lites",
+      "name": "Daisy's De-Lites",
+      "type": "quick-service",
+      "description": "Poolside quick-service spot with fresh wraps, salads, sandwiches, and fruit.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "venueId": "daisys-de-lites"
+    },
+    {
+      "id": "flo-cafe",
+      "name": "Flo's Cafe",
+      "type": "quick-service",
+      "description": "Cars Land-inspired poolside eatery serving burgers, pizza, chicken strips, and more.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "venueId": "flos-v8-cafe"
+    },
+    {
+      "id": "mickeys-pool-bar",
+      "name": "Mickey's Pool Bar",
+      "type": "quick-service",
+      "description": "Poolside quick service with burgers, hot dogs, chicken tenders, and refreshing beverages.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "venueId": "mickeys-pool"
+    },
+    {
+      "id": "palo",
+      "name": "Palo",
+      "type": "adult",
+      "description": "Upscale Northern Italian restaurant for adults 18+ with stunning ocean views and premium cuisine. Surcharge applies.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "venueId": "palo"
+    },
+    {
+      "id": "palo-steakhouse",
+      "name": "Palo Steakhouse",
+      "type": "adult",
+      "description": "Premium steakhouse for adults 18+ featuring fine cuts, Italian influences, and ocean views. Surcharge applies.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "venueId": "palo"
+    },
+    {
+      "id": "remy",
+      "name": "Remy",
+      "type": "adult",
+      "description": "Ratatouille-inspired premium French restaurant for adults 18+ with multi-course tasting menus. Surcharge applies.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "venueId": "remy"
+    },
+    {
+      "id": "enchanté",
+      "name": "Enchanté",
+      "type": "adult",
+      "description": "Elegant fine dining for adults 18+ by a renowned chef, featuring French-inspired tasting menus. Surcharge applies.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "venueId": "enchante"
+    },
+    {
+      "id": "cove-cafe",
+      "name": "Cove Cafe",
+      "type": "bar",
+      "description": "Adults-only coffee bar and lounge serving specialty coffees, pastries, cocktails, and wines.",
+      "ships": [
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "venueId": "cove-cafe"
+    },
+    {
+      "id": "meridian",
+      "name": "Meridian",
+      "type": "bar",
+      "description": "Sophisticated cocktail lounge with artisan cocktails, premium spirits, and a refined ambiance.",
+      "ships": [
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
+      "venueId": "meridian"
+    },
+    {
+      "id": "star-wars-hyperspace-lounge",
+      "name": "Star Wars: Hyperspace Lounge",
+      "type": "bar",
+      "description": "Immersive Star Wars-themed bar with themed cocktails and a viewport showing hyperspace travel across the galaxy.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "venueId": "star-wars-hyperspace-lounge"
+    },
+    {
+      "id": "nightingales",
+      "name": "Nightingale's",
+      "type": "bar",
+      "description": "Piano bar and lounge inspired by a secret speakeasy, with craft cocktails and live piano music.",
+      "ships": [
+        "Disney Wish",
+        "Disney Treasure",
+        "Disney Destiny"
+      ],
+      "venueId": "nightingales"
+    },
+    {
+      "id": "keys",
+      "name": "Keys",
+      "type": "bar",
+      "description": "Piano bar inspired by a sophisticated jazz club with live piano music and premium cocktails.",
+      "ships": [
+        "Disney Magic"
+      ],
+      "venueId": "keys"
+    },
+    {
+      "id": "cadillac-lounge",
+      "name": "Cadillac Lounge",
+      "type": "bar",
+      "description": "Classic cocktail lounge celebrating the golden age of automobiles with live music.",
+      "ships": [
+        "Disney Wonder"
+      ],
+      "venueId": "cadillac-lounge"
+    },
+    {
+      "id": "perla-de-coco",
+      "name": "Perla de Coco",
+      "type": "bar",
+      "description": "Coco-inspired lounge aboard Disney Treasure with festive cocktails and live entertainment.",
+      "ships": [
+        "Disney Treasure"
+      ],
+      "venueId": null
+    }
+  ],
+  "types": {
+    "rotational": {
+      "label": "Rotational Dining",
+      "emoji": "🍽"
+    },
+    "quick-service": {
+      "label": "Quick Service",
+      "emoji": "🍔"
+    },
+    "adult": {
+      "label": "Adult Exclusive",
+      "emoji": "🥂"
+    },
+    "bar": {
+      "label": "Bar & Lounge",
+      "emoji": "🍹"
+    }
+  },
+  "dietaryRestrictions": [
+    "Nut-Free",
+    "Dairy-Free",
+    "Gluten-Free",
+    "Shellfish-Free",
+    "Egg-Free",
+    "Soy-Free",
+    "Fish-Free",
+    "Vegan",
+    "Vegetarian",
+    "Halal",
+    "Kosher",
+    "Low-Sodium",
+    "Diabetic-Friendly",
+    "Child-Friendly Menu"
+  ]
+}

@@ -111,6 +111,15 @@ body {
   box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
 }
 
+/* Hide scrollbar */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 /* Progress bar */
 .progress-bar {
   background: linear-gradient(90deg, #d4af37 0%, #f5d742 100%);
