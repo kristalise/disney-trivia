@@ -443,12 +443,29 @@ export default function SailingReviewPage() {
         <div className="flex flex-wrap gap-2 text-xs text-slate-500 dark:text-slate-400 mt-1">
           <span>From {sailing.embarkation_port}</span>
           {sailing.ports_of_call && <span>via {sailing.ports_of_call}</span>}
-          {sailing.stateroom_numbers && sailing.stateroom_numbers.length > 0 && (
-            <span>Room{sailing.stateroom_numbers.length > 1 ? 's' : ''} {sailing.stateroom_numbers.join(', ')}</span>
-          )}
           {sailing.num_pax && <span>{sailing.num_pax} pax</span>}
           {sailing.cost_per_pax != null && <span>${Number(sailing.cost_per_pax).toLocaleString()} USD/pax</span>}
         </div>
+        {sailing.stateroom_numbers && sailing.stateroom_numbers.length > 0 && (
+          <div className="space-y-1.5 mt-2">
+            {sailing.stateroom_numbers.map((num) => {
+              const info = lookupStateroomInfo(num, sailing.ship_name);
+              return (
+                <div key={num} className="flex items-center gap-2 flex-wrap text-xs">
+                  <span className="font-semibold text-slate-900 dark:text-white">#{num}</span>
+                  {info && (
+                    <>
+                      <span className="px-2 py-0.5 rounded-full font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400">Deck {info.deck}</span>
+                      <span className="px-2 py-0.5 rounded-full font-medium bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400">{info.typeEmoji} {info.type}</span>
+                      <span className="px-2 py-0.5 rounded-full font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">{info.section}</span>
+                      {info.bedding && <span className="text-slate-500 dark:text-slate-400">🛏 {info.bedding}</span>}
+                    </>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        )}
       </>
     );
   }
@@ -468,7 +485,7 @@ export default function SailingReviewPage() {
 
       {/* Log a New Sailing Form */}
       <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-200 dark:border-slate-700 mb-6">
-        <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Log a New Sailing</h3>
+        <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Add a Sailing</h3>
         {user ? (
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Ship Selector */}
@@ -717,14 +734,6 @@ export default function SailingReviewPage() {
                   })}
                 </div>
               )}
-              {stateroomNumbers.length > 0 && (
-                <p className="text-xs text-slate-400 dark:text-slate-500 mt-2">
-                  Want to review your stateroom?{' '}
-                  <Link href={`/Secret-menU/stateroom`} className="text-disney-blue dark:text-disney-gold underline">
-                    Leave a stateroom review
-                  </Link>
-                </p>
-              )}
             </div>
 
             {/* Passengers */}
@@ -955,7 +964,7 @@ export default function SailingReviewPage() {
 
             <button type="submit" disabled={submitting}
               className="w-full px-6 py-3 rounded-xl font-medium btn-disney disabled:opacity-50 disabled:cursor-not-allowed">
-              {submitting ? 'Saving...' : 'Log Sailing'}
+              {submitting ? 'Saving...' : 'Add Sailing'}
             </button>
           </form>
         ) : (

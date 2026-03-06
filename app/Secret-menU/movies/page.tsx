@@ -2,8 +2,9 @@
 
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useAuth } from '@/components/AuthProvider';
-import { getStudios, getAllMovies, getUpcomingMovies, type Movie, type Studio } from '@/lib/movie-data';
+import { getStudios, getAllMovies, getUpcomingMovies, isUpcoming, getPosterUrl, type Movie, type Studio } from '@/lib/movie-data';
 import { CATEGORY_COLORS } from '@/lib/guide-colors';
 
 interface ChecklistEntry {
@@ -44,8 +45,18 @@ export default function MovieChecklistPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [studioFilter, setStudioFilter] = useState<string | null>(null);
   const [statusFilter, setStatusFilter] = useState<string | null>(null);
-  const [expandedStudios, setExpandedStudios] = useState<Set<string>>(new Set(studios.map(s => s.id)));
-  const [comingSoonExpanded, setComingSoonExpanded] = useState(true);
+  const [expandedStudios, setExpandedStudios] = useState<Set<string>>(new Set());
+  const [comingSoonExpanded, setComingSoonExpanded] = useState(false);
+  const [sortMode, setSortMode] = useState<'year' | 'alpha'>('year');
+  const [communityRatings, setCommunityRatings] = useState<Record<string, { avg: number; count: number }>>({});
+
+  // Fetch community ratings (public, no auth needed)
+  useEffect(() => {
+    fetch('/api/movie-reviews?aggregate=1')
+      .then(res => res.ok ? res.json() : null)
+      .then(data => { if (data?.ratings) setCommunityRatings(data.ratings); })
+      .catch(() => {});
+  }, []);
 
   // Fetch user's checklist
   const fetchChecklist = useCallback(async () => {
@@ -188,13 +199,15 @@ export default function MovieChecklistPage() {
     [matchesSearch, matchesStudio, matchesStatus]
   );
 
-  // All movies by studio (including upcoming), filtered
+  // All movies by studio (including upcoming), filtered and sorted
   const filteredByStudio = useMemo(() =>
     allByStudio.map(g => ({
       ...g,
-      movies: g.movies.filter(m => matchesSearch(m) && matchesStudio(m) && matchesStatus(m)),
+      movies: g.movies
+        .filter(m => matchesSearch(m) && matchesStudio(m) && matchesStatus(m))
+        .sort((a, b) => sortMode === 'alpha' ? a.title.localeCompare(b.title) : b.year - a.year),
     })).filter(g => g.movies.length > 0),
-    [matchesSearch, matchesStudio, matchesStatus]
+    [matchesSearch, matchesStudio, matchesStatus, sortMode]
   );
 
   // Stats
@@ -345,6 +358,48 @@ export default function MovieChecklistPage() {
         </div>
       )}
 
+      {/* Collapse/Expand All + Sort */}
+      <div className="flex items-center justify-between mb-4">
+        <button
+          onClick={() => {
+            const allExpanded = expandedStudios.size === studios.length && comingSoonExpanded;
+            if (allExpanded) {
+              setExpandedStudios(new Set());
+              setComingSoonExpanded(false);
+            } else {
+              setExpandedStudios(new Set(studios.map(s => s.id)));
+              setComingSoonExpanded(true);
+            }
+          }}
+          className="text-xs font-medium text-disney-blue dark:text-disney-gold hover:underline"
+        >
+          {expandedStudios.size === studios.length && comingSoonExpanded ? 'Collapse All' : 'Expand All'}
+        </button>
+        <div className="flex items-center gap-1">
+          <span className="text-xs text-slate-400 dark:text-slate-500 mr-1">Sort:</span>
+          <button
+            onClick={() => setSortMode('year')}
+            className={`px-2.5 py-1 rounded-full text-[11px] font-medium transition-colors ${
+              sortMode === 'year'
+                ? 'bg-disney-navy text-white dark:bg-disney-gold dark:text-disney-navy'
+                : 'bg-slate-100 text-slate-500 dark:bg-slate-700 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-600'
+            }`}
+          >
+            Year
+          </button>
+          <button
+            onClick={() => setSortMode('alpha')}
+            className={`px-2.5 py-1 rounded-full text-[11px] font-medium transition-colors ${
+              sortMode === 'alpha'
+                ? 'bg-disney-navy text-white dark:bg-disney-gold dark:text-disney-navy'
+                : 'bg-slate-100 text-slate-500 dark:bg-slate-700 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-600'
+            }`}
+          >
+            A-Z
+          </button>
+        </div>
+      </div>
+
       {/* Progress card (auth only) */}
       {user && !loading && (
         <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-4 mb-4">
@@ -405,6 +460,8 @@ export default function MovieChecklistPage() {
                   onStatusClick={handleStatusClick}
                   onRatingClick={setMovieRating}
                   showDate
+                  communityRating={communityRatings[movie.id]?.avg}
+                  communityCount={communityRatings[movie.id]?.count}
                 />
               ))}
             </div>
@@ -454,7 +511,9 @@ export default function MovieChecklistPage() {
                         isAuthed={!!user}
                         onStatusClick={handleStatusClick}
                         onRatingClick={setMovieRating}
-                        showDate={movie.status === 'upcoming'}
+                        showDate={isUpcoming(movie)}
+                        communityRating={communityRatings[movie.id]?.avg}
+                        communityCount={communityRatings[movie.id]?.count}
                       />
                     ))}
                   </div>
@@ -492,6 +551,8 @@ function MovieCard({
   onStatusClick,
   onRatingClick,
   showDate,
+  communityRating,
+  communityCount,
 }: {
   movie: Movie;
   studio: Studio;
@@ -501,27 +562,53 @@ function MovieCard({
   onStatusClick: (movieId: string, status: 'want_to_watch' | 'watched') => void;
   onRatingClick: (movieId: string, rating: number) => void;
   showDate?: boolean;
+  communityRating?: number;
+  communityCount?: number;
 }) {
   const colors = CATEGORY_COLORS[studio.color] ?? CATEGORY_COLORS.blue;
+  const posterUrl = getPosterUrl(movie, 'w185');
 
   return (
     <div className={`bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-3 border-l-4 ${colors.card} ${isSaving ? 'opacity-60' : ''}`}>
       <div className="flex gap-3">
-        {/* Poster emoji */}
-        <div className="w-10 h-10 rounded-lg bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-xl flex-shrink-0">
-          {movie.posterEmoji}
-        </div>
+        {/* Poster thumbnail */}
+        {posterUrl ? (
+          <div className="w-12 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-slate-100 dark:bg-slate-700">
+            <Image
+              src={posterUrl}
+              alt={movie.title}
+              width={48}
+              height={64}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        ) : (
+          <div className="w-12 h-16 rounded-lg bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-xl flex-shrink-0">
+            {movie.posterEmoji}
+          </div>
+        )}
 
         <div className="flex-1 min-w-0">
           {/* Title row */}
           <div className="flex items-start justify-between gap-2">
             <div className="min-w-0">
-              <p className="text-sm font-semibold text-slate-900 dark:text-white truncate">
+              <Link
+                href={`/Secret-menU/movies/${movie.id}`}
+                className="text-sm font-semibold text-slate-900 dark:text-white truncate block hover:text-disney-blue dark:hover:text-disney-gold transition-colors"
+              >
                 {movie.title}
                 <span className="text-slate-400 dark:text-slate-500 font-normal ml-1.5">({movie.year})</span>
-              </p>
+              </Link>
               <p className="text-xs text-slate-500 dark:text-slate-400 truncate">{movie.tagline}</p>
             </div>
+            {/* Community rating badge */}
+            {communityRating != null && communityCount != null && communityCount > 0 && (
+              <div className="flex items-center gap-1 flex-shrink-0">
+                <span className="text-disney-gold text-sm">★</span>
+                <span className="text-xs font-medium text-slate-600 dark:text-slate-300">{communityRating}</span>
+                <span className="text-[10px] text-slate-400 dark:text-slate-500">({communityCount})</span>
+              </div>
+            )}
           </div>
 
           {/* Release date for upcoming */}

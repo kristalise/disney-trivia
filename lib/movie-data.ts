@@ -11,6 +11,9 @@ export interface Movie {
   status: 'released' | 'upcoming';
   posterEmoji: string;
   tagline: string;
+  description?: string;
+  tmdbId?: number | null;
+  posterPath?: string | null;
 }
 
 export interface Studio {
@@ -33,6 +36,11 @@ for (const m of movies) {
 }
 
 // --- Accessor functions ---
+
+/** Derive upcoming status dynamically from releaseDate vs today */
+export function isUpcoming(movie: Movie): boolean {
+  return movie.releaseDate > new Date().toISOString().slice(0, 10);
+}
 
 /** All studios */
 export function getStudios(): Studio[] {
@@ -57,18 +65,24 @@ export function getMoviesByStudio(studioId: string): Movie[] {
 /** Upcoming movies sorted by releaseDate ascending */
 export function getUpcomingMovies(): Movie[] {
   return movies
-    .filter(m => m.status === 'upcoming')
+    .filter(m => isUpcoming(m))
     .sort((a, b) => a.releaseDate.localeCompare(b.releaseDate));
 }
 
 /** Released movies sorted by year descending */
 export function getReleasedMovies(): Movie[] {
   return movies
-    .filter(m => m.status === 'released')
+    .filter(m => !isUpcoming(m))
     .sort((a, b) => b.year - a.year);
 }
 
 /** Total number of movies */
 export function getTotalMovieCount(): number {
   return movieById.size;
+}
+
+/** Build a TMDB poster URL for the given size, or null if no poster */
+export function getPosterUrl(movie: Movie, size: 'w154' | 'w185' | 'w500' = 'w500'): string | null {
+  if (!movie.posterPath) return null;
+  return `https://image.tmdb.org/t/p/${size}${movie.posterPath}`;
 }
