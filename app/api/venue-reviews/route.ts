@@ -85,7 +85,7 @@ export async function POST(request: NextRequest) {
     if (auth.error) return auth.error;
 
     const body = await request.json();
-    const { ship_name: body_ship_name, venue_id, rating, atmosphere_rating, theming_rating, visited_with, review_text, photo_url, sailing_id, instagram_url, tiktok_url, youtube_url, facebook_url, xiaohongshu_url } = body;
+    const { ship_name: body_ship_name, venue_id, rating, atmosphere_rating, theming_rating, visited_with, review_text, photo_url, sailing_id, instagram_url, tiktok_url, youtube_url, facebook_url, xiaohongshu_url, is_anonymous } = body;
 
     let ship_name = body_ship_name;
     if (sailing_id) {
@@ -134,6 +134,7 @@ export async function POST(request: NextRequest) {
         visited_with: visitedList.length > 0 ? visitedList : null,
         review_text: review_text ? stripHtml(String(review_text)).slice(0, 1000) : null,
         photo_url: photo_url ? String(photo_url).slice(0, 500) : null,
+        is_anonymous: !!is_anonymous,
         ...(sailing_id ? { sailing_id } : {}),
         ...socialCheck.urls,
       })

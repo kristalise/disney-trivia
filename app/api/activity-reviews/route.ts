@@ -87,7 +87,7 @@ export async function POST(request: NextRequest) {
     const { user } = authResult;
 
     const body = await request.json();
-    const { ship_name: body_ship_name, activity_id, rating, age_group_recommended, review_text, photo_url, sailing_id } = body;
+    const { ship_name: body_ship_name, activity_id, rating, age_group_recommended, review_text, photo_url, sailing_id, is_anonymous } = body;
 
     // If sailing_id provided, look up the sailing and auto-populate ship_name
     let ship_name = body_ship_name;
@@ -134,6 +134,7 @@ export async function POST(request: NextRequest) {
         age_group_recommended: ageList.length > 0 ? ageList : null,
         review_text: review_text ? stripHtml(String(review_text)).slice(0, 1000) : null,
         photo_url: photo_url ? String(photo_url).slice(0, 500) : null,
+        is_anonymous: !!is_anonymous,
         ...(sailing_id ? { sailing_id } : {}),
         ...socialResult.urls,
       })
