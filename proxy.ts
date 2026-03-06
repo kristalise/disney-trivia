@@ -9,6 +9,17 @@ if (process.env.NODE_ENV === 'development') {
   ALLOWED_ORIGINS.push('http://localhost:3000');
 }
 
+// Allow Vercel deployment/preview URLs
+if (process.env.VERCEL_URL) {
+  ALLOWED_ORIGINS.push(`https://${process.env.VERCEL_URL}`);
+}
+if (process.env.VERCEL_BRANCH_URL) {
+  ALLOWED_ORIGINS.push(`https://${process.env.VERCEL_BRANCH_URL}`);
+}
+if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
+  ALLOWED_ORIGINS.push(`https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`);
+}
+
 export function proxy(request: NextRequest) {
   // CSRF protection: verify origin on mutating API requests
   if (
