@@ -7,6 +7,7 @@ import { useAuth } from '@/components/AuthProvider';
 import { getFoodieVenueById, getFoodieCategories, getAdventureRotation, type FoodieVenue, type FoodieCategory } from '@/lib/foodie-data';
 import ImageCropUpload from '@/components/ImageCropUpload';
 import ShareButton from '@/components/ShareButton';
+import SocialIcons from '@/components/SocialIcons';
 
 const categories = getFoodieCategories();
 const categoryMap = Object.fromEntries(categories.map(c => [c.id, c]));
@@ -43,6 +44,11 @@ interface ReviewData {
   sailing_itinerary: string | null;
   photos: Array<{ id: string; photo_url: string; sort_order: number }>;
   companions: Array<{ companion_user_id: string; display_name: string; avatar_url: string | null }>;
+  instagram_url?: string | null;
+  tiktok_url?: string | null;
+  youtube_url?: string | null;
+  facebook_url?: string | null;
+  xiaohongshu_url?: string | null;
 }
 
 interface Companion {
@@ -114,6 +120,12 @@ function VenueDetail({ venue, cat }: { venue: FoodieVenue; cat: FoodieCategory }
   const [formSubmitting, setFormSubmitting] = useState(false);
   const [formError, setFormError] = useState('');
   const [formSuccess, setFormSuccess] = useState('');
+  const [socialOpen, setSocialOpen] = useState(false);
+  const [formInstagramUrl, setFormInstagramUrl] = useState('');
+  const [formTiktokUrl, setFormTiktokUrl] = useState('');
+  const [formYoutubeUrl, setFormYoutubeUrl] = useState('');
+  const [formFacebookUrl, setFormFacebookUrl] = useState('');
+  const [formXiaohongshuUrl, setFormXiaohongshuUrl] = useState('');
 
   // --- Companions for review form ---
   const [sailingCompanions, setSailingCompanions] = useState<Companion[]>([]);
@@ -297,6 +309,11 @@ function VenueDetail({ venue, cat }: { venue: FoodieVenue; cat: FoodieCategory }
           is_anonymous: formAnonymous,
           companion_ids: Array.from(formCompanions),
           photos: formPhotos.length > 0 ? formPhotos : undefined,
+          instagram_url: formInstagramUrl || undefined,
+          tiktok_url: formTiktokUrl || undefined,
+          youtube_url: formYoutubeUrl || undefined,
+          facebook_url: formFacebookUrl || undefined,
+          xiaohongshu_url: formXiaohongshuUrl || undefined,
         }),
       });
       if (res.ok) {
@@ -308,6 +325,7 @@ function VenueDetail({ venue, cat }: { venue: FoodieVenue; cat: FoodieCategory }
         setFormAnonymous(false);
         setFormCompanions(new Set());
         setFormPhotos([]);
+        setFormInstagramUrl(''); setFormTiktokUrl(''); setFormYoutubeUrl(''); setFormFacebookUrl(''); setFormXiaohongshuUrl('');
         fetchReviews(shipFilter || undefined);
       } else {
         const data = await res.json();
@@ -748,6 +766,38 @@ function VenueDetail({ venue, cat }: { venue: FoodieVenue; cat: FoodieCategory }
               </div>
             )}
 
+            {/* Social Media Links */}
+            <div className="mb-3">
+              <button type="button" onClick={() => setSocialOpen(p => !p)} className="flex items-center gap-2 text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200">
+                <svg className={`w-3 h-3 transition-transform ${socialOpen ? 'rotate-90' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                Link your social media posts (optional)
+              </button>
+              {socialOpen && (
+                <div className="mt-2 space-y-2">
+                  <div className="flex items-center gap-2">
+                    <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="#E1306C" strokeWidth="2" /><circle cx="12" cy="12" r="4.5" stroke="#E1306C" strokeWidth="2" /><circle cx="17.5" cy="6.5" r="1.25" fill="#E1306C" /></svg>
+                    <input type="url" value={formInstagramUrl} onChange={e => setFormInstagramUrl(e.target.value)} placeholder="https://instagram.com/p/..." className="flex-1 px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm" />
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="#010101"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.72a8.18 8.18 0 004.77 1.52V6.79a4.84 4.84 0 01-1-.1z" /></svg>
+                    <input type="url" value={formTiktokUrl} onChange={e => setFormTiktokUrl(e.target.value)} placeholder="https://tiktok.com/@user/video/..." className="flex-1 px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm" />
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg>
+                    <input type="url" value={formYoutubeUrl} onChange={e => setFormYoutubeUrl(e.target.value)} placeholder="https://youtube.com/watch?v=..." className="flex-1 px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm" />
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg>
+                    <input type="url" value={formFacebookUrl} onChange={e => setFormFacebookUrl(e.target.value)} placeholder="https://facebook.com/..." className="flex-1 px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm" />
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="#FE2C55"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.5 14.5h-2V9h2v7.5zm1.5-4h2v4h-2v-4zm0-3.5h2V11h-2V9zm3.5 3.5h2v4h-2v-4zm0-3.5h2V11h-2V9zM7 13h2v3.5H7V13z" /></svg>
+                    <input type="url" value={formXiaohongshuUrl} onChange={e => setFormXiaohongshuUrl(e.target.value)} placeholder="https://xiaohongshu.com/..." className="flex-1 px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm" />
+                  </div>
+                </div>
+              )}
+            </div>
+
             {/* Anonymous toggle */}
             <label className="flex items-center gap-2 mb-4 cursor-pointer">
               <input
@@ -854,6 +904,9 @@ function ReviewCard({ review }: { review: ReviewData }) {
           ))}
         </div>
       )}
+
+      {/* Social links */}
+      <SocialIcons instagramUrl={review.instagram_url} tiktokUrl={review.tiktok_url} youtubeUrl={review.youtube_url} facebookUrl={review.facebook_url} xiaohongshuUrl={review.xiaohongshu_url} />
 
       {/* Companions */}
       {review.companions.length > 0 && (

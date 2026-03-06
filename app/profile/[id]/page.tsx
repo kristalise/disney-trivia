@@ -38,6 +38,7 @@ interface Profile {
   tiktok_url?: string | null;
   youtube_url?: string | null;
   facebook_url?: string | null;
+  xiaohongshu_url?: string | null;
   created_at: string;
 }
 
@@ -442,7 +443,7 @@ export default function ProfilePage() {
           <p className="text-sm text-slate-600 dark:text-slate-400 mb-3">{profile.bio}</p>
         )}
 
-        <SocialIcons instagramUrl={profile.instagram_url} tiktokUrl={profile.tiktok_url} youtubeUrl={profile.youtube_url} facebookUrl={profile.facebook_url} size="md" />
+        <SocialIcons instagramUrl={profile.instagram_url} tiktokUrl={profile.tiktok_url} youtubeUrl={profile.youtube_url} facebookUrl={profile.facebook_url} xiaohongshuUrl={profile.xiaohongshu_url} size="md" />
 
         <div className="mt-4" />
 

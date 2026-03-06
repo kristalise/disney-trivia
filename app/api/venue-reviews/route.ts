@@ -85,7 +85,7 @@ export async function POST(request: NextRequest) {
     if (auth.error) return auth.error;
 
     const body = await request.json();
-    const { ship_name: body_ship_name, venue_id, rating, atmosphere_rating, theming_rating, visited_with, review_text, photo_url, sailing_id, instagram_url, tiktok_url, youtube_url, facebook_url } = body;
+    const { ship_name: body_ship_name, venue_id, rating, atmosphere_rating, theming_rating, visited_with, review_text, photo_url, sailing_id, instagram_url, tiktok_url, youtube_url, facebook_url, xiaohongshu_url } = body;
 
     let ship_name = body_ship_name;
     if (sailing_id) {
@@ -119,7 +119,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid visited_with value' }, { status: 400 });
     }
 
-    const socialCheck = validateSocialUrls({ instagram_url, tiktok_url, youtube_url, facebook_url });
+    const socialCheck = validateSocialUrls({ instagram_url, tiktok_url, youtube_url, facebook_url, xiaohongshu_url });
     if (!socialCheck.valid) return socialCheck.error;
 
     const { data, error } = await supabase
@@ -222,7 +222,7 @@ export async function PATCH(request: NextRequest) {
     for (const [key, val] of Object.entries(socialCheck.urls)) {
       updates[key] = val;
     }
-    for (const field of ['instagram_url', 'tiktok_url', 'youtube_url', 'facebook_url'] as const) {
+    for (const field of ['instagram_url', 'tiktok_url', 'youtube_url', 'facebook_url', 'xiaohongshu_url'] as const) {
       if (body[field] !== undefined && !socialCheck.urls[field]) {
         updates[field] = body[field] ? stripHtml(String(body[field])).slice(0, 500) : null;
       }

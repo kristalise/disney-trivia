@@ -3,11 +3,12 @@ interface SocialIconsProps {
   tiktokUrl?: string | null;
   youtubeUrl?: string | null;
   facebookUrl?: string | null;
+  xiaohongshuUrl?: string | null;
   size?: 'sm' | 'md';
 }
 
-export default function SocialIcons({ instagramUrl, tiktokUrl, youtubeUrl, facebookUrl, size = 'sm' }: SocialIconsProps) {
-  const hasAny = instagramUrl || tiktokUrl || youtubeUrl || facebookUrl;
+export default function SocialIcons({ instagramUrl, tiktokUrl, youtubeUrl, facebookUrl, xiaohongshuUrl, size = 'sm' }: SocialIconsProps) {
+  const hasAny = instagramUrl || tiktokUrl || youtubeUrl || facebookUrl || xiaohongshuUrl;
   if (!hasAny) return null;
 
   const iconCls = size === 'md' ? 'w-6 h-6' : 'w-4 h-4';
@@ -51,6 +52,13 @@ export default function SocialIcons({ instagramUrl, tiktokUrl, youtubeUrl, faceb
         <a href={facebookUrl} target="_blank" rel="noopener noreferrer" title="Facebook">
           <svg className={iconCls} viewBox="0 0 24 24" fill="#1877F2">
             <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+          </svg>
+        </a>
+      )}
+      {xiaohongshuUrl && (
+        <a href={xiaohongshuUrl} target="_blank" rel="noopener noreferrer" title="Xiaohongshu">
+          <svg className={iconCls} viewBox="0 0 24 24" fill="#FE2C55">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.5 14.5h-2V9h2v7.5zm1.5-4h2v4h-2v-4zm0-3.5h2V11h-2V9zm3.5 3.5h2v4h-2v-4zm0-3.5h2V11h-2V9zM7 13h2v3.5H7V13z" />
           </svg>
         </a>
       )}

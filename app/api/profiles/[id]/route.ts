@@ -254,7 +254,7 @@ export async function PATCH(
       }
       updates.handle = handle;
     }
-    for (const field of ['instagram_url', 'tiktok_url', 'youtube_url', 'facebook_url'] as const) {
+    for (const field of ['instagram_url', 'tiktok_url', 'youtube_url', 'facebook_url', 'xiaohongshu_url'] as const) {
       if (body[field] !== undefined) {
         if (body[field] && !String(body[field]).startsWith('https://')) {
           return NextResponse.json({ error: `${field} must start with https://` }, { status: 400 });

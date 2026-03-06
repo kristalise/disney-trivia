@@ -1,6 +1,6 @@
-import type { ShipName, BudgetLevel, TravelParty, Stateroom, EnrichedRoom, ScoreReason, FilterResult, DeckGroup, TrafficLight, BedCount } from './stateroom-types';
+import type { ShipName, BudgetLevel, TravelParty, Stateroom, EnrichedRoom, ScoreReason, FilterResult, DeckGroup, TrafficLight, BedCount, VerandahViewType } from './stateroom-types';
 import { BUDGET_OPTIONS, KIDS_DECKS, TEEN_DECKS } from './stateroom-constants';
-import { getCategoryType, getDeck, getSection, TYPE_EMOJI } from './stateroom-utils';
+import { getCategoryType, getDeck, getSection, TYPE_EMOJI, roomHasVerandah, getVerandahViewType } from './stateroom-utils';
 import stateroomData from '@/data/stateroom-data.json';
 import categoryMetadata from '@/data/category-metadata.json';
 
@@ -159,7 +159,7 @@ export const TRAFFIC_LIGHT_LABELS: Record<TrafficLight, string> = {
 
 interface ScoringParams {
   selectedShip: ShipName;
-  budget: BudgetLevel;
+  budgets: BudgetLevel[];
   partySize: number;
   numStaterooms: number;
   travelParty: TravelParty;
@@ -169,6 +169,8 @@ interface ScoringParams {
   noBunkBed: boolean;
   elderlyFriendly: boolean;
   childFriendly: boolean;
+  requiresVerandah: boolean;
+  verandahTypes: VerandahViewType[];
   selectedThemes: string[];
   selectedDecks: number[];
   selectedSections: string[];
@@ -435,10 +437,17 @@ export function scoreRoom(
 }
 
 export function filterAndScore(params: ScoringParams): FilterResult {
-  const { selectedShip, budget, partySize, numStaterooms, travelParty, noiseSensitive, needsAccessible, needsConnecting, noBunkBed, elderlyFriendly, childFriendly, selectedThemes, selectedDecks, selectedSections } = params;
+  const { selectedShip, budgets, partySize, numStaterooms, travelParty, noiseSensitive, needsAccessible, needsConnecting, noBunkBed, elderlyFriendly, childFriendly, requiresVerandah, verandahTypes, selectedThemes, selectedDecks, selectedSections } = params;
 
   const shipRooms = data[selectedShip] || [];
-  const budgetTypes = BUDGET_OPTIONS.find(b => b.key === budget)?.types ?? [];
+  // Combine room types from all selected budget tiers
+  const budgetTypes: string[] = [];
+  for (const b of budgets) {
+    const types = BUDGET_OPTIONS.find(opt => opt.key === b)?.types ?? [];
+    for (const t of types) {
+      if (!budgetTypes.includes(t)) budgetTypes.push(t);
+    }
+  }
   const kidsDeckList = KIDS_DECKS[selectedShip] || [];
   const teenDeckList = TEEN_DECKS[selectedShip] || [];
 
@@ -468,6 +477,13 @@ export function filterAndScore(params: ScoringParams): FilterResult {
     if (needsConnecting && (!r.connecting || r.connecting === 'NO')) return false;
     if (selectedThemes.length > 0 && (!r.theme || !selectedThemes.includes(r.theme))) return false;
     if (noBunkBed && r.bedding && countBeds(r.bedding).hasBunk) return false;
+    // Verandah requirement
+    if (requiresVerandah && !roomHasVerandah(selectedShip, r.category, r.verandahPartitions)) return false;
+    // Verandah view type filter (Disney Adventure only, multi-select)
+    if (verandahTypes.length > 0) {
+      const vt = getVerandahViewType(selectedShip, r.category);
+      if (!vt || !verandahTypes.includes(vt)) return false;
+    }
     return true;
   });
 
@@ -539,7 +555,7 @@ export function filterAndScore(params: ScoringParams): FilterResult {
 /** Score a specific set of rooms (for the compare feature) */
 export function scoreCompareRooms(
   roomNumbers: number[],
-  params: Omit<ScoringParams, 'selectedDecks' | 'selectedSections'>
+  params: Omit<ScoringParams, 'selectedDecks' | 'selectedSections' | 'requiresVerandah' | 'verandahTypes'>
 ): EnrichedRoom[] {
   const { selectedShip, partySize, numStaterooms, travelParty, noiseSensitive, elderlyFriendly, childFriendly } = params;
   const shipRooms = data[selectedShip] || [];

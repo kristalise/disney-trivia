@@ -1,9 +1,9 @@
-import type { ShipName, BudgetLevel, TravelParty } from '@/lib/stateroom-types';
+import type { ShipName, BudgetLevel, TravelParty, VerandahViewType } from '@/lib/stateroom-types';
 import { BUDGET_OPTIONS, TRAVEL_PARTY_OPTIONS } from '@/lib/stateroom-constants';
 
 interface FilterSummaryProps {
   ship: ShipName;
-  budget: BudgetLevel;
+  budgets: BudgetLevel[];
   partySize: number;
   numStaterooms: number;
   travelParty: TravelParty;
@@ -13,6 +13,8 @@ interface FilterSummaryProps {
   noBunkBed: boolean;
   elderlyFriendly: boolean;
   childFriendly: boolean;
+  requiresVerandah: boolean;
+  verandahTypes: VerandahViewType[];
   selectedThemes: string[];
   selectedDecks: number[];
   selectedSections: string[];
@@ -28,14 +30,21 @@ function EditIcon() {
   );
 }
 
+const VERANDAH_TYPE_LABELS: Record<string, string> = {
+  ocean: 'Ocean View',
+  garden: 'Garden View',
+  reef: 'Reef View',
+};
+
 export default function FilterSummary({
-  ship, budget, partySize, numStaterooms, travelParty,
+  ship, budgets, partySize, numStaterooms, travelParty,
   noiseSensitive, needsAccessible, needsConnecting,
   noBunkBed, elderlyFriendly, childFriendly,
+  requiresVerandah, verandahTypes,
   selectedThemes, selectedDecks, selectedSections,
   onEditStep, onClear,
 }: FilterSummaryProps) {
-  const budgetOpt = BUDGET_OPTIONS.find(b => b.key === budget);
+  const budgetLabels = budgets.map(b => BUDGET_OPTIONS.find(opt => opt.key === b)).filter(Boolean);
   const partyOpt = TRAVEL_PARTY_OPTIONS.find(tp => tp.key === travelParty);
 
   const prefPills: string[] = [];
@@ -45,6 +54,13 @@ export default function FilterSummary({
   if (noBunkBed) prefPills.push('No Bunks');
   if (elderlyFriendly) prefPills.push('Elderly');
   if (childFriendly) prefPills.push('Child');
+  if (requiresVerandah) {
+    if (verandahTypes.length > 0) {
+      prefPills.push(verandahTypes.map(v => VERANDAH_TYPE_LABELS[v] || v).join(', '));
+    } else {
+      prefPills.push('Verandah');
+    }
+  }
   if (selectedThemes.length === 1) prefPills.push(selectedThemes[0]);
   else if (selectedThemes.length > 1) prefPills.push(`${selectedThemes.length} Themes`);
   if (selectedDecks.length > 0) {
@@ -73,13 +89,13 @@ export default function FilterSummary({
       <div className="flex flex-wrap gap-2">
         {/* Ship */}
         <button type="button" onClick={() => onEditStep(1)} className={pillCls}>
-          🚢 {ship.replace('Disney ', '')}
+          {ship.replace('Disney ', '')}
           <EditIcon />
         </button>
 
         {/* Budget */}
         <button type="button" onClick={() => onEditStep(2)} className={pillCls}>
-          {budgetOpt?.emoji} {budgetOpt?.label}
+          {budgetLabels.map(b => b!.emoji).join('')} {budgetLabels.map(b => b!.label).join(' + ')}
           <EditIcon />
         </button>
 

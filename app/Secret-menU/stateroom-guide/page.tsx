@@ -9,7 +9,7 @@ import { SHIP_ORDER } from '@/lib/ship-order';
 import { isValidStateroomForShip } from '@/lib/stateroom-utils';
 import { BUDGET_OPTIONS } from '@/lib/stateroom-constants';
 import { filterAndScore } from '@/lib/stateroom-scoring';
-import type { ShipName, BudgetLevel, TravelParty, Stateroom } from '@/lib/stateroom-types';
+import type { ShipName, BudgetLevel, TravelParty, Stateroom, VerandahViewType } from '@/lib/stateroom-types';
 import WizardStepper from '@/components/stateroom-guide/WizardStepper';
 import ShipStep from '@/components/stateroom-guide/ShipStep';
 import BudgetStep from '@/components/stateroom-guide/BudgetStep';
@@ -19,6 +19,8 @@ import ResultsView from '@/components/stateroom-guide/ResultsView';
 import FilterSummary from '@/components/stateroom-guide/FilterSummary';
 
 const data = stateroomData as Record<ShipName, Stateroom[]>;
+
+const VALID_BUDGETS: BudgetLevel[] = ['budget', 'reasonable', 'splurge', 'concierge'];
 
 export default function StateroomGuidePageWrapper() {
   return (
@@ -37,10 +39,17 @@ function StateroomGuidePage() {
     const sp = searchParams.get('ship');
     return sp && SHIP_ORDER.includes(sp as ShipName) ? sp as ShipName : '';
   });
-  const [budget, setBudget] = useState<BudgetLevel | ''>(() => {
-    const sp = searchParams.get('budget');
-    return sp && ['budget', 'reasonable', 'splurge', 'concierge'].includes(sp) ? sp as BudgetLevel : '';
+
+  // Multi-budget (backward compat: parse old 'budget=' single param too)
+  const [budgets, setBudgets] = useState<BudgetLevel[]>(() => {
+    const multi = searchParams.get('budgets');
+    if (multi) return multi.split(',').filter(b => VALID_BUDGETS.includes(b as BudgetLevel)) as BudgetLevel[];
+    // Backward compat: old single budget= param
+    const single = searchParams.get('budget');
+    if (single && VALID_BUDGETS.includes(single as BudgetLevel)) return [single as BudgetLevel];
+    return [];
   });
+
   const [partySize, setPartySize] = useState(() => {
     const sp = searchParams.get('party');
     const n = sp ? parseInt(sp, 10) : NaN;
@@ -57,6 +66,15 @@ function StateroomGuidePage() {
   const [noBunkBed, setNoBunkBed] = useState(() => searchParams.get('nobunk') === '1');
   const [elderlyFriendly, setElderlyFriendly] = useState(() => searchParams.get('elderly') === '1');
   const [childFriendly, setChildFriendly] = useState(() => searchParams.get('child') === '1');
+  const [requiresVerandah, setRequiresVerandah] = useState(() => searchParams.get('verandah') === '1');
+  const [verandahTypes, setVerandahTypes] = useState<VerandahViewType[]>(() => {
+    const sp = searchParams.get('vtypes');
+    if (sp) return sp.split(',').filter(v => ['ocean', 'garden', 'reef'].includes(v)) as VerandahViewType[];
+    // Backward compat: old single vtype= param
+    const single = searchParams.get('vtype');
+    if (single && ['ocean', 'garden', 'reef'].includes(single)) return [single as VerandahViewType];
+    return [];
+  });
 
   // Multi-select themes (backward compat: parse both 'theme=' and 'themes=')
   const [selectedThemes, setSelectedThemes] = useState<string[]>(() => {
@@ -96,7 +114,7 @@ function StateroomGuidePage() {
     const sp = searchParams.get('step');
     const n = sp ? parseInt(sp, 10) : NaN;
     if (!isNaN(n) && n >= 1 && n <= 5) return n;
-    if (searchParams.get('highlight') && searchParams.get('ship') && searchParams.get('budget')) return 5;
+    if (searchParams.get('highlight') && searchParams.get('ship') && (searchParams.get('budgets') || searchParams.get('budget'))) return 5;
     return 1;
   });
 
@@ -109,8 +127,15 @@ function StateroomGuidePage() {
 
   // Available themes for current ship + budget
   const availableThemes = useMemo(() => {
-    if (!selectedShip || !budget || !hasThemes) return [];
-    const budgetTypes = BUDGET_OPTIONS.find(b => b.key === budget)?.types ?? [];
+    if (!selectedShip || budgets.length === 0 || !hasThemes) return [];
+    // Combine types from all selected budgets
+    const budgetTypes: string[] = [];
+    for (const b of budgets) {
+      const types = BUDGET_OPTIONS.find(opt => opt.key === b)?.types ?? [];
+      for (const t of types) {
+        if (!budgetTypes.includes(t)) budgetTypes.push(t);
+      }
+    }
     const rooms = data[selectedShip] || [];
     const themeSet = new Set<string>();
     rooms.forEach(r => {
@@ -118,23 +143,24 @@ function StateroomGuidePage() {
       if (budgetTypes.includes(type) && r.theme) themeSet.add(r.theme);
     });
     return Array.from(themeSet).sort();
-  }, [selectedShip, budget, hasThemes]);
+  }, [selectedShip, budgets, hasThemes]);
 
   // Scoring & filtering
   const results = useMemo(() => {
-    if (!selectedShip || !budget) return { filtered: [], deckGroups: [], availableDecks: [] as number[], availableSections: [] as string[] };
+    if (!selectedShip || budgets.length === 0) return { filtered: [], deckGroups: [], availableDecks: [] as number[], availableSections: [] as string[] };
     return filterAndScore({
-      selectedShip, budget, partySize, numStaterooms, travelParty,
+      selectedShip, budgets, partySize, numStaterooms, travelParty,
       noiseSensitive, needsAccessible, needsConnecting, noBunkBed, elderlyFriendly, childFriendly,
+      requiresVerandah, verandahTypes,
       selectedThemes, selectedDecks, selectedSections,
     });
-  }, [selectedShip, budget, partySize, numStaterooms, travelParty, noiseSensitive, needsAccessible, needsConnecting, noBunkBed, elderlyFriendly, childFriendly, selectedThemes, selectedDecks, selectedSections]);
+  }, [selectedShip, budgets, partySize, numStaterooms, travelParty, noiseSensitive, needsAccessible, needsConnecting, noBunkBed, elderlyFriendly, childFriendly, requiresVerandah, verandahTypes, selectedThemes, selectedDecks, selectedSections]);
 
   // URL sync
   const syncUrl = useCallback((step: number) => {
     const params = new URLSearchParams();
     if (selectedShip) params.set('ship', selectedShip);
-    if (budget) params.set('budget', budget);
+    if (budgets.length > 0) params.set('budgets', budgets.join(','));
     if (partySize !== 2) params.set('party', String(partySize));
     if (travelParty) params.set('travel', travelParty);
     if (noiseSensitive) params.set('noise', '1');
@@ -143,20 +169,22 @@ function StateroomGuidePage() {
     if (noBunkBed) params.set('nobunk', '1');
     if (elderlyFriendly) params.set('elderly', '1');
     if (childFriendly) params.set('child', '1');
+    if (requiresVerandah) params.set('verandah', '1');
+    if (verandahTypes.length > 0) params.set('vtypes', verandahTypes.join(','));
     if (selectedThemes.length > 0) params.set('themes', selectedThemes.join(','));
     if (selectedDecks.length > 0) params.set('decks', selectedDecks.join(','));
     if (selectedSections.length > 0) params.set('sections', selectedSections.join(','));
     params.set('step', String(step));
     const qs = params.toString();
     window.history.replaceState({}, '', `${window.location.pathname}${qs ? '?' + qs : ''}`);
-  }, [selectedShip, budget, partySize, travelParty, noiseSensitive, needsAccessible, needsConnecting, noBunkBed, elderlyFriendly, childFriendly, selectedThemes, selectedDecks, selectedSections]);
+  }, [selectedShip, budgets, partySize, travelParty, noiseSensitive, needsAccessible, needsConnecting, noBunkBed, elderlyFriendly, childFriendly, requiresVerandah, verandahTypes, selectedThemes, selectedDecks, selectedSections]);
 
   // Generate shareable URL (without step param so recipients see results)
   const shareUrl = useMemo(() => {
     if (typeof window === 'undefined') return '';
     const params = new URLSearchParams();
     if (selectedShip) params.set('ship', selectedShip);
-    if (budget) params.set('budget', budget);
+    if (budgets.length > 0) params.set('budgets', budgets.join(','));
     if (partySize !== 2) params.set('party', String(partySize));
     if (travelParty) params.set('travel', travelParty);
     if (noiseSensitive) params.set('noise', '1');
@@ -165,13 +193,15 @@ function StateroomGuidePage() {
     if (noBunkBed) params.set('nobunk', '1');
     if (elderlyFriendly) params.set('elderly', '1');
     if (childFriendly) params.set('child', '1');
+    if (requiresVerandah) params.set('verandah', '1');
+    if (verandahTypes.length > 0) params.set('vtypes', verandahTypes.join(','));
     if (selectedThemes.length > 0) params.set('themes', selectedThemes.join(','));
     if (selectedDecks.length > 0) params.set('decks', selectedDecks.join(','));
     if (selectedSections.length > 0) params.set('sections', selectedSections.join(','));
     params.set('step', '5');
     const qs = params.toString();
     return `${window.location.origin}${window.location.pathname}${qs ? '?' + qs : ''}`;
-  }, [selectedShip, budget, partySize, travelParty, noiseSensitive, needsAccessible, needsConnecting, noBunkBed, elderlyFriendly, childFriendly, selectedThemes, selectedDecks, selectedSections]);
+  }, [selectedShip, budgets, partySize, travelParty, noiseSensitive, needsAccessible, needsConnecting, noBunkBed, elderlyFriendly, childFriendly, requiresVerandah, verandahTypes, selectedThemes, selectedDecks, selectedSections]);
 
   const goToStep = useCallback((step: number) => {
     setCurrentStep(step);
@@ -180,21 +210,25 @@ function StateroomGuidePage() {
   }, [syncUrl]);
 
   const jumpToResults = useCallback(() => {
-    if (selectedShip && budget) {
+    if (selectedShip && budgets.length > 0) {
       goToStep(5);
     }
-  }, [selectedShip, budget, goToStep]);
+  }, [selectedShip, budgets, goToStep]);
 
   const handleShipSelect = useCallback((ship: ShipName) => {
     setSelectedShip(ship);
-    setBudget('');
+    setBudgets([]);
     setSelectedThemes([]);
     setSelectedDecks([]);
     setSelectedSections([]);
+    setVerandahTypes([]);
   }, []);
 
-  const handleBudgetSelect = useCallback((b: BudgetLevel) => {
-    setBudget(b);
+  const handleBudgetToggle = useCallback((b: BudgetLevel) => {
+    setBudgets(prev => {
+      if (prev.includes(b)) return prev.filter(x => x !== b);
+      return [...prev, b];
+    });
     setSelectedThemes([]);
     setSelectedDecks([]);
     setSelectedSections([]);
@@ -207,7 +241,7 @@ function StateroomGuidePage() {
 
   const clearPreferences = useCallback(() => {
     setSelectedShip('');
-    setBudget('');
+    setBudgets([]);
     setNumStaterooms(1);
     setPartySize(2);
     setTravelParty('');
@@ -217,6 +251,8 @@ function StateroomGuidePage() {
     setNoBunkBed(false);
     setElderlyFriendly(false);
     setChildFriendly(false);
+    setRequiresVerandah(false);
+    setVerandahTypes([]);
     setSelectedThemes([]);
     setSelectedDecks([]);
     setSelectedSections([]);
@@ -236,7 +272,7 @@ function StateroomGuidePage() {
     }
   }, [lookupShip, lookupRoom, router]);
 
-  const canJumpToResults = hasSeenResults && !!(selectedShip && budget);
+  const canJumpToResults = hasSeenResults && !!(selectedShip && budgets.length > 0);
 
   const selectCls = "w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-disney-blue dark:focus:ring-disney-gold focus:border-transparent";
 
@@ -254,7 +290,7 @@ function StateroomGuidePage() {
           Cruise Guide
         </Link>
         <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">
-          🛏 AI Stateroom Finder
+          AI Stateroom Finder
         </h1>
         <p className="text-sm font-medium text-disney-blue dark:text-disney-gold mb-2">
           Smart recommendations powered by our stateroom intelligence engine
@@ -266,7 +302,7 @@ function StateroomGuidePage() {
 
       {/* Stateroom Lookup */}
       <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-200 dark:border-slate-700 mb-6">
-        <h2 className="text-base font-bold text-slate-900 dark:text-white mb-4">🔍 Room Lookup</h2>
+        <h2 className="text-base font-bold text-slate-900 dark:text-white mb-4">Room Lookup</h2>
         <div className="flex gap-3">
           <select
             value={lookupShip}
@@ -319,8 +355,9 @@ function StateroomGuidePage() {
 
           {currentStep === 2 && (
             <BudgetStep
-              selected={budget}
-              onSelect={handleBudgetSelect}
+              selected={budgets}
+              onToggle={handleBudgetToggle}
+              onSetAll={(b) => { setBudgets(b); setSelectedThemes([]); setSelectedDecks([]); setSelectedSections([]); }}
               onNext={() => goToStep(3)}
               onBack={() => goToStep(1)}
               onJumpToResults={canJumpToResults ? jumpToResults : undefined}
@@ -336,6 +373,7 @@ function StateroomGuidePage() {
               onPartySizeChange={setPartySize}
               onTravelPartyChange={setTravelParty}
               onNext={() => goToStep(4)}
+              onSkip={() => goToStep(4)}
               onBack={() => goToStep(2)}
               onJumpToResults={canJumpToResults ? jumpToResults : undefined}
             />
@@ -350,6 +388,8 @@ function StateroomGuidePage() {
               noBunkBed={noBunkBed}
               elderlyFriendly={elderlyFriendly}
               childFriendly={childFriendly}
+              requiresVerandah={requiresVerandah}
+              verandahTypes={verandahTypes}
               selectedThemes={selectedThemes}
               selectedDecks={selectedDecks}
               selectedSections={selectedSections}
@@ -363,6 +403,8 @@ function StateroomGuidePage() {
               onNoBunkBedChange={setNoBunkBed}
               onElderlyFriendlyChange={setElderlyFriendly}
               onChildFriendlyChange={setChildFriendly}
+              onRequiresVerandahChange={setRequiresVerandah}
+              onVerandahTypesChange={setVerandahTypes}
               onThemesChange={setSelectedThemes}
               onDecksChange={setSelectedDecks}
               onSectionsChange={setSelectedSections}
@@ -376,11 +418,11 @@ function StateroomGuidePage() {
       )}
 
       {/* Results (step 5) */}
-      {currentStep === 5 && selectedShip && budget && (
+      {currentStep === 5 && selectedShip && budgets.length > 0 && (
         <>
           <FilterSummary
             ship={selectedShip}
-            budget={budget as BudgetLevel}
+            budgets={budgets}
             partySize={partySize}
             numStaterooms={numStaterooms}
             travelParty={travelParty}
@@ -390,6 +432,8 @@ function StateroomGuidePage() {
             noBunkBed={noBunkBed}
             elderlyFriendly={elderlyFriendly}
             childFriendly={childFriendly}
+            requiresVerandah={requiresVerandah}
+            verandahTypes={verandahTypes}
             selectedThemes={selectedThemes}
             selectedDecks={selectedDecks}
             selectedSections={selectedSections}
@@ -405,7 +449,7 @@ function StateroomGuidePage() {
             shareUrl={shareUrl}
             onClearPreferences={clearPreferences}
             onEditStep={goToStep}
-            budget={budget as BudgetLevel}
+            budgets={budgets}
             partySize={partySize}
             numStaterooms={numStaterooms}
             travelParty={travelParty}
@@ -421,7 +465,7 @@ function StateroomGuidePage() {
       )}
 
       {/* Fallback: if on step 5 but missing ship/budget, go back */}
-      {currentStep === 5 && (!selectedShip || !budget) && (
+      {currentStep === 5 && (!selectedShip || budgets.length === 0) && (
         <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg border border-slate-200 dark:border-slate-700 text-center">
           <div className="text-4xl mb-3">🚢</div>
           <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Let&apos;s get started</h2>

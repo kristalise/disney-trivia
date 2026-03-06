@@ -11,7 +11,6 @@ export default function Navbar() {
   const pathname = usePathname();
   const { user, loading, signOut } = useAuth();
   const [showAuthModal, setShowAuthModal] = useState(false);
-  const [authMode] = useState<'login' | 'signup'>('login');
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [userHandle, setUserHandle] = useState<string | null>(null);
 
@@ -165,7 +164,6 @@ export default function Navbar() {
       <AuthModal
         isOpen={showAuthModal}
         onClose={() => setShowAuthModal(false)}
-        defaultMode={authMode}
       />
     </>
   );

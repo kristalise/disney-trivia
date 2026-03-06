@@ -30,7 +30,7 @@ export function validateRating(value: unknown, fieldName: string): { valid: true
 }
 
 export function validateSocialUrls(body: Record<string, unknown>): { valid: true; urls: Record<string, string | null> } | { valid: false; error: NextResponse } {
-  const fields = ['instagram_url', 'tiktok_url', 'youtube_url', 'facebook_url'] as const;
+  const fields = ['instagram_url', 'tiktok_url', 'youtube_url', 'facebook_url', 'xiaohongshu_url'] as const;
   const result: Record<string, string | null> = {};
   for (const field of fields) {
     const val = body[field];

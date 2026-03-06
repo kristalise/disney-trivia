@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { checkRateLimit } from '@/lib/rate-limit';
-import { getSupabase, stripHtml, requireAuth, enrichWithProfiles, enrichWithSailingContext } from '@/lib/review-api-utils';
+import { getSupabase, stripHtml, validateSocialUrls, requireAuth, enrichWithProfiles, enrichWithSailingContext } from '@/lib/review-api-utils';
 
 export async function GET(request: NextRequest) {
   try {
@@ -203,6 +203,10 @@ export async function POST(request: NextRequest) {
     // Validate companion IDs
     const companionList: string[] = Array.isArray(companion_ids) ? companion_ids : [];
 
+    // Validate social URLs
+    const socialCheck = validateSocialUrls(body);
+    if (!socialCheck.valid) return socialCheck.error;
+
     // Upsert review
     const { data: review, error: reviewError } = await supabase
       .from('foodie_reviews')
@@ -213,6 +217,7 @@ export async function POST(request: NextRequest) {
         rating: ratingNum,
         review_text: cleanText,
         is_anonymous: is_anonymous === true,
+        ...socialCheck.urls,
       }, { onConflict: 'user_id,sailing_id,venue_id' })
       .select()
       .single();

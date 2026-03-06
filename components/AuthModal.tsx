@@ -1,16 +1,15 @@
 'use client';
 
 import { useState } from 'react';
-import { signInWithEmail, signUpAndSignIn, signInWithGoogle, resetPassword } from '@/lib/auth';
+import { signInOrCreate, signInWithGoogle, resetPassword } from '@/lib/auth';
 
 interface AuthModalProps {
   isOpen: boolean;
   onClose: () => void;
-  defaultMode?: 'login' | 'signup';
 }
 
-export default function AuthModal({ isOpen, onClose, defaultMode = 'login' }: AuthModalProps) {
-  const [mode, setMode] = useState<'auth' | 'reset'>(defaultMode === 'signup' ? 'auth' : defaultMode === 'login' ? 'auth' : 'auth');
+export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
+  const [mode, setMode] = useState<'auth' | 'reset'>('auth');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -19,25 +18,21 @@ export default function AuthModal({ isOpen, onClose, defaultMode = 'login' }: Au
 
   if (!isOpen) return null;
 
-  const handleSubmit = async (e: React.FormEvent, action: 'signin' | 'signup' | 'reset') => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
     setMessage(null);
 
     try {
-      if (action === 'signin') {
-        const { error } = await signInWithEmail(email, password);
-        if (error) throw error;
-        onClose();
-      } else if (action === 'signup') {
-        const { error } = await signUpAndSignIn(email, password);
-        if (error) throw error;
-        onClose();
-      } else if (action === 'reset') {
+      if (mode === 'reset') {
         const { error } = await resetPassword(email);
         if (error) throw error;
         setMessage('Check your email for a password reset link!');
+      } else {
+        const { error } = await signInOrCreate(email, password);
+        if (error) throw error;
+        onClose();
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
@@ -107,7 +102,7 @@ export default function AuthModal({ isOpen, onClose, defaultMode = 'login' }: Au
         )}
 
         {/* Form */}
-        <form onSubmit={(e) => handleSubmit(e, mode === 'reset' ? 'reset' : 'signin')} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
               Email
@@ -151,33 +146,13 @@ export default function AuthModal({ isOpen, onClose, defaultMode = 'login' }: Au
             </div>
           )}
 
-          {mode === 'auth' ? (
-            <div className="flex gap-3">
-              <button
-                type="submit"
-                disabled={loading}
-                className="flex-1 px-4 py-3 rounded-xl font-medium btn-disney disabled:opacity-50"
-              >
-                {loading ? 'Loading...' : 'Sign In'}
-              </button>
-              <button
-                type="button"
-                disabled={loading}
-                onClick={(e) => handleSubmit(e as unknown as React.FormEvent, 'signup')}
-                className="flex-1 px-4 py-3 rounded-xl font-medium border-2 border-disney-blue dark:border-disney-gold text-disney-blue dark:text-disney-gold hover:bg-disney-blue/5 dark:hover:bg-disney-gold/5 transition-colors disabled:opacity-50"
-              >
-                {loading ? 'Loading...' : 'Sign Up'}
-              </button>
-            </div>
-          ) : (
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full px-4 py-3 rounded-xl font-medium btn-disney disabled:opacity-50"
-            >
-              {loading ? 'Loading...' : 'Send Reset Link'}
-            </button>
-          )}
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full px-4 py-3 rounded-xl font-medium btn-disney disabled:opacity-50"
+          >
+            {loading ? 'Loading...' : mode === 'reset' ? 'Send Reset Link' : 'Sign In'}
+          </button>
         </form>
 
         {/* Footer Links */}

@@ -17,7 +17,7 @@ interface ResultsViewProps {
   onClearPreferences: () => void;
   onEditStep: (step: number) => void;
   // Scoring params for room comparison
-  budget: BudgetLevel;
+  budgets: BudgetLevel[];
   partySize: number;
   numStaterooms: number;
   travelParty: TravelParty;
@@ -32,7 +32,7 @@ interface ResultsViewProps {
 
 export default function ResultsView({
   filtered, deckGroups, selectedShip, highlightRoom, shareUrl, onClearPreferences, onEditStep,
-  budget, partySize, numStaterooms, travelParty, noiseSensitive, needsAccessible, needsConnecting, noBunkBed, elderlyFriendly, childFriendly, selectedThemes,
+  budgets, partySize, numStaterooms, travelParty, noiseSensitive, needsAccessible, needsConnecting, noBunkBed, elderlyFriendly, childFriendly, selectedThemes,
 }: ResultsViewProps) {
   const [expandedDeck, setExpandedDeck] = useState<number | null>(null);
   const [showAllRooms, setShowAllRooms] = useState<Record<number, boolean>>({});
@@ -59,7 +59,7 @@ export default function ResultsView({
   // Score compare rooms
   const scoredCompareRooms = compareRooms.length > 0
     ? scoreCompareRooms(compareRooms, {
-        selectedShip, budget, partySize, numStaterooms, travelParty,
+        selectedShip, budgets, partySize, numStaterooms, travelParty,
         noiseSensitive, needsAccessible, needsConnecting, noBunkBed, elderlyFriendly, childFriendly, selectedThemes,
       })
     : [];

@@ -1,4 +1,4 @@
-import type { ShipName } from '@/lib/stateroom-types';
+import type { ShipName, VerandahViewType } from '@/lib/stateroom-types';
 import { THEME_COLORS, themeWithEmoji } from '@/lib/stateroom-constants';
 
 interface PreferencesStepProps {
@@ -9,6 +9,8 @@ interface PreferencesStepProps {
   noBunkBed: boolean;
   elderlyFriendly: boolean;
   childFriendly: boolean;
+  requiresVerandah: boolean;
+  verandahTypes: VerandahViewType[];
   selectedThemes: string[];
   selectedDecks: number[];
   selectedSections: string[];
@@ -22,6 +24,8 @@ interface PreferencesStepProps {
   onNoBunkBedChange: (v: boolean) => void;
   onElderlyFriendlyChange: (v: boolean) => void;
   onChildFriendlyChange: (v: boolean) => void;
+  onRequiresVerandahChange: (v: boolean) => void;
+  onVerandahTypesChange: (v: VerandahViewType[]) => void;
   onThemesChange: (v: string[]) => void;
   onDecksChange: (v: number[]) => void;
   onSectionsChange: (v: string[]) => void;
@@ -31,13 +35,22 @@ interface PreferencesStepProps {
   onJumpToResults?: () => void;
 }
 
+const VERANDAH_VIEW_OPTIONS: { key: VerandahViewType; label: string; emoji: string; hint: string }[] = [
+  { key: 'ocean', label: 'Ocean View', emoji: '🌊', hint: 'Overlooks the ocean' },
+  { key: 'garden', label: 'Garden View', emoji: '🌿', hint: 'Overlooks Imagination Garden' },
+  { key: 'reef', label: 'Reef View', emoji: '🐠', hint: 'Overlooks Discovery Reef' },
+];
+
 export default function PreferencesStep({
+  ship,
   noiseSensitive, needsAccessible, needsConnecting,
   noBunkBed, elderlyFriendly, childFriendly,
+  requiresVerandah, verandahTypes,
   selectedThemes, selectedDecks, selectedSections,
   availableThemes, availableDecks, availableSections, hasThemes,
   onNoiseSensitiveChange, onNeedsAccessibleChange, onNeedsConnectingChange,
   onNoBunkBedChange, onElderlyFriendlyChange, onChildFriendlyChange,
+  onRequiresVerandahChange, onVerandahTypesChange,
   onThemesChange, onDecksChange, onSectionsChange,
   onShowResults, onSkip, onBack, onJumpToResults,
 }: PreferencesStepProps) {
@@ -151,13 +164,74 @@ export default function PreferencesStep({
             <span className="block text-xs text-slate-500 dark:text-slate-400">Near kids areas, safer room types, themed rooms</span>
           </div>
         </label>
+
+        <label className="flex items-center gap-3 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={requiresVerandah}
+            onChange={(e) => {
+              onRequiresVerandahChange(e.target.checked);
+              if (!e.target.checked) onVerandahTypesChange([]);
+            }}
+            className="w-5 h-5 rounded border-slate-300 dark:border-slate-600 text-disney-blue dark:text-disney-gold focus:ring-disney-blue dark:focus:ring-disney-gold"
+          />
+          <div>
+            <span className="text-sm font-medium text-slate-900 dark:text-white">Requires verandah</span>
+            <span className="block text-xs text-slate-500 dark:text-slate-400">Only show rooms with a private verandah (balcony)</span>
+          </div>
+        </label>
       </div>
+
+      {/* Disney Adventure verandah view type (multi-select) */}
+      {requiresVerandah && ship === 'Disney Adventure' && (
+        <div className="mb-5">
+          <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+            Verandah view type
+            {verandahTypes.length > 0
+              ? <span className="text-xs font-normal text-slate-400 dark:text-slate-500 ml-1">({verandahTypes.length} selected)</span>
+              : <span className="text-xs font-normal text-slate-400 dark:text-slate-500 ml-1">(all views)</span>
+            }
+          </label>
+          <div className="grid grid-cols-3 gap-2">
+            {VERANDAH_VIEW_OPTIONS.map((opt) => {
+              const isSelected = verandahTypes.includes(opt.key as VerandahViewType);
+              return (
+                <button
+                  key={opt.key}
+                  type="button"
+                  onClick={() => {
+                    if (isSelected) {
+                      onVerandahTypesChange(verandahTypes.filter(v => v !== opt.key));
+                    } else {
+                      onVerandahTypesChange([...verandahTypes, opt.key as VerandahViewType]);
+                    }
+                  }}
+                  className={`px-3 py-3 rounded-xl text-xs font-medium border transition-colors text-center ${
+                    isSelected
+                      ? 'bg-disney-blue text-white border-disney-blue dark:bg-disney-gold dark:text-slate-900 dark:border-disney-gold'
+                      : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-600 hover:border-slate-400 dark:hover:border-slate-500'
+                  }`}
+                >
+                  <span className="text-lg block mb-1">{opt.emoji}</span>
+                  {opt.label}
+                  <span className={`block text-[10px] mt-0.5 ${
+                    isSelected ? 'text-white/70 dark:text-slate-900/60' : 'text-slate-400 dark:text-slate-500'
+                  }`}>{opt.hint}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {/* Theme multi-select toggle buttons */}
       {hasThemes && availableThemes.length > 0 && (
         <div className="mb-5">
           <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-            Theme {selectedThemes.length > 0 && <span className="text-xs font-normal text-slate-400 dark:text-slate-500">({selectedThemes.length} selected)</span>}
+            Theme {selectedThemes.length > 0
+              ? <span className="text-xs font-normal text-slate-400 dark:text-slate-500">({selectedThemes.length} selected)</span>
+              : <span className="text-xs font-normal text-slate-400 dark:text-slate-500">(all themes)</span>
+            }
           </label>
           <div className="flex flex-wrap gap-1.5">
             {availableThemes.map((theme) => {

@@ -30,16 +30,24 @@ export async function signUpWithEmail(email: string, password: string) {
   return { data, error };
 }
 
-export async function signUpAndSignIn(email: string, password: string) {
-  const { data, error } = await signUpWithEmail(email, password);
-  if (error) return { data, error };
+export async function signInOrCreate(email: string, password: string) {
+  // Try to sign in first
+  const signInResult = await signInWithEmail(email, password);
+  if (!signInResult.error) return signInResult;
+
+  // Sign in failed — try creating a new account
+  const { data: signUpData, error: signUpError } = await signUpWithEmail(email, password);
+  if (signUpError) {
+    // Sign up also failed — return the original sign-in error
+    return signInResult;
+  }
 
   // If sign up returned a session, user is already logged in
-  if (data.session) return { data, error: null };
+  if (signUpData.session) return { data: signUpData, error: null };
 
-  // If user exists with empty identities, the email is already registered
-  if (data.user && (!data.user.identities || data.user.identities.length === 0)) {
-    return { data, error: new Error('An account with this email already exists. Please sign in instead.') };
+  // If user exists with empty identities, the email is registered but password was wrong
+  if (signUpData.user && (!signUpData.user.identities || signUpData.user.identities.length === 0)) {
+    return signInResult;
   }
 
   // Sign up succeeded but no session — sign in with the new credentials

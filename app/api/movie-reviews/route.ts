@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { checkRateLimit } from '@/lib/rate-limit';
-import { getSupabase, stripHtml, validateRating, requireAuth, enrichWithProfiles } from '@/lib/review-api-utils';
+import { getSupabase, stripHtml, validateRating, validateSocialUrls, requireAuth, enrichWithProfiles } from '@/lib/review-api-utils';
 
 export async function GET(request: NextRequest) {
   try {
@@ -93,6 +93,9 @@ export async function POST(request: NextRequest) {
     const ratingCheck = validateRating(rating, 'Rating');
     if (!ratingCheck.valid) return ratingCheck.error;
 
+    const socialCheck = validateSocialUrls(body);
+    if (!socialCheck.valid) return socialCheck.error;
+
     const { data, error } = await supabase
       .from('movie_reviews')
       .upsert({
@@ -101,6 +104,7 @@ export async function POST(request: NextRequest) {
         rating: ratingCheck.value,
         review_text: review_text ? stripHtml(String(review_text)).slice(0, 1000) : null,
         updated_at: new Date().toISOString(),
+        ...socialCheck.urls,
       }, { onConflict: 'user_id,movie_id' })
       .select()
       .single();
@@ -153,6 +157,16 @@ export async function PATCH(request: NextRequest) {
     }
     if (review_text !== undefined) {
       updates.review_text = review_text ? stripHtml(String(review_text)).slice(0, 1000) : null;
+    }
+    const socialCheck = validateSocialUrls(body);
+    if (!socialCheck.valid) return socialCheck.error;
+    for (const [key, val] of Object.entries(socialCheck.urls)) {
+      updates[key] = val;
+    }
+    for (const field of ['instagram_url', 'tiktok_url', 'youtube_url', 'facebook_url', 'xiaohongshu_url'] as const) {
+      if (body[field] !== undefined && !socialCheck.urls[field]) {
+        updates[field] = body[field] ? stripHtml(String(body[field])).slice(0, 500) : null;
+      }
     }
 
     if (Object.keys(updates).length <= 1) {

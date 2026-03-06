@@ -55,9 +55,11 @@ export interface BedCount {
   hasUpperBerth: boolean;
 }
 
+export type VerandahViewType = 'ocean' | 'garden' | 'reef';
+
 export interface WizardState {
   selectedShip: ShipName | '';
-  budget: BudgetLevel | '';
+  budgets: BudgetLevel[];
   numStaterooms: number;
   partySize: number;
   travelParty: TravelParty;
@@ -67,6 +69,8 @@ export interface WizardState {
   noBunkBed: boolean;
   elderlyFriendly: boolean;
   childFriendly: boolean;
+  requiresVerandah: boolean;
+  verandahTypes: VerandahViewType[];
   selectedThemes: string[];
   selectedDecks: number[];
   selectedSections: string[];

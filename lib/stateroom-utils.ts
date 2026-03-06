@@ -1,4 +1,6 @@
 import stateroomData from '@/data/stateroom-data.json';
+import categoryMetadata from '@/data/category-metadata.json';
+import type { VerandahViewType } from './stateroom-types';
 
 type ShipName = 'Disney Magic' | 'Disney Wonder' | 'Disney Dream' | 'Disney Fantasy' | 'Disney Wish' | 'Disney Treasure' | 'Disney Destiny' | 'Disney Adventure';
 
@@ -20,6 +22,7 @@ interface Stateroom {
 }
 
 const data = stateroomData as Record<ShipName, Stateroom[]>;
+const catMeta = categoryMetadata as Record<string, Record<string, { name?: string; includesVerandah?: boolean }>>;
 
 export const TYPE_EMOJI: Record<string, string> = {
   'Concierge / Suite': '👑',
@@ -147,4 +150,40 @@ export function lookupStateroomInfo(roomNumber: number, shipName: string): State
     bedding: room.bedding ?? null,
     accessible: room.accessible ?? null,
   };
+}
+
+/**
+ * Check if a room has a verandah.
+ * For Disney Adventure: uses category metadata's includesVerandah field.
+ * For other ships: type "Verandah" always has one; Concierge/Suite rooms
+ * with a non-null verandahPartitions field also have one.
+ */
+export function roomHasVerandah(shipName: string, category: string | null, verandahPartitions: string | null): boolean {
+  if (!category) return false;
+  // Adventure has explicit metadata
+  const shipMeta = catMeta[shipName];
+  if (shipMeta?.[category]) {
+    return shipMeta[category].includesVerandah === true;
+  }
+  // Other ships: Verandah type always has verandah
+  const type = getCategoryType(category);
+  if (type === 'Verandah') return true;
+  // Concierge rooms with verandah partitions have verandahs
+  if (type === 'Concierge / Suite' && verandahPartitions && verandahPartitions.toUpperCase() !== 'NO') return true;
+  return false;
+}
+
+/**
+ * Get the verandah view type for Disney Adventure rooms.
+ * Returns 'garden', 'reef', or 'ocean' based on category name.
+ * Returns null for non-Adventure ships or rooms without verandahs.
+ */
+export function getVerandahViewType(shipName: string, category: string | null): VerandahViewType | null {
+  if (!category || shipName !== 'Disney Adventure') return null;
+  const meta = catMeta[shipName]?.[category];
+  if (!meta?.includesVerandah || !meta.name) return null;
+  const name = meta.name.toLowerCase();
+  if (name.includes('garden view')) return 'garden';
+  if (name.includes('reef view')) return 'reef';
+  return 'ocean';
 }

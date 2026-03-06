@@ -9,6 +9,7 @@ interface PartyStepProps {
   onPartySizeChange: (n: number) => void;
   onTravelPartyChange: (tp: TravelParty) => void;
   onNext: () => void;
+  onSkip: () => void;
   onBack: () => void;
   onJumpToResults?: () => void;
 }
@@ -16,7 +17,7 @@ interface PartyStepProps {
 export default function PartyStep({
   numStaterooms, partySize, travelParty,
   onNumStateroomsChange, onPartySizeChange, onTravelPartyChange,
-  onNext, onBack, onJumpToResults,
+  onNext, onSkip, onBack, onJumpToResults,
 }: PartyStepProps) {
   const maxPartyForRooms = numStaterooms * 5;
 
@@ -87,6 +88,15 @@ export default function PartyStep({
           Back
         </button>
         <div className="flex items-center gap-3">
+          {!onJumpToResults && (
+            <button
+              type="button"
+              onClick={onSkip}
+              className="text-sm text-slate-500 dark:text-slate-400 hover:underline"
+            >
+              Skip
+            </button>
+          )}
           {onJumpToResults && (
             <button
               type="button"
