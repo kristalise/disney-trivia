@@ -32,9 +32,15 @@ export function middleware(request: NextRequest) {
     if (!origin) return NextResponse.next();
 
     // Allow if origin matches any allowed origin or the request's own host
-    const requestOrigin = `${request.nextUrl.protocol}//${request.nextUrl.host}`;
-    if (ALLOWED_ORIGINS.includes(origin) || origin === requestOrigin) {
-      return NextResponse.next();
+    // Compare by host only — protocol may differ behind Vercel's SSL termination
+    const requestHost = request.headers.get('host') || request.nextUrl.host;
+    try {
+      const originHost = new URL(origin).host;
+      if (ALLOWED_ORIGINS.includes(origin) || originHost === requestHost) {
+        return NextResponse.next();
+      }
+    } catch {
+      // Malformed origin header — block it
     }
 
     return NextResponse.json(
