@@ -449,6 +449,8 @@ export default function ProfilePage() {
 
         <SocialIcons instagramUrl={profile.instagram_url} tiktokUrl={profile.tiktok_url} youtubeUrl={profile.youtube_url} facebookUrl={profile.facebook_url} size="md" />
 
+        <div className="mt-4" />
+
         {/* Action buttons */}
         <div className="flex items-center gap-3">
           {isOwnProfile ? (
@@ -488,11 +490,11 @@ export default function ProfilePage() {
           )}
         </div>
 
-        {/* Friends link for own profile */}
+        {/* Friends button for own profile */}
         {isOwnProfile && (
           <Link
             href="/friends"
-            className="block mt-3 text-center text-sm font-medium text-disney-blue dark:text-disney-gold hover:underline"
+            className="block mt-3 w-full text-center px-4 py-2 rounded-xl text-sm font-medium bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors"
           >
             View Friends &amp; Connections
           </Link>
