@@ -55,7 +55,7 @@ export interface BedCount {
   hasUpperBerth: boolean;
 }
 
-export type VerandahViewType = 'ocean' | 'garden' | 'reef';
+export type VerandahViewType = 'ocean' | 'garden' | 'garden-stage' | 'reef';
 
 export interface WizardState {
   selectedShip: ShipName | '';

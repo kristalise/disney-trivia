@@ -480,9 +480,12 @@ export function filterAndScore(params: ScoringParams): FilterResult {
     // Verandah requirement
     if (requiresVerandah && !roomHasVerandah(selectedShip, r.category, r.verandahPartitions)) return false;
     // Verandah view type filter (Disney Adventure only, multi-select)
+    // "garden" includes "garden-stage" rooms
     if (verandahTypes.length > 0) {
       const vt = getVerandahViewType(selectedShip, r.category);
-      if (!vt || !verandahTypes.includes(vt)) return false;
+      if (!vt) return false;
+      const match = verandahTypes.includes(vt) || (vt === 'garden-stage' && verandahTypes.includes('garden'));
+      if (!match) return false;
     }
     return true;
   });

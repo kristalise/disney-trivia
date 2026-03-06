@@ -69,10 +69,10 @@ function StateroomGuidePage() {
   const [requiresVerandah, setRequiresVerandah] = useState(() => searchParams.get('verandah') === '1');
   const [verandahTypes, setVerandahTypes] = useState<VerandahViewType[]>(() => {
     const sp = searchParams.get('vtypes');
-    if (sp) return sp.split(',').filter(v => ['ocean', 'garden', 'reef'].includes(v)) as VerandahViewType[];
+    if (sp) return sp.split(',').filter(v => ['ocean', 'garden', 'garden-stage', 'reef'].includes(v)) as VerandahViewType[];
     // Backward compat: old single vtype= param
     const single = searchParams.get('vtype');
-    if (single && ['ocean', 'garden', 'reef'].includes(single)) return [single as VerandahViewType];
+    if (single && ['ocean', 'garden', 'garden-stage', 'reef'].includes(single)) return [single as VerandahViewType];
     return [];
   });
 

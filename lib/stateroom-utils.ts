@@ -183,6 +183,7 @@ export function getVerandahViewType(shipName: string, category: string | null): 
   const meta = catMeta[shipName]?.[category];
   if (!meta?.includesVerandah || !meta.name) return null;
   const name = meta.name.toLowerCase();
+  if (name.includes('garden stage view')) return 'garden-stage';
   if (name.includes('garden view')) return 'garden';
   if (name.includes('reef view')) return 'reef';
   return 'ocean';

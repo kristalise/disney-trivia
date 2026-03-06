@@ -608,7 +608,8 @@ function StateroomReviewContent() {
                       </span>
                       {catMeta.includesVerandah && (
                         <span className="px-2.5 py-1 rounded-full text-xs font-medium bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400">
-                          {(catMeta.name || '').toLowerCase().includes('garden view') ? 'Garden View Verandah'
+                          {(catMeta.name || '').toLowerCase().includes('garden stage view') ? 'Garden Stage View Verandah'
+                            : (catMeta.name || '').toLowerCase().includes('garden view') ? 'Garden View Verandah'
                             : (catMeta.name || '').toLowerCase().includes('reef view') ? 'Reef View Verandah'
                             : 'Oceanview Verandah'}
                         </span>

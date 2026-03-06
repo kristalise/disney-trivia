@@ -33,6 +33,7 @@ function EditIcon() {
 const VERANDAH_TYPE_LABELS: Record<string, string> = {
   ocean: 'Ocean View',
   garden: 'Garden View',
+  'garden-stage': 'Garden Stage View',
   reef: 'Reef View',
 };
 

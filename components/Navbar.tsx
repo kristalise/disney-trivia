@@ -25,8 +25,7 @@ export default function Navbar() {
   const navItems = [
     { href: '/', label: 'Home' },
     { href: '/quiz', label: 'Quiz' },
-    { href: '/Secret-menU', label: 'Cruise Guide', mobileLabel: 'Guide' },
-    { href: '/search', label: 'Search' },
+    { href: '/Secret-menU', label: 'Cruise Guide', highlight: true },
     { href: '/contribute', label: 'Contribute', hideOnMobile: true },
     { href: '/progress', label: 'Progress', hideOnMobile: true },
     { href: '/users', label: 'Community' },
@@ -67,19 +66,16 @@ export default function Navbar() {
                     key={item.href}
                     href={item.href}
                     className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                      isActive
-                        ? 'bg-white/20 text-white'
-                        : 'text-white/80 hover:text-white hover:bg-white/10'
+                      item.highlight
+                        ? isActive
+                          ? 'bg-red-500 text-white'
+                          : 'bg-red-500/80 text-white hover:bg-red-500'
+                        : isActive
+                          ? 'bg-white/20 text-white'
+                          : 'text-white/80 hover:text-white hover:bg-white/10'
                     }${item.hideOnMobile ? ' hidden sm:inline-flex' : ''}`}
                   >
-                    {item.mobileLabel ? (
-                      <>
-                        <span className="hidden sm:inline">{item.label}</span>
-                        <span className="sm:hidden">{item.mobileLabel}</span>
-                      </>
-                    ) : (
-                      item.label
-                    )}
+                    {item.label}
                   </Link>
                 );
               })}

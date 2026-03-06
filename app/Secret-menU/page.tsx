@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/components/AuthProvider';
 import { getCastawayLevel } from '@/lib/castaway-levels';
@@ -20,9 +20,6 @@ function parseLocal(ds: string) {
 
 export default function SecretMenuPage() {
   const { user, session } = useAuth();
-  const [bgTapCount, setBgTapCount] = useState(0);
-  const [hackRevealed, setHackRevealed] = useState(false);
-  const [hackVisible, setHackVisible] = useState(false);
   const [userHandle, setUserHandle] = useState<string | null>(null);
   const [sailings, setSailings] = useState<Sailing[]>([]);
   const [now, setNow] = useState(() => new Date());
@@ -114,44 +111,13 @@ export default function SecretMenuPage() {
     return items;
   }, [nextSailing, now, castaway]);
 
-  useEffect(() => {
-    const hackPersisted = localStorage.getItem('secret-menu-hack-unlocked') === 'true';
-    if (hackPersisted) {
-      setHackRevealed(true);
-      setHackVisible(true);
-    }
-  }, []);
-
-  const handleBackgroundTap = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
-      if (hackRevealed) return;
-      // Only count taps on the background, not on buttons/links
-      if ((e.target as HTMLElement).closest('a')) return;
-      const next = bgTapCount + 1;
-      setBgTapCount(next);
-      if (next >= 3) {
-        setHackRevealed(true);
-        localStorage.setItem('secret-menu-hack-unlocked', 'true');
-        // Fade in after state update
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            setHackVisible(true);
-          });
-        });
-      }
-    },
-    [bgTapCount, hackRevealed]
-  );
 
   const voyageHref = user
     ? `/profile/${userHandle || user.id}`
     : '/auth';
 
   return (
-    <div
-      className="max-w-2xl mx-auto min-h-[60vh]"
-      onClick={handleBackgroundTap}
-    >
+    <div className="max-w-2xl mx-auto min-h-[60vh]">
       {/* Header */}
       <div className="mb-8">
         <Link
@@ -471,89 +437,6 @@ export default function SecretMenuPage() {
           </div>
         )}
 
-        {/* Row 5: Entertainment | Activity Guide */}
-        {user ? (
-          <Link
-            href="/Secret-menU/entertainment"
-            className="bg-gradient-to-br from-purple-600 to-indigo-600 dark:from-purple-800 dark:to-indigo-800 rounded-2xl p-4 shadow-lg border border-purple-400/30 dark:border-purple-500/30 hover:border-disney-gold transition-all hover:shadow-xl hover:scale-[1.02] active:scale-95 text-center"
-          >
-            <div className="text-3xl mb-2">🎭</div>
-            <div className="text-sm font-bold text-white">Entertainment</div>
-            <div className="text-xs text-purple-200 dark:text-purple-300 mt-0.5">Shows & parties</div>
-          </Link>
-        ) : (
-          <div className="bg-gradient-to-br from-purple-600 to-indigo-600 dark:from-purple-800 dark:to-indigo-800 rounded-2xl p-4 shadow-lg border border-purple-400/30 dark:border-purple-500/30 text-center opacity-40 cursor-not-allowed">
-            <div className="text-3xl mb-2">🎭</div>
-            <div className="text-sm font-bold text-white">Entertainment</div>
-            <div className="text-xs text-purple-200 dark:text-purple-300 mt-0.5">Sign in required</div>
-          </div>
-        )}
-
-        {user ? (
-          <Link
-            href="/Secret-menU/things-to-do"
-            className="bg-gradient-to-br from-cyan-600 to-teal-600 dark:from-cyan-800 dark:to-teal-800 rounded-2xl p-4 shadow-lg border border-cyan-400/30 dark:border-cyan-500/30 hover:border-disney-gold transition-all hover:shadow-xl hover:scale-[1.02] active:scale-95 text-center"
-          >
-            <div className="text-3xl mb-2">🎢</div>
-            <div className="text-sm font-bold text-white">Activity Guide</div>
-            <div className="text-xs text-cyan-200 dark:text-cyan-300 mt-0.5">Pools, rides & more</div>
-          </Link>
-        ) : (
-          <div className="bg-gradient-to-br from-cyan-600 to-teal-600 dark:from-cyan-800 dark:to-teal-800 rounded-2xl p-4 shadow-lg border border-cyan-400/30 dark:border-cyan-500/30 text-center opacity-40 cursor-not-allowed">
-            <div className="text-3xl mb-2">🎢</div>
-            <div className="text-sm font-bold text-white">Activity Guide</div>
-            <div className="text-xs text-cyan-200 dark:text-cyan-300 mt-0.5">Sign in required</div>
-          </div>
-        )}
-
-        {/* Row 6: Foodie Guide | Shopping Guide */}
-        {user ? (
-          <Link
-            href="/Secret-menU/foodies"
-            className="bg-gradient-to-br from-orange-600 to-red-600 dark:from-orange-800 dark:to-red-800 rounded-2xl p-4 shadow-lg border border-orange-400/30 dark:border-orange-500/30 hover:border-disney-gold transition-all hover:shadow-xl hover:scale-[1.02] active:scale-95 text-center"
-          >
-            <div className="text-3xl mb-2">🍽️</div>
-            <div className="text-sm font-bold text-white">Foodie Guide</div>
-            <div className="text-xs text-orange-200 dark:text-orange-300 mt-0.5">All dining options</div>
-          </Link>
-        ) : (
-          <div className="bg-gradient-to-br from-orange-600 to-red-600 dark:from-orange-800 dark:to-red-800 rounded-2xl p-4 shadow-lg border border-orange-400/30 dark:border-orange-500/30 text-center opacity-40 cursor-not-allowed">
-            <div className="text-3xl mb-2">🍽️</div>
-            <div className="text-sm font-bold text-white">Foodie Guide</div>
-            <div className="text-xs text-orange-200 dark:text-orange-300 mt-0.5">Sign in required</div>
-          </div>
-        )}
-
-        {user ? (
-          <Link
-            href="/Secret-menU/shopping"
-            className="bg-gradient-to-br from-pink-600 to-fuchsia-600 dark:from-pink-800 dark:to-fuchsia-800 rounded-2xl p-4 shadow-lg border border-pink-400/30 dark:border-pink-500/30 hover:border-disney-gold transition-all hover:shadow-xl hover:scale-[1.02] active:scale-95 text-center"
-          >
-            <div className="text-3xl mb-2">🛍️</div>
-            <div className="text-sm font-bold text-white">Shopping Guide</div>
-            <div className="text-xs text-pink-200 dark:text-pink-300 mt-0.5">Shops & boutiques</div>
-          </Link>
-        ) : (
-          <div className="bg-gradient-to-br from-pink-600 to-fuchsia-600 dark:from-pink-800 dark:to-fuchsia-800 rounded-2xl p-4 shadow-lg border border-pink-400/30 dark:border-pink-500/30 text-center opacity-40 cursor-not-allowed">
-            <div className="text-3xl mb-2">🛍️</div>
-            <div className="text-sm font-bold text-white">Shopping Guide</div>
-            <div className="text-xs text-pink-200 dark:text-pink-300 mt-0.5">Sign in required</div>
-          </div>
-        )}
-
-        {/* Row 7: Cruise Hacks (easter egg, spans 2 cols) */}
-        {hackRevealed && (
-          <Link
-            href="/Secret-menU/hacks"
-            className={`bg-gradient-to-br from-slate-900 to-slate-800 dark:from-slate-700 dark:to-slate-600 rounded-2xl p-4 shadow-lg border border-slate-600 dark:border-slate-500 hover:border-disney-gold transition-all hover:shadow-xl hover:scale-[1.02] active:scale-95 text-center col-span-2 ${
-              hackVisible ? 'opacity-100' : 'opacity-0'
-            } transition-opacity duration-700`}
-          >
-            <div className="text-3xl mb-2">🏴‍☠️</div>
-            <div className="text-sm font-bold text-white">Cruise Hacks</div>
-            <div className="text-xs text-slate-400 mt-0.5">Tips & tricks</div>
-          </Link>
-        )}
       </div>
     </div>
   );

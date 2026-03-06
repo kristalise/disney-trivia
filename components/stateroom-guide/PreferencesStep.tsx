@@ -38,6 +38,7 @@ interface PreferencesStepProps {
 const VERANDAH_VIEW_OPTIONS: { key: VerandahViewType; label: string; emoji: string; hint: string }[] = [
   { key: 'ocean', label: 'Ocean View', emoji: '🌊', hint: 'Overlooks the ocean' },
   { key: 'garden', label: 'Garden View', emoji: '🌿', hint: 'Overlooks Imagination Garden' },
+  { key: 'garden-stage', label: 'Garden Stage View', emoji: '🎭', hint: 'Garden view facing the stage' },
   { key: 'reef', label: 'Reef View', emoji: '🐠', hint: 'Overlooks Discovery Reef' },
 ];
 
