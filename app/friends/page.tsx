@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/components/AuthProvider';
 import QRCodeButton from '@/components/QRCodeButton';
@@ -56,25 +56,26 @@ export default function FriendsPage() {
   const [companions, setCompanions] = useState<FrequentCompanion[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchFriends = useCallback(async () => {
-    if (!session?.access_token) return;
+  const hasFetched = useRef(false);
+
+  useEffect(() => {
+    if (!user || !session?.access_token || hasFetched.current) return;
+    hasFetched.current = true;
     setLoading(true);
-    try {
-      const res = await fetch('/api/friends', {
-        headers: { Authorization: `Bearer ${session.access_token}` },
-      });
-      if (res.ok) {
-        const data = await res.json();
+
+    fetch('/api/friends', {
+      headers: { Authorization: `Bearer ${session.access_token}` },
+    })
+      .then(res => res.ok ? res.json() : null)
+      .then(data => {
+        if (!data) return;
         setFriends(data.friends ?? []);
         setMetOnShip(data.met_on_ship ?? []);
         setCompanions(data.frequent_companions ?? []);
-      }
-    } catch { /* ignore */ } finally { setLoading(false); }
-  }, [session?.access_token]);
-
-  useEffect(() => {
-    if (user) fetchFriends();
-  }, [user, fetchFriends]);
+      })
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, [user, session?.access_token]);
 
   if (!user) {
     return (

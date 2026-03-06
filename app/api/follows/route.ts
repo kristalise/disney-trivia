@@ -13,6 +13,12 @@ function getSupabase(authHeader?: string | null) {
   });
 }
 
+function getSupabaseAdmin() {
+  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!supabaseUrl || !serviceKey) return null;
+  return createClient(supabaseUrl, serviceKey);
+}
+
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
@@ -100,12 +106,17 @@ export async function POST(request: NextRequest) {
 
     if (mutual) {
       // Insert both directions for instant friendship
+      // Use admin client to bypass RLS (policy only allows follower_id = auth.uid())
+      const admin = getSupabaseAdmin();
+      if (!admin) {
+        return NextResponse.json({ error: 'Server configuration error' }, { status: 503 });
+      }
       const rows = [
         { follower_id: user.id, following_id },
         { follower_id: following_id, following_id: user.id },
       ];
       for (const row of rows) {
-        const { error: insertErr } = await supabase.from('follows').insert(row);
+        const { error: insertErr } = await admin.from('follows').insert(row);
         if (insertErr && insertErr.code !== '23505') throw insertErr;
       }
     } else {
@@ -203,9 +214,14 @@ export async function DELETE(request: NextRequest) {
 
     if (mutual) {
       // Remove both directions (unfriend)
+      // Use admin client to bypass RLS (policy only allows deleting own follows)
+      const admin = getSupabaseAdmin();
+      if (!admin) {
+        return NextResponse.json({ error: 'Server configuration error' }, { status: 503 });
+      }
       await Promise.all([
-        supabase.from('follows').delete().eq('follower_id', user.id).eq('following_id', following_id),
-        supabase.from('follows').delete().eq('follower_id', following_id).eq('following_id', user.id),
+        admin.from('follows').delete().eq('follower_id', user.id).eq('following_id', following_id),
+        admin.from('follows').delete().eq('follower_id', following_id).eq('following_id', user.id),
       ]);
     } else {
       const { error } = await supabase
