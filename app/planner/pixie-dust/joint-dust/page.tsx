@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, Suspense } from 'react';
+import { useState, useEffect, useCallback, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/components/AuthProvider';
@@ -18,11 +18,15 @@ interface GiftRecipient {
   recipientId: string;
   giftId: string;
   delivered: boolean;
+  recipient_name: string | null;
+  notes: string | null;
 }
 
 interface RoomEntry {
   stateroom: number;
   gifts: GiftRecipient[];
+  displayName: string | null;
+  displayNotes: string | null;
 }
 
 interface RouteStop {
@@ -55,6 +59,12 @@ function JointDustContent() {
   const [route, setRoute] = useState<RouteStop[] | null>(null);
   const [startRoom, setStartRoom] = useState<number>(0);
   const [optimizing, setOptimizing] = useState(false);
+
+  // Inline editing
+  const [editingField, setEditingField] = useState<{ stateroom: number; field: 'recipient_name' | 'notes' } | null>(null);
+  const [editValue, setEditValue] = useState('');
+  const [savingRoom, setSavingRoom] = useState<number | null>(null);
+  const editInputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
 
   const headers = useCallback(() => ({
     'Content-Type': 'application/json',
@@ -92,7 +102,7 @@ function JointDustContent() {
           const data = await res.json();
           return {
             giftId: g.id,
-            recipients: (data.recipients ?? []) as { id: string; stateroom_number: number; delivered: boolean }[],
+            recipients: (data.recipients ?? []) as { id: string; stateroom_number: number; delivered: boolean; recipient_name: string | null; notes: string | null }[],
           };
         })
       );
@@ -106,6 +116,8 @@ function JointDustContent() {
             recipientId: r.id,
             giftId: result.giftId,
             delivered: r.delivered,
+            recipient_name: r.recipient_name ?? null,
+            notes: r.notes ?? null,
           });
           roomMap.set(r.stateroom_number, existing);
         }
@@ -139,6 +151,50 @@ function JointDustContent() {
     } catch { /* ignore */ } finally { setTogglingId(null); }
   };
 
+  const handleSaveField = async (stateroom: number, field: 'recipient_name' | 'notes', value: string) => {
+    // Update all recipients for this room
+    const roomGifts = rooms.get(stateroom);
+    if (!roomGifts) return;
+    setSavingRoom(stateroom);
+    try {
+      // Update all recipients for this stateroom in parallel
+      await Promise.all(roomGifts.map(gr =>
+        fetch('/api/pixie-gifts/recipients', {
+          method: 'PATCH',
+          headers: headers(),
+          body: JSON.stringify({ id: gr.recipientId, [field]: value || null }),
+        })
+      ));
+      // Update local state
+      setRooms(prev => {
+        const next = new Map(prev);
+        const updated = (next.get(stateroom) ?? []).map(gr => ({ ...gr, [field]: value || null }));
+        next.set(stateroom, updated);
+        return next;
+      });
+    } catch { /* ignore */ } finally {
+      setSavingRoom(null);
+      setEditingField(null);
+    }
+  };
+
+  const startEditing = (stateroom: number, field: 'recipient_name' | 'notes', currentValue: string | null) => {
+    setEditingField({ stateroom, field });
+    setEditValue(currentValue ?? '');
+    setTimeout(() => editInputRef.current?.focus(), 0);
+  };
+
+  const commitEdit = () => {
+    if (!editingField) return;
+    const roomGifts = rooms.get(editingField.stateroom);
+    const currentValue = roomGifts?.[0]?.[editingField.field] ?? '';
+    if (editValue !== (currentValue ?? '')) {
+      handleSaveField(editingField.stateroom, editingField.field, editValue);
+    } else {
+      setEditingField(null);
+    }
+  };
+
   const handleOptimizeRoute = async () => {
     // Union of all undelivered rooms across all gifts
     const undelivered = new Set<number>();
@@ -162,9 +218,14 @@ function JointDustContent() {
     } catch { /* ignore */ } finally { setOptimizing(false); }
   };
 
-  // Build sorted room entries
+  // Build sorted room entries — use first non-null name/notes across gifts for display
   const roomEntries: RoomEntry[] = Array.from(rooms.entries())
-    .map(([stateroom, giftRecipients]) => ({ stateroom, gifts: giftRecipients }))
+    .map(([stateroom, giftRecipients]) => ({
+      stateroom,
+      gifts: giftRecipients,
+      displayName: giftRecipients.find(g => g.recipient_name)?.recipient_name ?? null,
+      displayNotes: giftRecipients.find(g => g.notes)?.notes ?? null,
+    }))
     .sort((a, b) => a.stateroom - b.stateroom);
 
   // Group by deck
@@ -358,15 +419,47 @@ function JointDustContent() {
                     {deckRooms.map(room => {
                       const side = getSide(room.stateroom);
                       const allDelivered = room.gifts.every(g => g.delivered);
+                      const isEditingName = editingField?.stateroom === room.stateroom && editingField.field === 'recipient_name';
+                      const isEditingNotes = editingField?.stateroom === room.stateroom && editingField.field === 'notes';
+                      const isSaving = savingRoom === room.stateroom;
                       return (
                         <div key={room.stateroom} className={`px-5 py-2.5 border-b border-slate-100 dark:border-slate-700 last:border-0 ${allDelivered ? 'opacity-50' : ''}`}>
                           <div className="flex items-center gap-3 mb-1.5">
-                            <span className={`text-sm font-medium ${
-                              allDelivered ? 'line-through text-slate-400 dark:text-slate-500' : 'text-slate-900 dark:text-white'
-                            }`}>
-                              Room {room.stateroom}
-                            </span>
-                            <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-medium ${
+                            <div className="flex items-center gap-1.5 min-w-0">
+                              <span className={`text-sm font-medium ${
+                                allDelivered ? 'line-through text-slate-400 dark:text-slate-500' : 'text-slate-900 dark:text-white'
+                              }`}>
+                                Room {room.stateroom}
+                              </span>
+                              {isEditingName ? (
+                                <input
+                                  ref={editInputRef as React.RefObject<HTMLInputElement>}
+                                  type="text"
+                                  value={editValue}
+                                  onChange={e => setEditValue(e.target.value)}
+                                  onBlur={commitEdit}
+                                  onKeyDown={e => { if (e.key === 'Enter') commitEdit(); if (e.key === 'Escape') setEditingField(null); }}
+                                  maxLength={100}
+                                  placeholder="Name"
+                                  className="px-1.5 py-0 rounded border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-xs text-slate-700 dark:text-slate-300 w-24"
+                                />
+                              ) : (
+                                <button
+                                  type="button"
+                                  onClick={() => startEditing(room.stateroom, 'recipient_name', room.displayName)}
+                                  className={`text-xs truncate max-w-[100px] ${
+                                    room.displayName
+                                      ? 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                                      : 'text-slate-300 dark:text-slate-600 hover:text-slate-500 dark:hover:text-slate-400 italic'
+                                  }`}
+                                  title={room.displayName ?? 'Add name'}
+                                >
+                                  {room.displayName || '+ name'}
+                                </button>
+                              )}
+                              {isSaving && <span className="text-[10px] text-slate-400 animate-pulse">saving</span>}
+                            </div>
+                            <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-medium ml-auto ${
                               side === 'port'
                                 ? 'bg-red-50 dark:bg-red-900/20 text-red-500 dark:text-red-400'
                                 : 'bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400'
@@ -402,6 +495,38 @@ function JointDustContent() {
                               );
                             })}
                           </div>
+                          {/* Notes row */}
+                          {isEditingNotes ? (
+                            <div className="mt-1">
+                              <textarea
+                                ref={editInputRef as React.RefObject<HTMLTextAreaElement>}
+                                value={editValue}
+                                onChange={e => setEditValue(e.target.value)}
+                                onBlur={commitEdit}
+                                onKeyDown={e => { if (e.key === 'Escape') setEditingField(null); }}
+                                maxLength={500}
+                                rows={2}
+                                placeholder="Add a note..."
+                                className="w-full px-2 py-1 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-xs text-slate-700 dark:text-slate-300 resize-none"
+                              />
+                            </div>
+                          ) : room.displayNotes ? (
+                            <button
+                              type="button"
+                              onClick={() => startEditing(room.stateroom, 'notes', room.displayNotes)}
+                              className="mt-0.5 text-xs text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 text-left truncate max-w-full block"
+                            >
+                              {room.displayNotes}
+                            </button>
+                          ) : (
+                            <button
+                              type="button"
+                              onClick={() => startEditing(room.stateroom, 'notes', room.displayNotes)}
+                              className="mt-0.5 text-[10px] text-slate-300 dark:text-slate-600 hover:text-slate-500 dark:hover:text-slate-400 italic"
+                            >
+                              + note
+                            </button>
+                          )}
                         </div>
                       );
                     })}

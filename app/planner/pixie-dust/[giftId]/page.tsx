@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/components/AuthProvider';
@@ -21,6 +21,7 @@ interface Recipient {
   stateroom_number: number;
   delivered: boolean;
   delivered_at: string | null;
+  recipient_name: string | null;
   notes: string | null;
 }
 
@@ -66,6 +67,12 @@ export default function GiftDetailPage() {
   // Delete gift
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
+
+  // Inline editing for name/notes
+  const [editingField, setEditingField] = useState<{ id: string; field: 'recipient_name' | 'notes' } | null>(null);
+  const [editValue, setEditValue] = useState('');
+  const [savingFieldId, setSavingFieldId] = useState<string | null>(null);
+  const editInputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
 
   const headers = useCallback(() => ({
     'Content-Type': 'application/json',
@@ -208,6 +215,42 @@ export default function GiftDetailPage() {
         router.push(`/planner/pixie-dust${sailingParam}`);
       }
     } catch { /* ignore */ } finally { setDeleteLoading(false); }
+  };
+
+  const handleSaveField = async (recipientId: string, field: 'recipient_name' | 'notes', value: string) => {
+    setSavingFieldId(recipientId);
+    try {
+      const res = await fetch('/api/pixie-gifts/recipients', {
+        method: 'PATCH',
+        headers: headers(),
+        body: JSON.stringify({ id: recipientId, [field]: value || null }),
+      });
+      if (res.ok) {
+        setRecipients(prev => prev.map(r =>
+          r.id === recipientId ? { ...r, [field]: value || null } : r
+        ));
+      }
+    } catch { /* ignore */ } finally {
+      setSavingFieldId(null);
+      setEditingField(null);
+    }
+  };
+
+  const startEditing = (id: string, field: 'recipient_name' | 'notes', currentValue: string | null) => {
+    setEditingField({ id, field });
+    setEditValue(currentValue ?? '');
+    setTimeout(() => editInputRef.current?.focus(), 0);
+  };
+
+  const commitEdit = () => {
+    if (!editingField) return;
+    const r = recipients.find(r => r.id === editingField.id);
+    const currentValue = r?.[editingField.field] ?? '';
+    if (editValue !== (currentValue ?? '')) {
+      handleSaveField(editingField.id, editingField.field, editValue);
+    } else {
+      setEditingField(null);
+    }
   };
 
   const handleOptimizeRoute = async () => {
@@ -430,49 +473,117 @@ export default function GiftDetailPage() {
                     </div>
                     {sorted.map(r => {
                       const side = getSide(r.stateroom_number);
+                      const isEditingName = editingField?.id === r.id && editingField.field === 'recipient_name';
+                      const isEditingNotes = editingField?.id === r.id && editingField.field === 'notes';
+                      const isSaving = savingFieldId === r.id;
                       return (
-                        <div key={r.id} className="flex items-center gap-3 px-5 py-2.5 border-b border-slate-100 dark:border-slate-700 last:border-0">
-                          <button
-                            type="button"
-                            disabled={togglingId === r.id}
-                            onClick={() => handleToggleDelivery(r.id, r.delivered)}
-                            className={`flex-shrink-0 w-6 h-6 rounded-lg border-2 flex items-center justify-center transition-colors ${
-                              r.delivered
-                                ? 'bg-green-500 border-green-500'
-                                : 'border-slate-300 dark:border-slate-600 hover:border-green-500'
-                            } ${togglingId === r.id ? 'opacity-50' : ''}`}
-                          >
-                            {r.delivered && (
-                              <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                              </svg>
-                            )}
-                          </button>
-                          <span className={`flex-1 text-sm font-medium ${
-                            r.delivered ? 'line-through text-slate-400 dark:text-slate-500' : 'text-slate-900 dark:text-white'
-                          }`}>
-                            Room {r.stateroom_number}
-                          </span>
-                          <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-medium ${
-                            side === 'port'
-                              ? 'bg-red-50 dark:bg-red-900/20 text-red-500 dark:text-red-400'
-                              : 'bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400'
-                          }`}>
-                            {side === 'port' ? 'Port' : 'Stbd'}
-                          </span>
-                          {r.delivered_at && (
-                            <span className="text-xs text-green-600 dark:text-green-400">
-                              {new Date(r.delivered_at).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}
+                        <div key={r.id} className="px-5 py-2.5 border-b border-slate-100 dark:border-slate-700 last:border-0">
+                          <div className="flex items-center gap-3">
+                            <button
+                              type="button"
+                              disabled={togglingId === r.id}
+                              onClick={() => handleToggleDelivery(r.id, r.delivered)}
+                              className={`flex-shrink-0 w-6 h-6 rounded-lg border-2 flex items-center justify-center transition-colors ${
+                                r.delivered
+                                  ? 'bg-green-500 border-green-500'
+                                  : 'border-slate-300 dark:border-slate-600 hover:border-green-500'
+                              } ${togglingId === r.id ? 'opacity-50' : ''}`}
+                            >
+                              {r.delivered && (
+                                <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                </svg>
+                              )}
+                            </button>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-1.5">
+                                <span className={`text-sm font-medium ${
+                                  r.delivered ? 'line-through text-slate-400 dark:text-slate-500' : 'text-slate-900 dark:text-white'
+                                }`}>
+                                  Room {r.stateroom_number}
+                                </span>
+                                {isEditingName ? (
+                                  <input
+                                    ref={editInputRef as React.RefObject<HTMLInputElement>}
+                                    type="text"
+                                    value={editValue}
+                                    onChange={e => setEditValue(e.target.value)}
+                                    onBlur={commitEdit}
+                                    onKeyDown={e => { if (e.key === 'Enter') commitEdit(); if (e.key === 'Escape') setEditingField(null); }}
+                                    maxLength={100}
+                                    placeholder="Name"
+                                    className="px-1.5 py-0 rounded border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-xs text-slate-700 dark:text-slate-300 w-24"
+                                  />
+                                ) : (
+                                  <button
+                                    type="button"
+                                    onClick={() => startEditing(r.id, 'recipient_name', r.recipient_name)}
+                                    className={`text-xs truncate max-w-[100px] ${
+                                      r.recipient_name
+                                        ? 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                                        : 'text-slate-300 dark:text-slate-600 hover:text-slate-500 dark:hover:text-slate-400 italic'
+                                    }`}
+                                    title={r.recipient_name ?? 'Add name'}
+                                  >
+                                    {r.recipient_name || '+ name'}
+                                  </button>
+                                )}
+                                {isSaving && <span className="text-[10px] text-slate-400 animate-pulse">saving</span>}
+                              </div>
+                            </div>
+                            <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-medium ${
+                              side === 'port'
+                                ? 'bg-red-50 dark:bg-red-900/20 text-red-500 dark:text-red-400'
+                                : 'bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400'
+                            }`}>
+                              {side === 'port' ? 'Port' : 'Stbd'}
                             </span>
+                            {r.delivered_at && (
+                              <span className="text-xs text-green-600 dark:text-green-400">
+                                {new Date(r.delivered_at).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}
+                              </span>
+                            )}
+                            <button
+                              type="button"
+                              disabled={deletingId === r.id}
+                              onClick={() => handleDeleteRecipient(r.id)}
+                              className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors disabled:opacity-50"
+                            >
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                            </button>
+                          </div>
+                          {/* Notes row */}
+                          {isEditingNotes ? (
+                            <div className="ml-9 mt-1">
+                              <textarea
+                                ref={editInputRef as React.RefObject<HTMLTextAreaElement>}
+                                value={editValue}
+                                onChange={e => setEditValue(e.target.value)}
+                                onBlur={commitEdit}
+                                onKeyDown={e => { if (e.key === 'Escape') setEditingField(null); }}
+                                maxLength={500}
+                                rows={2}
+                                placeholder="Add a note..."
+                                className="w-full px-2 py-1 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-xs text-slate-700 dark:text-slate-300 resize-none"
+                              />
+                            </div>
+                          ) : r.notes ? (
+                            <button
+                              type="button"
+                              onClick={() => startEditing(r.id, 'notes', r.notes)}
+                              className="ml-9 mt-0.5 text-xs text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 text-left truncate max-w-full block"
+                            >
+                              {r.notes}
+                            </button>
+                          ) : (
+                            <button
+                              type="button"
+                              onClick={() => startEditing(r.id, 'notes', r.notes)}
+                              className="ml-9 mt-0.5 text-[10px] text-slate-300 dark:text-slate-600 hover:text-slate-500 dark:hover:text-slate-400 italic"
+                            >
+                              + note
+                            </button>
                           )}
-                          <button
-                            type="button"
-                            disabled={deletingId === r.id}
-                            onClick={() => handleDeleteRecipient(r.id)}
-                            className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors disabled:opacity-50"
-                          >
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
-                          </button>
                         </div>
                       );
                     })}

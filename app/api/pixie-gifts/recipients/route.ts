@@ -50,7 +50,7 @@ export async function GET(request: NextRequest) {
 
     const { data: recipients, error } = await supabase
       .from('pixie_gift_recipients')
-      .select('id, stateroom_number, delivered, delivered_at, notes')
+      .select('id, stateroom_number, delivered, delivered_at, recipient_name, notes')
       .eq('gift_id', giftId)
       .order('stateroom_number', { ascending: true });
 
@@ -182,9 +182,12 @@ export async function PATCH(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { id, delivered } = body;
-    if (!id || delivered === undefined) {
-      return NextResponse.json({ error: 'id and delivered are required' }, { status: 400 });
+    const { id, delivered, recipient_name, notes } = body;
+    if (!id) {
+      return NextResponse.json({ error: 'id is required' }, { status: 400 });
+    }
+    if (delivered === undefined && recipient_name === undefined && notes === undefined) {
+      return NextResponse.json({ error: 'At least one field to update is required' }, { status: 400 });
     }
 
     // Get recipient + gift info
@@ -208,10 +211,17 @@ export async function PATCH(request: NextRequest) {
       return NextResponse.json({ error: 'Not your gift' }, { status: 403 });
     }
 
-    const updates: Record<string, unknown> = {
-      delivered: Boolean(delivered),
-      delivered_at: delivered ? new Date().toISOString() : null,
-    };
+    const updates: Record<string, unknown> = {};
+    if (delivered !== undefined) {
+      updates.delivered = Boolean(delivered);
+      updates.delivered_at = delivered ? new Date().toISOString() : null;
+    }
+    if (recipient_name !== undefined) {
+      updates.recipient_name = recipient_name ? String(recipient_name).replace(/<[^>]*>/g, '').trim().slice(0, 100) : null;
+    }
+    if (notes !== undefined) {
+      updates.notes = notes ? String(notes).replace(/<[^>]*>/g, '').trim().slice(0, 500) : null;
+    }
 
     const { data, error } = await supabase
       .from('pixie_gift_recipients')
