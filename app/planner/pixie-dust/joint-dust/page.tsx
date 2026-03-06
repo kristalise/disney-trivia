@@ -467,7 +467,7 @@ function JointDustContent() {
                               {side === 'port' ? 'Port' : 'Stbd'}
                             </span>
                           </div>
-                          <div className="flex flex-wrap gap-2">
+                          <div className="flex flex-wrap gap-1.5">
                             {room.gifts.map(gr => {
                               const giftInfo = gifts.find(g => g.id === gr.giftId);
                               if (!giftInfo) return null;
@@ -477,19 +477,27 @@ function JointDustContent() {
                                   type="button"
                                   disabled={togglingId === gr.recipientId}
                                   onClick={() => handleToggleDelivery(gr.recipientId, gr.giftId, room.stateroom, gr.delivered)}
-                                  className={`flex items-center gap-1.5 px-2 py-1 rounded-lg text-xs font-medium transition-colors border ${
-                                    gr.delivered
-                                      ? 'bg-green-50 dark:bg-green-900/20 border-green-300 dark:border-green-800 text-green-700 dark:text-green-400'
-                                      : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:border-green-400 dark:hover:border-green-600'
-                                  } ${togglingId === gr.recipientId ? 'opacity-50' : ''}`}
+                                  className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium transition-colors border ${
+                                    togglingId === gr.recipientId ? 'opacity-50' : ''
+                                  }`}
+                                  style={gr.delivered ? {
+                                    borderColor: '#86efac',
+                                    backgroundColor: '#f0fdf4',
+                                    color: '#15803d',
+                                  } : {
+                                    borderColor: giftInfo.color,
+                                    backgroundColor: `${giftInfo.color}12`,
+                                    color: giftInfo.color,
+                                  }}
                                 >
                                   <span>{giftInfo.emoji}</span>
+                                  <span className={gr.delivered ? 'line-through' : ''}>{giftInfo.name}</span>
                                   {gr.delivered ? (
-                                    <svg className="w-3.5 h-3.5 text-green-600 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                                    <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
                                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                                     </svg>
                                   ) : (
-                                    <span className="w-3.5 h-3.5 rounded border border-slate-300 dark:border-slate-500 inline-block" />
+                                    <span className="w-3.5 h-3.5 rounded border-2 inline-block flex-shrink-0" style={{ borderColor: giftInfo.color }} />
                                   )}
                                 </button>
                               );
