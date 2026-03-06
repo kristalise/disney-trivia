@@ -100,8 +100,13 @@ export async function GET(
     const followerIds = (followerData.data ?? []).map(f => f.follower_id);
     const followingIds = (followingData.data ?? []).map(f => f.following_id);
 
+    // Compute friends (mutual follows)
+    const followerIdSet = new Set(followerIds);
+    const friendIds = followingIds.filter(id => followerIdSet.has(id));
+
     let followers: { id: string; display_name: string; avatar_url: string | null; handle: string | null }[] = [];
     let following: { id: string; display_name: string; avatar_url: string | null; handle: string | null }[] = [];
+    let friends: { id: string; display_name: string; avatar_url: string | null; handle: string | null }[] = [];
 
     if (followerIds.length > 0) {
       const { data } = await supabase
@@ -117,6 +122,12 @@ export async function GET(
         .in('id', followingIds);
       following = data ?? [];
     }
+
+    // Filter friends from the already-fetched profiles
+    const friendIdSet = new Set(friendIds);
+    friends = [...followers, ...following]
+      .filter(p => friendIdSet.has(p.id))
+      .filter((p, i, arr) => arr.findIndex(x => x.id === p.id) === i);
 
     // Get recent reviews (last 10 across all types)
     const [recentDining, recentActivity, recentHacks, recentStateroom] = await Promise.all([
@@ -156,8 +167,10 @@ export async function GET(
       sailings,
       followers,
       following,
+      friends,
       follower_count: followerIds.length,
       following_count: followingIds.length,
+      friend_count: friendIds.length,
       recent_reviews: recentReviews,
     });
   } catch (error) {

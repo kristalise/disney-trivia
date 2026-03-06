@@ -159,11 +159,13 @@ export default function ProfilePage() {
   const [sailings, setSailings] = useState<Sailing[]>([]);
   const [followers, setFollowers] = useState<FollowProfile[]>([]);
   const [following, setFollowing] = useState<FollowProfile[]>([]);
+  const [friends, setFriends] = useState<FollowProfile[]>([]);
   const [followerCount, setFollowerCount] = useState(0);
   const [followingCount, setFollowingCount] = useState(0);
+  const [friendCount, setFriendCount] = useState(0);
   const [recentReviews, setRecentReviews] = useState<RecentReview[]>([]);
   const [triviaStats, setTriviaStats] = useState<TriviaStats | null>(null);
-  const [isFollowing, setIsFollowing] = useState(false);
+  const [isFriend, setIsFriend] = useState(false);
   const [followLoading, setFollowLoading] = useState(false);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
@@ -177,14 +179,6 @@ export default function ProfilePage() {
   }, []);
 
   const isOwnProfile = user?.id === profile?.id;
-
-  // Check if mutual follow (friend)
-  const isMutualFollow = useMemo(() => {
-    if (!user || isOwnProfile || !profile) return false;
-    const isInFollowers = followers.some(f => f.id === user.id);
-    const isInFollowing = following.some(f => f.id === user.id);
-    return isInFollowers && isInFollowing;
-  }, [user, isOwnProfile, profile, followers, following]);
 
   // Derive unique ships the user has sailed on, in canonical order
   const sailedShips = useMemo(() => {
@@ -250,8 +244,10 @@ export default function ProfilePage() {
               setSailings(data.sailings);
               setFollowers(data.followers);
               setFollowing(data.following);
+              setFriends(data.friends ?? []);
               setFollowerCount(data.follower_count);
               setFollowingCount(data.following_count);
+              setFriendCount(data.friend_count ?? 0);
               setRecentReviews(data.recent_reviews);
               return;
             }
@@ -267,8 +263,10 @@ export default function ProfilePage() {
       setSailings(data.sailings);
       setFollowers(data.followers);
       setFollowing(data.following);
+      setFriends(data.friends ?? []);
       setFollowerCount(data.follower_count);
       setFollowingCount(data.following_count);
+      setFriendCount(data.friend_count ?? 0);
       setRecentReviews(data.recent_reviews);
     } catch { /* ignore */ } finally {
       setLoading(false);
@@ -304,12 +302,12 @@ export default function ProfilePage() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sailings.length]);
 
-  // Check if current user follows this profile
+  // Check if current user is friends with this profile
   useEffect(() => {
-    if (user && !isOwnProfile && followers.length > 0) {
-      setIsFollowing(followers.some(f => f.id === user.id));
+    if (user && !isOwnProfile) {
+      setIsFriend(friends.some(f => f.id === user.id));
     }
-  }, [user, isOwnProfile, followers]);
+  }, [user, isOwnProfile, friends]);
 
   // Fetch trivia stats for own profile
   useEffect(() => {
@@ -320,23 +318,20 @@ export default function ProfilePage() {
     }
   }, [isOwnProfile]);
 
-  const handleFollow = async () => {
+  const handleFriendToggle = async () => {
     if (!user || !session?.access_token) return;
     setFollowLoading(true);
     try {
       const res = await fetch('/api/follows', {
-        method: isFollowing ? 'DELETE' : 'POST',
+        method: isFriend ? 'DELETE' : 'POST',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${session.access_token}`,
         },
-        body: JSON.stringify({ following_id: profile?.id }),
+        body: JSON.stringify({ following_id: profile?.id, mutual: true }),
       });
       if (res.ok) {
-        const data = await res.json();
-        setIsFollowing(!isFollowing);
-        setFollowerCount(data.follower_count);
-        // Refresh follower list
+        setIsFriend(!isFriend);
         fetchProfile();
       }
     } catch { /* ignore */ } finally {
@@ -420,8 +415,8 @@ export default function ProfilePage() {
               </>
             )}
             <div>
-              <div className="text-lg font-bold text-slate-900 dark:text-white">{followerCount}</div>
-              <div className="text-[11px] text-slate-500 dark:text-slate-400">{followerCount === 1 ? 'Follower' : 'Followers'}</div>
+              <div className="text-lg font-bold text-slate-900 dark:text-white">{friendCount}</div>
+              <div className="text-[11px] text-slate-500 dark:text-slate-400">{friendCount === 1 ? 'Friend' : 'Friends'}</div>
             </div>
           </div>
         </div>
@@ -464,30 +459,18 @@ export default function ProfilePage() {
               <QRCodeButton />
             </>
           ) : user ? (
-            <>
-              <button
-                onClick={handleFollow}
-                disabled={followLoading}
-                className={`flex-1 px-4 py-2 rounded-xl font-medium text-sm transition-colors ${
-                  isFollowing
-                    ? 'bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-red-100 hover:text-red-600 dark:hover:bg-red-900/30 dark:hover:text-red-400'
-                    : 'btn-disney'
-                }`}
-              >
-                {followLoading ? '...' : isFollowing ? 'Following' : 'Follow'}
-              </button>
-              {isMutualFollow && (
-                <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400">
-                  Friend
-                </span>
-              )}
-            </>
+            <button
+              onClick={handleFriendToggle}
+              disabled={followLoading}
+              className={`flex-1 px-4 py-2 rounded-xl font-medium text-sm transition-colors ${
+                isFriend
+                  ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 hover:bg-red-100 hover:text-red-600 dark:hover:bg-red-900/30 dark:hover:text-red-400'
+                  : 'btn-disney'
+              }`}
+            >
+              {followLoading ? '...' : isFriend ? 'Friends' : 'Add Friend'}
+            </button>
           ) : null}
-          {followingCount > 0 && (
-            <span className="text-sm text-slate-500 dark:text-slate-400">
-              <strong className="text-slate-700 dark:text-slate-300">{followingCount}</strong> following
-            </span>
-          )}
         </div>
 
         {/* Friends button for own profile */}
@@ -829,47 +812,20 @@ export default function ProfilePage() {
         </div>
       )}
 
-      {/* Followers / Following */}
-      {(followers.length > 0 || following.length > 0) && (() => {
-        const followerIdSet = new Set(followers.map(f => f.id));
-        const followingIdSet = new Set(following.map(f => f.id));
-        return (
-          <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-200 dark:border-slate-700 mb-6">
-            {followers.length > 0 && (
-              <div className="mb-4">
-                <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-2">Followers</h3>
-                <div className="flex flex-wrap gap-2">
-                  {followers.slice(0, 20).map(f => (
-                    <Link key={f.id} href={`/profile/${f.handle || f.id}`} className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-slate-50 dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors">
-                      <Avatar url={f.avatar_url} name={f.display_name} size="sm" />
-                      <span className="text-xs font-medium text-slate-700 dark:text-slate-300">{f.display_name}</span>
-                      {followingIdSet.has(f.id) && (
-                        <span className="text-[10px] font-semibold text-green-600 dark:text-green-400">Friend</span>
-                      )}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )}
-            {following.length > 0 && (
-              <div>
-                <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-2">Following</h3>
-                <div className="flex flex-wrap gap-2">
-                  {following.slice(0, 20).map(f => (
-                    <Link key={f.id} href={`/profile/${f.handle || f.id}`} className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-slate-50 dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors">
-                      <Avatar url={f.avatar_url} name={f.display_name} size="sm" />
-                      <span className="text-xs font-medium text-slate-700 dark:text-slate-300">{f.display_name}</span>
-                      {followerIdSet.has(f.id) && (
-                        <span className="text-[10px] font-semibold text-green-600 dark:text-green-400">Friend</span>
-                      )}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )}
+      {/* Friends */}
+      {friends.length > 0 && (
+        <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-200 dark:border-slate-700 mb-6">
+          <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-2">Friends</h3>
+          <div className="flex flex-wrap gap-2">
+            {friends.slice(0, 20).map(f => (
+              <Link key={f.id} href={`/profile/${f.handle || f.id}`} className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-slate-50 dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors">
+                <Avatar url={f.avatar_url} name={f.display_name} size="sm" />
+                <span className="text-xs font-medium text-slate-700 dark:text-slate-300">{f.display_name}</span>
+              </Link>
+            ))}
           </div>
-        );
-      })()}
+        </div>
+      )}
     </div>
   );
 }

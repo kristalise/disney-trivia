@@ -4,8 +4,19 @@ import { useState, useMemo, useEffect, useCallback, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import stateroomData from '@/data/stateroom-data.json';
+import categoryMetadata from '@/data/category-metadata.json';
 
+const categoryMeta = categoryMetadata as Record<string, Record<string, CategoryMeta>>;
 
+interface CategoryMeta {
+  name: string;
+  description: string;
+  sleeps: number | string;
+  sqft: string;
+  sqm: string;
+  includesVerandah: boolean;
+  layoutImage: string | null;
+}
 
 const SHIPS = [
   'Disney Magic', 'Disney Wonder', 'Disney Dream', 'Disney Fantasy',
@@ -100,6 +111,73 @@ const TYPE_EMOJI: Record<string, string> = {
   'Oceanview (Porthole)': '⭕',
   'Inside': '🛏',
 };
+
+// Franchise IP color mapping for theme pills
+const THEME_COLORS: Record<string, { bg: string; text: string; emoji: string }> = {
+  // Frozen franchise
+  'Frozen': { bg: 'bg-sky-100 dark:bg-sky-900/40', text: 'text-sky-700 dark:text-sky-300', emoji: '❄️' },
+  'FROZEN': { bg: 'bg-sky-100 dark:bg-sky-900/40', text: 'text-sky-700 dark:text-sky-300', emoji: '❄️' },
+  'ELSA SUITE': { bg: 'bg-sky-100 dark:bg-sky-900/40', text: 'text-sky-700 dark:text-sky-300', emoji: '❄️' },
+  'ANNA SUITE': { bg: 'bg-sky-100 dark:bg-sky-900/40', text: 'text-sky-700 dark:text-sky-300', emoji: '❄️' },
+  // Marvel franchise
+  'MARVEL': { bg: 'bg-red-100 dark:bg-red-900/40', text: 'text-red-700 dark:text-red-300', emoji: '🦸' },
+  'IRONMAN': { bg: 'bg-red-100 dark:bg-red-900/40', text: 'text-red-700 dark:text-red-300', emoji: '🦾' },
+  'Iron Man': { bg: 'bg-red-100 dark:bg-red-900/40', text: 'text-red-700 dark:text-red-300', emoji: '🦾' },
+  'SPIDERMAN': { bg: 'bg-red-100 dark:bg-red-900/40', text: 'text-red-700 dark:text-red-300', emoji: '🕷️' },
+  'THOR': { bg: 'bg-red-100 dark:bg-red-900/40', text: 'text-red-700 dark:text-red-300', emoji: '🔨' },
+  'Incredibles': { bg: 'bg-red-100 dark:bg-red-900/40', text: 'text-red-700 dark:text-red-300', emoji: '🦸' },
+  'Incredibles/Incredisuite': { bg: 'bg-red-100 dark:bg-red-900/40', text: 'text-red-700 dark:text-red-300', emoji: '🦸' },
+  'Hercules': { bg: 'bg-red-100 dark:bg-red-900/40', text: 'text-red-700 dark:text-red-300', emoji: '⚡' },
+  'Hercules/Hero Suite': { bg: 'bg-red-100 dark:bg-red-900/40', text: 'text-red-700 dark:text-red-300', emoji: '⚡' },
+  'Big Hero 6': { bg: 'bg-red-100 dark:bg-red-900/40', text: 'text-red-700 dark:text-red-300', emoji: '🤖' },
+  // Ocean / tropical franchise
+  'Finding Nemo': { bg: 'bg-cyan-100 dark:bg-cyan-900/40', text: 'text-cyan-700 dark:text-cyan-300', emoji: '🐠' },
+  'FINDING NEMO': { bg: 'bg-cyan-100 dark:bg-cyan-900/40', text: 'text-cyan-700 dark:text-cyan-300', emoji: '🐠' },
+  'Little Mermaid': { bg: 'bg-cyan-100 dark:bg-cyan-900/40', text: 'text-cyan-700 dark:text-cyan-300', emoji: '🧜‍♀️' },
+  'LITTLE MERMAID': { bg: 'bg-cyan-100 dark:bg-cyan-900/40', text: 'text-cyan-700 dark:text-cyan-300', emoji: '🧜‍♀️' },
+  'Moana': { bg: 'bg-teal-100 dark:bg-teal-900/40', text: 'text-teal-700 dark:text-teal-300', emoji: '🌺' },
+  'MOANA': { bg: 'bg-teal-100 dark:bg-teal-900/40', text: 'text-teal-700 dark:text-teal-300', emoji: '🌺' },
+  'Luca': { bg: 'bg-cyan-100 dark:bg-cyan-900/40', text: 'text-cyan-700 dark:text-cyan-300', emoji: '🌊' },
+  // Princess franchise
+  'Tangled': { bg: 'bg-violet-100 dark:bg-violet-900/40', text: 'text-violet-700 dark:text-violet-300', emoji: '🏮' },
+  'Cinderella': { bg: 'bg-blue-100 dark:bg-blue-900/40', text: 'text-blue-700 dark:text-blue-300', emoji: '👠' },
+  'Sleeping Beauty': { bg: 'bg-pink-100 dark:bg-pink-900/40', text: 'text-pink-700 dark:text-pink-300', emoji: '🌹' },
+  'Princess Aurora': { bg: 'bg-pink-100 dark:bg-pink-900/40', text: 'text-pink-700 dark:text-pink-300', emoji: '🌹' },
+  'Briar Rose': { bg: 'bg-pink-100 dark:bg-pink-900/40', text: 'text-pink-700 dark:text-pink-300', emoji: '🌹' },
+  'Brave': { bg: 'bg-emerald-100 dark:bg-emerald-900/40', text: 'text-emerald-700 dark:text-emerald-300', emoji: '🏹' },
+  'Mulan': { bg: 'bg-rose-100 dark:bg-rose-900/40', text: 'text-rose-700 dark:text-rose-300', emoji: '⚔️' },
+  'Pocahontas': { bg: 'bg-amber-100 dark:bg-amber-900/40', text: 'text-amber-700 dark:text-amber-300', emoji: '🍂' },
+  'Princess & The Frog': { bg: 'bg-lime-100 dark:bg-lime-900/40', text: 'text-lime-700 dark:text-lime-300', emoji: '🐸' },
+  'Raya': { bg: 'bg-amber-100 dark:bg-amber-900/40', text: 'text-amber-700 dark:text-amber-300', emoji: '🐉' },
+  // Aladdin
+  'Aladdin': { bg: 'bg-indigo-100 dark:bg-indigo-900/40', text: 'text-indigo-700 dark:text-indigo-300', emoji: '🧞' },
+  'ALADDIN': { bg: 'bg-indigo-100 dark:bg-indigo-900/40', text: 'text-indigo-700 dark:text-indigo-300', emoji: '🧞' },
+  'JASMIN': { bg: 'bg-indigo-100 dark:bg-indigo-900/40', text: 'text-indigo-700 dark:text-indigo-300', emoji: '🧞' },
+  // Encanto
+  'Encanto': { bg: 'bg-fuchsia-100 dark:bg-fuchsia-900/40', text: 'text-fuchsia-700 dark:text-fuchsia-300', emoji: '🦋' },
+  'ENCANTO': { bg: 'bg-fuchsia-100 dark:bg-fuchsia-900/40', text: 'text-fuchsia-700 dark:text-fuchsia-300', emoji: '🦋' },
+  // Lion King / Jungle
+  'Lion King': { bg: 'bg-orange-100 dark:bg-orange-900/40', text: 'text-orange-700 dark:text-orange-300', emoji: '🦁' },
+  'LION KING': { bg: 'bg-orange-100 dark:bg-orange-900/40', text: 'text-orange-700 dark:text-orange-300', emoji: '🦁' },
+  'Bagheera': { bg: 'bg-emerald-100 dark:bg-emerald-900/40', text: 'text-emerald-700 dark:text-emerald-300', emoji: '🐆' },
+  'Rajah': { bg: 'bg-orange-100 dark:bg-orange-900/40', text: 'text-orange-700 dark:text-orange-300', emoji: '🐯' },
+  // Classic / Other
+  'Fantasia': { bg: 'bg-indigo-100 dark:bg-indigo-900/40', text: 'text-indigo-700 dark:text-indigo-300', emoji: '🌙' },
+  'Up': { bg: 'bg-yellow-100 dark:bg-yellow-900/40', text: 'text-yellow-700 dark:text-yellow-300', emoji: '🎈' },
+  'UP': { bg: 'bg-yellow-100 dark:bg-yellow-900/40', text: 'text-yellow-700 dark:text-yellow-300', emoji: '🎈' },
+  'Epcot': { bg: 'bg-slate-100 dark:bg-slate-700', text: 'text-slate-700 dark:text-slate-300', emoji: '🌐' },
+};
+
+const DEFAULT_THEME_COLOR = { bg: 'bg-purple-100 dark:bg-purple-900/40', text: 'text-purple-700 dark:text-purple-300', emoji: '🎨' };
+
+function ThemePill({ theme }: { theme: string }) {
+  const colors = THEME_COLORS[theme] || DEFAULT_THEME_COLOR;
+  return (
+    <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-semibold ${colors.bg} ${colors.text}`}>
+      {colors.emoji} {theme}
+    </span>
+  );
+}
 
 function DetailRow({ label, value }: { label: string; value: string | null | undefined }) {
   return (
@@ -490,18 +568,62 @@ function StateroomReviewContent() {
       {/* Stateroom Details */}
       {selectedShip && activeRoomNumber && (
         <>
-          {result ? (
+          {result ? (() => {
+            const catMeta = selectedShip && result.category
+              ? categoryMeta[selectedShip]?.[result.category] ?? null
+              : null;
+            return (
             <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-200 dark:border-slate-700">
               <div className="flex items-center gap-3 mb-4 pb-4 border-b border-slate-200 dark:border-slate-700">
                 <div className="text-3xl">🚢</div>
                 <div>
                   <h2 className="text-xl font-bold text-slate-900 dark:text-white">{selectedShip} — Stateroom {result.stateroom}</h2>
-                  <p className="text-sm text-slate-500 dark:text-slate-400">Category {result.category} — {getCategoryType(result.category)}</p>
+                  <p className="text-sm text-slate-500 dark:text-slate-400">
+                    Category {result.category} — {catMeta?.name || getCategoryType(result.category)}
+                  </p>
                 </div>
               </div>
+
+              {/* Category layout image & description */}
+              {catMeta && (
+                <div className="mb-4 pb-4 border-b border-slate-200 dark:border-slate-700">
+                  {catMeta.layoutImage && (
+                    <div className="mb-3 rounded-xl overflow-hidden bg-slate-50 dark:bg-slate-900">
+                      <img
+                        src={catMeta.layoutImage}
+                        alt={`${catMeta.name} layout`}
+                        className="w-full h-auto"
+                      />
+                    </div>
+                  )}
+                  <p className="text-sm text-slate-600 dark:text-slate-400 mb-3">{catMeta.description}</p>
+                  <div className="flex flex-wrap gap-2 text-xs">
+                    {result.theme && <ThemePill theme={result.theme} />}
+                    <span className="px-2.5 py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 font-medium">
+                      Sleeps {catMeta.sleeps}
+                    </span>
+                    <span className="px-2.5 py-1 rounded-full bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 font-medium">
+                      {catMeta.sqft} sq. ft. | {catMeta.sqm} m²
+                    </span>
+                    {catMeta.includesVerandah && (
+                      <span className="px-2.5 py-1 rounded-full bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400 font-medium">
+                        Includes Verandah
+                      </span>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* Theme pill fallback when no category metadata */}
+              {!catMeta && result.theme && (
+                <div className="mb-4 pb-4 border-b border-slate-200 dark:border-slate-700">
+                  <ThemePill theme={result.theme} />
+                </div>
+              )}
+
               <div className="space-y-0">
                 <DetailRow label="Category" value={result.category} />
-                <DetailRow label="Type" value={getCategoryType(result.category)} />
+                <DetailRow label="Type" value={catMeta?.name || getCategoryType(result.category)} />
                 <DetailRow label="Deck" value={getDeck(result.stateroom).toString()} />
                 <DetailRow label="Max Occupancy" value={result.occupancy?.toString()} />
                 <DetailRow label="Bedding" value={result.bedding} />
@@ -512,16 +634,14 @@ function StateroomReviewContent() {
                 <DetailRow label="Assembly Location" value={result.assemblyLocation} />
                 <DetailRow label="Assembly Side" value={result.assemblySide} />
                 <DetailRow label="Assembly Section" value={result.assemblySection} />
-                {hasThemeFields && (
-                  <>
-                    <DetailRow label="Theme" value={result.theme} />
-                    <DetailRow label="Wish Extender" value={result.wishExtender} />
-                  </>
+                {hasThemeFields && result.wishExtender && (
+                  <DetailRow label="Wish Extender" value={result.wishExtender} />
                 )}
                 {result.notes && <DetailRow label="Notes" value={result.notes} />}
               </div>
             </div>
-          ) : (
+            );
+          })() : (
             <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-200 dark:border-slate-700 text-center">
               <div className="text-4xl mb-3">🔍</div>
               <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Stateroom Not Found</h2>

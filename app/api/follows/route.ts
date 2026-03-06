@@ -30,7 +30,16 @@ export async function GET(request: NextRequest) {
 
     let userIds: string[] = [];
 
-    if (type === 'followers') {
+    if (type === 'friends') {
+      // Friends = mutual follows (intersection of followers and following)
+      const [followerRes, followingRes] = await Promise.all([
+        supabase.from('follows').select('follower_id').eq('following_id', userId),
+        supabase.from('follows').select('following_id').eq('follower_id', userId),
+      ]);
+      const followerIds = new Set((followerRes.data ?? []).map(f => f.follower_id));
+      const followingIds = (followingRes.data ?? []).map(f => f.following_id);
+      userIds = followingIds.filter(id => followerIds.has(id));
+    } else if (type === 'followers') {
       const { data } = await supabase
         .from('follows')
         .select('follower_id')
@@ -80,7 +89,7 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { following_id } = body;
+    const { following_id, mutual } = body;
 
     if (!following_id) {
       return NextResponse.json({ error: 'following_id is required' }, { status: 400 });
@@ -89,18 +98,30 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'You cannot follow yourself' }, { status: 400 });
     }
 
-    const { error } = await supabase
-      .from('follows')
-      .insert({ follower_id: user.id, following_id });
-
-    if (error) {
-      if (error.code === '23505') {
-        return NextResponse.json({ error: 'Already following this user' }, { status: 409 });
+    if (mutual) {
+      // Insert both directions for instant friendship
+      const rows = [
+        { follower_id: user.id, following_id },
+        { follower_id: following_id, following_id: user.id },
+      ];
+      for (const row of rows) {
+        const { error: insertErr } = await supabase.from('follows').insert(row);
+        if (insertErr && insertErr.code !== '23505') throw insertErr;
       }
-      throw error;
+    } else {
+      const { error } = await supabase
+        .from('follows')
+        .insert({ follower_id: user.id, following_id });
+
+      if (error) {
+        if (error.code === '23505') {
+          return NextResponse.json({ error: 'Already following this user' }, { status: 409 });
+        }
+        throw error;
+      }
     }
 
-    // Check for mutual follow and auto-link met_on_ship
+    // Auto-link met_on_ship for mutual follows
     try {
       const { data: reverseFollow } = await supabase
         .from('follows')
@@ -174,19 +195,27 @@ export async function DELETE(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { following_id } = body;
+    const { following_id, mutual } = body;
 
     if (!following_id) {
       return NextResponse.json({ error: 'following_id is required' }, { status: 400 });
     }
 
-    const { error } = await supabase
-      .from('follows')
-      .delete()
-      .eq('follower_id', user.id)
-      .eq('following_id', following_id);
+    if (mutual) {
+      // Remove both directions (unfriend)
+      await Promise.all([
+        supabase.from('follows').delete().eq('follower_id', user.id).eq('following_id', following_id),
+        supabase.from('follows').delete().eq('follower_id', following_id).eq('following_id', user.id),
+      ]);
+    } else {
+      const { error } = await supabase
+        .from('follows')
+        .delete()
+        .eq('follower_id', user.id)
+        .eq('following_id', following_id);
 
-    if (error) throw error;
+      if (error) throw error;
+    }
 
     // Return updated counts
     const [followerCount, followingCount] = await Promise.all([

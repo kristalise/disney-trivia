@@ -1,0 +1,256 @@
+{
+  "Disney Adventure": {
+    "01A": {
+      "name": "Concierge Royal Suite with Oceanview Verandah",
+      "description": "Master bedroom with king bed, children's bedroom with bunk bed, & living area with double wall-pull down bed. Large living area, open dining area, bar, & two verandahs accessible from the common area. The forward verandah is also accessible from the master bedroom & includes a whirlpool. Children's room includes a bathroom with shower & overlooks the side verandah. At least one 65\" television. Master bathroom includes two sinks, stand-alone bathtub & shower.",
+      "sleeps": 6,
+      "sqft": "2,461",
+      "sqm": "228.6",
+      "includesVerandah": true,
+      "layoutImage": "/ship-photos/adventure/stateroom-layouts/Stateroom-Layouts-Adventure-Concierge-Royal-Suite-Oceanview-Verandah-1A.png"
+    },
+    "01B": {
+      "name": "Concierge 1-Bedroom Oceanview Suite",
+      "description": "Master bedroom with king bed, living area with double convertible sofa & single wall pull-down bed. Large floor-to-ceiling windows, bathroom with double sink & shower, walk-in closet, minibar, dining area, living area, and at least one 65\" television.",
+      "sleeps": 5,
+      "sqft": "1,156",
+      "sqm": "107.4",
+      "includesVerandah": false,
+      "layoutImage": "/ship-photos/adventure/stateroom-layouts/Stateroom-Layouts-Adventure-Concierge-1-Bedroom-Oceanview-Suite-1B.png"
+    },
+    "01C": {
+      "name": "Concierge 1-Bedroom Oceanview Suite",
+      "description": "Master bedroom with king bed, living area with double convertible sofa & two single wall pull-down bed. Master bathroom with stand-alone bathtub, walk-in closet in master bedroom, dining area, minibar, second bathroom with shower, & at least one 65\" television.",
+      "sleeps": 6,
+      "sqft": "822",
+      "sqm": "76.4",
+      "includesVerandah": false,
+      "layoutImage": "/ship-photos/adventure/stateroom-layouts/Stateroom-Layouts-Adventure-Concierge-1-Bedroom-Oceanview-Suite-1C.png"
+    },
+    "02A": {
+      "name": "Concierge Suite with Oceanview Verandah",
+      "description": "Master bedroom with king bed, living area with double convertible sofa & secondary bedroom with double bed. Large private verandah, minibar, bathroom with double sink and shower, at least one 65\" television, and secondary bedroom/bathroom with shower, separate entrance, & connecting door.",
+      "sleeps": 6,
+      "sqft": "1,059",
+      "sqm": "98.4",
+      "includesVerandah": true,
+      "layoutImage": "/ship-photos/adventure/stateroom-layouts/Stateroom-Layouts-Adventure-Concierge-Suite-Oceanview-Verandah-2A.png"
+    },
+    "02B": {
+      "name": "Concierge Oceanview Suite",
+      "description": "Master bedroom with king bed, living area with double convertible sofa & secondary bedroom with double bed. Large floor-to-ceiling windows, bathroom with double sink & shower, minibar, dining area, at least one 65\" television, & secondary bedroom/bathroom with shower, separate entrance, & connecting door.",
+      "sleeps": 6,
+      "sqft": "1,053",
+      "sqm": "97.8",
+      "includesVerandah": false,
+      "layoutImage": "/ship-photos/adventure/stateroom-layouts/Stateroom-Layouts-Adventure-Concierge-Oceanveiw-Suite-2B-2C.png"
+    },
+    "02C": {
+      "name": "Concierge Oceanview Suite",
+      "description": "Master bedroom with king bed, living area with double convertible sofa & secondary bedroom with double bed. Large floor-to-ceiling windows, bathroom with double sink & shower, minibar, dining area, at least one 65\" television, & secondary bedroom/bathroom with shower, separate entrance, & connecting door.",
+      "sleeps": 6,
+      "sqft": "794",
+      "sqm": "73.8",
+      "includesVerandah": false,
+      "layoutImage": "/ship-photos/adventure/stateroom-layouts/Stateroom-Layouts-Adventure-Concierge-Oceanveiw-Suite-2B-2C.png"
+    },
+    "03A": {
+      "name": "Concierge Family Stateroom with Oceanview Verandah",
+      "description": "King bed, double convertible sofa, & single wall pull-down bed. Large wrap-around verandah with private whirlpool overlooking aft pool/stage area, walk-in closet, one bathroom with double sink & shower, privacy divider, & at least one 65\" television.",
+      "sleeps": 5,
+      "sqft": "1,292",
+      "sqm": "120",
+      "includesVerandah": true,
+      "layoutImage": "/ship-photos/adventure/stateroom-layouts/Stateroom-Layouts-Adventure-Concierge-Family-Stateroom-Oceanview-Verandah-3A.png"
+    },
+    "03B": {
+      "name": "Concierge Family Stateroom with Oceanview Verandah",
+      "description": "King bed, double convertible sofa, & single wall pull-down bed. Large wrap-around verandah (size varies by deck) overlooking at pool/stage area, walk-in closet, one bathroom with double sink and shower, privacy divider, & at least one 65\" television.",
+      "sleeps": 5,
+      "sqft": "729-1,037",
+      "sqm": "67.7-96.3",
+      "includesVerandah": true,
+      "layoutImage": "/ship-photos/adventure/stateroom-layouts/Stateroom-Layouts-Adventure-Concierge-Family-Stateroom-Oceanview-Verandah-3B.png"
+    },
+    "03C": {
+      "name": "Concierge Family Oceanview Suite",
+      "description": "Master bedroom with king bed, living area with double convertible sofa & single wall pull-down. Split bath, dining area, minibar, window bench, & at least one 65\" television.",
+      "sleeps": 5,
+      "sqft": "419",
+      "sqm": "38.9",
+      "includesVerandah": false,
+      "layoutImage": "/ship-photos/adventure/stateroom-layouts/Stateroom-Layouts-Adventure-Concierge-Family-Oceanview-Suite-3C.png"
+    },
+    "04A": {
+      "name": "Concierge Family Stateroom with Garden View Verandah",
+      "description": "King bed, double convertible sofa, & secondary bedroom with double bed. Private verandah, privacy divider, bathroom with double sink and shower, at least one 65\" television, & secondary bedroom/bathroom with shower, separate entrance, & connecting door.",
+      "sleeps": 6,
+      "sqft": "507",
+      "sqm": "47.1",
+      "includesVerandah": true,
+      "layoutImage": "/ship-photos/adventure/stateroom-layouts/Stateroom-Layouts-Adventure-Concierge-Family-Stateroom-Garden-View-Veranda-4A-4B.png"
+    },
+    "04B": {
+      "name": "Concierge Family Stateroom with Garden View Verandah",
+      "description": "King bed, double convertible sofa, & secondary bedroom with double bed. Private verandah, privacy divider, bathroom with double sink and shower, at least one 65\" television, & secondary bedroom/bathroom with shower, separate entrance, & connecting door.",
+      "sleeps": 6,
+      "sqft": "507",
+      "sqm": "47.1",
+      "includesVerandah": true,
+      "layoutImage": "/ship-photos/adventure/stateroom-layouts/Stateroom-Layouts-Adventure-Concierge-Family-Stateroom-Garden-View-Veranda-4A-4B.png"
+    },
+    "04C": {
+      "name": "Concierge Family Stateroom with Oceanview Verandah",
+      "description": "King bed, double convertible sofa & secondary bedroom with double bed. Private verandah, privacy divider, bathroom with double sink & shower, at least one 65\" television, & secondary bedroom/bathroom with shower, separate entrance, & connecting door.",
+      "sleeps": "4-6",
+      "sqft": "499-545",
+      "sqm": "46.4-50.6",
+      "includesVerandah": true,
+      "layoutImage": "/ship-photos/adventure/stateroom-layouts/Stateroom-Layouts-Adventure-Concierge-Family-Stateroom-Oceanview-Verandah-4C.png"
+    },
+    "04D": {
+      "name": "Concierge Inside Family Stateroom",
+      "description": "King bed, double convertible sofa & secondary bedroom with double bed. Privacy divider, bathroom with double sink and shower, at least one 65\" television, & secondary bedroom/bathroom with shower, separate entrance, and connecting door.",
+      "sleeps": "4-6",
+      "sqft": "420-422",
+      "sqm": "39-39.21",
+      "includesVerandah": false,
+      "layoutImage": "/ship-photos/adventure/stateroom-layouts/Stateroom-Layouts-Adventure-Concierge-Inside-Family-Stateroom-4D.png"
+    },
+    "05A": {
+      "name": "Deluxe Garden View Stateroom with Verandah",
+      "description": "Queen bed, double convertible sofa. Split bathroom, shower with glass door, privacy divider, 50\" television, & private verandah overlooking the Disney Imagination Garden.",
+      "sleeps": 4,
+      "sqft": "255",
+      "sqm": "23.5",
+      "includesVerandah": true,
+      "layoutImage": "/ship-photos/adventure/stateroom-layouts/Stateroom-Layouts-Adventure-Deluxe-Garden-View-Stateroom-Verandah-5A-5B.png"
+    },
+    "05B": {
+      "name": "Deluxe Garden View Stateroom with Verandah",
+      "description": "Queen bed, double convertible sofa. Split bathroom, shower with glass door, privacy divider, 50\" television, & private verandah overlooking the Disney Imagination Garden.",
+      "sleeps": 4,
+      "sqft": "255",
+      "sqm": "23.5",
+      "includesVerandah": true,
+      "layoutImage": "/ship-photos/adventure/stateroom-layouts/Stateroom-Layouts-Adventure-Deluxe-Garden-View-Stateroom-Verandah-5A-5B.png"
+    },
+    "05C": {
+      "name": "Deluxe Reef View Stateroom with Verandah",
+      "description": "Queen bed, double convertible sofa. Split bathroom, shower with glass door, privacy divider, 50\" television, & private verandah overlooking the Discovery Reef.",
+      "sleeps": 4,
+      "sqft": "253",
+      "sqm": "23.5",
+      "includesVerandah": true,
+      "layoutImage": "/ship-photos/adventure/stateroom-layouts/Stateroom-Layouts-Adventure-Deluxe-Reef-View-Stateroom-Verandah-5C.png"
+    },
+    "06A": {
+      "name": "Deluxe Oceanview Stateroom with Verandah",
+      "description": "Queen bed, double convertible sofa. Split bathroom, shower with glass door, privacy divider, 50\" television, & private verandah overlooking the ocean.",
+      "sleeps": 4,
+      "sqft": "253",
+      "sqm": "23.5",
+      "includesVerandah": true,
+      "layoutImage": "/ship-photos/adventure/stateroom-layouts/Stateroom-Layouts-Adventure-Deluxe-Oceanview-Stateroom-Verandah-6A-6B-6C-6D.png"
+    },
+    "06B": {
+      "name": "Deluxe Oceanview Stateroom with Verandah",
+      "description": "Queen bed, double convertible sofa. Split bathroom, shower with glass door, privacy divider, 50\" television, & private verandah overlooking the ocean.",
+      "sleeps": 4,
+      "sqft": "253",
+      "sqm": "23.5",
+      "includesVerandah": true,
+      "layoutImage": "/ship-photos/adventure/stateroom-layouts/Stateroom-Layouts-Adventure-Deluxe-Oceanview-Stateroom-Verandah-6A-6B-6C-6D.png"
+    },
+    "06C": {
+      "name": "Deluxe Oceanview Stateroom with Verandah",
+      "description": "Queen bed, double convertible sofa. Split bathroom, shower with glass door, privacy divider, 50\" television, & private verandah overlooking the ocean.",
+      "sleeps": 4,
+      "sqft": "253",
+      "sqm": "23.5",
+      "includesVerandah": true,
+      "layoutImage": "/ship-photos/adventure/stateroom-layouts/Stateroom-Layouts-Adventure-Deluxe-Oceanview-Stateroom-Verandah-6A-6B-6C-6D.png"
+    },
+    "06D": {
+      "name": "Deluxe Oceanview Stateroom with Verandah",
+      "description": "Queen bed, double convertible sofa. Split bathroom, shower with glass door, privacy divider, 50\" television, & private verandah overlooking the ocean.",
+      "sleeps": 4,
+      "sqft": "253",
+      "sqm": "23.5",
+      "includesVerandah": true,
+      "layoutImage": "/ship-photos/adventure/stateroom-layouts/Stateroom-Layouts-Adventure-Deluxe-Oceanview-Stateroom-Verandah-6A-6B-6C-6D.png"
+    },
+    "07A": {
+      "name": "Stateroom with Verandah",
+      "description": "Two single bench beds, two single wall pull-down beds, one above each bench. Split bathroom, shower with glass door, 32\" television & private verandah overlooking either the ocean, Disney Imagination Garden or the Discovery Reef.",
+      "sleeps": 4,
+      "sqft": "209",
+      "sqm": "19.4",
+      "includesVerandah": true,
+      "layoutImage": "/ship-photos/adventure/stateroom-layouts/Stateroom-Layouts-Adventure-Stateroom-Verandah-7A.png"
+    },
+    "08A": {
+      "name": "Deluxe Oceanview Stateroom",
+      "description": "Queen bed, double convertible sofa. Split bathroom, shower with glass door, privacy divider, 50\" television, & window overlooking the ocean.",
+      "sleeps": 4,
+      "sqft": "209",
+      "sqm": "19.4",
+      "includesVerandah": false,
+      "layoutImage": "/ship-photos/adventure/stateroom-layouts/Stateroom-Layouts-Adventure-Deluxe-Oceanview-Stateroom-8A.png"
+    },
+    "09A": {
+      "name": "Oceanview Stateroom",
+      "description": "Two single bench beds, two single wall pull-down beds, one above each bench. Split bathroom, shower with glass door, 32\" television, & window overlooking the ocean.",
+      "sleeps": 4,
+      "sqft": "145-165",
+      "sqm": "13.5-15.3",
+      "includesVerandah": false,
+      "layoutImage": "/ship-photos/adventure/stateroom-layouts/Stateroom-Layouts-Adventure-Oceanview-Stateroom-9A.png"
+    },
+    "10A": {
+      "name": "Deluxe Inside Stateroom with Reef View",
+      "description": "Queen bed, double convertible sofa. Split bathroom, shower with glass door, privacy divider, 50\" television, & window overlooking the Discovery Reef.",
+      "sleeps": 4,
+      "sqft": "209",
+      "sqm": "19.4",
+      "includesVerandah": false,
+      "layoutImage": "/ship-photos/adventure/stateroom-layouts/Stateroom-Layouts-Adventure-Deluxe-Inside-Stateroom-Reef-View-10A.png"
+    },
+    "10B": {
+      "name": "Deluxe Inside Stateroom",
+      "description": "Queen bed, double convertible sofa. Split bathroom, shower with glass door, 50\" television, & privacy divider.",
+      "sleeps": "3-4",
+      "sqft": "209",
+      "sqm": "19.4",
+      "includesVerandah": false,
+      "layoutImage": "/ship-photos/adventure/stateroom-layouts/Stateroom-Layouts-Adventure-Deluxe-Inside-Stateroom-10B-10C-10D.png"
+    },
+    "10C": {
+      "name": "Deluxe Inside Stateroom",
+      "description": "Queen bed, double convertible sofa. Split bathroom, shower with glass door, 50\" television, & privacy divider.",
+      "sleeps": "3-4",
+      "sqft": "209",
+      "sqm": "19.4",
+      "includesVerandah": false,
+      "layoutImage": "/ship-photos/adventure/stateroom-layouts/Stateroom-Layouts-Adventure-Deluxe-Inside-Stateroom-10B-10C-10D.png"
+    },
+    "10D": {
+      "name": "Deluxe Inside Stateroom",
+      "description": "Queen bed, double convertible sofa. Split bathroom, shower with glass door, 50\" television, & privacy divider.",
+      "sleeps": "3-4",
+      "sqft": "209",
+      "sqm": "19.4",
+      "includesVerandah": false,
+      "layoutImage": "/ship-photos/adventure/stateroom-layouts/Stateroom-Layouts-Adventure-Deluxe-Inside-Stateroom-10B-10C-10D.png"
+    },
+    "11A": {
+      "name": "Inside Stateroom",
+      "description": "Two single bench beds, two single wall pull-down beds, one above each bench. Split bathroom, shower with glass door, & 32\" television.",
+      "sleeps": "2-4",
+      "sqft": "145-165",
+      "sqm": "13.5-15.3",
+      "includesVerandah": false,
+      "layoutImage": "/ship-photos/adventure/stateroom-layouts/Stateroom-Layouts-Adventure-Inside-Stateroom-Category-11A.png"
+    }
+  }
+}

@@ -4,8 +4,11 @@ import { useState, useMemo, Suspense } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import stateroomData from '@/data/stateroom-data.json';
+import categoryMetadata from '@/data/category-metadata.json';
 import { getCategoryType, getDeck, getSection, TYPE_EMOJI, isValidStateroomForShip } from '@/lib/stateroom-utils';
 import { SHIP_ORDER } from '@/lib/ship-order';
+
+const categoryMeta = categoryMetadata as Record<string, Record<string, { name: string }>>;
 import FilterDrawer from '@/components/FilterDrawer';
 import ShareButton from '@/components/ShareButton';
 
@@ -124,6 +127,62 @@ const THEME_EMOJI: Record<string, string> = {
 function themeWithEmoji(theme: string): string {
   return `${THEME_EMOJI[theme] || '🎨'} ${theme}`;
 }
+
+// Franchise IP color mapping for theme pills
+const THEME_COLORS: Record<string, { bg: string; text: string }> = {
+  // Frozen
+  'Frozen': { bg: 'bg-sky-100 dark:bg-sky-900/40', text: 'text-sky-700 dark:text-sky-300' },
+  'FROZEN': { bg: 'bg-sky-100 dark:bg-sky-900/40', text: 'text-sky-700 dark:text-sky-300' },
+  'ELSA SUITE': { bg: 'bg-sky-100 dark:bg-sky-900/40', text: 'text-sky-700 dark:text-sky-300' },
+  'ANNA SUITE': { bg: 'bg-sky-100 dark:bg-sky-900/40', text: 'text-sky-700 dark:text-sky-300' },
+  // Marvel
+  'MARVEL': { bg: 'bg-red-100 dark:bg-red-900/40', text: 'text-red-700 dark:text-red-300' },
+  'IRONMAN': { bg: 'bg-red-100 dark:bg-red-900/40', text: 'text-red-700 dark:text-red-300' },
+  'Iron Man': { bg: 'bg-red-100 dark:bg-red-900/40', text: 'text-red-700 dark:text-red-300' },
+  'SPIDERMAN': { bg: 'bg-red-100 dark:bg-red-900/40', text: 'text-red-700 dark:text-red-300' },
+  'THOR': { bg: 'bg-red-100 dark:bg-red-900/40', text: 'text-red-700 dark:text-red-300' },
+  'Incredibles': { bg: 'bg-red-100 dark:bg-red-900/40', text: 'text-red-700 dark:text-red-300' },
+  'Incredibles/Incredisuite': { bg: 'bg-red-100 dark:bg-red-900/40', text: 'text-red-700 dark:text-red-300' },
+  'Hercules': { bg: 'bg-red-100 dark:bg-red-900/40', text: 'text-red-700 dark:text-red-300' },
+  'Hercules/Hero Suite': { bg: 'bg-red-100 dark:bg-red-900/40', text: 'text-red-700 dark:text-red-300' },
+  'Big Hero 6': { bg: 'bg-red-100 dark:bg-red-900/40', text: 'text-red-700 dark:text-red-300' },
+  // Ocean / tropical
+  'Finding Nemo': { bg: 'bg-cyan-100 dark:bg-cyan-900/40', text: 'text-cyan-700 dark:text-cyan-300' },
+  'FINDING NEMO': { bg: 'bg-cyan-100 dark:bg-cyan-900/40', text: 'text-cyan-700 dark:text-cyan-300' },
+  'Little Mermaid': { bg: 'bg-cyan-100 dark:bg-cyan-900/40', text: 'text-cyan-700 dark:text-cyan-300' },
+  'LITTLE MERMAID': { bg: 'bg-cyan-100 dark:bg-cyan-900/40', text: 'text-cyan-700 dark:text-cyan-300' },
+  'Moana': { bg: 'bg-teal-100 dark:bg-teal-900/40', text: 'text-teal-700 dark:text-teal-300' },
+  'MOANA': { bg: 'bg-teal-100 dark:bg-teal-900/40', text: 'text-teal-700 dark:text-teal-300' },
+  'Luca': { bg: 'bg-cyan-100 dark:bg-cyan-900/40', text: 'text-cyan-700 dark:text-cyan-300' },
+  // Princess
+  'Tangled': { bg: 'bg-violet-100 dark:bg-violet-900/40', text: 'text-violet-700 dark:text-violet-300' },
+  'Cinderella': { bg: 'bg-blue-100 dark:bg-blue-900/40', text: 'text-blue-700 dark:text-blue-300' },
+  'Sleeping Beauty': { bg: 'bg-pink-100 dark:bg-pink-900/40', text: 'text-pink-700 dark:text-pink-300' },
+  'Princess Aurora': { bg: 'bg-pink-100 dark:bg-pink-900/40', text: 'text-pink-700 dark:text-pink-300' },
+  'Briar Rose': { bg: 'bg-pink-100 dark:bg-pink-900/40', text: 'text-pink-700 dark:text-pink-300' },
+  'Brave': { bg: 'bg-emerald-100 dark:bg-emerald-900/40', text: 'text-emerald-700 dark:text-emerald-300' },
+  'Mulan': { bg: 'bg-rose-100 dark:bg-rose-900/40', text: 'text-rose-700 dark:text-rose-300' },
+  'Pocahontas': { bg: 'bg-amber-100 dark:bg-amber-900/40', text: 'text-amber-700 dark:text-amber-300' },
+  'Princess & The Frog': { bg: 'bg-lime-100 dark:bg-lime-900/40', text: 'text-lime-700 dark:text-lime-300' },
+  'Raya': { bg: 'bg-amber-100 dark:bg-amber-900/40', text: 'text-amber-700 dark:text-amber-300' },
+  // Aladdin
+  'Aladdin': { bg: 'bg-indigo-100 dark:bg-indigo-900/40', text: 'text-indigo-700 dark:text-indigo-300' },
+  'ALADDIN': { bg: 'bg-indigo-100 dark:bg-indigo-900/40', text: 'text-indigo-700 dark:text-indigo-300' },
+  'JASMIN': { bg: 'bg-indigo-100 dark:bg-indigo-900/40', text: 'text-indigo-700 dark:text-indigo-300' },
+  // Encanto
+  'Encanto': { bg: 'bg-fuchsia-100 dark:bg-fuchsia-900/40', text: 'text-fuchsia-700 dark:text-fuchsia-300' },
+  'ENCANTO': { bg: 'bg-fuchsia-100 dark:bg-fuchsia-900/40', text: 'text-fuchsia-700 dark:text-fuchsia-300' },
+  // Lion King / Jungle
+  'Lion King': { bg: 'bg-orange-100 dark:bg-orange-900/40', text: 'text-orange-700 dark:text-orange-300' },
+  'LION KING': { bg: 'bg-orange-100 dark:bg-orange-900/40', text: 'text-orange-700 dark:text-orange-300' },
+  'Bagheera': { bg: 'bg-emerald-100 dark:bg-emerald-900/40', text: 'text-emerald-700 dark:text-emerald-300' },
+  'Rajah': { bg: 'bg-orange-100 dark:bg-orange-900/40', text: 'text-orange-700 dark:text-orange-300' },
+  // Classic
+  'Fantasia': { bg: 'bg-indigo-100 dark:bg-indigo-900/40', text: 'text-indigo-700 dark:text-indigo-300' },
+  'Up': { bg: 'bg-yellow-100 dark:bg-yellow-900/40', text: 'text-yellow-700 dark:text-yellow-300' },
+  'UP': { bg: 'bg-yellow-100 dark:bg-yellow-900/40', text: 'text-yellow-700 dark:text-yellow-300' },
+  'Epcot': { bg: 'bg-slate-100 dark:bg-slate-700', text: 'text-slate-700 dark:text-slate-300' },
+};
 
 type BudgetLevel = 'budget' | 'reasonable' | 'splurge' | 'concierge';
 
@@ -800,9 +859,12 @@ function StateroomGuidePage() {
                 {types.map(t => (
                   <span key={t} className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400">{t}</span>
                 ))}
-                {themes.map(t => (
-                  <span key={t} className="px-2 py-0.5 rounded-full text-[10px] font-medium bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400">{themeWithEmoji(t)}</span>
-                ))}
+                {themes.map(t => {
+                  const tc = THEME_COLORS[t] || { bg: 'bg-purple-100 dark:bg-purple-900/40', text: 'text-purple-700 dark:text-purple-300' };
+                  return (
+                    <span key={t} className={`px-2 py-0.5 rounded-full text-[10px] font-medium ${tc.bg} ${tc.text}`}>{themeWithEmoji(t)}</span>
+                  );
+                })}
               </div>
             )}
 
@@ -820,16 +882,21 @@ function StateroomGuidePage() {
                       <div className="min-w-0">
                         <div className="flex items-center gap-1.5 flex-wrap">
                           <span className="text-xs text-slate-500 dark:text-slate-400">Cat. {r.category}</span>
-                          <span className="text-xs text-slate-400 dark:text-slate-500">{r.typeEmoji} {r.type}</span>
+                          <span className="text-xs text-slate-400 dark:text-slate-500">{r.typeEmoji} {selectedShip && r.category ? (categoryMeta[selectedShip]?.[r.category]?.name || r.type) : r.type}</span>
                         </div>
                         <div className="flex items-center gap-2 flex-wrap mt-0.5">
                           <span className="text-xs text-slate-400 dark:text-slate-500">{r.section}</span>
                           {r.occupancy && (
                             <span className="text-xs text-slate-400 dark:text-slate-500">Sleeps {r.occupancy}</span>
                           )}
-                          {r.theme && (
-                            <span className="text-xs text-purple-600 dark:text-purple-400">{themeWithEmoji(r.theme)}</span>
-                          )}
+                          {r.theme && (() => {
+                            const tc = THEME_COLORS[r.theme] || { bg: 'bg-purple-100 dark:bg-purple-900/40', text: 'text-purple-700 dark:text-purple-300' };
+                            return (
+                              <span className={`px-1.5 py-0.5 rounded-full text-[10px] font-semibold ${tc.bg} ${tc.text}`}>
+                                {themeWithEmoji(r.theme)}
+                              </span>
+                            );
+                          })()}
                           {r.connecting && r.connecting.toUpperCase() !== 'NO' && (
                             <span className="text-xs text-teal-600 dark:text-teal-400">Connects {r.connecting}</span>
                           )}
