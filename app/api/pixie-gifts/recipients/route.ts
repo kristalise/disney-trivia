@@ -40,7 +40,7 @@ export async function GET(request: NextRequest) {
     // Verify ownership
     const { data: gift } = await supabase
       .from('pixie_gifts')
-      .select('id, user_id')
+      .select('id, user_id, name, emoji, color, sailing_id')
       .eq('id', giftId)
       .single();
 
@@ -56,7 +56,10 @@ export async function GET(request: NextRequest) {
 
     if (error) throw error;
 
-    return NextResponse.json({ recipients: recipients ?? [] });
+    return NextResponse.json({
+      recipients: recipients ?? [],
+      gift: { id: gift.id, name: gift.name, emoji: gift.emoji, color: gift.color, sailing_id: gift.sailing_id },
+    });
   } catch (error) {
     console.error('Error fetching recipients:', error);
     return NextResponse.json({ error: 'Failed to fetch recipients' }, { status: 500 });

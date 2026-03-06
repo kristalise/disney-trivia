@@ -83,6 +83,10 @@ function PixieDustContent() {
   const [newGiftEmoji, setNewGiftEmoji] = useState('🎁');
   const [creatingGift, setCreatingGift] = useState(false);
 
+  // Inline gift rename
+  const [editingGiftId, setEditingGiftId] = useState<string | null>(null);
+  const [editGiftName, setEditGiftName] = useState('');
+
   const headers = useCallback(() => ({
     'Content-Type': 'application/json',
     ...(session?.access_token ? { Authorization: `Bearer ${session.access_token}` } : {}),
@@ -193,6 +197,21 @@ function PixieDustContent() {
         headers: headers(),
       });
       if (res.ok && selectedSailing) await fetchData(selectedSailing.id);
+    } catch { /* ignore */ }
+  };
+
+  const handleRenameGift = async (giftId: string) => {
+    if (!editGiftName.trim()) return;
+    try {
+      const res = await fetch('/api/pixie-gifts', {
+        method: 'PATCH',
+        headers: headers(),
+        body: JSON.stringify({ id: giftId, name: editGiftName }),
+      });
+      if (res.ok && selectedSailing) {
+        await fetchData(selectedSailing.id);
+        setEditingGiftId(null);
+      }
     } catch { /* ignore */ }
   };
 
@@ -376,13 +395,23 @@ function PixieDustContent() {
                 <h3 className="font-bold text-slate-900 dark:text-white">My Gifts</h3>
                 <span className="text-sm text-slate-400 dark:text-slate-500">({gifts.length})</span>
               </div>
-              <button
-                type="button"
-                onClick={() => setShowCreateGift(!showCreateGift)}
-                className="px-3 py-1.5 rounded-xl text-xs font-medium bg-disney-blue/10 text-disney-blue dark:bg-disney-gold/10 dark:text-disney-gold hover:bg-disney-blue/20 dark:hover:bg-disney-gold/20 transition-colors"
-              >
-                {showCreateGift ? 'Close' : '+ Add Gift'}
-              </button>
+              <div className="flex gap-2">
+                {gifts.length >= 2 && (
+                  <Link
+                    href={`/planner/pixie-dust/joint-dust?sailing=${selectedSailing.id}`}
+                    className="px-3 py-1.5 rounded-xl text-xs font-medium bg-purple-100 dark:bg-purple-900/20 text-purple-700 dark:text-purple-400 hover:bg-purple-200 dark:hover:bg-purple-900/40 transition-colors"
+                  >
+                    Joint Dusting
+                  </Link>
+                )}
+                <button
+                  type="button"
+                  onClick={() => setShowCreateGift(!showCreateGift)}
+                  className="px-3 py-1.5 rounded-xl text-xs font-medium bg-disney-blue/10 text-disney-blue dark:bg-disney-gold/10 dark:text-disney-gold hover:bg-disney-blue/20 dark:hover:bg-disney-gold/20 transition-colors"
+                >
+                  {showCreateGift ? 'Close' : '+ Add Gift'}
+                </button>
+              </div>
             </div>
 
             {showCreateGift && (
@@ -422,33 +451,69 @@ function PixieDustContent() {
                 <div className="space-y-3">
                   {gifts.map(gift => {
                     const pct = gift.recipient_count > 0 ? Math.round((gift.delivered_count / gift.recipient_count) * 100) : 0;
+                    const isEditing = editingGiftId === gift.id;
                     return (
-                      <Link
+                      <div
                         key={gift.id}
-                        href={`/planner/pixie-dust/${gift.id}`}
-                        className="block bg-slate-50 dark:bg-slate-900 rounded-xl p-4 border border-slate-200 dark:border-slate-700 hover:border-disney-blue/30 dark:hover:border-disney-gold/30 transition-colors"
+                        className="bg-slate-50 dark:bg-slate-900 rounded-xl p-4 border border-slate-200 dark:border-slate-700 hover:border-disney-blue/30 dark:hover:border-disney-gold/30 transition-colors"
                       >
                         <div className="flex items-center justify-between mb-2">
-                          <div className="flex items-center gap-2">
-                            <span className="text-lg">{gift.emoji}</span>
-                            <span className="font-semibold text-slate-900 dark:text-white text-sm">{gift.name}</span>
+                          <div className="flex items-center gap-2 min-w-0 flex-1">
+                            <span className="text-lg flex-shrink-0">{gift.emoji}</span>
+                            {isEditing ? (
+                              <div className="flex items-center gap-1.5 flex-1 min-w-0">
+                                <input
+                                  type="text"
+                                  value={editGiftName}
+                                  onChange={e => setEditGiftName(e.target.value)}
+                                  onKeyDown={e => { if (e.key === 'Enter') handleRenameGift(gift.id); if (e.key === 'Escape') setEditingGiftId(null); }}
+                                  maxLength={100}
+                                  autoFocus
+                                  className="flex-1 min-w-0 px-2 py-0.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-sm text-slate-900 dark:text-white"
+                                />
+                                <button type="button" onClick={() => handleRenameGift(gift.id)} className="text-green-600 dark:text-green-400 hover:text-green-700 flex-shrink-0">
+                                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                                </button>
+                                <button type="button" onClick={() => setEditingGiftId(null)} className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 flex-shrink-0">
+                                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                                </button>
+                              </div>
+                            ) : (
+                              <>
+                                <Link href={`/planner/pixie-dust/${gift.id}`} className="font-semibold text-slate-900 dark:text-white text-sm truncate">
+                                  {gift.name}
+                                </Link>
+                                <button
+                                  type="button"
+                                  onClick={() => { setEditingGiftId(gift.id); setEditGiftName(gift.name); }}
+                                  className="flex-shrink-0 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
+                                  title="Rename gift"
+                                >
+                                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
+                                </button>
+                              </>
+                            )}
                           </div>
-                          <span className="text-xs text-slate-500 dark:text-slate-400">
-                            {gift.delivered_count}/{gift.recipient_count} delivered
-                          </span>
+                          {!isEditing && (
+                            <span className="text-xs text-slate-500 dark:text-slate-400 ml-2 flex-shrink-0">
+                              {gift.delivered_count}/{gift.recipient_count} delivered
+                            </span>
+                          )}
                         </div>
-                        {gift.recipient_count > 0 && (
-                          <div className="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
-                            <div
-                              className="h-full bg-green-500 rounded-full transition-all duration-300"
-                              style={{ width: `${pct}%` }}
-                            />
-                          </div>
-                        )}
-                        {gift.recipient_count === 0 && (
-                          <p className="text-xs text-slate-400 dark:text-slate-500">No rooms added yet — tap to add recipients</p>
-                        )}
-                      </Link>
+                        <Link href={`/planner/pixie-dust/${gift.id}`} className="block">
+                          {gift.recipient_count > 0 && (
+                            <div className="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                              <div
+                                className="h-full bg-green-500 rounded-full transition-all duration-300"
+                                style={{ width: `${pct}%` }}
+                              />
+                            </div>
+                          )}
+                          {gift.recipient_count === 0 && (
+                            <p className="text-xs text-slate-400 dark:text-slate-500">No rooms added yet — tap to add recipients</p>
+                          )}
+                        </Link>
+                      </div>
                     );
                   })}
                 </div>

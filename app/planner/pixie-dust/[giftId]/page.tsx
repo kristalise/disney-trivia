@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/components/AuthProvider';
 import RoomNumberParser from '@/components/RoomNumberParser';
@@ -39,6 +39,7 @@ interface FEGroup {
 
 export default function GiftDetailPage() {
   const params = useParams();
+  const router = useRouter();
   const giftId = params.giftId as string;
   const { session } = useAuth();
 
@@ -62,6 +63,10 @@ export default function GiftDetailPage() {
   const [startRoom, setStartRoom] = useState<number>(0);
   const [optimizing, setOptimizing] = useState(false);
 
+  // Delete gift
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [deleteLoading, setDeleteLoading] = useState(false);
+
   const headers = useCallback(() => ({
     'Content-Type': 'application/json',
     ...(session?.access_token ? { Authorization: `Bearer ${session.access_token}` } : {}),
@@ -80,24 +85,10 @@ export default function GiftDetailPage() {
       if (res.ok) {
         const data = await res.json();
         setRecipients(data.recipients ?? []);
+        if (data.gift) setGift(data.gift);
       }
     } catch { /* ignore */ }
   }, [giftId, session?.access_token, authHeaders]);
-
-  const fetchGift = useCallback(async () => {
-    if (!session?.access_token) return;
-    setLoading(true);
-    try {
-      // We get gift info from the gifts list
-      const giftsRes = await fetch(`/api/pixie-gifts?sailing_id=_all`, { headers: authHeaders() });
-      // Fallback: fetch recipients which validates ownership
-      await fetchRecipients();
-
-      // Get gift details by fetching all user gifts
-      // The gift ID is validated server-side when we fetch recipients
-      // For display, we'll extract from the URL or a lighter endpoint
-    } catch { /* ignore */ } finally { setLoading(false); }
-  }, [session?.access_token, authHeaders, fetchRecipients]);
 
   // Initial load
   useEffect(() => {
@@ -106,13 +97,13 @@ export default function GiftDetailPage() {
 
     const load = async () => {
       try {
-        // Fetch recipients (this validates gift ownership)
         const recipRes = await fetch(`/api/pixie-gifts/recipients?gift_id=${giftId}`, {
           headers: authHeaders(),
         });
         if (recipRes.ok) {
           const data = await recipRes.json();
           setRecipients(data.recipients ?? []);
+          if (data.gift) setGift(data.gift);
         }
       } catch { /* ignore */ } finally { setLoading(false); }
     };
@@ -205,6 +196,20 @@ export default function GiftDetailPage() {
     } catch { /* ignore */ } finally { setDeletingId(null); }
   };
 
+  const handleDeleteGift = async () => {
+    setDeleteLoading(true);
+    try {
+      const res = await fetch(`/api/pixie-gifts?id=${giftId}`, {
+        method: 'DELETE',
+        headers: headers(),
+      });
+      if (res.ok) {
+        const sailingParam = gift?.sailing_id ? `?sailing=${gift.sailing_id}` : '';
+        router.push(`/planner/pixie-dust${sailingParam}`);
+      }
+    } catch { /* ignore */ } finally { setDeleteLoading(false); }
+  };
+
   const handleOptimizeRoute = async () => {
     const undelivered = recipients.filter(r => !r.delivered).map(r => r.stateroom_number);
     if (undelivered.length === 0 || !startRoom) return;
@@ -236,16 +241,22 @@ export default function GiftDetailPage() {
   const progressPct = total > 0 ? Math.round((delivered / total) * 100) : 0;
   const deliveredSet = new Set(recipients.filter(r => r.delivered).map(r => r.stateroom_number));
 
+  const backHref = gift?.sailing_id
+    ? `/planner/pixie-dust?sailing=${gift.sailing_id}`
+    : '/planner/pixie-dust';
+
   return (
     <div className="max-w-2xl mx-auto">
       <div className="mb-6">
-        <Link href="/planner/pixie-dust" className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center gap-1 text-sm mb-4">
+        <Link href={backHref} className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center gap-1 text-sm mb-4">
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
           Pixie Dusting
         </Link>
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">Gift Delivery</h1>
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">
+          {gift ? <>{gift.emoji} {gift.name}</> : 'Gift Delivery'}
+        </h1>
         <p className="text-slate-600 dark:text-slate-400 text-sm">
           Manage rooms and track deliveries for this gift.
         </p>
@@ -522,6 +533,38 @@ export default function GiftDetailPage() {
               </p>
             </div>
           )}
+
+          {/* Delete Gift */}
+          <div className="text-center mt-2 mb-8">
+            {showDeleteConfirm ? (
+              <div className="inline-flex items-center gap-3">
+                <span className="text-sm text-red-600 dark:text-red-400">Delete this gift and all recipients?</span>
+                <button
+                  type="button"
+                  disabled={deleteLoading}
+                  onClick={handleDeleteGift}
+                  className="px-3 py-1 rounded-lg text-xs font-medium bg-red-600 text-white hover:bg-red-700 disabled:opacity-50"
+                >
+                  {deleteLoading ? 'Deleting...' : 'Yes, delete'}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setShowDeleteConfirm(false)}
+                  className="px-3 py-1 rounded-lg text-xs font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300"
+                >
+                  Cancel
+                </button>
+              </div>
+            ) : (
+              <button
+                type="button"
+                onClick={() => setShowDeleteConfirm(true)}
+                className="text-sm text-red-500 hover:text-red-700 dark:hover:text-red-400"
+              >
+                Delete this gift
+              </button>
+            )}
+          </div>
         </>
       )}
     </div>
