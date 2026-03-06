@@ -91,7 +91,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Name cannot be empty' }, { status: 400 });
     }
 
-    // Get next sort_order
+    // Get next sort_order and count for color cycling
     const { data: existing } = await supabase
       .from('pixie_gifts')
       .select('sort_order')
@@ -102,6 +102,12 @@ export async function POST(request: NextRequest) {
 
     const nextOrder = (existing?.[0]?.sort_order ?? -1) + 1;
 
+    const GIFT_PALETTE = [
+      '#8B5CF6', '#0EA5E9', '#F97316', '#10B981', '#EC4899',
+      '#EAB308', '#06B6D4', '#E11D48', '#6366F1', '#84CC16',
+    ];
+    const autoColor = GIFT_PALETTE[nextOrder % GIFT_PALETTE.length];
+
     const { data: gift, error } = await supabase
       .from('pixie_gifts')
       .insert({
@@ -109,7 +115,7 @@ export async function POST(request: NextRequest) {
         sailing_id,
         name: sanitizedName,
         emoji: emoji || '🎁',
-        color: color || '#8B5CF6',
+        color: color || autoColor,
         sort_order: nextOrder,
       })
       .select()

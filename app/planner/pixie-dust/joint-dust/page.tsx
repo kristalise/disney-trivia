@@ -7,6 +7,19 @@ import { useAuth } from '@/components/AuthProvider';
 import DeliveryRoute from '@/components/DeliveryRoute';
 import { getDeck, getSide } from '@/lib/stateroom-utils';
 
+const GIFT_PALETTE = [
+  '#8B5CF6', // violet
+  '#0EA5E9', // sky blue
+  '#F97316', // orange
+  '#10B981', // emerald
+  '#EC4899', // pink
+  '#EAB308', // yellow
+  '#06B6D4', // cyan
+  '#E11D48', // rose
+  '#6366F1', // indigo
+  '#84CC16', // lime
+];
+
 interface GiftInfo {
   id: string;
   name: string;
@@ -218,6 +231,10 @@ function JointDustContent() {
     } catch { /* ignore */ } finally { setOptimizing(false); }
   };
 
+  // Assign distinct colors to each gift by index
+  const giftColorMap = new Map<string, string>();
+  gifts.forEach((g, i) => giftColorMap.set(g.id, GIFT_PALETTE[i % GIFT_PALETTE.length]));
+
   // Build sorted room entries — use first non-null name/notes across gifts for display
   const roomEntries: RoomEntry[] = Array.from(rooms.entries())
     .map(([stateroom, giftRecipients]) => ({
@@ -308,6 +325,7 @@ function JointDustContent() {
           {/* Gift Legend */}
           <div className="flex flex-wrap gap-2 mb-4">
             {gifts.map(g => {
+              const c = giftColorMap.get(g.id) ?? g.color;
               let gDelivered = 0;
               let gTotal = 0;
               for (const giftRecipients of rooms.values()) {
@@ -323,9 +341,9 @@ function JointDustContent() {
                   key={g.id}
                   className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium border"
                   style={{
-                    borderColor: g.color,
-                    backgroundColor: `${g.color}15`,
-                    color: g.color,
+                    borderColor: c,
+                    backgroundColor: `${c}15`,
+                    color: c,
                   }}
                 >
                   <span>{g.emoji}</span>
@@ -471,6 +489,7 @@ function JointDustContent() {
                             {room.gifts.map(gr => {
                               const giftInfo = gifts.find(g => g.id === gr.giftId);
                               if (!giftInfo) return null;
+                              const c = giftColorMap.get(gr.giftId) ?? giftInfo.color;
                               return (
                                 <button
                                   key={gr.recipientId}
@@ -485,9 +504,9 @@ function JointDustContent() {
                                     backgroundColor: '#f0fdf4',
                                     color: '#15803d',
                                   } : {
-                                    borderColor: giftInfo.color,
-                                    backgroundColor: `${giftInfo.color}12`,
-                                    color: giftInfo.color,
+                                    borderColor: c,
+                                    backgroundColor: `${c}12`,
+                                    color: c,
                                   }}
                                 >
                                   <span>{giftInfo.emoji}</span>
@@ -497,7 +516,7 @@ function JointDustContent() {
                                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                                     </svg>
                                   ) : (
-                                    <span className="w-3.5 h-3.5 rounded border-2 inline-block flex-shrink-0" style={{ borderColor: giftInfo.color }} />
+                                    <span className="w-3.5 h-3.5 rounded border-2 inline-block flex-shrink-0" style={{ borderColor: c }} />
                                   )}
                                 </button>
                               );
