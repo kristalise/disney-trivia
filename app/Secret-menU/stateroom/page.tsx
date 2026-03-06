@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import stateroomData from '@/data/stateroom-data.json';
 import categoryMetadata from '@/data/category-metadata.json';
+import { getDeck as getDeckUtil, getSection, getSide } from '@/lib/stateroom-utils';
 
 const categoryMeta = categoryMetadata as Record<string, Record<string, CategoryMeta>>;
 
@@ -624,16 +625,14 @@ function StateroomReviewContent() {
               <div className="space-y-0">
                 <DetailRow label="Category" value={result.category} />
                 <DetailRow label="Type" value={catMeta?.name || getCategoryType(result.category)} />
-                <DetailRow label="Deck" value={getDeck(result.stateroom).toString()} />
+                <DetailRow label="Location" value={`Deck ${getDeck(result.stateroom)} · ${getSection(result, shipRooms)} · ${getSide(result.stateroom) === 'port' ? 'Port' : 'Starboard'}`} />
                 <DetailRow label="Max Occupancy" value={result.occupancy?.toString()} />
                 <DetailRow label="Bedding" value={result.bedding} />
                 <DetailRow label="Connecting" value={result.connecting === 'NO' ? 'None' : result.connecting} />
                 <DetailRow label="Accessible" value={result.accessible === 'NO' ? 'No' : result.accessible || 'No'} />
                 <DetailRow label="Verandah Partitions" value={result.verandahPartitions} />
-                <DetailRow label="Assembly Station" value={result.assemblyStation} />
-                <DetailRow label="Assembly Location" value={result.assemblyLocation} />
-                <DetailRow label="Assembly Side" value={result.assemblySide} />
-                <DetailRow label="Assembly Section" value={result.assemblySection} />
+                <DetailRow label="Assembly Station" value={[result.assemblyStation, result.assemblyLocation].filter(Boolean).join(' · ') || null} />
+                <DetailRow label="Assembly Section" value={[result.assemblySide, result.assemblySection].filter(Boolean).join(' · ') || null} />
                 {hasThemeFields && result.wishExtender && (
                   <DetailRow label="Wish Extender" value={result.wishExtender} />
                 )}
