@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { useAuth } from '@/components/AuthProvider';
 import sailingData from '@/data/sailing-data.json';
 import { isValidStateroomForShip, lookupStateroomInfo, getMaxOccupancy, TYPE_EMOJI } from '@/lib/stateroom-utils';
+import { getCastawayLevel, type CastawayInfo } from '@/lib/castaway-levels';
+import CastawayLevelUp from '@/components/CastawayLevelUp';
 
 const SHIPS = [
   'Disney Magic', 'Disney Wonder', 'Disney Dream', 'Disney Fantasy',
@@ -178,6 +180,9 @@ export default function SailingReviewPage() {
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitSuccessMsg, setSubmitSuccessMsg] = useState('');
   const [submitError, setSubmitError] = useState('');
+
+  // Level-up celebration state
+  const [levelUpInfo, setLevelUpInfo] = useState<CastawayInfo | null>(null);
 
   // My Sailings state
   const [mySailings, setMySailings] = useState<Sailing[]>([]);
@@ -361,6 +366,16 @@ export default function SailingReviewPage() {
       });
       const data = await res.json();
       if (!res.ok) { setSubmitError(data.error || 'Failed to submit'); setSubmitting(false); return; }
+
+      // Detect Castaway Club level-up
+      const todayMid = new Date();
+      todayMid.setHours(0, 0, 0, 0);
+      const oldPastCount = mySailings.filter(s => new Date(s.sail_end_date + 'T23:59:59') < todayMid).length;
+      const newSailingEndDate = new Date(sailEndDate + 'T23:59:59');
+      const newPastCount = oldPastCount + (newSailingEndDate < todayMid ? 1 : 0);
+      const oldLevel = getCastawayLevel(oldPastCount);
+      const newLevel = getCastawayLevel(newPastCount);
+
       setSubmitSuccess(true);
       setSubmitSuccessMsg('Sailing logged!');
       const newSailingId = data.review?.id || null;
@@ -376,6 +391,18 @@ export default function SailingReviewPage() {
             fetch('/api/sailing-invites', { method: 'POST', headers, body: JSON.stringify({ sailing_id: newSailingId, email }) }).catch(() => {})
           ),
         ]);
+      }
+
+      // Show level-up celebration and update profile if level changed
+      if (newLevel.level !== 'none' && newLevel.level !== oldLevel.level) {
+        setLevelUpInfo(newLevel);
+        if (user) {
+          fetch(`/api/profiles/${user.id}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ dcl_membership: `${newLevel.label} Castaway` }),
+          }).catch(() => {});
+        }
       }
 
       // Reset form
@@ -1080,6 +1107,14 @@ export default function SailingReviewPage() {
             </div>
           )}
         </>
+      )}
+
+      {/* Castaway Club Level-Up Celebration */}
+      {levelUpInfo && (
+        <CastawayLevelUp
+          newLevel={levelUpInfo}
+          onDismiss={() => setLevelUpInfo(null)}
+        />
       )}
     </div>
   );

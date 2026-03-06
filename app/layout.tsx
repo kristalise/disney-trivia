@@ -169,7 +169,7 @@ export default function RootLayout({
             <div className="max-w-6xl mx-auto text-center text-xs text-slate-500 dark:text-slate-400 space-y-2">
               <p>
                 Unofficial fan-made tool — not affiliated with or endorsed by The Walt Disney Company or Disney Cruise Line.
-                All trademarks and images belong to their respective owners. For personal, non-commercial use only.
+                All trademarks and images belong to their respective owners. This is a digital pixie dust for Disney Adventure Maiden Voyage by KristabelQ.
               </p>
               <p>&copy; 2026 Disney Cruise Trivia. All rights reserved.</p>
             </div>

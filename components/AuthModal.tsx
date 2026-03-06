@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { signInWithEmail, signUpWithEmail, signInWithGoogle, resetPassword } from '@/lib/auth';
+import { signInWithEmail, signUpAndSignIn, signInWithGoogle, resetPassword } from '@/lib/auth';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -10,7 +10,7 @@ interface AuthModalProps {
 }
 
 export default function AuthModal({ isOpen, onClose, defaultMode = 'login' }: AuthModalProps) {
-  const [mode, setMode] = useState<'login' | 'signup' | 'reset'>(defaultMode);
+  const [mode, setMode] = useState<'auth' | 'reset'>(defaultMode === 'signup' ? 'auth' : defaultMode === 'login' ? 'auth' : 'auth');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -19,22 +19,22 @@ export default function AuthModal({ isOpen, onClose, defaultMode = 'login' }: Au
 
   if (!isOpen) return null;
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent, action: 'signin' | 'signup' | 'reset') => {
     e.preventDefault();
     setLoading(true);
     setError(null);
     setMessage(null);
 
     try {
-      if (mode === 'login') {
+      if (action === 'signin') {
         const { error } = await signInWithEmail(email, password);
         if (error) throw error;
         onClose();
-      } else if (mode === 'signup') {
-        const { error } = await signUpWithEmail(email, password);
+      } else if (action === 'signup') {
+        const { error } = await signUpAndSignIn(email, password);
         if (error) throw error;
-        setMessage('Check your email to confirm your account!');
-      } else if (mode === 'reset') {
+        onClose();
+      } else if (action === 'reset') {
         const { error } = await resetPassword(email);
         if (error) throw error;
         setMessage('Check your email for a password reset link!');
@@ -64,9 +64,7 @@ export default function AuthModal({ isOpen, onClose, defaultMode = 'login' }: Au
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl font-bold text-slate-900 dark:text-white">
-            {mode === 'login' && 'Welcome Back!'}
-            {mode === 'signup' && 'Create Account'}
-            {mode === 'reset' && 'Reset Password'}
+            {mode === 'auth' ? 'Welcome!' : 'Reset Password'}
           </h2>
           <button
             onClick={onClose}
@@ -109,7 +107,7 @@ export default function AuthModal({ isOpen, onClose, defaultMode = 'login' }: Au
         )}
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={(e) => handleSubmit(e, mode === 'reset' ? 'reset' : 'signin')} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
               Email
@@ -153,50 +151,48 @@ export default function AuthModal({ isOpen, onClose, defaultMode = 'login' }: Au
             </div>
           )}
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full px-4 py-3 rounded-xl font-medium btn-disney disabled:opacity-50"
-          >
-            {loading ? 'Loading...' : mode === 'login' ? 'Sign In' : mode === 'signup' ? 'Create Account' : 'Send Reset Link'}
-          </button>
+          {mode === 'auth' ? (
+            <div className="flex gap-3">
+              <button
+                type="submit"
+                disabled={loading}
+                className="flex-1 px-4 py-3 rounded-xl font-medium btn-disney disabled:opacity-50"
+              >
+                {loading ? 'Loading...' : 'Sign In'}
+              </button>
+              <button
+                type="button"
+                disabled={loading}
+                onClick={(e) => handleSubmit(e as unknown as React.FormEvent, 'signup')}
+                className="flex-1 px-4 py-3 rounded-xl font-medium border-2 border-disney-blue dark:border-disney-gold text-disney-blue dark:text-disney-gold hover:bg-disney-blue/5 dark:hover:bg-disney-gold/5 transition-colors disabled:opacity-50"
+              >
+                {loading ? 'Loading...' : 'Sign Up'}
+              </button>
+            </div>
+          ) : (
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full px-4 py-3 rounded-xl font-medium btn-disney disabled:opacity-50"
+            >
+              {loading ? 'Loading...' : 'Send Reset Link'}
+            </button>
+          )}
         </form>
 
         {/* Footer Links */}
         <div className="mt-6 text-center text-sm">
-          {mode === 'login' && (
-            <>
-              <button
-                onClick={() => setMode('reset')}
-                className="text-disney-blue dark:text-disney-gold hover:underline"
-              >
-                Forgot password?
-              </button>
-              <p className="mt-2 text-slate-600 dark:text-slate-400">
-                Don&apos;t have an account?{' '}
-                <button
-                  onClick={() => setMode('signup')}
-                  className="text-disney-blue dark:text-disney-gold hover:underline font-medium"
-                >
-                  Sign up
-                </button>
-              </p>
-            </>
-          )}
-          {mode === 'signup' && (
-            <p className="text-slate-600 dark:text-slate-400">
-              Already have an account?{' '}
-              <button
-                onClick={() => setMode('login')}
-                className="text-disney-blue dark:text-disney-gold hover:underline font-medium"
-              >
-                Sign in
-              </button>
-            </p>
+          {mode === 'auth' && (
+            <button
+              onClick={() => setMode('reset')}
+              className="text-disney-blue dark:text-disney-gold hover:underline"
+            >
+              Forgot password?
+            </button>
           )}
           {mode === 'reset' && (
             <button
-              onClick={() => setMode('login')}
+              onClick={() => setMode('auth')}
               className="text-disney-blue dark:text-disney-gold hover:underline"
             >
               Back to sign in

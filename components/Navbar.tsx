@@ -11,7 +11,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const { user, loading, signOut } = useAuth();
   const [showAuthModal, setShowAuthModal] = useState(false);
-  const [authMode, setAuthMode] = useState<'login' | 'signup'>('login');
+  const [authMode] = useState<'login' | 'signup'>('login');
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [userHandle, setUserHandle] = useState<string | null>(null);
 
@@ -33,13 +33,7 @@ export default function Navbar() {
     { href: '/users', label: 'Community' },
   ];
 
-  const openLogin = () => {
-    setAuthMode('login');
-    setShowAuthModal(true);
-  };
-
-  const openSignup = () => {
-    setAuthMode('signup');
+  const openAuth = () => {
     setShowAuthModal(true);
   };
 
@@ -146,20 +140,12 @@ export default function Navbar() {
                       )}
                     </>
                   ) : (
-                    <div className="flex items-center gap-2">
-                      <button
-                        onClick={openLogin}
-                        className="px-3 py-2 rounded-lg text-sm font-medium text-white/80 hover:text-white hover:bg-white/10 transition-colors"
-                      >
-                        Sign In
-                      </button>
-                      <button
-                        onClick={openSignup}
-                        className="px-3 py-2 rounded-lg text-sm font-medium bg-disney-gold text-disney-blue hover:bg-yellow-400 transition-colors hidden sm:block"
-                      >
-                        Sign Up
-                      </button>
-                    </div>
+                    <button
+                      onClick={openAuth}
+                      className="px-3 py-2 rounded-lg text-sm font-medium bg-disney-gold text-disney-blue hover:bg-yellow-400 transition-colors"
+                    >
+                      Sign In
+                    </button>
                   )}
                 </div>
               )}

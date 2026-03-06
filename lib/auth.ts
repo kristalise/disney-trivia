@@ -26,11 +26,24 @@ export async function signUpWithEmail(email: string, password: string) {
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
-    options: {
-      emailRedirectTo: `${window.location.origin}/auth/callback`,
-    },
   });
   return { data, error };
+}
+
+export async function signUpAndSignIn(email: string, password: string) {
+  const { data, error } = await signUpWithEmail(email, password);
+  if (error) return { data, error };
+
+  // If sign up returned a session, user is already logged in
+  if (data.session) return { data, error: null };
+
+  // If user exists with empty identities, the email is already registered
+  if (data.user && (!data.user.identities || data.user.identities.length === 0)) {
+    return { data, error: new Error('An account with this email already exists. Please sign in instead.') };
+  }
+
+  // Sign up succeeded but no session — sign in with the new credentials
+  return signInWithEmail(email, password);
 }
 
 export async function signInWithGoogle() {

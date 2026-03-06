@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/components/AuthProvider';
+import { getCastawayLevel } from '@/lib/castaway-levels';
 
 interface Sailing {
   id: string;
@@ -10,25 +11,6 @@ interface Sailing {
   sail_start_date: string;
   sail_end_date: string;
   itinerary_name: string | null;
-}
-
-type CastawayLevel = 'none' | 'silver' | 'gold' | 'platinum' | 'pearl';
-
-interface CastawayInfo {
-  level: CastawayLevel;
-  label: string;
-  emoji: string;
-  checkInDays: number;
-  activityDays: number;
-  color: string;
-}
-
-function getCastawayLevel(pastSailingCount: number): CastawayInfo {
-  if (pastSailingCount >= 25) return { level: 'pearl', label: 'Pearl', emoji: '🤍', checkInDays: 40, activityDays: 123, color: 'text-slate-100' };
-  if (pastSailingCount >= 10) return { level: 'platinum', label: 'Platinum', emoji: '💎', checkInDays: 38, activityDays: 120, color: 'text-blue-200' };
-  if (pastSailingCount >= 5) return { level: 'gold', label: 'Gold', emoji: '🥇', checkInDays: 35, activityDays: 105, color: 'text-yellow-300' };
-  if (pastSailingCount >= 1) return { level: 'silver', label: 'Silver', emoji: '🥈', checkInDays: 33, activityDays: 90, color: 'text-slate-300' };
-  return { level: 'none', label: 'New', emoji: '⚓', checkInDays: 30, activityDays: 75, color: 'text-white' };
 }
 
 function parseLocal(ds: string) {

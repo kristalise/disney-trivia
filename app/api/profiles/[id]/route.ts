@@ -20,7 +20,7 @@ const VALID_SHIPS = [
   'Disney Wish', 'Disney Treasure', 'Disney Destiny', 'Disney Adventure',
 ];
 
-const VALID_DCL_MEMBERSHIPS = ['Silver Castaway', 'Gold Castaway', 'Platinum Castaway'];
+const VALID_DCL_MEMBERSHIPS = ['Silver Castaway', 'Gold Castaway', 'Platinum Castaway', 'Pearl Castaway'];
 
 function stripHtml(str: string): string {
   return str.replace(/<[^>]*>/g, '').trim();
