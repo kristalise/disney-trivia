@@ -27,7 +27,7 @@ EXCEPTION WHEN unique_violation THEN
   ON CONFLICT (id) DO NOTHING;
   RETURN NEW;
 END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
+$$ LANGUAGE plpgsql SECURITY DEFINER SET search_path = public;
 
 -- Recreate the trigger
 CREATE TRIGGER on_auth_user_created

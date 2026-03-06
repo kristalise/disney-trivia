@@ -34,7 +34,7 @@ CREATE INDEX IF NOT EXISTS idx_questions_user_contributed ON questions(is_user_c
 CREATE OR REPLACE FUNCTION update_question_reliability()
 RETURNS TRIGGER AS $$
 BEGIN
-  UPDATE questions
+  UPDATE public.questions
   SET
     total_ratings = total_ratings + 1,
     reliable_ratings = reliable_ratings + CASE WHEN NEW.is_reliable THEN 1 ELSE 0 END,
@@ -42,7 +42,7 @@ BEGIN
   WHERE id = NEW.question_id;
   RETURN NEW;
 END;
-$$ LANGUAGE plpgsql;
+$$ LANGUAGE plpgsql SET search_path = public;
 
 -- Trigger to auto-update reliability on new rating
 DROP TRIGGER IF EXISTS trigger_update_reliability ON question_ratings;
@@ -54,9 +54,9 @@ EXECUTE FUNCTION update_question_reliability();
 -- RLS policies for question_ratings
 ALTER TABLE question_ratings ENABLE ROW LEVEL SECURITY;
 
--- Anyone can insert ratings
+-- Authenticated users or anonymous sessions can insert ratings
 CREATE POLICY "Anyone can insert ratings" ON question_ratings
-FOR INSERT WITH CHECK (true);
+FOR INSERT WITH CHECK (auth.uid() IS NOT NULL OR session_id IS NOT NULL);
 
 -- Anyone can view ratings
 CREATE POLICY "Anyone can view ratings" ON question_ratings
@@ -66,12 +66,13 @@ FOR SELECT USING (true);
 CREATE POLICY "Users can update own ratings" ON question_ratings
 FOR UPDATE USING (auth.uid() = user_id OR (user_id IS NULL AND session_id IS NOT NULL));
 
--- RLS policy for inserting user-contributed questions
+-- Authenticated users can insert questions
 CREATE POLICY "Anyone can insert questions" ON questions
-FOR INSERT WITH CHECK (true);
+FOR INSERT WITH CHECK (auth.uid() IS NOT NULL);
 
 -- Create a view for pending corrections (questions with low reliability and suggested answers)
-CREATE OR REPLACE VIEW pending_corrections AS
+CREATE OR REPLACE VIEW pending_corrections
+WITH (security_invoker = on) AS
 SELECT
   q.id,
   q.question,

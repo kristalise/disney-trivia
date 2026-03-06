@@ -168,6 +168,7 @@ export default function ProfilePage() {
   const [triviaStats, setTriviaStats] = useState<TriviaStats | null>(null);
   const [isFriend, setIsFriend] = useState(false);
   const [followLoading, setFollowLoading] = useState(false);
+  const [friendMessage, setFriendMessage] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
   const [shipFilter, setShipFilter] = useState<string | null>(null);
@@ -332,7 +333,10 @@ export default function ProfilePage() {
         body: JSON.stringify({ following_id: profile?.id, mutual: true }),
       });
       if (res.ok) {
+        const msg = isFriend ? 'Friend removed' : 'Friend added!';
         setIsFriend(!isFriend);
+        setFriendMessage(msg);
+        setTimeout(() => setFriendMessage(null), 3000);
         fetchProfile();
       }
     } catch { /* ignore */ } finally {
@@ -460,17 +464,22 @@ export default function ProfilePage() {
               <QRCodeButton />
             </>
           ) : user ? (
-            <button
-              onClick={handleFriendToggle}
-              disabled={followLoading}
-              className={`flex-1 px-4 py-2 rounded-xl font-medium text-sm transition-colors ${
-                isFriend
-                  ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 hover:bg-red-100 hover:text-red-600 dark:hover:bg-red-900/30 dark:hover:text-red-400'
-                  : 'btn-disney'
-              }`}
-            >
-              {followLoading ? '...' : isFriend ? 'Friends' : 'Add Friend'}
-            </button>
+            <div className="flex-1">
+              <button
+                onClick={handleFriendToggle}
+                disabled={followLoading}
+                className={`w-full px-4 py-2 rounded-xl font-medium text-sm transition-colors ${
+                  isFriend
+                    ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 hover:bg-red-100 hover:text-red-600 dark:hover:bg-red-900/30 dark:hover:text-red-400'
+                    : 'btn-disney'
+                }`}
+              >
+                {followLoading ? '...' : isFriend ? 'Friends' : 'Add Friend'}
+              </button>
+              {friendMessage && (
+                <p className="text-xs text-center text-green-600 dark:text-green-400 mt-1">{friendMessage}</p>
+              )}
+            </div>
           ) : null}
         </div>
 

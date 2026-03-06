@@ -479,18 +479,18 @@ export default function SailingReviewPage() {
           </svg>
           Cruise Guide
         </Link>
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">My Sailings</h1>
-        <p className="text-slate-600 dark:text-slate-400">Log past and upcoming sailings. Review them after you return.</p>
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">My Sailings</h1>
+        <p className="text-sm text-slate-600 dark:text-slate-400">Log past and upcoming sailings. Review them after you return.</p>
       </div>
 
       {/* Log a New Sailing Form */}
-      <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-200 dark:border-slate-700 mb-6">
+      <div className="bg-white dark:bg-slate-800 rounded-2xl p-4 sm:p-6 shadow-lg border border-slate-200 dark:border-slate-700 mb-6">
         <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Add a Sailing</h3>
         {user ? (
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
             {/* Ship Selector */}
             <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Ship</label>
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Ship</label>
               <select value={selectedShip} onChange={(e) => { setSelectedShip(e.target.value as ShipName | ''); setItineraryName(''); setEmbarkationPort(''); setDisembarkationPort(''); setSelectedPorts([]); }}
                 className={selectCls}>
                 <option value="">Select a ship...</option>
@@ -499,14 +499,14 @@ export default function SailingReviewPage() {
             </div>
 
             {/* Date Range */}
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Sail Start Date</label>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Start Date</label>
                 <input type="date" value={sailStartDate} onChange={(e) => setSailStartDate(e.target.value)}
                   className={selectCls} />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Sail End Date</label>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">End Date</label>
                 <input type="date" value={sailEndDate} onChange={(e) => setSailEndDate(e.target.value)} min={sailStartDate || undefined}
                   className={selectCls} />
               </div>
@@ -542,7 +542,7 @@ export default function SailingReviewPage() {
               <>
                 {/* Itinerary Dropdown */}
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Sailing Itinerary</label>
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Sailing Itinerary</label>
                   <select value={itineraryName} onChange={(e) => setItineraryName(e.target.value)}
                     className={selectCls}>
                     <option value="">Select itinerary...</option>
@@ -553,9 +553,9 @@ export default function SailingReviewPage() {
                 </div>
 
                 {/* Embarkation / Disembarkation Port Dropdowns */}
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Embarkation Port</label>
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Embarkation Port</label>
                     <select value={embarkationPort} onChange={(e) => setEmbarkationPort(e.target.value)}
                       className={selectCls}>
                       <option value="">Select port...</option>
@@ -565,7 +565,7 @@ export default function SailingReviewPage() {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Disembarkation Port</label>
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Disembarkation Port</label>
                     <select value={disembarkationPort} onChange={(e) => setDisembarkationPort(e.target.value)}
                       className={selectCls}>
                       <option value="">Select port...</option>
@@ -576,44 +576,28 @@ export default function SailingReviewPage() {
                   </div>
                 </div>
 
-                {/* Ports of Call */}
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                    Ports of Call
-                    {selectedPorts.length > 0 && (
-                      <span className="font-normal text-slate-400 dark:text-slate-500 ml-1">({selectedPorts.length} selected)</span>
+                {/* Ports of Call (read-only, auto-populated from itinerary) */}
+                {selectedItinerary && (
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
+                      Ports of Call
+                    </label>
+                    {selectedPorts.length > 0 ? (
+                      <div className="flex flex-wrap gap-2 p-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900">
+                        {selectedPorts.map((port) => (
+                          <span
+                            key={port}
+                            className="px-3 py-1.5 rounded-full text-sm font-medium bg-disney-blue text-white border border-disney-blue dark:bg-disney-gold dark:text-slate-900 dark:border-disney-gold"
+                          >
+                            {port}
+                          </span>
+                        ))}
+                      </div>
+                    ) : (
+                      <p className="text-sm text-slate-500 dark:text-slate-400 italic">This sailing has no ports of call.</p>
                     )}
-                  </label>
-                  <div className="flex flex-wrap gap-2 max-h-48 overflow-y-auto p-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900">
-                    {[...allPortsOfCall].sort((a, b) => {
-                      const aSelected = selectedPorts.includes(a);
-                      const bSelected = selectedPorts.includes(b);
-                      if (aSelected && !bSelected) return -1;
-                      if (!aSelected && bSelected) return 1;
-                      return 0;
-                    }).map((port) => {
-                      const selected = selectedPorts.includes(port);
-                      return (
-                        <button
-                          key={port}
-                          type="button"
-                          onClick={() =>
-                            setSelectedPorts((prev) =>
-                              selected ? prev.filter((p) => p !== port) : [...prev, port]
-                            )
-                          }
-                          className={`px-3 py-1.5 rounded-full text-sm font-medium border transition-colors ${
-                            selected
-                              ? 'bg-disney-blue text-white border-disney-blue dark:bg-disney-gold dark:text-slate-900 dark:border-disney-gold'
-                              : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-600 hover:border-slate-400 dark:hover:border-slate-500'
-                          }`}
-                        >
-                          {port}
-                        </button>
-                      );
-                    })}
                   </div>
-                </div>
+                )}
               </>
             ) : (
               <>
@@ -623,15 +607,15 @@ export default function SailingReviewPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Itinerary Name</label>
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Itinerary Name</label>
                   <input type="text" value={openItineraryName} onChange={(e) => setOpenItineraryName(e.target.value)}
                     placeholder="e.g. 5-Night Western Caribbean" maxLength={200}
                     className={selectCls} />
                 </div>
 
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Embarkation Port</label>
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Embarkation Port</label>
                     <PortAutocomplete
                       value={embarkationPort}
                       onChange={setEmbarkationPort}
@@ -641,7 +625,7 @@ export default function SailingReviewPage() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Disembarkation Port</label>
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Disembarkation Port</label>
                     <PortAutocomplete
                       value={disembarkationPort}
                       onChange={setDisembarkationPort}
@@ -653,7 +637,7 @@ export default function SailingReviewPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Ports of Call (optional)</label>
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Ports of Call (optional)</label>
                   <PortAutocomplete
                     value={openPortsOfCall}
                     onChange={setOpenPortsOfCall}
@@ -668,7 +652,7 @@ export default function SailingReviewPage() {
 
             {/* Stateroom Numbers */}
             <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                 Stateroom Number(s)
                 {stateroomNumbers.length > 0 && (
                   <span className="font-normal text-slate-400 dark:text-slate-500 ml-1">({stateroomNumbers.length} added)</span>
@@ -738,7 +722,7 @@ export default function SailingReviewPage() {
 
             {/* Passengers */}
             <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Passengers (optional)</label>
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Passengers (optional)</label>
               {stateroomNumbers.length > 0 ? (
                 <div className="space-y-3">
                   {stateroomNumbers.map((num) => {
@@ -779,7 +763,7 @@ export default function SailingReviewPage() {
 
             {/* Occasions */}
             <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Occasion (optional)</label>
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Occasion (optional)</label>
               <div className="flex flex-wrap gap-2">
                 {OCCASIONS.map((occasion) => {
                   const sel = occasions.includes(occasion);
@@ -798,14 +782,14 @@ export default function SailingReviewPage() {
 
             {/* Purchased From */}
             <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Purchased From (optional)</label>
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Purchased From (optional)</label>
               <input type="text" value={purchasedFrom} onChange={(e) => setPurchasedFrom(e.target.value)}
                 placeholder="e.g. Disney, travel agent" maxLength={200} className={selectCls} />
             </div>
 
             {/* Total Cost */}
             <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Total Cost USD (optional)</label>
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Total Cost USD (optional)</label>
               <div className="relative">
                 <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500">$</span>
                 <input
@@ -837,7 +821,7 @@ export default function SailingReviewPage() {
 
             {/* Fellow Sailors */}
             <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Fellow Sailors (optional)</label>
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Fellow Sailors (optional)</label>
 
               {/* User search */}
               <div className="relative mb-2">
