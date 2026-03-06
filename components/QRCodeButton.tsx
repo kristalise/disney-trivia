@@ -10,6 +10,7 @@ export default function QRCodeButton() {
   const [handle, setHandle] = useState<string | null>(null);
   const [displayName, setDisplayName] = useState<string>('');
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     if (!user) return;
@@ -81,6 +82,42 @@ export default function QRCodeButton() {
               <p className="text-xs text-slate-500 dark:text-slate-400 mb-4">
                 Scan to view profile and follow
               </p>
+
+              {/* Shareable profile link */}
+              <div className="flex items-center gap-2 mb-4 bg-slate-50 dark:bg-slate-700/50 rounded-xl px-3 py-2">
+                <span className="flex-1 text-xs text-slate-600 dark:text-slate-300 truncate text-left select-all">
+                  {fullUrl}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => {
+                    navigator.clipboard.writeText(fullUrl);
+                    setCopied(true);
+                    setTimeout(() => setCopied(false), 2000);
+                  }}
+                  className="flex-shrink-0 px-2.5 py-1 rounded-lg text-xs font-medium bg-white dark:bg-slate-600 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-500 transition-colors border border-slate-200 dark:border-slate-500"
+                >
+                  {copied ? 'Copied!' : 'Copy'}
+                </button>
+                {typeof navigator !== 'undefined' && 'share' in navigator && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      navigator.share({
+                        title: `${displayName} on Disney Trivia`,
+                        text: `Check out ${displayName}'s cruise profile!`,
+                        url: fullUrl,
+                      }).catch(() => {});
+                    }}
+                    className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-lg bg-white dark:bg-slate-600 text-slate-600 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-500 transition-colors border border-slate-200 dark:border-slate-500"
+                    title="Share"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                    </svg>
+                  </button>
+                )}
+              </div>
 
               <button
                 type="button"
