@@ -6,6 +6,9 @@ import { useSearchParams } from 'next/navigation';
 import stateroomData from '@/data/stateroom-data.json';
 import categoryMetadata from '@/data/category-metadata.json';
 import { getDeck as getDeckUtil, getSection, getSide } from '@/lib/stateroom-utils';
+import { getVenuesByDeck, getCategories } from '@/lib/unified-data';
+
+const venueCategories = getCategories();
 
 const categoryMeta = categoryMetadata as Record<string, Record<string, CategoryMeta>>;
 
@@ -598,44 +601,134 @@ function StateroomReviewContent() {
                     </div>
                   )}
                   <p className="text-sm text-slate-600 dark:text-slate-400 mb-3">{catMeta.description}</p>
-                  <div className="flex flex-wrap gap-2 text-xs">
-                    {result.theme && <ThemePill theme={result.theme} />}
-                    <span className="px-2.5 py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 font-medium">
-                      Sleeps {catMeta.sleeps}
-                    </span>
-                    <span className="px-2.5 py-1 rounded-full bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 font-medium">
-                      {catMeta.sqft} sq. ft. | {catMeta.sqm} m²
-                    </span>
-                    {catMeta.includesVerandah && (
-                      <span className="px-2.5 py-1 rounded-full bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400 font-medium">
-                        Includes Verandah
+                  <div className="flex items-center justify-between">
+                    <div className="flex gap-2">
+                      <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-disney-blue/10 text-disney-blue dark:bg-disney-gold/20 dark:text-disney-gold">
+                        {result.category}
                       </span>
-                    )}
+                      {catMeta.includesVerandah && (
+                        <span className="px-2.5 py-1 rounded-full text-xs font-medium bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400">
+                          {(catMeta.name || '').toLowerCase().includes('garden view') ? 'Garden View Verandah'
+                            : (catMeta.name || '').toLowerCase().includes('reef view') ? 'Reef View Verandah'
+                            : 'Oceanview Verandah'}
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-2">
+                      {(catMeta?.name || '').toLowerCase().includes('concierge') && (
+                        <span className="px-3 py-1 rounded-full text-sm font-semibold bg-disney-gold/20 text-disney-gold">
+                          CONCIERGE
+                        </span>
+                      )}
+                      {result.theme && <ThemePill theme={result.theme} />}
+                    </div>
                   </div>
                 </div>
               )}
 
               {/* Theme pill fallback when no category metadata */}
               {!catMeta && result.theme && (
-                <div className="mb-4 pb-4 border-b border-slate-200 dark:border-slate-700">
+                <div className="mb-4 pb-4 border-b border-slate-200 dark:border-slate-700 flex items-center justify-end">
                   <ThemePill theme={result.theme} />
                 </div>
               )}
 
               <div className="space-y-0">
-                <DetailRow label="Category" value={result.category} />
-                <DetailRow label="Type" value={catMeta?.name || getCategoryType(result.category)} />
-                <DetailRow label="Location" value={`Deck ${getDeck(result.stateroom)} · ${getSection(result, shipRooms)} · ${getSide(result.stateroom) === 'port' ? 'Port' : 'Starboard'}`} />
-                <DetailRow label="Max Occupancy" value={result.occupancy?.toString()} />
-                <DetailRow label="Bedding" value={result.bedding} />
+                <div className="flex justify-between items-center py-2 border-b border-slate-100 dark:border-slate-700">
+                  <span className="text-sm font-medium text-slate-500 dark:text-slate-400">Category</span>
+                  <span className="text-sm text-slate-900 dark:text-white text-right">
+                    {catMeta?.name || getCategoryType(result.category)}
+                  </span>
+                </div>
+                <div className="py-2 border-b border-slate-100 dark:border-slate-700">
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm font-medium text-slate-500 dark:text-slate-400">Location</span>
+                    <span className="text-sm text-slate-900 dark:text-white text-right">
+                      <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 mr-1.5">
+                        Deck {getDeck(result.stateroom)}
+                      </span>
+                      {getSection(result, shipRooms)} · {getSide(result.stateroom) === 'port' ? 'Port Side' : 'Starboard Side'}
+                    </span>
+                  </div>
+                  {(() => {
+                    const deckNum = getDeck(result.stateroom);
+                    const section = getSection(result, shipRooms);
+                    const sectionKey = section === 'Forward' ? 'fwd' : section === 'Midship' ? 'mid' : 'aft';
+
+                    // Venues directly above (deck + 1, matching section)
+                    const aboveVenues = deckNum > 0
+                      ? getVenuesByDeck(selectedShip, deckNum + 1).filter(({ instance }) =>
+                          instance.position.includes(sectionKey)
+                        )
+                      : [];
+
+                    // Venues on the same level
+                    const deckVenues = deckNum > 0 ? getVenuesByDeck(selectedShip, deckNum) : [];
+
+                    if (aboveVenues.length === 0 && deckVenues.length === 0) return null;
+                    return (
+                      <div className="mt-2 space-y-2">
+                        {aboveVenues.length > 0 && (
+                          <div>
+                            <p className="text-xs text-slate-400 dark:text-slate-500 mb-1.5">Venue above (potential noise)</p>
+                            <div className="flex flex-wrap gap-1.5">
+                              {aboveVenues.map(({ venue, instance }) => (
+                                <Link
+                                  key={venue.id}
+                                  href={`/venues/${venue.id}`}
+                                  className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400 hover:bg-amber-100 dark:hover:bg-amber-900/40 transition-colors"
+                                >
+                                  <span>{venueCategories[venue.category]?.emoji || '📍'}</span>
+                                  <span>{instance.name || venue.name}</span>
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        {deckVenues.length > 0 && (
+                          <div>
+                            <p className="text-xs text-slate-400 dark:text-slate-500 mb-1.5">Venues on the same level (convenience & traffic)</p>
+                            <div className="flex flex-wrap gap-1.5">
+                              {deckVenues.map(({ venue, instance }) => (
+                                <Link
+                                  key={venue.id}
+                                  href={`/venues/${venue.id}`}
+                                  className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400 hover:bg-amber-100 dark:hover:bg-amber-900/40 transition-colors"
+                                >
+                                  <span>{venueCategories[venue.category]?.emoji || '📍'}</span>
+                                  <span>{instance.name || venue.name}</span>
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })()}
+                </div>
+                <div className="flex justify-between items-center py-2 border-b border-slate-100 dark:border-slate-700">
+                  <span className="text-sm font-medium text-slate-500 dark:text-slate-400">Capacity</span>
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300">
+                    Sleeps max. {result.occupancy ?? '—'}
+                  </span>
+                </div>
+                {catMeta && (
+                  <DetailRow label="Area" value={`${catMeta.sqft} sq. ft. | ${catMeta.sqm} m²`} />
+                )}
+                <div className="flex justify-between items-start py-2 border-b border-slate-100 dark:border-slate-700">
+                  <span className="text-sm font-medium text-slate-500 dark:text-slate-400">Bedding</span>
+                  <div className="text-sm text-slate-900 dark:text-white text-right ml-4 max-w-[60%]">
+                    {result.bedding ? result.bedding.split(', ').map((b, i) => {
+                      const match = b.match(/^(.+?)\s*\(([^)]+)\)$/);
+                      return <div key={i}>{match ? `${match[1]} (${match[2]})` : b}</div>;
+                    }) : '—'}
+                  </div>
+                </div>
                 <DetailRow label="Connecting" value={result.connecting === 'NO' ? 'None' : result.connecting} />
                 <DetailRow label="Accessible" value={result.accessible === 'NO' ? 'No' : result.accessible || 'No'} />
                 <DetailRow label="Verandah Partitions" value={result.verandahPartitions} />
                 <DetailRow label="Assembly Station" value={[result.assemblyStation, result.assemblyLocation].filter(Boolean).join(' · ') || null} />
                 <DetailRow label="Assembly Section" value={[result.assemblySide, result.assemblySection].filter(Boolean).join(' · ') || null} />
-                {hasThemeFields && result.wishExtender && (
-                  <DetailRow label="Wish Extender" value={result.wishExtender} />
-                )}
                 {result.notes && <DetailRow label="Notes" value={result.notes} />}
               </div>
             </div>
