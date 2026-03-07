@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import SearchAutocomplete from '@/components/SearchAutocomplete';
 import { useAuth } from '@/components/AuthProvider';
 import { getStudios, getAllMovies, getUpcomingMovies, isUpcoming, getPosterUrl, type Movie, type Studio } from '@/lib/movie-data';
 import { CATEGORY_COLORS } from '@/lib/guide-colors';
@@ -25,6 +26,8 @@ const studioMap = new Map<string, Studio>();
 for (const s of studios) studioMap.set(s.id, s);
 
 // ALL movies grouped by studio (both released and upcoming), sorted by year desc
+const movieSuggestions = [...new Set(allMovies.map(m => m.title))];
+
 const allByStudio = studios.map(s => ({
   studio: s,
   movies: allMovies
@@ -317,15 +320,14 @@ export default function MovieChecklistPage() {
       </div>
 
       {/* Search */}
-      <div className="relative mb-4">
-        <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-        </svg>
-        <input
-          type="text"
+      <div className="mb-4">
+        <SearchAutocomplete
+          id="movies-search"
+          suggestions={movieSuggestions}
           value={searchQuery}
-          onChange={e => setSearchQuery(e.target.value)}
+          onChange={setSearchQuery}
           placeholder="Search movies, taglines, studios..."
+          icon
           className="w-full pl-9 pr-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:ring-2 focus:ring-disney-blue dark:focus:ring-disney-gold focus:border-transparent"
         />
       </div>

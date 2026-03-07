@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useEffect, useCallback } from 'react';
 import Link from 'next/link';
+import SearchAutocomplete from '@/components/SearchAutocomplete';
 import { useAuth } from '@/components/AuthProvider';
 import {
   getEntertainmentCategories,
@@ -18,6 +19,8 @@ const categories = getEntertainmentCategories();
 const allExperiences = getAllExperiences();
 const allIps = getAllIps();
 const totalCount = getTotalExperienceCount();
+
+const entertainmentSuggestions = [...new Set(allExperiences.map(e => e.name))];
 
 type ItemStatus = 'added' | 'to-review' | 'reviewed';
 
@@ -195,12 +198,12 @@ export default function EntertainmentGuidePage() {
 
       {/* Search */}
       <div className="mb-4">
-        <input
-          type="text"
+        <SearchAutocomplete
+          id="entertainment-search"
+          suggestions={entertainmentSuggestions}
           value={search}
-          onChange={e => setSearch(e.target.value)}
+          onChange={setSearch}
           placeholder="Search shows, characters, IPs..."
-          className="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:ring-2 focus:ring-disney-blue dark:focus:ring-disney-gold focus:border-transparent"
         />
       </div>
 

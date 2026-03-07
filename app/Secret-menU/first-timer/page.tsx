@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
+import SearchAutocomplete from '@/components/SearchAutocomplete';
 import firstTimerData from '@/data/first-timer-data.json';
 
 interface HackReview {
@@ -13,6 +14,8 @@ interface HackReview {
   category: string;
   reviewer_name?: string;
 }
+
+const firstTimerSuggestions = [...new Set(firstTimerData.sections.flatMap(s => s.items.map(i => i.question)))];
 
 export default function FirstTimerPage() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -73,10 +76,11 @@ export default function FirstTimerPage() {
 
       {/* Search */}
       <div className="mb-6">
-        <input
-          type="text"
+        <SearchAutocomplete
+          id="first-timer-search"
+          suggestions={firstTimerSuggestions}
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          onChange={setSearchQuery}
           placeholder="Search tips..."
           className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-disney-blue dark:focus:ring-disney-gold focus:border-transparent"
         />

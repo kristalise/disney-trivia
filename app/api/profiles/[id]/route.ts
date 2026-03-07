@@ -283,12 +283,15 @@ export async function PATCH(
       if (error.code === '23505' && error.message?.includes('handle')) {
         return NextResponse.json({ error: 'This handle is already taken.' }, { status: 409 });
       }
-      throw error;
+      console.error('Supabase update error:', error.code, error.message, error.details, error.hint);
+      return NextResponse.json({ error: error.message || 'Failed to update profile' }, { status: 500 });
     }
 
     return NextResponse.json({ success: true, profile: data });
-  } catch (error) {
-    console.error('Error updating profile:', error);
-    return NextResponse.json({ error: 'Failed to update profile' }, { status: 500 });
+  } catch (error: unknown) {
+    const err = error as Record<string, unknown> | null;
+    const message = err?.message ?? err?.error_description ?? String(error);
+    console.error('Error updating profile:', JSON.stringify(error), error);
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }

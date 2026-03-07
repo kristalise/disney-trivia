@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
+import SearchAutocomplete from '@/components/SearchAutocomplete';
 import {
   getShopCategories,
   getAllShops,
@@ -21,6 +22,8 @@ const SHIPS = [
 ];
 
 const categoryColors = CATEGORY_COLORS;
+
+const shopSuggestions = [...new Set(allShops.map(s => s.name))];
 
 export default function ShoppingGuidePage() {
   const [search, setSearch] = useState('');
@@ -108,12 +111,12 @@ export default function ShoppingGuidePage() {
 
       {/* Search */}
       <div className="mb-4">
-        <input
-          type="text"
+        <SearchAutocomplete
+          id="shopping-search"
+          suggestions={shopSuggestions}
           value={search}
-          onChange={e => setSearch(e.target.value)}
+          onChange={setSearch}
           placeholder="Search shops, brands, merchandise..."
-          className="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:ring-2 focus:ring-disney-blue dark:focus:ring-disney-gold focus:border-transparent"
         />
       </div>
 

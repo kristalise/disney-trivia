@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useEffect, useCallback } from 'react';
 import Link from 'next/link';
+import SearchAutocomplete from '@/components/SearchAutocomplete';
 import {
   getAllCruiseGuideItems,
   getCruiseGuideCategories,
@@ -25,6 +26,8 @@ const allSeasonals = getAllGuideSeasonals();
 
 // Build a lookup from category key → GuideCategory
 const categoryByKey = new Map(categories.map(c => [c.key, c]));
+
+const cruiseGuideSuggestions = [...new Set(allItems.map(i => i.name))];
 
 const SHIPS = SHIP_ORDER;
 
@@ -259,12 +262,12 @@ export default function CruiseGuidePage() {
 
       {/* Search */}
       <div className="mb-4">
-        <input
-          type="text"
+        <SearchAutocomplete
+          id="cruise-guide-search"
+          suggestions={cruiseGuideSuggestions}
           value={search}
-          onChange={e => setSearch(e.target.value)}
+          onChange={setSearch}
           placeholder="Search dining, shows, activities, shops..."
-          className="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:ring-2 focus:ring-disney-blue dark:focus:ring-disney-gold focus:border-transparent"
         />
       </div>
 

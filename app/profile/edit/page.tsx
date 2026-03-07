@@ -181,8 +181,10 @@ export default function EditProfilePage() {
 
           {/* Display Name */}
           <div>
-            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Display Name *</label>
+            <label htmlFor="display-name" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Display Name *</label>
             <input
+              id="display-name"
+              name="display-name"
               type="text"
               value={displayName}
               onChange={(e) => setDisplayName(e.target.value)}
@@ -195,10 +197,12 @@ export default function EditProfilePage() {
 
           {/* Handle */}
           <div>
-            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Handle</label>
+            <label htmlFor="handle" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Handle</label>
             <div className="flex items-center">
               <span className="text-slate-400 dark:text-slate-500 mr-1">@</span>
               <input
+                id="handle"
+                name="handle"
                 type="text"
                 value={handle}
                 onChange={(e) => setHandle(e.target.value.toLowerCase().replace(/[^a-z0-9_]/g, ''))}
@@ -212,8 +216,10 @@ export default function EditProfilePage() {
 
           {/* Bio */}
           <div>
-            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Bio</label>
+            <label htmlFor="bio" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Bio</label>
             <textarea
+              id="bio"
+              name="bio"
               value={bio}
               onChange={(e) => setBio(e.target.value)}
               maxLength={500}
@@ -226,8 +232,8 @@ export default function EditProfilePage() {
 
           {/* Home Port */}
           <div>
-            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Home Port</label>
-            <select value={homePort} onChange={(e) => setHomePort(e.target.value)} className={selectCls}>
+            <label htmlFor="home-port" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Home Port</label>
+            <select id="home-port" name="home-port" value={homePort} onChange={(e) => setHomePort(e.target.value)} className={selectCls}>
               <option value="">Select your home port...</option>
               {allPorts.map(port => <option key={port} value={port}>{port}</option>)}
             </select>
@@ -235,8 +241,8 @@ export default function EditProfilePage() {
 
           {/* Favorite Ship */}
           <div>
-            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Favorite Ship</label>
-            <select value={favoriteShip} onChange={(e) => setFavoriteShip(e.target.value)} className={selectCls}>
+            <label htmlFor="favorite-ship" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Favorite Ship</label>
+            <select id="favorite-ship" name="favorite-ship" value={favoriteShip} onChange={(e) => setFavoriteShip(e.target.value)} className={selectCls}>
               <option value="">Select your favorite ship...</option>
               {SHIPS.map(ship => <option key={ship} value={ship}>{ship}</option>)}
             </select>
@@ -248,23 +254,23 @@ export default function EditProfilePage() {
             <div className="space-y-3">
               <div className="flex items-center gap-2">
                 <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="#E1306C" strokeWidth="2" /><circle cx="12" cy="12" r="4.5" stroke="#E1306C" strokeWidth="2" /><circle cx="17.5" cy="6.5" r="1.25" fill="#E1306C" /></svg>
-                <input type="url" value={instagramUrl} onChange={e => setInstagramUrl(e.target.value)} placeholder="https://instagram.com/yourhandle" className={selectCls} />
+                <input id="instagram-url" name="instagram-url" aria-label="Instagram URL" type="url" value={instagramUrl} onChange={e => setInstagramUrl(e.target.value)} placeholder="https://instagram.com/yourhandle" className={selectCls} />
               </div>
               <div className="flex items-center gap-2">
                 <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="#010101"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.72a8.18 8.18 0 004.77 1.52V6.79a4.84 4.84 0 01-1-.1z" /></svg>
-                <input type="url" value={tiktokUrl} onChange={e => setTiktokUrl(e.target.value)} placeholder="https://tiktok.com/@yourhandle" className={selectCls} />
+                <input id="tiktok-url" name="tiktok-url" aria-label="TikTok URL" type="url" value={tiktokUrl} onChange={e => setTiktokUrl(e.target.value)} placeholder="https://tiktok.com/@yourhandle" className={selectCls} />
               </div>
               <div className="flex items-center gap-2">
                 <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg>
-                <input type="url" value={youtubeUrl} onChange={e => setYoutubeUrl(e.target.value)} placeholder="https://youtube.com/@yourchannel" className={selectCls} />
+                <input id="youtube-url" name="youtube-url" aria-label="YouTube URL" type="url" value={youtubeUrl} onChange={e => setYoutubeUrl(e.target.value)} placeholder="https://youtube.com/@yourchannel" className={selectCls} />
               </div>
               <div className="flex items-center gap-2">
                 <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg>
-                <input type="url" value={facebookUrl} onChange={e => setFacebookUrl(e.target.value)} placeholder="https://facebook.com/yourpage" className={selectCls} />
+                <input id="facebook-url" name="facebook-url" aria-label="Facebook URL" type="url" value={facebookUrl} onChange={e => setFacebookUrl(e.target.value)} placeholder="https://facebook.com/yourpage" className={selectCls} />
               </div>
               <div className="flex items-center gap-2">
                 <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="#FE2C55"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.5 14.5h-2V9h2v7.5zm1.5-4h2v4h-2v-4zm0-3.5h2V11h-2V9zm3.5 3.5h2v4h-2v-4zm0-3.5h2V11h-2V9zM7 13h2v3.5H7V13z" /></svg>
-                <input type="url" value={xiaohongshuUrl} onChange={e => setXiaohongshuUrl(e.target.value)} placeholder="https://xiaohongshu.com/user/..." className={selectCls} />
+                <input id="xiaohongshu-url" name="xiaohongshu-url" aria-label="Xiaohongshu URL" type="url" value={xiaohongshuUrl} onChange={e => setXiaohongshuUrl(e.target.value)} placeholder="https://xiaohongshu.com/user/..." className={selectCls} />
               </div>
             </div>
           </div>

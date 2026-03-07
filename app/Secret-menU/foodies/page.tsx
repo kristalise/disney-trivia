@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
+import SearchAutocomplete from '@/components/SearchAutocomplete';
 import { getFoodieCategories, getAllFoodieVenues, getTotalFoodieCount, type FoodieCategory, type FoodieVenue } from '@/lib/foodie-data';
 import { CATEGORY_COLORS } from '@/lib/guide-colors';
 import FilterDrawer from '@/components/FilterDrawer';
@@ -16,6 +17,8 @@ const SHIPS = [
 ];
 
 const categoryColors = CATEGORY_COLORS;
+
+const foodieSuggestions = [...new Set(allVenues.map(v => v.name))];
 
 export default function FoodieGuidePage() {
   const [search, setSearch] = useState('');
@@ -151,12 +154,12 @@ export default function FoodieGuidePage() {
 
       {/* Search */}
       <div className="mb-4">
-        <input
-          type="text"
+        <SearchAutocomplete
+          id="foodies-search"
+          suggestions={foodieSuggestions}
           value={search}
-          onChange={e => setSearch(e.target.value)}
+          onChange={setSearch}
           placeholder="Search restaurants, bars, themes..."
-          className="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:ring-2 focus:ring-disney-blue dark:focus:ring-disney-gold focus:border-transparent"
         />
       </div>
 

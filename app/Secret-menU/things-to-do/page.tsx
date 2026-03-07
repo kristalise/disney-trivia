@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
+import SearchAutocomplete from '@/components/SearchAutocomplete';
 import {
   getActivityCategories,
   getAllActivities,
@@ -23,6 +24,8 @@ const SHIPS = [
 ];
 
 const categoryColors = CATEGORY_COLORS;
+
+const activitySuggestions = [...new Set(allActivities.map(a => a.name))];
 
 const agePillColors: Record<string, string> = {
   'all-ages':  'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300',
@@ -128,12 +131,12 @@ export default function ThingsToDoPage() {
 
       {/* Search */}
       <div className="mb-4">
-        <input
-          type="text"
+        <SearchAutocomplete
+          id="things-to-do-search"
+          suggestions={activitySuggestions}
           value={search}
-          onChange={e => setSearch(e.target.value)}
+          onChange={setSearch}
           placeholder="Search pools, rides, sports..."
-          className="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:ring-2 focus:ring-disney-blue dark:focus:ring-disney-gold focus:border-transparent"
         />
       </div>
 
