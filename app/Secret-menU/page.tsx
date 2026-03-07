@@ -319,127 +319,57 @@ export default function SecretMenuPage() {
         </Link>
       )}
 
-      {/* 2-Column Icon Grid */}
-      <div className="grid grid-cols-2 gap-3">
-        {/* Row 1: Fleet Info | My Voyages */}
-        <Link
-          href="/Secret-menU/ships"
-          className="bg-gradient-to-br from-disney-blue to-blue-800 dark:from-blue-900 dark:to-blue-800 rounded-2xl p-4 shadow-lg border border-blue-400/30 dark:border-blue-500/30 hover:border-disney-gold transition-all hover:shadow-xl hover:scale-[1.02] active:scale-95 text-center"
-        >
-          <div className="text-3xl mb-2">🚢</div>
-          <div className="text-sm font-bold text-white">Fleet Info</div>
-          <div className="text-xs text-blue-200 dark:text-blue-300 mt-0.5">All 8 ships</div>
-        </Link>
-
-        {user ? (
+      {/* Cruise Info */}
+      <div>
+        <h2 className="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-3 px-1">Cruise Info</h2>
+        <div className="grid grid-cols-2 gap-3">
           <Link
-            href={voyageHref}
-            className="bg-gradient-to-br from-slate-700 to-slate-800 dark:from-slate-600 dark:to-slate-700 rounded-2xl p-4 shadow-lg border border-slate-500/30 dark:border-slate-400/30 hover:border-disney-gold transition-all hover:shadow-xl hover:scale-[1.02] active:scale-95 text-center"
+            href="/Secret-menU/ships"
+            className="bg-gradient-to-br from-disney-blue to-blue-800 dark:from-blue-900 dark:to-blue-800 rounded-2xl p-4 shadow-lg border border-blue-400/30 dark:border-blue-500/30 hover:border-disney-gold transition-all hover:shadow-xl hover:scale-[1.02] active:scale-95 text-center"
           >
-            <div className="text-3xl mb-2">🧭</div>
-            <div className="text-sm font-bold text-white">My Voyages</div>
-            <div className="text-xs text-slate-300 dark:text-slate-400 mt-0.5">Sailing history</div>
+            <div className="text-3xl mb-2">🚢</div>
+            <div className="text-sm font-bold text-white">Fleet Info</div>
+            <div className="text-xs text-blue-200 dark:text-blue-300 mt-0.5">All 8 ships</div>
           </Link>
-        ) : (
-          <div className="bg-gradient-to-br from-slate-700 to-slate-800 dark:from-slate-600 dark:to-slate-700 rounded-2xl p-4 shadow-lg border border-slate-500/30 dark:border-slate-400/30 text-center opacity-40 cursor-not-allowed">
-            <div className="text-3xl mb-2">🧭</div>
-            <div className="text-sm font-bold text-white">My Voyages</div>
-            <div className="text-xs text-slate-300 dark:text-slate-400 mt-0.5">Sign in required</div>
-          </div>
-        )}
 
-        {/* Row 2: Cruise Guide | Stateroom Guide */}
-        <Link
-          href="/Secret-menU/cruise-guide"
-          className="bg-gradient-to-br from-indigo-600 to-purple-700 dark:from-indigo-800 dark:to-purple-900 rounded-2xl p-4 shadow-lg border border-indigo-400/30 dark:border-indigo-500/30 hover:border-disney-gold transition-all hover:shadow-xl hover:scale-[1.02] active:scale-95 text-center"
-        >
-          <div className="text-3xl mb-2">🗺</div>
-          <div className="text-sm font-bold text-white">Cruise Guide</div>
-          <div className="text-xs text-indigo-200 dark:text-indigo-300 mt-0.5">Everything onboard</div>
-        </Link>
+          {user ? (
+            <Link
+              href={voyageHref}
+              className="bg-gradient-to-br from-slate-700 to-slate-800 dark:from-slate-600 dark:to-slate-700 rounded-2xl p-4 shadow-lg border border-slate-500/30 dark:border-slate-400/30 hover:border-disney-gold transition-all hover:shadow-xl hover:scale-[1.02] active:scale-95 text-center"
+            >
+              <div className="text-3xl mb-2">🧭</div>
+              <div className="text-sm font-bold text-white">My Voyages</div>
+              <div className="text-xs text-slate-300 dark:text-slate-400 mt-0.5">Sailing history</div>
+            </Link>
+          ) : (
+            <div className="bg-gradient-to-br from-slate-700 to-slate-800 dark:from-slate-600 dark:to-slate-700 rounded-2xl p-4 shadow-lg border border-slate-500/30 dark:border-slate-400/30 text-center opacity-40 cursor-not-allowed">
+              <div className="text-3xl mb-2">🧭</div>
+              <div className="text-sm font-bold text-white">My Voyages</div>
+              <div className="text-xs text-slate-300 dark:text-slate-400 mt-0.5">Sign in required</div>
+            </div>
+          )}
 
-        <Link
-          href="/Secret-menU/stateroom-guide"
-          className="bg-gradient-to-br from-teal-600 to-emerald-600 dark:from-teal-800 dark:to-emerald-800 rounded-2xl p-4 shadow-lg border border-teal-400/30 dark:border-teal-500/30 hover:border-disney-gold transition-all hover:shadow-xl hover:scale-[1.02] active:scale-95 text-center"
-        >
-          <div className="text-3xl mb-2">🛏</div>
-          <div className="text-sm font-bold text-white">Stateroom Guide</div>
-          <div className="text-xs text-teal-200 dark:text-teal-300 mt-0.5">Find your room</div>
-        </Link>
-
-        {/* Row 3: Friendship | Pixie Dust */}
-        {user ? (
           <Link
-            href="/friends"
-            className="bg-gradient-to-br from-rose-600 to-pink-600 dark:from-rose-800 dark:to-pink-800 rounded-2xl p-4 shadow-lg border border-rose-400/30 dark:border-rose-500/30 hover:border-disney-gold transition-all hover:shadow-xl hover:scale-[1.02] active:scale-95 text-center"
+            href="/Secret-menU/cruise-guide"
+            className="bg-gradient-to-br from-indigo-600 to-purple-700 dark:from-indigo-800 dark:to-purple-900 rounded-2xl p-4 shadow-lg border border-indigo-400/30 dark:border-indigo-500/30 hover:border-disney-gold transition-all hover:shadow-xl hover:scale-[1.02] active:scale-95 text-center"
           >
-            <div className="text-3xl mb-2">👫</div>
-            <div className="text-sm font-bold text-white">Friendship</div>
-            <div className="text-xs text-rose-200 dark:text-rose-300 mt-0.5">Friends & crew</div>
+            <div className="text-3xl mb-2">🗺</div>
+            <div className="text-sm font-bold text-white">Cruise Guide</div>
+            <div className="text-xs text-indigo-200 dark:text-indigo-300 mt-0.5">Everything onboard</div>
           </Link>
-        ) : (
-          <div className="bg-gradient-to-br from-rose-600 to-pink-600 dark:from-rose-800 dark:to-pink-800 rounded-2xl p-4 shadow-lg border border-rose-400/30 dark:border-rose-500/30 text-center opacity-40 cursor-not-allowed">
-            <div className="text-3xl mb-2">👫</div>
-            <div className="text-sm font-bold text-white">Friendship</div>
-            <div className="text-xs text-rose-200 dark:text-rose-300 mt-0.5">Sign in required</div>
-          </div>
-        )}
 
-        {user ? (
           <Link
-            href="/planner/pixie-dust"
-            className="bg-gradient-to-br from-fuchsia-600 to-purple-600 dark:from-fuchsia-800 dark:to-purple-800 rounded-2xl p-4 shadow-lg border border-fuchsia-400/30 dark:border-fuchsia-500/30 hover:border-disney-gold transition-all hover:shadow-xl hover:scale-[1.02] active:scale-95 text-center"
+            href="/Secret-menU/stateroom-guide"
+            className="bg-gradient-to-br from-teal-600 to-emerald-600 dark:from-teal-800 dark:to-emerald-800 rounded-2xl p-4 shadow-lg border border-teal-400/30 dark:border-teal-500/30 hover:border-disney-gold transition-all hover:shadow-xl hover:scale-[1.02] active:scale-95 text-center"
           >
-            <div className="text-3xl mb-2">✨</div>
-            <div className="text-sm font-bold text-white">Pixie Dust</div>
-            <div className="text-xs text-fuchsia-200 dark:text-fuchsia-300 mt-0.5">Send some magic</div>
+            <div className="text-3xl mb-2">🛏</div>
+            <div className="text-sm font-bold text-white">Stateroom Guide</div>
+            <div className="text-xs text-teal-200 dark:text-teal-300 mt-0.5">Find your room</div>
           </Link>
-        ) : (
-          <div className="bg-gradient-to-br from-fuchsia-600 to-purple-600 dark:from-fuchsia-800 dark:to-purple-800 rounded-2xl p-4 shadow-lg border border-fuchsia-400/30 dark:border-fuchsia-500/30 text-center opacity-40 cursor-not-allowed">
-            <div className="text-3xl mb-2">✨</div>
-            <div className="text-sm font-bold text-white">Pixie Dust</div>
-            <div className="text-xs text-fuchsia-200 dark:text-fuchsia-300 mt-0.5">Sign in required</div>
-          </div>
-        )}
-
-        {/* Row 4: Character Checklist | Movie Checklist */}
-        {user ? (
-          <Link
-            href="/Secret-menU/characters"
-            className="bg-gradient-to-br from-amber-600 to-yellow-600 dark:from-amber-800 dark:to-yellow-800 rounded-2xl p-4 shadow-lg border border-amber-400/30 dark:border-amber-500/30 hover:border-disney-gold transition-all hover:shadow-xl hover:scale-[1.02] active:scale-95 text-center"
-          >
-            <div className="text-3xl mb-2">📸</div>
-            <div className="text-sm font-bold text-white">Character Checklist</div>
-            <div className="text-xs text-amber-200 dark:text-amber-300 mt-0.5">Meet & greets</div>
-          </Link>
-        ) : (
-          <div className="bg-gradient-to-br from-amber-600 to-yellow-600 dark:from-amber-800 dark:to-yellow-800 rounded-2xl p-4 shadow-lg border border-amber-400/30 dark:border-amber-500/30 text-center opacity-40 cursor-not-allowed">
-            <div className="text-3xl mb-2">📸</div>
-            <div className="text-sm font-bold text-white">Character Checklist</div>
-            <div className="text-xs text-amber-200 dark:text-amber-300 mt-0.5">Sign in required</div>
-          </div>
-        )}
-
-        {user ? (
-          <Link
-            href="/Secret-menU/movies"
-            className="bg-gradient-to-br from-violet-600 to-indigo-600 dark:from-violet-800 dark:to-indigo-800 rounded-2xl p-4 shadow-lg border border-violet-400/30 dark:border-violet-500/30 hover:border-disney-gold transition-all hover:shadow-xl hover:scale-[1.02] active:scale-95 text-center"
-          >
-            <div className="text-3xl mb-2">🎬</div>
-            <div className="text-sm font-bold text-white">Movie Checklist</div>
-            <div className="text-xs text-violet-200 dark:text-violet-300 mt-0.5">Disney film tracker</div>
-          </Link>
-        ) : (
-          <div className="bg-gradient-to-br from-violet-600 to-indigo-600 dark:from-violet-800 dark:to-indigo-800 rounded-2xl p-4 shadow-lg border border-violet-400/30 dark:border-violet-500/30 text-center opacity-40 cursor-not-allowed">
-            <div className="text-3xl mb-2">🎬</div>
-            <div className="text-sm font-bold text-white">Movie Checklist</div>
-            <div className="text-xs text-violet-200 dark:text-violet-300 mt-0.5">Sign in required</div>
-          </div>
-        )}
-
+        </div>
       </div>
 
-      {/* Browse Guides Section */}
+      {/* Browse Guides */}
       <div className="mt-6">
         <h2 className="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-3 px-1">Browse Guides</h2>
         <div className="grid grid-cols-2 gap-3">
@@ -483,6 +413,81 @@ export default function SecretMenuPage() {
               <div className="text-xs text-slate-500 dark:text-slate-400">Shops & boutiques</div>
             </div>
           </Link>
+        </div>
+      </div>
+
+      {/* Disney Cruise Culture */}
+      <div className="mt-6">
+        <h2 className="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-1 px-1">Disney Cruise Culture</h2>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mb-3 px-1">Disney cruises have unique traditions that set them apart — from Pirate Night and towel animals to Fish Extender gift exchanges between cabins. Track your character meets, prep your Disney movie knowledge, connect with fellow cruisers, and spread a little pixie dust.</p>
+        <div className="grid grid-cols-2 gap-3">
+          {user ? (
+            <Link
+              href="/friends"
+              className="bg-gradient-to-br from-rose-600 to-pink-600 dark:from-rose-800 dark:to-pink-800 rounded-2xl p-4 shadow-lg border border-rose-400/30 dark:border-rose-500/30 hover:border-disney-gold transition-all hover:shadow-xl hover:scale-[1.02] active:scale-95 text-center"
+            >
+              <div className="text-3xl mb-2">👫</div>
+              <div className="text-sm font-bold text-white">Friendship</div>
+              <div className="text-xs text-rose-200 dark:text-rose-300 mt-0.5">Friends & crew</div>
+            </Link>
+          ) : (
+            <div className="bg-gradient-to-br from-rose-600 to-pink-600 dark:from-rose-800 dark:to-pink-800 rounded-2xl p-4 shadow-lg border border-rose-400/30 dark:border-rose-500/30 text-center opacity-40 cursor-not-allowed">
+              <div className="text-3xl mb-2">👫</div>
+              <div className="text-sm font-bold text-white">Friendship</div>
+              <div className="text-xs text-rose-200 dark:text-rose-300 mt-0.5">Sign in required</div>
+            </div>
+          )}
+
+          {user ? (
+            <Link
+              href="/planner/pixie-dust"
+              className="bg-gradient-to-br from-fuchsia-600 to-purple-600 dark:from-fuchsia-800 dark:to-purple-800 rounded-2xl p-4 shadow-lg border border-fuchsia-400/30 dark:border-fuchsia-500/30 hover:border-disney-gold transition-all hover:shadow-xl hover:scale-[1.02] active:scale-95 text-center"
+            >
+              <div className="text-3xl mb-2">✨</div>
+              <div className="text-sm font-bold text-white">Pixie Dust</div>
+              <div className="text-xs text-fuchsia-200 dark:text-fuchsia-300 mt-0.5">Send some magic</div>
+            </Link>
+          ) : (
+            <div className="bg-gradient-to-br from-fuchsia-600 to-purple-600 dark:from-fuchsia-800 dark:to-purple-800 rounded-2xl p-4 shadow-lg border border-fuchsia-400/30 dark:border-fuchsia-500/30 text-center opacity-40 cursor-not-allowed">
+              <div className="text-3xl mb-2">✨</div>
+              <div className="text-sm font-bold text-white">Pixie Dust</div>
+              <div className="text-xs text-fuchsia-200 dark:text-fuchsia-300 mt-0.5">Sign in required</div>
+            </div>
+          )}
+
+          {user ? (
+            <Link
+              href="/Secret-menU/characters"
+              className="bg-gradient-to-br from-amber-600 to-yellow-600 dark:from-amber-800 dark:to-yellow-800 rounded-2xl p-4 shadow-lg border border-amber-400/30 dark:border-amber-500/30 hover:border-disney-gold transition-all hover:shadow-xl hover:scale-[1.02] active:scale-95 text-center"
+            >
+              <div className="text-3xl mb-2">📸</div>
+              <div className="text-sm font-bold text-white">Character Checklist</div>
+              <div className="text-xs text-amber-200 dark:text-amber-300 mt-0.5">Meet & greets</div>
+            </Link>
+          ) : (
+            <div className="bg-gradient-to-br from-amber-600 to-yellow-600 dark:from-amber-800 dark:to-yellow-800 rounded-2xl p-4 shadow-lg border border-amber-400/30 dark:border-amber-500/30 text-center opacity-40 cursor-not-allowed">
+              <div className="text-3xl mb-2">📸</div>
+              <div className="text-sm font-bold text-white">Character Checklist</div>
+              <div className="text-xs text-amber-200 dark:text-amber-300 mt-0.5">Sign in required</div>
+            </div>
+          )}
+
+          {user ? (
+            <Link
+              href="/Secret-menU/movies"
+              className="bg-gradient-to-br from-violet-600 to-indigo-600 dark:from-violet-800 dark:to-indigo-800 rounded-2xl p-4 shadow-lg border border-violet-400/30 dark:border-violet-500/30 hover:border-disney-gold transition-all hover:shadow-xl hover:scale-[1.02] active:scale-95 text-center"
+            >
+              <div className="text-3xl mb-2">🎬</div>
+              <div className="text-sm font-bold text-white">Movie Checklist</div>
+              <div className="text-xs text-violet-200 dark:text-violet-300 mt-0.5">Disney film tracker</div>
+            </Link>
+          ) : (
+            <div className="bg-gradient-to-br from-violet-600 to-indigo-600 dark:from-violet-800 dark:to-indigo-800 rounded-2xl p-4 shadow-lg border border-violet-400/30 dark:border-violet-500/30 text-center opacity-40 cursor-not-allowed">
+              <div className="text-3xl mb-2">🎬</div>
+              <div className="text-sm font-bold text-white">Movie Checklist</div>
+              <div className="text-xs text-violet-200 dark:text-violet-300 mt-0.5">Sign in required</div>
+            </div>
+          )}
         </div>
       </div>
 
