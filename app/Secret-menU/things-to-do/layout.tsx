@@ -22,6 +22,16 @@ export default function ThingsToDoLayout({ children }: { children: React.ReactNo
     })),
   } : null;
 
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.disneytrivia.club' },
+      { '@type': 'ListItem', position: 2, name: 'Cruise Guide', item: 'https://www.disneytrivia.club/Secret-menU' },
+      { '@type': 'ListItem', position: 3, name: 'Things to Do' },
+    ],
+  };
+
   return (
     <>
       {faqLd && (
@@ -30,6 +40,10 @@ export default function ThingsToDoLayout({ children }: { children: React.ReactNo
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
         />
       )}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
       {children}
     </>
   );

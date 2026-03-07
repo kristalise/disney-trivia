@@ -2,35 +2,89 @@
 > The ultimate Disney cruise companion — trivia study, ship guides, dining reviews, venue details, and community wisdom for Disney Cruise Line.
 
 ## About
-Disney Cruise Trivia is a free fan-made web app for Disney Cruise Line enthusiasts. It helps cruisers study trivia, discover onboard venues, plan their sailings, and share community knowledge.
+Disney Cruise Trivia is a free fan-made web app for Disney Cruise Line enthusiasts. It helps cruisers study trivia, discover onboard venues, plan their sailings, and share community knowledge. The site covers all 8 Disney ships and is the most comprehensive independent Disney cruise resource online.
+
+## URL
+https://www.disneytrivia.club
 
 ## Content Areas
 
-### Trivia
-700+ trivia questions across 13 categories: Animation, Pixar, Star Wars, Marvel, Villains, Princesses, Music, Parks, Cruise, Walt History, Broadway, Food, Mixed.
+### Trivia Quiz
+700+ trivia questions across 13 categories: Disney Animation, Pixar, Star Wars, Marvel, Disney Villains, Disney Princesses, Disney Music, Disney Parks, Disney Cruise Line, Walt Disney & History, Disney Broadway, Disney Food & Dining, Mixed/Random.
+- Quiz URL: /quiz
+- Category quiz: /quiz/{category-slug}
 
 ### Cruise Guide (Secret Menu)
-Comprehensive onboard guide covering:
-- **Ships**: Disney Magic, Disney Wonder, Disney Dream, Disney Fantasy, Disney Wish, Disney Treasure, Disney Destiny, Disney Adventure
-- **Venues**: 153 venue concepts across 8 ships (bars, lounges, pools, restaurants, theaters, youth clubs, and more)
-- **Dining**: Rotational dining, specialty restaurants, quick service, bars & lounges
-- **Activities**: Pools, water rides, sports, fitness, youth clubs, character experiences
-- **Entertainment**: Live shows, deck parties, nightclubs
-- **Shopping**: Onboard retail stores
-- **Staterooms**: Room categories, deck plans, stateroom guides
-- **Cruise Hacks**: Community-rated tips and insider knowledge
+The most comprehensive onboard guide for Disney Cruise Line, covering 300+ experiences across all 8 ships.
+- Hub: /Secret-menU
+- Ships: Disney Magic, Disney Wonder, Disney Dream, Disney Fantasy, Disney Wish, Disney Treasure, Disney Destiny, Disney Adventure
+- Ship details: /Secret-menU/ships
 
-### Community Features
-- Venue reviews with ratings
-- Sailing reviews and logs
-- Dining reviews
-- Cruise hack submissions with verdicts (Must Try / Worth It / Skip It)
-- First-Timer Guide for new cruisers
-- Castaway Club Wisdom — tips organized by member level
-- Community Q&A
+### Venue Database
+153 unique venue concepts with 390 ship-specific instances. Every bar, lounge, pool, restaurant, theater, youth club, spa, and shop across the entire fleet.
+- Venue browser: /Secret-menU/venues
+- Venue detail: /venues/{venue-id}
+- Ship-specific venue: /venues/{venue-id}/{ship-slug}
+- Includes community ratings and reviews
 
-### Guide Categories
-Dining, Character Experiences, Live Shows & Entertainment, Deck Parties, Nightclubs & Lounges, Pools & Water, Sports & Recreation, Youth Clubs, Spa & Salon, Shops & Retail
+### Dining Guide
+Complete Disney Cruise Line dining reference. Rotational dining restaurants, specialty dining, quick service, room service, bars & lounges.
+- URL: /Secret-menU/foodies
+- Covers all 8 ships with per-ship details
+
+### Entertainment Guide
+Live Broadway-style shows, character meet & greets, deck parties, fireworks at sea, nightclub districts, and adult-exclusive lounges.
+- URL: /Secret-menU/entertainment
+
+### Activities & Recreation
+Pools, water slides (AquaDuck, AquaMouse), sports courts, fitness centers, running tracks, youth clubs (Oceaneer Club, Edge, Vibe), nursery, and family activities.
+- URL: /Secret-menU/things-to-do
+
+### Shopping Guide
+Onboard shops, exclusive merchandise, duty-free shopping, pin trading, and souvenir stores.
+- URL: /Secret-menU/shopping
+
+### Stateroom Guide
+Room categories, deck plans, stateroom comparisons, and room number lookup tools.
+- URL: /Secret-menU/stateroom-guide
+- Room lookup: /Secret-menU/stateroom
+
+### First-Timer's Guide
+Complete guide for first-time Disney cruise passengers. Covers embarkation day, dining rotation, stateroom tips, activity planning, port days, and debarkation — curated from experienced cruisers.
+- URL: /Secret-menU/first-timer
+
+### Castaway Club Guide
+Comprehensive guide to the Disney Cruise Line loyalty program. Benefits, hidden perks, and insider tips for every Castaway Club level: First Sail, Silver, Gold, Platinum, and Pearl.
+- URL: /Secret-menU/castaway-wisdom
+
+### Cruise Hacks
+Community-submitted and rated tips, tricks, and insider hacks. Browse by category (packing, embarkation, dining, entertainment, port days) and ship. Hacks rated as Must Try, Worth It, or Skip It.
+- URL: /Secret-menU/hacks
+
+### Community Q&A
+Curated FAQs on dining, staterooms, activities, booking, and more — plus community-submitted questions answered by experienced cruisers.
+- URL: /Secret-menU/qa
+
+### Sailing Log & Reviews
+Users can log their Disney cruise sailings, write reviews, rate experiences, and track their Castaway Club progression.
+- URL: /Secret-menU/sailing
+
+### Cruise Planner
+Personal day-by-day cruise checklist and planning tool.
+- URL: /planner
+
+### Community Directory
+Browse community members, see sailing counts, reviews, and follower counts.
+- URL: /users
+
+## Key Facts
+- 8 Disney cruise ships covered
+- 153 unique venue concepts, 390 ship instances
+- 700+ trivia questions in 13 categories
+- 10 guide categories (Dining, Characters, Shows, Deck Parties, Nightclubs, Pools, Sports, Youth Clubs, Spa, Shopping)
+- Community reviews with star ratings
+- Castaway Club level tracking (First Sail, Silver, Gold, Platinum, Pearl)
+- Maiden voyage tracking for all ships
 
 ## Sitemap
 https://www.disneytrivia.club/sitemap.xml
