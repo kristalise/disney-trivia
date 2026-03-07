@@ -9,6 +9,7 @@ import SocialIcons from '@/components/SocialIcons';
 import QRCodeButton from '@/components/QRCodeButton';
 import ProfileReviewsTab from '@/components/ProfileReviewsTab';
 import { getCastawayLevel } from '@/lib/castaway-levels';
+import { isMaidenVoyage, countMaidenVoyages, getMaidenVoyageShips } from '@/lib/maiden-voyages';
 
 const SHIP_LOGOS: Record<string, string> = {
   'Disney Magic': '/ship-logos/magic.png',
@@ -250,6 +251,11 @@ export default function ProfilePage() {
   const sailedShips = useMemo(() => {
     const shipSet = new Set(sailings.map(s => s.ship_name));
     return SHIP_ORDER.filter(ship => shipSet.has(ship));
+  }, [sailings]);
+
+  // Ships where user has a maiden voyage
+  const maidenVoyageShipSet = useMemo(() => {
+    return new Set(getMaidenVoyageShips(sailings));
   }, [sailings]);
 
   // Filtered sailings based on selected ship badge
@@ -575,43 +581,32 @@ export default function ProfilePage() {
           </div>
         </div>
 
-        {/* View Friends & Connections */}
-        {isOwnProfile && (
-          <Link
-            href="/friends"
-            className="block mt-3 w-full text-center px-4 py-2 rounded-xl text-sm font-medium bg-slate-50 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors"
-          >
-            View Friends &amp; Connections
-          </Link>
-        )}
-
-        {/* Name, handle, location */}
+        {/* Name + Castaway Level inline */}
         <div className="mb-3">
-          <h1 className="text-base font-bold text-slate-900 dark:text-white">{profile.display_name}</h1>
+          <div className="flex items-center gap-2">
+            <h1 className="text-base font-bold text-slate-900 dark:text-white">{profile.display_name}</h1>
+            {stats && (() => {
+              const castaway = getCastawayLevel(stats.total_sailings);
+              const castawayStyles: Record<string, string> = {
+                pearl: 'bg-slate-200 text-slate-700 dark:bg-slate-600 dark:text-slate-200',
+                platinum: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
+                gold: 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400',
+                silver: 'bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300',
+                none: 'bg-sky-100 text-sky-700 dark:bg-sky-900/30 dark:text-sky-400',
+              };
+              return (
+                <span className={`inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold ${castawayStyles[castaway.level]}`}>
+                  {castaway.emoji} {castaway.label} Castaway
+                </span>
+              );
+            })()}
+          </div>
           {profile.handle && (
             <p className="text-sm text-slate-500 dark:text-slate-400">@{profile.handle}</p>
           )}
-          <div className="flex flex-wrap gap-2 text-sm text-slate-500 dark:text-slate-400 mt-1">
-            {profile.home_port && <span>📍 {profile.home_port}</span>}
-            {profile.favorite_ship && <span>🚢 {profile.favorite_ship}</span>}
-          </div>
           {/* Achievement Badges */}
           {stats && (() => {
             const badges: { label: string; style: string }[] = [];
-
-            // Castaway Level
-            const castaway = getCastawayLevel(stats.total_sailings);
-            const castawayStyles: Record<string, string> = {
-              pearl: 'bg-slate-200 text-slate-700 dark:bg-slate-600 dark:text-slate-200',
-              platinum: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
-              gold: 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400',
-              silver: 'bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300',
-              none: 'bg-sky-100 text-sky-700 dark:bg-sky-900/30 dark:text-sky-400',
-            };
-            badges.push({
-              label: `${castaway.emoji} ${castaway.label} Castaway`,
-              style: castawayStyles[castaway.level],
-            });
 
             // Fleet Master
             if (stats.unique_ships >= 8) {
@@ -621,42 +616,16 @@ export default function ProfilePage() {
               });
             }
 
-            // Reviewer Tier
-            if (stats.total_reviews >= 1) {
-              let tierLabel: string;
-              if (stats.total_reviews >= 50) tierLabel = 'Master Reviewer';
-              else if (stats.total_reviews >= 30) tierLabel = 'Expert Reviewer';
-              else if (stats.total_reviews >= 15) tierLabel = 'Seasoned Reviewer';
-              else if (stats.total_reviews >= 5) tierLabel = 'Active Reviewer';
-              else tierLabel = 'New Reviewer';
+            // Maiden Voyages
+            const maidenCount = countMaidenVoyages(sailings);
+            if (maidenCount > 0) {
               badges.push({
-                label: `📝 ${tierLabel}`,
-                style: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
+                label: `⚓ ${maidenCount} Maiden ${maidenCount === 1 ? 'Voyage' : 'Voyages'}`,
+                style: 'bg-cyan-100 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-400',
               });
             }
 
-            // Reviewer Classifications — one badge per type with reviews
-            if (stats.total_reviews >= 3) {
-              const rc = stats.review_counts;
-              const classMap: Record<string, { count: number; label: string }> = {
-                food: { count: rc.dining + rc.foodie, label: '🍽 Foodie' },
-                activity: { count: rc.activity, label: '🎭 Adventurer' },
-                stateroom: { count: rc.stateroom, label: '🛏 Stateroom Critic' },
-                hacks: { count: rc.hacks, label: '🏴‍☠️ Hack Master' },
-                venue: { count: rc.venue, label: '📍 Venue Explorer' },
-                movie: { count: rc.movie, label: '🎬 Movie Buff' },
-                sailing: { count: rc.sailing, label: '🚢 Voyage Reviewer' },
-              };
-              Object.values(classMap)
-                .filter(t => t.count > 0)
-                .sort((a, b) => b.count - a.count)
-                .forEach(t => {
-                  badges.push({
-                    label: t.label,
-                    style: 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400',
-                  });
-                });
-            }
+            if (badges.length === 0) return null;
 
             return (
               <div className="flex flex-wrap gap-1.5 mt-1.5">
@@ -675,6 +644,16 @@ export default function ProfilePage() {
         )}
 
         <SocialIcons instagramUrl={profile.instagram_url} tiktokUrl={profile.tiktok_url} youtubeUrl={profile.youtube_url} facebookUrl={profile.facebook_url} xiaohongshuUrl={profile.xiaohongshu_url} size="md" />
+
+        {/* View Friends & Connections */}
+        {isOwnProfile && (
+          <Link
+            href="/friends"
+            className="block mt-3 w-full text-center px-4 py-2 rounded-xl text-sm font-medium bg-slate-50 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors"
+          >
+            View Friends &amp; Connections
+          </Link>
+        )}
 
         <div className="mt-4" />
 
@@ -757,7 +736,7 @@ export default function ProfilePage() {
                         ? 'text-disney-blue dark:text-disney-gold'
                         : 'text-slate-500 dark:text-slate-400'
                     }`}>
-                      {shortName}
+                      {maidenVoyageShipSet.has(ship) ? `⚓ ${shortName}` : shortName}
                     </span>
                   </button>
                 );
@@ -831,21 +810,17 @@ export default function ProfilePage() {
               Friends
               <span className="text-sm font-normal text-slate-500 dark:text-slate-400 ml-2">({friends.length})</span>
             </h2>
-            <div className="flex gap-1 bg-slate-100 dark:bg-slate-800 rounded-lg p-0.5 overflow-x-auto">
-              {([['alpha', 'A–Z'], ['friendship', 'Friendship'], ['sailings', 'Sailings'], ['ships', 'Ships'], ['recent', 'Recent']] as const).map(([key, label]) => (
-                <button
-                  key={key}
-                  onClick={() => setFriendSort(key)}
-                  className={`px-2.5 py-1 rounded-md text-xs font-medium transition-colors whitespace-nowrap ${
-                    friendSort === key
-                      ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm'
-                      : 'text-slate-500 dark:text-slate-400'
-                  }`}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
+            <select
+              value={friendSort}
+              onChange={(e) => setFriendSort(e.target.value as typeof friendSort)}
+              className="px-3 py-1.5 rounded-lg text-xs font-medium bg-white dark:bg-slate-700 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-600 focus:ring-2 focus:ring-disney-blue dark:focus:ring-disney-gold"
+            >
+              <option value="alpha">A–Z</option>
+              <option value="friendship">Friendship</option>
+              <option value="sailings">Sailings</option>
+              <option value="ships">Ships</option>
+              <option value="recent">Recent</option>
+            </select>
           </div>
 
           {/* Friends List */}
@@ -973,9 +948,16 @@ export default function ProfilePage() {
               <div key={sailing.id} onClick={() => router.push(`/planner?sailing=${sailing.id}`)} className="pb-4 border-b border-slate-100 dark:border-slate-700 last:border-0 last:pb-0 hover:bg-slate-50 dark:hover:bg-slate-700/50 -mx-2 px-2 py-2 rounded-xl transition-colors cursor-pointer">
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="font-semibold text-slate-900 dark:text-white">{sailing.ship_name}</h3>
-                  <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400">
-                    On Board
-                  </span>
+                  <div className="flex items-center gap-1.5">
+                    {isMaidenVoyage(sailing.ship_name, sailing.sail_start_date) && (
+                      <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-400">
+                        ⚓ Maiden Voyage
+                      </span>
+                    )}
+                    <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400">
+                      On Board
+                    </span>
+                  </div>
                 </div>
                 <span className="text-xs text-slate-400 dark:text-slate-500">
                   {new Date(sailing.sail_start_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
@@ -1054,9 +1036,16 @@ export default function ProfilePage() {
                 <div key={sailing.id} onClick={() => router.push(`/planner?sailing=${sailing.id}`)} className="pb-4 border-b border-slate-100 dark:border-slate-700 last:border-0 last:pb-0 hover:bg-slate-50 dark:hover:bg-slate-700/50 -mx-2 px-2 py-2 rounded-xl transition-colors cursor-pointer">
                   <div className="flex items-center justify-between mb-2">
                     <h3 className="font-semibold text-slate-900 dark:text-white">{sailing.ship_name}</h3>
-                    <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400">
-                      {countdown}
-                    </span>
+                    <div className="flex items-center gap-1.5">
+                      {isMaidenVoyage(sailing.ship_name, sailing.sail_start_date) && (
+                        <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-400">
+                          ⚓ Maiden Voyage
+                        </span>
+                      )}
+                      <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400">
+                        {countdown}
+                      </span>
+                    </div>
                   </div>
                   <span className="text-xs text-slate-400 dark:text-slate-500">
                     {new Date(sailing.sail_start_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
@@ -1130,11 +1119,18 @@ export default function ProfilePage() {
               <div key={sailing.id} onClick={() => isOwnProfile && router.push(`/Secret-menU/sailing/${sailing.id}/review`)} className={`pb-4 border-b border-slate-100 dark:border-slate-700 last:border-0 last:pb-0 -mx-2 px-2 py-2 rounded-xl transition-colors ${isOwnProfile ? 'hover:bg-slate-50 dark:hover:bg-slate-700/50 cursor-pointer' : ''}`}>
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="font-semibold text-slate-900 dark:text-white">{sailing.ship_name}</h3>
-                  <span className="text-xs text-slate-400 dark:text-slate-500">
-                    {new Date(sailing.sail_start_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-                    {' - '}
-                    {new Date(sailing.sail_end_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-                  </span>
+                  <div className="flex items-center gap-1.5">
+                    {isMaidenVoyage(sailing.ship_name, sailing.sail_start_date) && (
+                      <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-400">
+                        ⚓ Maiden Voyage
+                      </span>
+                    )}
+                    <span className="text-xs text-slate-400 dark:text-slate-500">
+                      {new Date(sailing.sail_start_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                      {' - '}
+                      {new Date(sailing.sail_end_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                    </span>
+                  </div>
                 </div>
                 {sailing.itinerary_name && (
                   <p className="text-sm text-slate-600 dark:text-slate-400 mb-1">{sailing.itinerary_name}</p>

@@ -6,6 +6,7 @@ import { useAuth } from '@/components/AuthProvider';
 import sailingData from '@/data/sailing-data.json';
 import { isValidStateroomForShip, lookupStateroomInfo, getMaxOccupancy, TYPE_EMOJI } from '@/lib/stateroom-utils';
 import { getCastawayLevel, type CastawayInfo } from '@/lib/castaway-levels';
+import { isMaidenVoyage } from '@/lib/maiden-voyages';
 import CastawayLevelUp from '@/components/CastawayLevelUp';
 import { useOnlineStatus } from '@/hooks/useOnlineStatus';
 import { submitOrQueueReview } from '@/lib/offline-store';
@@ -396,7 +397,11 @@ export default function SailingReviewPage() {
         const newLevel = getCastawayLevel(newPastCount);
 
         setSubmitSuccess(true);
-        setSubmitSuccessMsg('Sailing logged!');
+        setSubmitSuccessMsg(
+          isMaidenVoyage(selectedShip, sailStartDate)
+            ? '⚓ Maiden Voyage logged!'
+            : 'Sailing logged!'
+        );
         const newSailingId = data?.review?.id || null;
 
         // Save companions and invites

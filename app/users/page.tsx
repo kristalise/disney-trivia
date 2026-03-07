@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
+import { getCastawayLevel } from '@/lib/castaway-levels';
 
 interface UserProfile {
   id: string;
@@ -107,21 +108,15 @@ export default function UsersPage() {
               className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-disney-blue dark:focus:ring-disney-gold focus:border-transparent"
             />
           </div>
-          <div className="flex gap-2">
+          <select
+            value={sort}
+            onChange={(e) => setSort(e.target.value)}
+            className="px-3 py-2.5 rounded-xl text-sm font-medium border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-disney-blue dark:focus:ring-disney-gold"
+          >
             {SORT_OPTIONS.map(opt => (
-              <button
-                key={opt.value}
-                onClick={() => setSort(opt.value)}
-                className={`px-3 py-2 rounded-xl text-sm font-medium border transition-colors whitespace-nowrap ${
-                  sort === opt.value
-                    ? 'bg-disney-blue text-white border-disney-blue dark:bg-disney-gold dark:text-slate-900 dark:border-disney-gold'
-                    : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-600 hover:border-slate-400 dark:hover:border-slate-500'
-                }`}
-              >
-                {opt.label}
-              </button>
+              <option key={opt.value} value={opt.value}>{opt.label}</option>
             ))}
-          </div>
+          </select>
         </div>
       </div>
 
@@ -155,9 +150,21 @@ export default function UsersPage() {
                   )}
                   <div className="flex-1 min-w-0">
                     <h3 className="font-bold text-slate-900 dark:text-white truncate">{profile.display_name}</h3>
-                    {profile.dcl_membership && (
-                      <span className="text-xs text-disney-gold">{profile.dcl_membership}</span>
-                    )}
+                    {(() => {
+                      const castaway = getCastawayLevel(profile.sailing_count);
+                      const castawayStyles: Record<string, string> = {
+                        pearl: 'bg-slate-200 text-slate-700 dark:bg-slate-600 dark:text-slate-200',
+                        platinum: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
+                        gold: 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400',
+                        silver: 'bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300',
+                        none: 'bg-sky-100 text-sky-700 dark:bg-sky-900/30 dark:text-sky-400',
+                      };
+                      return (
+                        <span className={`inline-block px-2 py-0.5 rounded-full text-[10px] font-semibold mt-0.5 ${castawayStyles[castaway.level]}`}>
+                          {castaway.emoji} {castaway.label} Castaway
+                        </span>
+                      );
+                    })()}
                   </div>
                 </div>
 
@@ -175,10 +182,6 @@ export default function UsersPage() {
                     <div className="text-slate-500 dark:text-slate-400">followers</div>
                   </div>
                 </div>
-
-                {profile.favorite_ship && (
-                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-2 truncate">🚢 {profile.favorite_ship}</p>
-                )}
               </Link>
             ))}
           </div>

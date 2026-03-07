@@ -45,13 +45,24 @@ export async function GET(request: NextRequest) {
     const friendIds = Array.from(followingIds).filter(id => followerIds.has(id));
 
     // Fetch friend profiles
-    let friends: Array<{ id: string; display_name: string; avatar_url: string | null; handle: string | null; bio: string | null }> = [];
+    let friends: Array<{ id: string; display_name: string; avatar_url: string | null; handle: string | null; bio: string | null; sailing_count?: number }> = [];
     if (friendIds.length > 0) {
       const { data: profiles } = await supabase
         .from('user_profiles')
         .select('id, display_name, avatar_url, handle, bio')
         .in('id', friendIds);
       friends = profiles ?? [];
+
+      // Count sailings per friend
+      const { data: friendSailings } = await supabase
+        .from('sailing_reviews')
+        .select('user_id')
+        .in('user_id', friendIds);
+      const sailingCounts = new Map<string, number>();
+      for (const s of (friendSailings ?? [])) {
+        sailingCounts.set(s.user_id, (sailingCounts.get(s.user_id) || 0) + 1);
+      }
+      friends = friends.map(f => ({ ...f, sailing_count: sailingCounts.get(f.id) || 0 }));
     }
 
     // Fetch met_on_ship records

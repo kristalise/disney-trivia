@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/components/AuthProvider';
 import QRCodeButton from '@/components/QRCodeButton';
+import { getCastawayLevel } from '@/lib/castaway-levels';
 
 interface FriendProfile {
   id: string;
@@ -11,6 +12,7 @@ interface FriendProfile {
   avatar_url: string | null;
   handle: string | null;
   bio: string | null;
+  sailing_count?: number;
 }
 
 interface MetOnShipRecord {
@@ -156,9 +158,21 @@ export default function FriendsPage() {
                         {friend.handle && (
                           <p className="text-xs text-slate-500 dark:text-slate-400">@{friend.handle}</p>
                         )}
-                        {friend.bio && (
-                          <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-1 mt-0.5">{friend.bio}</p>
-                        )}
+                        {(() => {
+                          const castaway = getCastawayLevel(friend.sailing_count ?? 0);
+                          const castawayStyles: Record<string, string> = {
+                            pearl: 'bg-slate-200 text-slate-700 dark:bg-slate-600 dark:text-slate-200',
+                            platinum: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
+                            gold: 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400',
+                            silver: 'bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300',
+                            none: 'bg-sky-100 text-sky-700 dark:bg-sky-900/30 dark:text-sky-400',
+                          };
+                          return (
+                            <span className={`inline-block px-2 py-0.5 rounded-full text-[10px] font-semibold mt-0.5 ${castawayStyles[castaway.level]}`}>
+                              {castaway.emoji} {castaway.label} Castaway
+                            </span>
+                          );
+                        })()}
                       </div>
                       <span className="px-2 py-0.5 rounded-full text-xs font-semibold bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400">
                         Friend

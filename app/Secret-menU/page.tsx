@@ -1,9 +1,68 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/components/AuthProvider';
 import { getCastawayLevel } from '@/lib/castaway-levels';
+import { getFoodieVenueById } from '@/lib/foodie-data';
+import { getExperienceById } from '@/lib/entertainment-data';
+import { getActivityById as getThingsToDoById } from '@/lib/things-to-do-data';
+import { getShopById } from '@/lib/shopping-data';
+
+const CHECKIN_TASKS = [
+  { id: 'passport', label: 'Upload passport or ID photos' },
+  { id: 'selfie', label: 'Take a selfie (plain background, no glasses)' },
+  { id: 'pat', label: 'Select port arrival time (PAT)' },
+  { id: 'safety', label: 'Complete safety information' },
+  { id: 'payment', label: 'Set up onboard payment method' },
+  { id: 'contacts', label: 'Add emergency contacts' },
+];
+
+const BOOKABLE_TYPES = ['activity', 'entertainment', 'dining', 'shopping'];
+
+interface PlannerItem {
+  id: string;
+  sailing_id: string;
+  item_type: string;
+  item_id: string;
+  checked: boolean;
+  notes: string | null;
+  created_at: string;
+}
+
+function lookupItemName(itemType: string, itemId: string): string {
+  if (itemType === 'activity') {
+    const act = getThingsToDoById(itemId);
+    if (act) return act.name;
+  }
+  if (itemType === 'dining') {
+    const fv = getFoodieVenueById(itemId);
+    if (fv) return fv.name;
+  }
+  if (itemType === 'entertainment') {
+    const exp = getExperienceById(itemId);
+    if (exp) return exp.name;
+  }
+  if (itemType === 'shopping') {
+    const shop = getShopById(itemId);
+    if (shop) return shop.name;
+  }
+  // Fallback: convert id to readable name
+  return itemId.split('-').map((w, i) => {
+    if (['and', 'of', 'the', 'at', 'in', 'on', 'for'].includes(w) && i > 0) return w;
+    return w.charAt(0).toUpperCase() + w.slice(1);
+  }).join(' ');
+}
+
+function lookupItemEmoji(itemType: string): string {
+  switch (itemType) {
+    case 'activity': return '🎢';
+    case 'dining': return '🍽️';
+    case 'entertainment': return '🎭';
+    case 'shopping': return '🛍️';
+    default: return '📌';
+  }
+}
 
 interface Sailing {
   id: string;
@@ -24,6 +83,10 @@ export default function SecretMenuPage() {
   const [sailings, setSailings] = useState<Sailing[]>([]);
   const [now, setNow] = useState(() => new Date());
   const [showUpcoming, setShowUpcoming] = useState(false);
+  const [expandedMilestone, setExpandedMilestone] = useState<'activity' | 'checkin' | null>(null);
+  const [checkinTasks, setCheckinTasks] = useState<Record<string, boolean>>({});
+  const [activityPlannerItems, setActivityPlannerItems] = useState<PlannerItem[]>([]);
+  const [activityChecked, setActivityChecked] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     if (!user) return;
@@ -66,6 +129,61 @@ export default function SecretMenuPage() {
   }, [sailings, now]);
 
   const nextSailing = upcomingSailings[0] ?? null;
+
+  // Load checkin tasks from localStorage when nextSailing changes
+  useEffect(() => {
+    if (!nextSailing) return;
+    try {
+      const stored = localStorage.getItem(`checkin-tasks:${nextSailing.id}`);
+      if (stored) setCheckinTasks(JSON.parse(stored));
+      else setCheckinTasks({});
+      const storedAct = localStorage.getItem(`activity-checked:${nextSailing.id}`);
+      if (storedAct) setActivityChecked(JSON.parse(storedAct));
+      else setActivityChecked({});
+    } catch { /* ignore */ }
+  }, [nextSailing?.id]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Fetch planner items for activity booking sub-checklist
+  useEffect(() => {
+    if (!nextSailing || !user || !session?.access_token) {
+      setActivityPlannerItems([]);
+      return;
+    }
+    fetch(`/api/planner-items?sailing_id=${nextSailing.id}`, {
+      headers: { Authorization: `Bearer ${session.access_token}` },
+    })
+      .then(res => res.ok ? res.json() : null)
+      .then(data => {
+        if (data?.items) {
+          setActivityPlannerItems(
+            data.items.filter((it: PlannerItem) => BOOKABLE_TYPES.includes(it.item_type))
+          );
+        }
+      })
+      .catch(() => {});
+  }, [nextSailing?.id, user, session?.access_token]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const toggleCheckinTask = useCallback((taskId: string) => {
+    if (!nextSailing) return;
+    setCheckinTasks(prev => {
+      const next = { ...prev, [taskId]: !prev[taskId] };
+      localStorage.setItem(`checkin-tasks:${nextSailing.id}`, JSON.stringify(next));
+      return next;
+    });
+  }, [nextSailing]);
+
+  const toggleActivityItem = useCallback((itemId: string) => {
+    if (!nextSailing) return;
+    setActivityChecked(prev => {
+      const next = { ...prev, [itemId]: !prev[itemId] };
+      localStorage.setItem(`activity-checked:${nextSailing.id}`, JSON.stringify(next));
+      return next;
+    });
+  }, [nextSailing]);
+
+  // Derive completion state for milestones
+  const checkinAllDone = CHECKIN_TASKS.every(t => checkinTasks[t.id]);
+  const activityAllDone = activityPlannerItems.length > 0 && activityPlannerItems.every(it => activityChecked[it.id]);
 
   const countdown = useMemo(() => {
     if (!nextSailing) return null;
@@ -130,10 +248,10 @@ export default function SecretMenuPage() {
           Home
         </Link>
         <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
-          Cruise Guide
+          Disney Cruise Companion
         </h1>
         <p className="text-slate-600 dark:text-slate-400">
-          Your Disney cruise planning hub — explore ships, dining, activities, and more.
+          Your ultimate all-in-one tool to create magic experiences for you and your fellow cruisers.
         </p>
       </div>
 
@@ -181,25 +299,130 @@ export default function SecretMenuPage() {
 
           {/* Castaway Club Milestones */}
           {milestones.length > 0 && (
-            <div className="border-t border-white/15 px-5 py-3 space-y-2">
-              {milestones.map((m, i) => (
-                <div key={i} className="flex items-center gap-2.5 text-xs">
-                  <span className={`flex-shrink-0 w-4 h-4 rounded-full flex items-center justify-center ${
-                    m.done ? 'bg-green-400/30 text-green-300' : 'bg-white/15 text-cyan-200'
-                  }`}>
-                    {m.done ? '✓' : '○'}
-                  </span>
-                  <span className={`flex-1 ${m.done ? 'text-green-200 line-through opacity-70' : 'text-cyan-100'}`}>
-                    {m.label}
-                  </span>
-                  <span className={`flex-shrink-0 font-medium ${m.done ? 'text-green-300' : 'text-white'}`}>
-                    {m.done
-                      ? 'Open now'
-                      : m.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
-                    }
-                  </span>
-                </div>
-              ))}
+            <div className="border-t border-white/15 px-5 py-3 space-y-1">
+              {milestones.map((m, i) => {
+                const isActivity = m.label === 'Activity booking opens';
+                const milestoneKey = isActivity ? 'activity' : 'checkin';
+                const isExpanded = expandedMilestone === milestoneKey;
+                const allDone = isActivity ? activityAllDone : checkinAllDone;
+
+                if (!m.done) {
+                  // Future milestone — static display
+                  return (
+                    <div key={i} className="flex items-center gap-2.5 text-xs">
+                      <span className="flex-shrink-0 w-4 h-4 rounded-full flex items-center justify-center bg-white/15 text-cyan-200">
+                        ○
+                      </span>
+                      <span className="flex-1 text-cyan-100">{m.label}</span>
+                      <span className="flex-shrink-0 font-medium text-white">
+                        {m.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                      </span>
+                    </div>
+                  );
+                }
+
+                // Open milestone — interactive
+                return (
+                  <div key={i}>
+                    <button
+                      onClick={() => setExpandedMilestone(isExpanded ? null : milestoneKey)}
+                      className="w-full flex items-center gap-2.5 text-xs py-1 group"
+                    >
+                      <span className={`flex-shrink-0 w-4 h-4 rounded flex items-center justify-center border-2 transition-colors ${
+                        allDone
+                          ? 'bg-green-500 border-green-500 text-white'
+                          : 'border-white/40 text-transparent group-hover:border-white/60'
+                      }`}>
+                        {allDone && (
+                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                          </svg>
+                        )}
+                      </span>
+                      <span className={`flex-1 text-left ${allDone ? 'text-green-200 line-through opacity-70' : 'text-cyan-100'}`}>
+                        {m.label}
+                      </span>
+                      <span className={`flex-shrink-0 font-medium mr-1 ${allDone ? 'text-green-300' : 'text-green-300'}`}>
+                        {allDone ? 'Complete' : 'Open now'}
+                      </span>
+                      <svg
+                        className={`w-3.5 h-3.5 text-white/50 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+
+                    {/* Sub-checklist */}
+                    {isExpanded && (
+                      <div className="mt-1 mb-2 ml-6 bg-white/5 rounded-lg p-2.5 space-y-1.5">
+                        {isActivity ? (
+                          // Activity booking sub-items from planner
+                          activityPlannerItems.length > 0 ? (
+                            activityPlannerItems.map(item => (
+                              <label
+                                key={item.id}
+                                className="flex items-center gap-2 text-xs cursor-pointer group/item"
+                              >
+                                <span
+                                  onClick={(e) => { e.preventDefault(); toggleActivityItem(item.id); }}
+                                  className={`flex-shrink-0 w-3.5 h-3.5 rounded flex items-center justify-center border transition-colors cursor-pointer ${
+                                    activityChecked[item.id]
+                                      ? 'bg-green-500 border-green-500 text-white'
+                                      : 'border-white/30 text-transparent group-hover/item:border-white/50'
+                                  }`}
+                                >
+                                  {activityChecked[item.id] && (
+                                    <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                    </svg>
+                                  )}
+                                </span>
+                                <span className={`${activityChecked[item.id] ? 'text-green-200/70 line-through' : 'text-cyan-100'}`}>
+                                  {lookupItemEmoji(item.item_type)} {lookupItemName(item.item_type, item.item_id)}
+                                </span>
+                              </label>
+                            ))
+                          ) : (
+                            <div className="text-xs text-cyan-200/60 py-1">
+                              No activities planned yet.{' '}
+                              <Link href="/planner" className="underline text-cyan-200 hover:text-white">
+                                Add some in your planner
+                              </Link>
+                            </div>
+                          )
+                        ) : (
+                          // Check-in sub-items (static)
+                          CHECKIN_TASKS.map(task => (
+                            <label
+                              key={task.id}
+                              className="flex items-center gap-2 text-xs cursor-pointer group/item"
+                            >
+                              <span
+                                onClick={(e) => { e.preventDefault(); toggleCheckinTask(task.id); }}
+                                className={`flex-shrink-0 w-3.5 h-3.5 rounded flex items-center justify-center border transition-colors cursor-pointer ${
+                                  checkinTasks[task.id]
+                                    ? 'bg-green-500 border-green-500 text-white'
+                                    : 'border-white/30 text-transparent group-hover/item:border-white/50'
+                                }`}
+                              >
+                                {checkinTasks[task.id] && (
+                                  <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                  </svg>
+                                )}
+                              </span>
+                              <span className={`${checkinTasks[task.id] ? 'text-green-200/70 line-through' : 'text-cyan-100'}`}>
+                                {task.label}
+                              </span>
+                            </label>
+                          ))
+                        )}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           )}
         </div>
@@ -321,7 +544,8 @@ export default function SecretMenuPage() {
 
       {/* Cruise Info */}
       <div>
-        <h2 className="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-3 px-1">Cruise Info</h2>
+        <h2 className="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-1 px-1">Plan & Manage Sailings</h2>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mb-3 px-1">Track your sailings, explore ships, and look up staterooms.</p>
         <div className="grid grid-cols-2 gap-3">
           <Link
             href="/Secret-menU/ships"
@@ -335,17 +559,17 @@ export default function SecretMenuPage() {
           {user ? (
             <Link
               href={voyageHref}
-              className="bg-gradient-to-br from-slate-700 to-slate-800 dark:from-slate-600 dark:to-slate-700 rounded-2xl p-4 shadow-lg border border-slate-500/30 dark:border-slate-400/30 hover:border-disney-gold transition-all hover:shadow-xl hover:scale-[1.02] active:scale-95 text-center"
+              className="bg-gradient-to-br from-amber-600 to-amber-700 dark:from-amber-700 dark:to-amber-800 rounded-2xl p-4 shadow-lg border border-amber-400/30 dark:border-amber-500/30 hover:border-disney-gold transition-all hover:shadow-xl hover:scale-[1.02] active:scale-95 text-center"
             >
               <div className="text-3xl mb-2">🧭</div>
               <div className="text-sm font-bold text-white">My Voyages</div>
-              <div className="text-xs text-slate-300 dark:text-slate-400 mt-0.5">Sailing history</div>
+              <div className="text-xs text-amber-200 dark:text-amber-300 mt-0.5">Sailing history</div>
             </Link>
           ) : (
-            <div className="bg-gradient-to-br from-slate-700 to-slate-800 dark:from-slate-600 dark:to-slate-700 rounded-2xl p-4 shadow-lg border border-slate-500/30 dark:border-slate-400/30 text-center opacity-40 cursor-not-allowed">
+            <div className="bg-gradient-to-br from-amber-600 to-amber-700 dark:from-amber-700 dark:to-amber-800 rounded-2xl p-4 shadow-lg border border-amber-400/30 dark:border-amber-500/30 text-center opacity-40 cursor-not-allowed">
               <div className="text-3xl mb-2">🧭</div>
               <div className="text-sm font-bold text-white">My Voyages</div>
-              <div className="text-xs text-slate-300 dark:text-slate-400 mt-0.5">Sign in required</div>
+              <div className="text-xs text-amber-200 dark:text-amber-300 mt-0.5">Sign in required</div>
             </div>
           )}
 
@@ -378,7 +602,7 @@ export default function SecretMenuPage() {
           >
             <span className="text-2xl">🍽</span>
             <div className="min-w-0">
-              <div className="text-sm font-semibold text-slate-900 dark:text-white">Foodies</div>
+              <div className="text-sm font-semibold text-slate-900 dark:text-white">Food & Drinks</div>
               <div className="text-xs text-slate-500 dark:text-slate-400">Dining & bars</div>
             </div>
           </Link>
@@ -494,16 +718,6 @@ export default function SecretMenuPage() {
       <div className="mt-6">
         <div className="grid grid-cols-2 gap-3">
           <Link
-            href="/Secret-menU/first-timer"
-            className="bg-white dark:bg-slate-800 rounded-xl p-3.5 shadow-sm border border-slate-200 dark:border-slate-700 hover:border-disney-gold transition-all hover:shadow-md flex items-center gap-3"
-          >
-            <span className="text-2xl">🌟</span>
-            <div className="min-w-0">
-              <div className="text-sm font-semibold text-slate-900 dark:text-white">First-Timer Guide</div>
-              <div className="text-xs text-slate-500 dark:text-slate-400">New to cruising</div>
-            </div>
-          </Link>
-          <Link
             href="/Secret-menU/castaway-wisdom"
             className="bg-white dark:bg-slate-800 rounded-xl p-3.5 shadow-sm border border-slate-200 dark:border-slate-700 hover:border-disney-gold transition-all hover:shadow-md flex items-center gap-3"
           >
@@ -511,6 +725,16 @@ export default function SecretMenuPage() {
             <div className="min-w-0">
               <div className="text-sm font-semibold text-slate-900 dark:text-white">Castaway Wisdom</div>
               <div className="text-xs text-slate-500 dark:text-slate-400">Tips by level</div>
+            </div>
+          </Link>
+          <Link
+            href="/Secret-menU/first-timer"
+            className="bg-white dark:bg-slate-800 rounded-xl p-3.5 shadow-sm border border-slate-200 dark:border-slate-700 hover:border-disney-gold transition-all hover:shadow-md flex items-center gap-3"
+          >
+            <span className="text-2xl">🌟</span>
+            <div className="min-w-0">
+              <div className="text-sm font-semibold text-slate-900 dark:text-white">First-Timer Guide</div>
+              <div className="text-xs text-slate-500 dark:text-slate-400">New to cruising</div>
             </div>
           </Link>
           <Link
