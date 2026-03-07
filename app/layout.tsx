@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import ClientProviders from "@/components/ClientProviders";
 import Navbar from "@/components/Navbar";
+import LocalTimestamp from "@/components/LocalTimestamp";
 import PWAInstallPrompt from "@/components/PWAInstallPrompt";
 import ServiceWorkerRegistration from "@/components/ServiceWorkerRegistration";
 
@@ -172,10 +173,7 @@ export default function RootLayout({
                 All trademarks and images belong to their respective owners. This is a digital pixie dust for Disney Adventure Maiden Voyage by KristabelQ.
               </p>
               <p>&copy; 2026 Disney Cruise Trivia. All rights reserved.</p>
-              <p className="text-slate-400 dark:text-slate-500">
-                Last updated: {new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}{' '}
-                {new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}
-              </p>
+              <LocalTimestamp iso={new Date().toISOString()} />
             </div>
           </footer>
         </ClientProviders>
