@@ -3,7 +3,7 @@
 import { useState, useRef, useCallback } from 'react';
 import Cropper, { type Area } from 'react-easy-crop';
 import imageCompression from 'browser-image-compression';
-import { getAuthClient } from '@/lib/auth';
+import { useAuth } from '@/components/AuthProvider';
 
 interface ImageCropUploadProps {
   bucket: string;
@@ -66,6 +66,7 @@ export default function ImageCropUpload({
   children,
   className,
 }: ImageCropUploadProps) {
+  const { session } = useAuth();
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [imageSrc, setImageSrc] = useState<string | null>(null);
@@ -126,21 +127,27 @@ export default function ImageCropUpload({
         },
       );
 
-      // 3. Upload to Supabase
+      // 3. Upload via server API
       const ext = compressedFile.type === 'image/webp' ? 'webp' : 'jpg';
       const fullPath = `${path}.${ext}`;
 
-      const supabase = getAuthClient();
-      const { error: uploadError } = await supabase.storage
-        .from(bucket)
-        .upload(fullPath, compressedFile, { upsert: true, contentType: compressedFile.type });
+      const formData = new FormData();
+      formData.append('file', compressedFile);
+      formData.append('bucket', bucket);
+      formData.append('path', fullPath);
 
-      if (uploadError) throw uploadError;
+      const res = await fetch('/api/upload', {
+        method: 'POST',
+        headers: session?.access_token ? { Authorization: `Bearer ${session.access_token}` } : {},
+        body: formData,
+      });
 
-      const { data } = supabase.storage.from(bucket).getPublicUrl(fullPath);
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || 'Upload failed');
+      }
 
-      // Bust browser cache by appending timestamp
-      const publicUrl = `${data.publicUrl}?t=${Date.now()}`;
+      const { url: publicUrl } = await res.json();
 
       // 4. Callback
       onUpload(publicUrl);
