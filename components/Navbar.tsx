@@ -24,7 +24,7 @@ export default function Navbar() {
 
   const navItems = [
     { href: '/quiz', label: 'Quiz' },
-    { href: '/Secret-menU', label: 'Cruise Guide', highlight: true },
+    { href: '/Secret-menU', label: 'Cruise Companion', highlight: true },
     { href: '/users', label: 'Community' },
   ];
 
