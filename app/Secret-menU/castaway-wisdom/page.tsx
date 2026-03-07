@@ -30,6 +30,9 @@ interface CommunityTip {
   reviewer_avatar?: string | null;
   reviewer_handle?: string | null;
   user_upvoted?: boolean;
+  author_sailings?: number;
+  author_ships?: number;
+  author_reviews?: number;
 }
 
 export default function CastawayWisdomPage() {
@@ -265,14 +268,17 @@ export default function CastawayWisdomPage() {
                   <span className="text-xs font-bold text-slate-500 dark:text-slate-400">{tip.upvotes}</span>
                 </button>
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1">
+                  <div className="flex items-center flex-wrap gap-x-2 gap-y-1 mb-1">
                     {tip.reviewer_name && (
-                      <Link href={`/profile/${tip.reviewer_handle || tip.user_id}`} className="text-xs text-slate-500 dark:text-slate-400 hover:underline">
+                      <Link href={`/profile/${tip.reviewer_handle || tip.user_id}`} className="text-xs font-medium text-slate-700 dark:text-slate-300 hover:underline">
                         {tip.reviewer_name}
                       </Link>
                     )}
                     <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400">
                       {LEVEL_META[tip.castaway_level]?.emoji} {LEVEL_META[tip.castaway_level]?.label}
+                    </span>
+                    <span className="text-[10px] text-slate-400 dark:text-slate-500">
+                      {tip.author_ships ?? 0} {(tip.author_ships ?? 0) === 1 ? 'ship' : 'ships'} &middot; {tip.author_reviews ?? 0} {(tip.author_reviews ?? 0) === 1 ? 'review' : 'reviews'}
                     </span>
                   </div>
                   <h4 className="font-semibold text-sm text-slate-900 dark:text-white mb-1">{tip.title}</h4>

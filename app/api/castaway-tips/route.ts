@@ -30,7 +30,51 @@ export async function GET(req: NextRequest) {
   if (error) return NextResponse.json({ error: 'Failed to fetch tips' }, { status: 500 });
 
   const enriched = await enrichWithProfiles(supabase, data || []);
-  return NextResponse.json({ tips: enriched });
+
+  // Fetch author stats (sailings, ships, review counts)
+  const authorIds = [...new Set((data || []).map(t => t.user_id).filter(Boolean))];
+  const authorStats: Record<string, { total_sailings: number; unique_ships: number; total_reviews: number }> = {};
+
+  if (authorIds.length > 0) {
+    // Sailings & ships
+    const { data: sailingData } = await supabase
+      .from('sailing_reviews')
+      .select('user_id, ship_name')
+      .in('user_id', authorIds);
+
+    // Count reviews across all review tables
+    const reviewTables = ['dining_reviews', 'activity_reviews', 'cruise_hack_reviews', 'stateroom_reviews', 'venue_reviews', 'foodie_reviews', 'movie_reviews', 'sailing_reviews'];
+    const reviewCounts: Record<string, number> = {};
+
+    await Promise.all(reviewTables.map(async (table) => {
+      const { data: rows } = await supabase
+        .from(table)
+        .select('user_id')
+        .in('user_id', authorIds);
+      for (const row of rows || []) {
+        reviewCounts[row.user_id] = (reviewCounts[row.user_id] || 0) + 1;
+      }
+    }));
+
+    for (const uid of authorIds) {
+      const userSailings = (sailingData || []).filter(s => s.user_id === uid);
+      const uniqueShips = new Set(userSailings.map(s => s.ship_name)).size;
+      authorStats[uid] = {
+        total_sailings: userSailings.length,
+        unique_ships: uniqueShips,
+        total_reviews: reviewCounts[uid] || 0,
+      };
+    }
+  }
+
+  const tipsWithStats = enriched.map(tip => ({
+    ...tip,
+    author_sailings: authorStats[tip.user_id]?.total_sailings ?? 0,
+    author_ships: authorStats[tip.user_id]?.unique_ships ?? 0,
+    author_reviews: authorStats[tip.user_id]?.total_reviews ?? 0,
+  }));
+
+  return NextResponse.json({ tips: tipsWithStats });
 }
 
 export async function POST(req: NextRequest) {
