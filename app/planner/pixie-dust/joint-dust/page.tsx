@@ -550,7 +550,7 @@ function JointDustContent() {
                                 ? 'bg-red-50 dark:bg-red-900/20 text-red-500 dark:text-red-400'
                                 : 'bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400'
                             }`}>
-                              {side === 'port' ? 'Port' : 'Stbd'}
+                              {side === 'port' ? 'Port side' : 'Starboard side'}
                             </span>
                           </div>
                           <div className="flex flex-wrap gap-1.5">
