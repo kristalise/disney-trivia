@@ -416,10 +416,10 @@ export default function SecretMenuPage() {
         </div>
       </div>
 
-      {/* Disney Cruise Culture */}
+      {/* Disney Magic Culture */}
       <div className="mt-6">
-        <h2 className="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-1 px-1">Disney Cruise Culture</h2>
-        <p className="text-xs text-slate-500 dark:text-slate-400 mb-3 px-1">Disney cruises have unique traditions that set them apart — from Pirate Night and towel animals to Fish Extender gift exchanges between cabins. Track your character meets, prep your Disney movie knowledge, connect with fellow cruisers, and spread a little pixie dust.</p>
+        <h2 className="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-1 px-1">Disney Magic Culture</h2>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mb-3 px-1">A community built on kindness, love, and dreams — where guests share pixie dust and make magic for each other.</p>
         <div className="grid grid-cols-2 gap-3">
           {user ? (
             <Link
