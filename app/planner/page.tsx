@@ -5,6 +5,9 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useAuth } from '@/components/AuthProvider';
 import SailingPicker from '@/components/SailingPicker';
+import { useOnlineStatus } from '@/hooks/useOnlineStatus';
+import OfflineBanner from '@/components/OfflineBanner';
+import { cacheData, getCachedData, queueMutation, getPendingMutationCount, submitOrQueueReview } from '@/lib/offline-store';
 import { getCharacterCategories, getCharacterById } from '@/lib/character-data';
 import { getAllFoodieVenues, getFoodieCategories, getFoodieVenueById, getAdventureRotation } from '@/lib/foodie-data';
 import { getAllExperiences, getEntertainmentCategories, getExperienceById } from '@/lib/entertainment-data';
@@ -126,6 +129,8 @@ function PlannerContent() {
   const { user, session } = useAuth();
   const searchParams = useSearchParams();
   const sailingParam = searchParams.get('sailing');
+  const isOnline = useOnlineStatus();
+  const [offlinePendingCount, setOfflinePendingCount] = useState(0);
 
   const [selectedSailing, setSelectedSailing] = useState<Sailing | null>(null);
   const [plannerItems, setPlannerItems] = useState<PlannerItem[]>([]);
@@ -143,6 +148,7 @@ function PlannerContent() {
   const [reviewText, setReviewText] = useState('');
   const [reviewAnonymous, setReviewAnonymous] = useState(false);
   const [reviewSubmitting, setReviewSubmitting] = useState(false);
+  const [reviewError, setReviewError] = useState('');
 
   // Adventure rotation state
   const [adventureRotation, setAdventureRotation] = useState<number | null>(null);
@@ -177,9 +183,15 @@ function PlannerContent() {
       });
       if (res.ok) {
         const data = await res.json();
-        setPlannerItems(data.items ?? []);
+        const items = data.items ?? [];
+        setPlannerItems(items);
+        cacheData(`planner-items:${sailingId}`, items).catch(() => {});
       }
-    } catch { /* ignore */ } finally { setLoading(false); }
+    } catch {
+      // Offline fallback
+      const cached = await getCachedData<PlannerItem[]>(`planner-items:${sailingId}`).catch(() => null);
+      if (cached) setPlannerItems(cached.data);
+    } finally { setLoading(false); }
   }, [session?.access_token]);
 
   // Fetch character meetups for current sailing
@@ -199,8 +211,12 @@ function PlannerContent() {
           }
         }
         setCharacterMeetups(map);
+        cacheData(`planner-meetups:${sailingId}`, map).catch(() => {});
       }
-    } catch { /* ignore */ }
+    } catch {
+      const cached = await getCachedData<Record<string, CharacterMeetup>>(`planner-meetups:${sailingId}`).catch(() => null);
+      if (cached) setCharacterMeetups(cached.data);
+    }
   }, [session?.access_token]);
 
   const fetchCompanions = useCallback(async (sailingId: string) => {
@@ -212,9 +228,14 @@ function PlannerContent() {
       });
       if (res.ok) {
         const data = await res.json();
-        setCompanions(data.companions ?? []);
+        const companionsList = data.companions ?? [];
+        setCompanions(companionsList);
+        cacheData(`planner-companions:${sailingId}`, companionsList).catch(() => {});
       }
-    } catch { /* ignore */ } finally { setCompanionsLoading(false); }
+    } catch {
+      const cached = await getCachedData<CompanionPlan[]>(`planner-companions:${sailingId}`).catch(() => null);
+      if (cached) setCompanions(cached.data);
+    } finally { setCompanionsLoading(false); }
   }, [session?.access_token]);
 
   const handleDuplicate = async (sourceUserId: string, options: { planner: boolean; checklist: boolean; rotation: boolean }) => {
@@ -253,19 +274,32 @@ function PlannerContent() {
       setReviewRating(0);
       setReviewText('');
       setReviewAnonymous(false);
+      setReviewError('');
       return;
     }
     setTogglingId(item.id);
+    const newChecked = !item.checked;
     try {
-      const res = await fetch('/api/planner-items', {
-        method: 'PATCH',
-        headers: headers(),
-        body: JSON.stringify({ id: item.id, checked: !item.checked }),
-      });
-      if (res.ok) {
-        setPlannerItems(prev => prev.map(i => i.id === item.id ? { ...i, checked: !i.checked } : i));
+      if (!isOnline) {
+        await queueMutation({ type: 'planner-toggle', url: '/api/planner-items', method: 'PATCH', body: { id: item.id, checked: newChecked } });
+        setPlannerItems(prev => prev.map(i => i.id === item.id ? { ...i, checked: newChecked } : i));
+        getPendingMutationCount().then(setOfflinePendingCount).catch(() => {});
+      } else {
+        const res = await fetch('/api/planner-items', {
+          method: 'PATCH',
+          headers: headers(),
+          body: JSON.stringify({ id: item.id, checked: newChecked }),
+        });
+        if (res.ok) {
+          setPlannerItems(prev => prev.map(i => i.id === item.id ? { ...i, checked: newChecked } : i));
+        }
       }
-    } catch { /* ignore */ } finally { setTogglingId(null); }
+    } catch {
+      // Network error: queue and update optimistically
+      await queueMutation({ type: 'planner-toggle', url: '/api/planner-items', method: 'PATCH', body: { id: item.id, checked: newChecked } }).catch(() => {});
+      setPlannerItems(prev => prev.map(i => i.id === item.id ? { ...i, checked: newChecked } : i));
+      getPendingMutationCount().then(setOfflinePendingCount).catch(() => {});
+    } finally { setTogglingId(null); }
   };
 
   // Mark dining item as done (skip review)
@@ -273,42 +307,64 @@ function PlannerContent() {
     if (!reviewPromptItem) return;
     setTogglingId(reviewPromptItem.id);
     try {
-      const res = await fetch('/api/planner-items', {
-        method: 'PATCH',
-        headers: headers(),
-        body: JSON.stringify({ id: reviewPromptItem.id, checked: true }),
-      });
-      if (res.ok) {
+      if (!isOnline) {
+        await queueMutation({ type: 'planner-toggle', url: '/api/planner-items', method: 'PATCH', body: { id: reviewPromptItem.id, checked: true } });
         setPlannerItems(prev => prev.map(i => i.id === reviewPromptItem.id ? { ...i, checked: true } : i));
+        getPendingMutationCount().then(setOfflinePendingCount).catch(() => {});
+      } else {
+        const res = await fetch('/api/planner-items', {
+          method: 'PATCH',
+          headers: headers(),
+          body: JSON.stringify({ id: reviewPromptItem.id, checked: true }),
+        });
+        if (res.ok) {
+          setPlannerItems(prev => prev.map(i => i.id === reviewPromptItem.id ? { ...i, checked: true } : i));
+        }
       }
-    } catch { /* ignore */ } finally { setTogglingId(null); setReviewPromptItem(null); }
+    } catch {
+      await queueMutation({ type: 'planner-toggle', url: '/api/planner-items', method: 'PATCH', body: { id: reviewPromptItem.id, checked: true } }).catch(() => {});
+      setPlannerItems(prev => prev.map(i => i.id === reviewPromptItem.id ? { ...i, checked: true } : i));
+      getPendingMutationCount().then(setOfflinePendingCount).catch(() => {});
+    } finally { setTogglingId(null); setReviewPromptItem(null); }
   };
 
   // Submit dining review and mark as done
   const handleDiningSubmitReview = async () => {
     if (!reviewPromptItem || !selectedSailing || reviewRating === 0) return;
     setReviewSubmitting(true);
+    setReviewError('');
+    let hadError = false;
     try {
-      await fetch('/api/foodie-reviews', {
-        method: 'POST',
-        headers: headers(),
-        body: JSON.stringify({
-          venue_id: reviewPromptItem.item_id,
-          sailing_id: selectedSailing.id,
-          rating: reviewRating,
-          review_text: reviewText || undefined,
-          is_anonymous: reviewAnonymous,
-        }),
-      });
-      const res = await fetch('/api/planner-items', {
-        method: 'PATCH',
-        headers: headers(),
-        body: JSON.stringify({ id: reviewPromptItem.id, checked: true }),
-      });
-      if (res.ok) {
-        setPlannerItems(prev => prev.map(i => i.id === reviewPromptItem.id ? { ...i, checked: true } : i));
+      const reviewBody = {
+        venue_id: reviewPromptItem.item_id,
+        sailing_id: selectedSailing.id,
+        rating: reviewRating,
+        review_text: reviewText || undefined,
+        is_anonymous: reviewAnonymous,
+      };
+      const toggleBody = { id: reviewPromptItem.id, checked: true };
+
+      const result = await submitOrQueueReview('/api/foodie-reviews', reviewBody, headers(), isOnline);
+
+      if (result.error) {
+        setReviewError(result.error);
+        hadError = true;
+        return;
       }
-    } catch { /* ignore */ } finally { setReviewSubmitting(false); setReviewPromptItem(null); }
+
+      if (!isOnline) {
+        await queueMutation({ type: 'planner-toggle', url: '/api/planner-items', method: 'PATCH', body: toggleBody });
+        getPendingMutationCount().then(setOfflinePendingCount).catch(() => {});
+      } else {
+        await fetch('/api/planner-items', { method: 'PATCH', headers: headers(), body: JSON.stringify(toggleBody) });
+      }
+      setPlannerItems(prev => prev.map(i => i.id === reviewPromptItem.id ? { ...i, checked: true } : i));
+    } catch {
+      await queueMutation({ type: 'review', url: '/api/foodie-reviews', method: 'POST', body: { venue_id: reviewPromptItem.item_id, sailing_id: selectedSailing.id, rating: reviewRating, review_text: reviewText || undefined, is_anonymous: reviewAnonymous } }).catch(() => {});
+      await queueMutation({ type: 'planner-toggle', url: '/api/planner-items', method: 'PATCH', body: { id: reviewPromptItem.id, checked: true } }).catch(() => {});
+      setPlannerItems(prev => prev.map(i => i.id === reviewPromptItem.id ? { ...i, checked: true } : i));
+      getPendingMutationCount().then(setOfflinePendingCount).catch(() => {});
+    } finally { setReviewSubmitting(false); if (!hadError) setReviewPromptItem(null); }
   };
 
   // Adventure rotation
@@ -367,14 +423,24 @@ function PlannerContent() {
   const handleDelete = async (id: string) => {
     setDeletingId(id);
     try {
-      const res = await fetch(`/api/planner-items?id=${id}`, {
-        method: 'DELETE',
-        headers: headers(),
-      });
-      if (res.ok) {
+      if (!isOnline) {
+        await queueMutation({ type: 'planner-delete', url: `/api/planner-items?id=${id}`, method: 'DELETE', body: {} });
         setPlannerItems(prev => prev.filter(i => i.id !== id));
+        getPendingMutationCount().then(setOfflinePendingCount).catch(() => {});
+      } else {
+        const res = await fetch(`/api/planner-items?id=${id}`, {
+          method: 'DELETE',
+          headers: headers(),
+        });
+        if (res.ok) {
+          setPlannerItems(prev => prev.filter(i => i.id !== id));
+        }
       }
-    } catch { /* ignore */ } finally { setDeletingId(null); }
+    } catch {
+      await queueMutation({ type: 'planner-delete', url: `/api/planner-items?id=${id}`, method: 'DELETE', body: {} }).catch(() => {});
+      setPlannerItems(prev => prev.filter(i => i.id !== id));
+      getPendingMutationCount().then(setOfflinePendingCount).catch(() => {});
+    } finally { setDeletingId(null); }
   };
 
   const handleAdd = async (itemType: ItemType, itemId: string) => {
@@ -387,20 +453,33 @@ function PlannerContent() {
       const diningId = CROSS_TYPE_MAP.entToDining.get(itemId);
       if (diningId) { actualType = 'dining'; actualId = diningId; }
     }
+    const body = { sailing_id: selectedSailing.id, item_type: actualType, item_id: actualId };
     try {
-      const res = await fetch('/api/planner-items', {
-        method: 'POST',
-        headers: headers(),
-        body: JSON.stringify({ sailing_id: selectedSailing.id, item_type: actualType, item_id: actualId }),
-      });
-      if (res.ok) {
-        const data = await res.json();
-        setPlannerItems(prev => {
-          if (prev.some(i => i.id === data.item.id)) return prev;
-          return [...prev, data.item];
+      if (!isOnline) {
+        const tempId = crypto.randomUUID();
+        await queueMutation({ type: 'planner-add', url: '/api/planner-items', method: 'POST', body });
+        setPlannerItems(prev => [...prev, { id: tempId, sailing_id: selectedSailing.id, item_type: actualType, item_id: actualId, checked: false, notes: null, created_at: new Date().toISOString() }]);
+        getPendingMutationCount().then(setOfflinePendingCount).catch(() => {});
+      } else {
+        const res = await fetch('/api/planner-items', {
+          method: 'POST',
+          headers: headers(),
+          body: JSON.stringify(body),
         });
+        if (res.ok) {
+          const data = await res.json();
+          setPlannerItems(prev => {
+            if (prev.some(i => i.id === data.item.id)) return prev;
+            return [...prev, data.item];
+          });
+        }
       }
-    } catch { /* ignore */ } finally { setAddingItemId(null); }
+    } catch {
+      const tempId = crypto.randomUUID();
+      await queueMutation({ type: 'planner-add', url: '/api/planner-items', method: 'POST', body }).catch(() => {});
+      setPlannerItems(prev => [...prev, { id: tempId, sailing_id: selectedSailing.id, item_type: actualType, item_id: actualId, checked: false, notes: null, created_at: new Date().toISOString() }]);
+      getPendingMutationCount().then(setOfflinePendingCount).catch(() => {});
+    } finally { setAddingItemId(null); }
   };
 
   // Character photo upload
@@ -999,6 +1078,14 @@ function PlannerContent() {
         </div>
       )}
 
+      {/* Offline Banner */}
+      {selectedSailing && (
+        <OfflineBanner
+          pendingCount={offlinePendingCount}
+          cacheKey={selectedSailing ? `planner-items:${selectedSailing.id}` : undefined}
+        />
+      )}
+
       {/* Loading */}
       {loading && (
         <div className="text-center py-8">
@@ -1211,6 +1298,12 @@ function PlannerContent() {
                 />
                 <span className="text-xs text-slate-600 dark:text-slate-400">Post anonymously</span>
               </label>
+
+              {reviewError && (
+                <div className="text-sm text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 rounded-xl px-4 py-2.5 mb-3">
+                  {reviewError}
+                </div>
+              )}
 
               <div className="flex gap-2">
                 <button

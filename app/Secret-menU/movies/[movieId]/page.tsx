@@ -7,6 +7,8 @@ import Image from 'next/image';
 import { useAuth } from '@/components/AuthProvider';
 import SocialIcons from '@/components/SocialIcons';
 import { getMovieById, getStudios, isUpcoming, getPosterUrl, type Movie, type Studio } from '@/lib/movie-data';
+import { useOnlineStatus } from '@/hooks/useOnlineStatus';
+import { submitOrQueueReview } from '@/lib/offline-store';
 
 const studios = getStudios();
 const studioMap = new Map<string, Studio>();
@@ -92,6 +94,7 @@ export default function MovieDetailPage() {
   const studio = movie ? studioMap.get(movie.studio) : undefined;
 
   const { user, session } = useAuth();
+  const isOnline = useOnlineStatus();
   const [checklist, setChecklist] = useState<ChecklistEntry | null>(null);
   const [reviews, setReviews] = useState<MovieReview[]>([]);
   const [averageRating, setAverageRating] = useState<number | null>(null);
@@ -105,6 +108,7 @@ export default function MovieDetailPage() {
   const [reviewText, setReviewText] = useState('');
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [submittingReview, setSubmittingReview] = useState(false);
+  const [reviewError, setReviewError] = useState('');
   const [socialOpen, setSocialOpen] = useState(false);
   const [formInstagramUrl, setFormInstagramUrl] = useState('');
   const [formTiktokUrl, setFormTiktokUrl] = useState('');
@@ -231,30 +235,32 @@ export default function MovieDetailPage() {
   const handleSubmitReview = useCallback(async () => {
     if (!session?.access_token || !movie || reviewRating === 0) return;
     setSubmittingReview(true);
+    setReviewError('');
     try {
-      const res = await fetch('/api/movie-reviews', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${session.access_token}`,
-        },
-        body: JSON.stringify({
-          movie_id: movie.id,
-          rating: reviewRating,
-          review_text: reviewText.trim() || null,
-          instagram_url: formInstagramUrl || undefined,
-          tiktok_url: formTiktokUrl || undefined,
-          youtube_url: formYoutubeUrl || undefined,
-          facebook_url: formFacebookUrl || undefined,
-          xiaohongshu_url: formXiaohongshuUrl || undefined,
-        }),
-      });
-      if (res.ok) {
+      const reviewBody = {
+        movie_id: movie.id,
+        rating: reviewRating,
+        review_text: reviewText.trim() || null,
+        instagram_url: formInstagramUrl || undefined,
+        tiktok_url: formTiktokUrl || undefined,
+        youtube_url: formYoutubeUrl || undefined,
+        facebook_url: formFacebookUrl || undefined,
+        xiaohongshu_url: formXiaohongshuUrl || undefined,
+      };
+      const reviewHeaders = {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${session.access_token}`,
+      };
+      const result = await submitOrQueueReview('/api/movie-reviews', reviewBody, reviewHeaders, isOnline);
+      if (result.error) { setReviewError(result.error); return; }
+      if (result.queued) {
+        setShowReviewForm(false);
+      } else {
         setShowReviewForm(false);
         await fetchReviews();
       }
-    } catch { /* ignore */ } finally { setSubmittingReview(false); }
-  }, [session?.access_token, movie, reviewRating, reviewText, fetchReviews]);
+    } catch { setReviewError('Failed to submit review.'); } finally { setSubmittingReview(false); }
+  }, [session?.access_token, movie, reviewRating, reviewText, formInstagramUrl, formTiktokUrl, formYoutubeUrl, formFacebookUrl, formXiaohongshuUrl, fetchReviews, isOnline]);
 
   // Delete review
   const handleDeleteReview = useCallback(async () => {
@@ -422,7 +428,7 @@ export default function MovieDetailPage() {
                 <h2 className="text-sm font-semibold text-slate-900 dark:text-white">Your Review</h2>
                 {myReview && !showReviewForm && (
                   <button
-                    onClick={() => setShowReviewForm(true)}
+                    onClick={() => { setReviewError(''); setShowReviewForm(true); }}
                     className="text-xs font-medium text-disney-blue dark:text-disney-gold hover:underline"
                   >
                     Edit
@@ -432,7 +438,7 @@ export default function MovieDetailPage() {
 
               {!myReview && !showReviewForm && (
                 <button
-                  onClick={() => setShowReviewForm(true)}
+                  onClick={() => { setReviewError(''); setShowReviewForm(true); }}
                   className="text-sm text-slate-500 dark:text-slate-400 hover:text-disney-blue dark:hover:text-disney-gold transition-colors"
                 >
                   Write a review...
@@ -496,13 +502,18 @@ export default function MovieDetailPage() {
                       </div>
                     )}
                   </div>
+                  {reviewError && (
+                    <div className="text-sm text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 rounded-xl px-4 py-2 mb-2">
+                      {reviewError}
+                    </div>
+                  )}
                   <div className="flex items-center gap-2">
                     <button
                       onClick={handleSubmitReview}
                       disabled={submittingReview || reviewRating === 0}
                       className="px-4 py-2 rounded-xl text-sm font-medium bg-disney-navy text-white dark:bg-disney-gold dark:text-disney-navy hover:opacity-90 transition-opacity disabled:opacity-50"
                     >
-                      {submittingReview ? 'Saving...' : myReview ? 'Update Review' : 'Submit Review'}
+                      {submittingReview ? 'Saving...' : !isOnline ? 'Save Review (Offline)' : myReview ? 'Update Review' : 'Submit Review'}
                     </button>
                     <button
                       onClick={() => {

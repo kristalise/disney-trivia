@@ -7,6 +7,7 @@ import { useAuth } from '@/components/AuthProvider';
 import { fetchUserProgress } from '@/lib/progress';
 import SocialIcons from '@/components/SocialIcons';
 import QRCodeButton from '@/components/QRCodeButton';
+import ProfileReviewsTab from '@/components/ProfileReviewsTab';
 
 const SHIP_LOGOS: Record<string, string> = {
   'Disney Magic': '/ship-logos/magic.png',
@@ -174,6 +175,7 @@ export default function ProfilePage() {
   const [shipFilter, setShipFilter] = useState<string | null>(null);
   const [now, setNow] = useState(() => new Date());
   const [avatarTapCount, setAvatarTapCount] = useState(0);
+  const [activeTab, setActiveTab] = useState<'overview' | 'reviews'>('overview');
 
   useEffect(() => {
     const interval = setInterval(() => setNow(new Date()), 60_000);
@@ -532,8 +534,40 @@ export default function ProfilePage() {
         </div>
       )}
 
+      {/* Tab Bar — own profile only */}
+      {isOwnProfile && (
+        <div className="flex gap-1 mb-6 bg-slate-100 dark:bg-slate-800 rounded-xl p-1">
+          <button
+            onClick={() => setActiveTab('overview')}
+            className={`flex-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+              activeTab === 'overview'
+                ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm'
+                : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300'
+            }`}
+          >
+            Overview
+          </button>
+          <button
+            onClick={() => setActiveTab('reviews')}
+            className={`flex-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+              activeTab === 'reviews'
+                ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm'
+                : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300'
+            }`}
+          >
+            Reviews
+          </button>
+        </div>
+      )}
+
+      {/* Reviews Tab */}
+      {isOwnProfile && activeTab === 'reviews' && (
+        <ProfileReviewsTab userId={profile.id} />
+      )}
+
+      {/* Overview Tab Content */}
       {/* Currently Sailing */}
-      {isOwnProfile && currentlySailing.length > 0 && (
+      {activeTab === 'overview' && isOwnProfile && currentlySailing.length > 0 && (
         <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-200 dark:border-slate-700 mb-6">
           <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Currently Sailing</h2>
           <div className="space-y-4">
@@ -594,7 +628,7 @@ export default function ProfilePage() {
       )}
 
       {/* Upcoming Sailings */}
-      {isOwnProfile && upcomingSailings.length > 0 && (
+      {activeTab === 'overview' && isOwnProfile && upcomingSailings.length > 0 && (
         <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-200 dark:border-slate-700 mb-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-bold text-slate-900 dark:text-white">
@@ -676,7 +710,7 @@ export default function ProfilePage() {
       )}
 
       {/* Past Sailings */}
-      {isOwnProfile && pastSailings.length > 0 && (
+      {activeTab === 'overview' && isOwnProfile && pastSailings.length > 0 && (
         <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-200 dark:border-slate-700 mb-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-bold text-slate-900 dark:text-white">
@@ -765,7 +799,7 @@ export default function ProfilePage() {
       )}
 
       {/* Recent Reviews */}
-      {isOwnProfile && recentReviews.length > 0 && (
+      {activeTab === 'overview' && isOwnProfile && recentReviews.length > 0 && (
         <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-200 dark:border-slate-700 mb-6">
           <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Recent Reviews</h2>
           <div className="space-y-3">
@@ -802,7 +836,7 @@ export default function ProfilePage() {
       )}
 
       {/* Trivia Stats */}
-      {showTriviaSection && triviaStats && (
+      {activeTab === 'overview' && showTriviaSection && triviaStats && (
         <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-200 dark:border-slate-700 mb-6">
           <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Trivia Stats</h2>
           <div className="grid grid-cols-3 gap-4 text-center">
@@ -823,7 +857,7 @@ export default function ProfilePage() {
       )}
 
       {/* Friends */}
-      {friends.length > 0 && (
+      {activeTab === 'overview' && friends.length > 0 && (
         <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-200 dark:border-slate-700 mb-6">
           <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-2">Friends</h3>
           <div className="flex flex-wrap gap-2">

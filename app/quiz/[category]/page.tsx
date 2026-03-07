@@ -6,6 +6,8 @@ import QuizCard from '@/components/QuizCard';
 import Confetti from '@/components/Confetti';
 import { Question } from '@/types';
 import { saveQuestionAnswer, saveQuizSession, getQuestionPriorities } from '@/lib/progress';
+import seedData from '@/data/seed-questions.json';
+import { cacheData, getCachedData } from '@/lib/offline-store';
 
 interface QuizPageProps {
   params: Promise<{ category: string }>;
@@ -69,14 +71,27 @@ export default function QuizCategoryPage({ params }: QuizPageProps) {
         const data = await res.json();
         const all = data.questions || [];
         setAllQuestions(all);
-        // Cache question IDs for this category so CategoryCard can show progress
         localStorage.setItem(
           `trivia-category-questions-${category}`,
           JSON.stringify(all.map((q: Question) => q.id))
         );
         selectQuestionBatch(all);
-      } catch (error) {
-        console.error('Failed to load questions:', error);
+        cacheData(`questions:${category}`, all).catch(() => {});
+      } catch {
+        // Offline fallback: try IndexedDB cache first, then seed data
+        const cached = await getCachedData<Question[]>(`questions:${category}`).catch(() => null);
+        if (cached && cached.data.length > 0) {
+          setAllQuestions(cached.data);
+          selectQuestionBatch(cached.data);
+        } else {
+          // Fall back to seed-questions.json
+          const cat = (seedData.categories as Array<{ id: string; slug: string }>).find(c => c.slug === category);
+          if (cat) {
+            const seedQuestions = (seedData.questions as Question[]).filter(q => q.category_id === cat.id);
+            setAllQuestions(seedQuestions);
+            selectQuestionBatch(seedQuestions);
+          }
+        }
       } finally {
         setIsLoading(false);
       }

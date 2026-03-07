@@ -7,6 +7,9 @@ import { getAuthClient } from '@/lib/auth';
 import { getCharacterCategories, getTotalCharacterCount, getAllCharacters, type Category, type Character } from '@/lib/character-data';
 import ImageCropUpload from '@/components/ImageCropUpload';
 import { queueUpload, getPendingUploads, removePendingUpload, getPendingCount } from '@/lib/offline-queue';
+import { useOnlineStatus } from '@/hooks/useOnlineStatus';
+import OfflineBanner from '@/components/OfflineBanner';
+import { cacheData, getCachedData, getPendingMutationCount } from '@/lib/offline-store';
 
 interface Sailing {
   id: string;
@@ -88,7 +91,7 @@ export default function CharacterChecklistPage() {
   const [tagSearching, setTagSearching] = useState(false);
 
   // Offline state
-  const [isOnline, setIsOnline] = useState(true);
+  const isOnline = useOnlineStatus();
   const [pendingCount, setPendingCount] = useState(0);
   const [offlineMessage, setOfflineMessage] = useState<string | null>(null);
 
@@ -117,7 +120,6 @@ export default function CharacterChecklistPage() {
         }
         for (const m of (data.tagged_meetups ?? [])) {
           const arr = map.get(m.character_id) || [];
-          // Avoid duplicates (same meetup id)
           if (!arr.some(existing => existing.id === m.id)) {
             arr.push(m);
           }
@@ -125,77 +127,30 @@ export default function CharacterChecklistPage() {
         }
 
         setAllMeetups(map);
+        // Cache as serializable array of entries
+        cacheData('character-meetups', Array.from(map.entries())).catch(() => {});
       }
-    } catch { /* ignore */ } finally { setLoading(false); }
+    } catch {
+      // Offline fallback
+      const cached = await getCachedData<[string, Meetup[]][]>('character-meetups').catch(() => null);
+      if (cached) setAllMeetups(new Map(cached.data));
+    } finally { setLoading(false); }
   }, [session?.access_token]);
 
   useEffect(() => {
     if (user) fetchAllMeetups();
   }, [user, fetchAllMeetups]);
 
-  // Offline detection and queue processing
+  // Refresh pending count on mount and when online status changes
+  // (Upload processing is now handled by the app-level useOfflineSync in AuthProvider)
   useEffect(() => {
-    setIsOnline(navigator.onLine);
     getPendingCount().then(setPendingCount).catch(() => {});
-
-    const goOnline = async () => {
-      setIsOnline(true);
-      // Process pending uploads
-      if (!session?.access_token || !user) return;
-      try {
-        const pending = await getPendingUploads();
-        if (pending.length === 0) return;
-
-        const supabase = getAuthClient();
-        for (const item of pending) {
-          try {
-            let photoUrl: string | null = null;
-            if (item.file) {
-              const path = `${user.id}/${item.sailing_id}/${item.character_id}.${item.file_ext}`;
-              await supabase.storage.from('character-photos').remove([path]);
-              const { error: uploadError } = await supabase.storage
-                .from('character-photos')
-                .upload(path, item.file, { upsert: true });
-              if (uploadError) throw uploadError;
-              const { data } = supabase.storage.from('character-photos').getPublicUrl(path);
-              photoUrl = data.publicUrl;
-            }
-
-            const res = await fetch('/api/character-meetups', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${session.access_token}`,
-              },
-              body: JSON.stringify({
-                sailing_id: item.sailing_id,
-                character_id: item.character_id,
-                photo_url: photoUrl,
-                notes: item.notes,
-              }),
-            });
-            if (res.ok && item.id != null) {
-              await removePendingUpload(item.id);
-            }
-          } catch {
-            // Leave in queue for next reconnect
-          }
-        }
-        await fetchAllMeetups();
-        const count = await getPendingCount();
-        setPendingCount(count);
-      } catch { /* ignore */ }
-    };
-
-    const goOffline = () => setIsOnline(false);
-
-    window.addEventListener('online', goOnline);
-    window.addEventListener('offline', goOffline);
-    return () => {
-      window.removeEventListener('online', goOnline);
-      window.removeEventListener('offline', goOffline);
-    };
-  }, [session?.access_token, user, fetchAllMeetups]);
+    if (isOnline) {
+      // Refresh meetups after coming online (sync may have processed uploads)
+      fetchAllMeetups();
+      getPendingCount().then(setPendingCount).catch(() => {});
+    }
+  }, [isOnline, fetchAllMeetups]);
 
   // Get the default meetup for a character (for bubble display)
   const getDefaultMeetup = useCallback((characterId: string): Meetup | null => {
@@ -554,6 +509,9 @@ export default function CharacterChecklistPage() {
               </div>
             )}
           </div>
+
+          {/* Offline banner */}
+          <OfflineBanner pendingCount={pendingCount} cacheKey="character-meetups" />
 
           {/* Offline message */}
           {offlineMessage && (

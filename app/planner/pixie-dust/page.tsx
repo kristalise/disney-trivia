@@ -5,6 +5,9 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useAuth } from '@/components/AuthProvider';
 import SailingPicker from '@/components/SailingPicker';
+import { useOnlineStatus } from '@/hooks/useOnlineStatus';
+import OfflineBanner from '@/components/OfflineBanner';
+import { cacheData, getCachedData, queueMutation, getPendingMutationCount } from '@/lib/offline-store';
 
 interface Sailing {
   id: string;
@@ -64,6 +67,8 @@ function PixieDustContent() {
   const [gifts, setGifts] = useState<PixieGift[]>([]);
   const [dustedBy, setDustedBy] = useState<DustedBy[]>([]);
   const [loading, setLoading] = useState(false);
+  const isOnline = useOnlineStatus();
+  const [offlinePendingCount, setOfflinePendingCount] = useState(0);
 
   // Create group form
   const [showCreateGroup, setShowCreateGroup] = useState(false);
@@ -106,30 +111,52 @@ function PixieDustContent() {
         fetch(`/api/pixie-dust?sailing_id=${sailingId}`, { headers: authHeaders() }),
       ]);
 
-      if (groupsRes.ok) setGroups((await groupsRes.json()).groups ?? []);
-      if (giftsRes.ok) setGifts((await giftsRes.json()).gifts ?? []);
-      if (dustedRes.ok) setDustedBy((await dustedRes.json()).dusted_by ?? []);
-    } catch { /* ignore */ } finally { setLoading(false); }
+      const groupsData = groupsRes.ok ? (await groupsRes.json()).groups ?? [] : [];
+      const giftsData = giftsRes.ok ? (await giftsRes.json()).gifts ?? [] : [];
+      const dustedData = dustedRes.ok ? (await dustedRes.json()).dusted_by ?? [] : [];
+
+      setGroups(groupsData);
+      setGifts(giftsData);
+      setDustedBy(dustedData);
+      cacheData(`pixie-dust:${sailingId}`, { groups: groupsData, gifts: giftsData, dustedBy: dustedData }).catch(() => {});
+    } catch {
+      const cached = await getCachedData<{ groups: FEGroup[]; gifts: PixieGift[]; dustedBy: DustedBy[] }>(`pixie-dust:${sailingId}`).catch(() => null);
+      if (cached) {
+        setGroups(cached.data.groups);
+        setGifts(cached.data.gifts);
+        setDustedBy(cached.data.dustedBy);
+      }
+    } finally { setLoading(false); }
   }, [session?.access_token, authHeaders]);
 
   const handleCreateGroup = async () => {
     if (!selectedSailing || !newGroupName.trim() || !newGroupRoom.trim()) return;
     setCreatingGroup(true);
     try {
-      const res = await fetch('/api/fe-groups', {
-        method: 'POST',
-        headers: headers(),
-        body: JSON.stringify({
-          sailing_id: selectedSailing.id,
-          name: newGroupName,
-          stateroom_number: Number(newGroupRoom),
-        }),
-      });
-      if (res.ok) {
-        await fetchData(selectedSailing.id);
+      if (!isOnline) {
+        const tempId = crypto.randomUUID();
+        await queueMutation({ type: 'pixie-group-create', url: '/api/fe-groups', method: 'POST', body: { sailing_id: selectedSailing.id, name: newGroupName, stateroom_number: Number(newGroupRoom) } });
+        setGroups(prev => [...prev, { id: tempId, sailing_id: selectedSailing.id, name: newGroupName, invite_code: 'OFFLINE', member_count: 1, is_creator: true }]);
         setShowCreateGroup(false);
         setNewGroupName('');
         setNewGroupRoom('');
+        getPendingMutationCount().then(setOfflinePendingCount).catch(() => {});
+      } else {
+        const res = await fetch('/api/fe-groups', {
+          method: 'POST',
+          headers: headers(),
+          body: JSON.stringify({
+            sailing_id: selectedSailing.id,
+            name: newGroupName,
+            stateroom_number: Number(newGroupRoom),
+          }),
+        });
+        if (res.ok) {
+          await fetchData(selectedSailing.id);
+          setShowCreateGroup(false);
+          setNewGroupName('');
+          setNewGroupRoom('');
+        }
       }
     } catch { /* ignore */ } finally { setCreatingGroup(false); }
   };
@@ -159,20 +186,30 @@ function PixieDustContent() {
     if (!selectedSailing || !newGiftName.trim()) return;
     setCreatingGift(true);
     try {
-      const res = await fetch('/api/pixie-gifts', {
-        method: 'POST',
-        headers: headers(),
-        body: JSON.stringify({
-          sailing_id: selectedSailing.id,
-          name: newGiftName,
-          emoji: newGiftEmoji,
-        }),
-      });
-      if (res.ok) {
-        await fetchData(selectedSailing.id);
+      if (!isOnline) {
+        const tempId = crypto.randomUUID();
+        await queueMutation({ type: 'pixie-gift-create', url: '/api/pixie-gifts', method: 'POST', body: { sailing_id: selectedSailing.id, name: newGiftName, emoji: newGiftEmoji } });
+        setGifts(prev => [...prev, { id: tempId, name: newGiftName, emoji: newGiftEmoji, color: '#6366f1', recipient_count: 0, delivered_count: 0 }]);
         setShowCreateGift(false);
         setNewGiftName('');
         setNewGiftEmoji('🎁');
+        getPendingMutationCount().then(setOfflinePendingCount).catch(() => {});
+      } else {
+        const res = await fetch('/api/pixie-gifts', {
+          method: 'POST',
+          headers: headers(),
+          body: JSON.stringify({
+            sailing_id: selectedSailing.id,
+            name: newGiftName,
+            emoji: newGiftEmoji,
+          }),
+        });
+        if (res.ok) {
+          await fetchData(selectedSailing.id);
+          setShowCreateGift(false);
+          setNewGiftName('');
+          setNewGiftEmoji('🎁');
+        }
       }
     } catch { /* ignore */ } finally { setCreatingGift(false); }
   };
@@ -245,6 +282,13 @@ function PixieDustContent() {
           <p className="text-sm text-slate-500 dark:text-slate-400 mb-3">Sign in to manage pixie dusting.</p>
           <Link href="/auth" className="inline-block px-6 py-2.5 rounded-xl font-medium btn-disney">Sign In</Link>
         </div>
+      )}
+
+      {selectedSailing && (
+        <OfflineBanner
+          pendingCount={offlinePendingCount}
+          cacheKey={selectedSailing ? `pixie-dust:${selectedSailing.id}` : undefined}
+        />
       )}
 
       {loading && (

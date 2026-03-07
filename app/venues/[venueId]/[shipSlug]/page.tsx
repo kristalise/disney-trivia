@@ -7,6 +7,8 @@ import { getVenueById, getSubVenues, getCategories, shipToSlug, slugToShip, getA
 import { useAuth } from '@/components/AuthProvider';
 import SailingPicker from '@/components/SailingPicker';
 import SocialIcons from '@/components/SocialIcons';
+import { useOnlineStatus } from '@/hooks/useOnlineStatus';
+import { submitOrQueueReview } from '@/lib/offline-store';
 
 const SHORT_SHIP_NAMES: Record<string, string> = {
   'Disney Magic': 'Magic',
@@ -101,6 +103,7 @@ export default function VenueShipPage() {
   const diningTypes = getDiningTypes();
 
   const { user, session } = useAuth();
+  const isOnline = useOnlineStatus();
 
   // Review state
   const [reviews, setReviews] = useState<Review[]>([]);
@@ -203,36 +206,41 @@ export default function VenueShipPage() {
 
     setSubmitting(true);
     try {
-      const res = await fetch('/api/venue-reviews', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          ...(session?.access_token ? { Authorization: `Bearer ${session.access_token}` } : {}),
-        },
-        body: JSON.stringify({
-          ship_name: ship,
-          venue_id: venue!.id,
-          rating: formRating,
-          atmosphere_rating: formAtmosphere || undefined,
-          theming_rating: formTheming || undefined,
-          visited_with: formVisitedWith.length > 0 ? formVisitedWith : undefined,
-          review_text: formReviewText || undefined,
-          sailing_id: sailingId,
-          instagram_url: formInstagramUrl || undefined,
-          tiktok_url: formTiktokUrl || undefined,
-          youtube_url: formYoutubeUrl || undefined,
-          facebook_url: formFacebookUrl || undefined,
-          xiaohongshu_url: formXiaohongshuUrl || undefined,
-        }),
-      });
-      const data = await res.json();
-      if (!res.ok) { setSubmitError(data.error || 'Failed to submit'); return; }
-      setSubmitSuccess(true);
-      setFormRating(0); setFormAtmosphere(0); setFormTheming(0); setFormVisitedWith([]); setFormReviewText('');
-      setFormInstagramUrl(''); setFormTiktokUrl(''); setFormYoutubeUrl(''); setFormFacebookUrl(''); setFormXiaohongshuUrl('');
-      setSelectedReviewSailing('');
-      fetchReviews();
-      fetchEligibleSailings();
+      const reviewBody = {
+        ship_name: ship,
+        venue_id: venue!.id,
+        rating: formRating,
+        atmosphere_rating: formAtmosphere || undefined,
+        theming_rating: formTheming || undefined,
+        visited_with: formVisitedWith.length > 0 ? formVisitedWith : undefined,
+        review_text: formReviewText || undefined,
+        sailing_id: sailingId,
+        instagram_url: formInstagramUrl || undefined,
+        tiktok_url: formTiktokUrl || undefined,
+        youtube_url: formYoutubeUrl || undefined,
+        facebook_url: formFacebookUrl || undefined,
+        xiaohongshu_url: formXiaohongshuUrl || undefined,
+      };
+      const reviewHeaders = {
+        'Content-Type': 'application/json',
+        ...(session?.access_token ? { Authorization: `Bearer ${session.access_token}` } : {}),
+      };
+      const result = await submitOrQueueReview('/api/venue-reviews', reviewBody, reviewHeaders, isOnline);
+      if (result.error) { setSubmitError(result.error); return; }
+      if (result.queued) {
+        setSubmitSuccess(true);
+        setSubmitError('');
+        setFormRating(0); setFormAtmosphere(0); setFormTheming(0); setFormVisitedWith([]); setFormReviewText('');
+        setFormInstagramUrl(''); setFormTiktokUrl(''); setFormYoutubeUrl(''); setFormFacebookUrl(''); setFormXiaohongshuUrl('');
+        setSelectedReviewSailing('');
+      } else {
+        setSubmitSuccess(true);
+        setFormRating(0); setFormAtmosphere(0); setFormTheming(0); setFormVisitedWith([]); setFormReviewText('');
+        setFormInstagramUrl(''); setFormTiktokUrl(''); setFormYoutubeUrl(''); setFormFacebookUrl(''); setFormXiaohongshuUrl('');
+        setSelectedReviewSailing('');
+        fetchReviews();
+        fetchEligibleSailings();
+      }
     } catch { setSubmitError('Failed to submit.'); } finally { setSubmitting(false); }
   };
 
@@ -721,7 +729,7 @@ export default function VenueShipPage() {
               </div>
 
               {submitError && <div className="text-sm text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 rounded-xl px-4 py-3">{submitError}</div>}
-              {submitSuccess && <div className="text-sm text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/20 rounded-xl px-4 py-3">Review submitted!</div>}
+              {submitSuccess && <div className="text-sm text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/20 rounded-xl px-4 py-3">{isOnline ? 'Review submitted!' : 'Review saved! It will sync when you\'re back online.'}</div>}
 
               <button type="submit" disabled={submitting}
                 className="w-full px-6 py-3 rounded-xl font-medium btn-disney disabled:opacity-50 disabled:cursor-not-allowed">

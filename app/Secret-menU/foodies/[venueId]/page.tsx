@@ -8,6 +8,8 @@ import { getFoodieVenueById, getFoodieCategories, getAdventureRotation, type Foo
 import ImageCropUpload from '@/components/ImageCropUpload';
 import ShareButton from '@/components/ShareButton';
 import SocialIcons from '@/components/SocialIcons';
+import { useOnlineStatus } from '@/hooks/useOnlineStatus';
+import { submitOrQueueReview } from '@/lib/offline-store';
 
 const categories = getFoodieCategories();
 const categoryMap = Object.fromEntries(categories.map(c => [c.id, c]));
@@ -90,6 +92,7 @@ function getCastawayLevel(pastCount: number): 'none' | 'silver' | 'gold' | 'plat
 
 function VenueDetail({ venue, cat }: { venue: FoodieVenue; cat: FoodieCategory }) {
   const { user, session } = useAuth();
+  const isOnline = useOnlineStatus();
   const gradient = gradientMap[cat.color] ?? gradientMap.blue;
 
   // --- Sailing detection ---
@@ -298,25 +301,33 @@ function VenueDetail({ venue, cat }: { venue: FoodieVenue; cat: FoodieCategory }
     setFormError('');
     setFormSuccess('');
     try {
-      const res = await fetch('/api/foodie-reviews', {
-        method: 'POST',
-        headers: headers(),
-        body: JSON.stringify({
-          venue_id: venue.id,
-          sailing_id: formSailingId,
-          rating: formRating,
-          review_text: formText || undefined,
-          is_anonymous: formAnonymous,
-          companion_ids: Array.from(formCompanions),
-          photos: formPhotos.length > 0 ? formPhotos : undefined,
-          instagram_url: formInstagramUrl || undefined,
-          tiktok_url: formTiktokUrl || undefined,
-          youtube_url: formYoutubeUrl || undefined,
-          facebook_url: formFacebookUrl || undefined,
-          xiaohongshu_url: formXiaohongshuUrl || undefined,
-        }),
-      });
-      if (res.ok) {
+      const reviewBody = {
+        venue_id: venue.id,
+        sailing_id: formSailingId,
+        rating: formRating,
+        review_text: formText || undefined,
+        is_anonymous: formAnonymous,
+        companion_ids: Array.from(formCompanions),
+        photos: formPhotos.length > 0 ? formPhotos : undefined,
+        instagram_url: formInstagramUrl || undefined,
+        tiktok_url: formTiktokUrl || undefined,
+        youtube_url: formYoutubeUrl || undefined,
+        facebook_url: formFacebookUrl || undefined,
+        xiaohongshu_url: formXiaohongshuUrl || undefined,
+      };
+      const result = await submitOrQueueReview('/api/foodie-reviews', reviewBody, headers(), isOnline);
+      if (result.error) { setFormError(result.error); return; }
+      if (result.queued) {
+        setFormSuccess('Review saved! It will sync when you\'re back online.');
+        setShowReviewForm(false);
+        setFormSailingId('');
+        setFormRating(0);
+        setFormText('');
+        setFormAnonymous(false);
+        setFormCompanions(new Set());
+        setFormPhotos([]);
+        setFormInstagramUrl(''); setFormTiktokUrl(''); setFormYoutubeUrl(''); setFormFacebookUrl(''); setFormXiaohongshuUrl('');
+      } else {
         setFormSuccess('Review submitted!');
         setShowReviewForm(false);
         setFormSailingId('');
@@ -327,9 +338,6 @@ function VenueDetail({ venue, cat }: { venue: FoodieVenue; cat: FoodieCategory }
         setFormPhotos([]);
         setFormInstagramUrl(''); setFormTiktokUrl(''); setFormYoutubeUrl(''); setFormFacebookUrl(''); setFormXiaohongshuUrl('');
         fetchReviews(shipFilter || undefined);
-      } else {
-        const data = await res.json();
-        setFormError(data.error || 'Failed to submit review');
       }
     } catch {
       setFormError('Network error. Please try again.');

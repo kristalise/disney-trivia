@@ -20,7 +20,7 @@ if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
   ALLOWED_ORIGINS.push(`https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`);
 }
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   // CSRF protection: verify origin on mutating API requests
   if (
     request.nextUrl.pathname.startsWith('/api/') &&

@@ -6,6 +6,9 @@ import Image from 'next/image';
 import { useAuth } from '@/components/AuthProvider';
 import { getStudios, getAllMovies, getUpcomingMovies, isUpcoming, getPosterUrl, type Movie, type Studio } from '@/lib/movie-data';
 import { CATEGORY_COLORS } from '@/lib/guide-colors';
+import { useOnlineStatus } from '@/hooks/useOnlineStatus';
+import OfflineBanner from '@/components/OfflineBanner';
+import { cacheData, getCachedData, queueMutation, getPendingMutationCount } from '@/lib/offline-store';
 
 interface ChecklistEntry {
   id: string;
@@ -37,6 +40,8 @@ function formatReleaseDate(dateStr: string): string {
 
 export default function MovieChecklistPage() {
   const { user, session } = useAuth();
+  const isOnline = useOnlineStatus();
+  const [offlinePendingCount, setOfflinePendingCount] = useState(0);
   const [checklist, setChecklist] = useState<Map<string, ChecklistEntry>>(new Map());
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState<Set<string>>(new Set());
@@ -54,8 +59,16 @@ export default function MovieChecklistPage() {
   useEffect(() => {
     fetch('/api/movie-reviews?aggregate=1')
       .then(res => res.ok ? res.json() : null)
-      .then(data => { if (data?.ratings) setCommunityRatings(data.ratings); })
-      .catch(() => {});
+      .then(data => {
+        if (data?.ratings) {
+          setCommunityRatings(data.ratings);
+          cacheData('movie-community-ratings', data.ratings).catch(() => {});
+        }
+      })
+      .catch(async () => {
+        const cached = await getCachedData<Record<string, { avg: number; count: number }>>('movie-community-ratings').catch(() => null);
+        if (cached) setCommunityRatings(cached.data);
+      });
   }, []);
 
   // Fetch user's checklist
@@ -73,8 +86,12 @@ export default function MovieChecklistPage() {
           map.set(item.movie_id, item);
         }
         setChecklist(map);
+        cacheData('movie-checklist', Array.from(map.entries())).catch(() => {});
       }
-    } catch { /* ignore */ } finally { setLoading(false); }
+    } catch {
+      const cached = await getCachedData<[string, ChecklistEntry][]>('movie-checklist').catch(() => null);
+      if (cached) setChecklist(new Map(cached.data));
+    } finally { setLoading(false); }
   }, [session?.access_token]);
 
   useEffect(() => {
@@ -85,27 +102,46 @@ export default function MovieChecklistPage() {
   const setMovieStatus = useCallback(async (movieId: string, status: 'want_to_watch' | 'watched', rating?: number) => {
     if (!session?.access_token) return;
     setSaving(prev => new Set(prev).add(movieId));
+    const body = { movie_id: movieId, status, rating: rating ?? null };
     try {
-      const res = await fetch('/api/movie-checklist', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${session.access_token}`,
-        },
-        body: JSON.stringify({ movie_id: movieId, status, rating: rating ?? null }),
-      });
-      if (res.ok) {
-        const data = await res.json();
+      if (!isOnline) {
+        await queueMutation({ type: 'movie-status', url: '/api/movie-checklist', method: 'POST', body });
         setChecklist(prev => {
           const next = new Map(prev);
-          next.set(movieId, data.item);
+          next.set(movieId, { id: `offline-${movieId}`, movie_id: movieId, status, rating: rating ?? null });
           return next;
         });
+        getPendingMutationCount().then(setOfflinePendingCount).catch(() => {});
+      } else {
+        const res = await fetch('/api/movie-checklist', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${session.access_token}`,
+          },
+          body: JSON.stringify(body),
+        });
+        if (res.ok) {
+          const data = await res.json();
+          setChecklist(prev => {
+            const next = new Map(prev);
+            next.set(movieId, data.item);
+            return next;
+          });
+        }
       }
-    } catch { /* ignore */ } finally {
+    } catch {
+      await queueMutation({ type: 'movie-status', url: '/api/movie-checklist', method: 'POST', body }).catch(() => {});
+      setChecklist(prev => {
+        const next = new Map(prev);
+        next.set(movieId, { id: `offline-${movieId}`, movie_id: movieId, status, rating: rating ?? null });
+        return next;
+      });
+      getPendingMutationCount().then(setOfflinePendingCount).catch(() => {});
+    } finally {
       setSaving(prev => { const next = new Set(prev); next.delete(movieId); return next; });
     }
-  }, [session?.access_token]);
+  }, [session?.access_token, isOnline]);
 
   // Set rating on a watched movie
   const setMovieRating = useCallback(async (movieId: string, rating: number) => {
@@ -399,6 +435,9 @@ export default function MovieChecklistPage() {
           </button>
         </div>
       </div>
+
+      {/* Offline Banner */}
+      <OfflineBanner pendingCount={offlinePendingCount} cacheKey="movie-checklist" />
 
       {/* Progress card (auth only) */}
       {user && !loading && (

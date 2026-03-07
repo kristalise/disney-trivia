@@ -9,6 +9,8 @@ import diningData from '@/data/dining-data.json';
 import activityData from '@/data/activity-data.json';
 import { getVenueData, getVenueById } from '@/lib/unified-data';
 import { lookupStateroomInfo } from '@/lib/stateroom-utils';
+import { useOnlineStatus } from '@/hooks/useOnlineStatus';
+import { submitOrQueueReview } from '@/lib/offline-store';
 
 const venueData = getVenueData();
 
@@ -98,6 +100,7 @@ export default function SailingReviewHub() {
   const router = useRouter();
   const sailingId = params.id as string;
   const { user, session } = useAuth();
+  const isOnline = useOnlineStatus();
 
   const [sailing, setSailing] = useState<Sailing | null>(null);
   const [loading, setLoading] = useState(true);
@@ -340,11 +343,14 @@ export default function SailingReviewHub() {
         };
       }
 
-      const res = await fetch(endpoint, { method: 'POST', headers: headers(), body: JSON.stringify(body) });
-      const data = await res.json();
-      if (!res.ok) { setFormError(data.error || 'Failed to submit.'); return; }
-      setExpandedForm(null);
-      fetchExistingReviews();
+      const result = await submitOrQueueReview(endpoint, body, headers(), isOnline);
+      if (result.error) { setFormError(result.error); return; }
+      if (result.queued) {
+        setExpandedForm(null);
+      } else {
+        setExpandedForm(null);
+        fetchExistingReviews();
+      }
     } catch { setFormError('Failed to submit.'); } finally { setFormSaving(false); }
   };
 
@@ -456,7 +462,7 @@ export default function SailingReviewHub() {
         <div className="flex gap-2">
           <button type="button" onClick={handleSubmitReview} disabled={formSaving}
             className="w-full px-4 py-2.5 rounded-xl text-sm font-medium btn-disney disabled:opacity-50">
-            {formSaving ? 'Saving...' : 'Submit Review'}
+            {formSaving ? 'Saving...' : !isOnline ? 'Save Review (Offline)' : 'Submit Review'}
           </button>
           <button type="button" onClick={() => setExpandedForm(null)}
             className="px-4 py-2.5 rounded-xl text-sm font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 flex-shrink-0">

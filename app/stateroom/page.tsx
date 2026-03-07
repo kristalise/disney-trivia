@@ -5,6 +5,8 @@ import Link from 'next/link';
 import stateroomData from '@/data/stateroom-data.json';
 import { getDeckFromRoomNumber } from '@/lib/deck-plan-utils';
 import { useAuth } from '@/components/AuthProvider';
+import { useOnlineStatus } from '@/hooks/useOnlineStatus';
+import { submitOrQueueReview } from '@/lib/offline-store';
 
 const SHIPS = [
   'Disney Magic',
@@ -180,6 +182,7 @@ function Stepper({ label, sublabel, value, onChange, min = 0, max = 20 }: {
 
 export default function StateroomPage() {
   const { user, session } = useAuth();
+  const isOnline = useOnlineStatus();
   const [selectedShip, setSelectedShip] = useState<ShipName | ''>('');
   const [stateroomInput, setStateroomInput] = useState('');
   const [searched, setSearched] = useState(false);
@@ -284,58 +287,72 @@ export default function StateroomPage() {
 
     setSubmitting(true);
     try {
-      const res = await fetch('/api/stateroom-reviews', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          ...(session?.access_token
-            ? { Authorization: `Bearer ${session.access_token}` }
-            : {}),
-        },
-        body: JSON.stringify({
-          ship_name: selectedShip,
-          stateroom_number: parseInt(stateroomInput, 10),
-          sail_start_date: sailStartDate,
-          sail_end_date: sailEndDate,
-          stateroom_rating: stateroomRating,
-          sailing_rating: sailingRating,
-          num_passengers: adults + children + infants,
-          adults,
-          children,
-          infants,
-          occasions: occasions.length > 0 ? occasions : undefined,
-          boarding_port: boardingPort,
-          ports_of_call: portsOfCall || undefined,
-          departure_port: departurePort,
-          purchased_from: purchasedFrom || undefined,
-          price_paid: pricePaid ? parseFloat(pricePaid) : undefined,
-          review_text: reviewText || undefined,
-        }),
-      });
+      const reviewBody = {
+        ship_name: selectedShip,
+        stateroom_number: parseInt(stateroomInput, 10),
+        sail_start_date: sailStartDate,
+        sail_end_date: sailEndDate,
+        stateroom_rating: stateroomRating,
+        sailing_rating: sailingRating,
+        num_passengers: adults + children + infants,
+        adults,
+        children,
+        infants,
+        occasions: occasions.length > 0 ? occasions : undefined,
+        boarding_port: boardingPort,
+        ports_of_call: portsOfCall || undefined,
+        departure_port: departurePort,
+        purchased_from: purchasedFrom || undefined,
+        price_paid: pricePaid ? parseFloat(pricePaid) : undefined,
+        review_text: reviewText || undefined,
+      };
+      const reviewHeaders = {
+        'Content-Type': 'application/json',
+        ...(session?.access_token
+          ? { Authorization: `Bearer ${session.access_token}` }
+          : {}),
+      };
+      const result = await submitOrQueueReview('/api/stateroom-reviews', reviewBody, reviewHeaders, isOnline);
 
-      const data = await res.json();
-
-      if (!res.ok) {
-        setSubmitError(data.error || 'Failed to submit review');
+      if (result.error) {
+        setSubmitError(result.error);
         return;
       }
 
-      setSubmitSuccess(true);
-      setSailStartDate('');
-      setSailEndDate('');
-      setAdults(0);
-      setChildren(0);
-      setInfants(0);
-      setOccasions([]);
-      setBoardingPort('');
-      setPortsOfCall('');
-      setDeparturePort('');
-      setPurchasedFrom('');
-      setPricePaid('');
-      setStateroomRating(0);
-      setSailingRating(0);
-      setReviewText('');
-      fetchReviews();
+      if (result.queued) {
+        setSubmitSuccess(true);
+        setSailStartDate('');
+        setSailEndDate('');
+        setAdults(0);
+        setChildren(0);
+        setInfants(0);
+        setOccasions([]);
+        setBoardingPort('');
+        setPortsOfCall('');
+        setDeparturePort('');
+        setPurchasedFrom('');
+        setPricePaid('');
+        setStateroomRating(0);
+        setSailingRating(0);
+        setReviewText('');
+      } else {
+        setSubmitSuccess(true);
+        setSailStartDate('');
+        setSailEndDate('');
+        setAdults(0);
+        setChildren(0);
+        setInfants(0);
+        setOccasions([]);
+        setBoardingPort('');
+        setPortsOfCall('');
+        setDeparturePort('');
+        setPurchasedFrom('');
+        setPricePaid('');
+        setStateroomRating(0);
+        setSailingRating(0);
+        setReviewText('');
+        fetchReviews();
+      }
     } catch {
       setSubmitError('Failed to submit review. Please try again.');
     } finally {
@@ -780,7 +797,7 @@ export default function StateroomPage() {
 
                 {submitSuccess && (
                   <div className="text-sm text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/20 rounded-xl px-4 py-3">
-                    Review submitted successfully!
+                    {isOnline ? 'Review submitted successfully!' : 'Review saved! It will sync when you\'re back online.'}
                   </div>
                 )}
 

@@ -7,6 +7,9 @@ import { useAuth } from '@/components/AuthProvider';
 import RoomNumberParser from '@/components/RoomNumberParser';
 import DeliveryRoute from '@/components/DeliveryRoute';
 import { getDeck, getSide } from '@/lib/stateroom-utils';
+import { useOnlineStatus } from '@/hooks/useOnlineStatus';
+import OfflineBanner from '@/components/OfflineBanner';
+import { cacheData, getCachedData, queueMutation, getPendingMutationCount } from '@/lib/offline-store';
 
 interface PixieGift {
   id: string;
@@ -50,6 +53,9 @@ export default function GiftDetailPage() {
   const [loading, setLoading] = useState(true);
   const [togglingId, setTogglingId] = useState<string | null>(null);
   const [deletingId, setDeletingId] = useState<string | null>(null);
+
+  const isOnline = useOnlineStatus();
+  const [offlinePendingCount, setOfflinePendingCount] = useState(0);
 
   // Add modes
   const [addMode, setAddMode] = useState<'none' | 'manual' | 'paste' | 'group'>('none');
@@ -111,8 +117,16 @@ export default function GiftDetailPage() {
           const data = await recipRes.json();
           setRecipients(data.recipients ?? []);
           if (data.gift) setGift(data.gift);
+          cacheData(`pixie-gift:${giftId}`, { gift: data.gift, recipients: data.recipients }).catch(() => {});
         }
-      } catch { /* ignore */ } finally { setLoading(false); }
+      } catch {
+        const cached = await getCachedData(`pixie-gift:${giftId}`).catch(() => null);
+        if (cached) {
+          const d = cached.data as { gift?: typeof gift; recipients?: typeof recipients };
+          setRecipients(d.recipients ?? []);
+          if (d.gift) setGift(d.gift);
+        }
+      } finally { setLoading(false); }
     };
 
     load();
@@ -132,60 +146,105 @@ export default function GiftDetailPage() {
     if (!room || room < 1000) return;
     setAddingManual(true);
     try {
-      const res = await fetch('/api/pixie-gifts/recipients', {
-        method: 'POST',
-        headers: headers(),
-        body: JSON.stringify({ gift_id: giftId, stateroom_numbers: [room] }),
-      });
-      if (res.ok) {
-        await fetchRecipients();
+      if (!isOnline) {
+        await queueMutation({ type: 'pixie-delivery', url: '/api/pixie-gifts/recipients', method: 'POST', body: { gift_id: giftId, stateroom_numbers: [room] } });
+        setRecipients(prev => [...prev, {
+          id: `offline-${Date.now()}`,
+          stateroom_number: room,
+          delivered: false,
+          delivered_at: null,
+          recipient_name: null,
+          notes: null,
+        }]);
         setManualRoom('');
+        getPendingMutationCount().then(setOfflinePendingCount).catch(() => {});
+      } else {
+        const res = await fetch('/api/pixie-gifts/recipients', {
+          method: 'POST',
+          headers: headers(),
+          body: JSON.stringify({ gift_id: giftId, stateroom_numbers: [room] }),
+        });
+        if (res.ok) {
+          await fetchRecipients();
+          setManualRoom('');
+        }
       }
     } catch { /* ignore */ } finally { setAddingManual(false); }
   };
 
   const handleAddParsed = async (rooms: number[]) => {
     try {
-      const res = await fetch('/api/pixie-gifts/recipients', {
-        method: 'POST',
-        headers: headers(),
-        body: JSON.stringify({ gift_id: giftId, stateroom_numbers: rooms }),
-      });
-      if (res.ok) {
-        await fetchRecipients();
+      if (!isOnline) {
+        await queueMutation({ type: 'pixie-delivery', url: '/api/pixie-gifts/recipients', method: 'POST', body: { gift_id: giftId, stateroom_numbers: rooms } });
+        setRecipients(prev => [...prev, ...rooms.map((room, i) => ({
+          id: `offline-${Date.now()}-${i}`,
+          stateroom_number: room,
+          delivered: false,
+          delivered_at: null,
+          recipient_name: null,
+          notes: null,
+        }))]);
         setAddMode('none');
+        getPendingMutationCount().then(setOfflinePendingCount).catch(() => {});
+      } else {
+        const res = await fetch('/api/pixie-gifts/recipients', {
+          method: 'POST',
+          headers: headers(),
+          body: JSON.stringify({ gift_id: giftId, stateroom_numbers: rooms }),
+        });
+        if (res.ok) {
+          await fetchRecipients();
+          setAddMode('none');
+        }
       }
     } catch { /* ignore */ }
   };
 
   const handleImportFromGroup = async (groupId: string) => {
     try {
-      const res = await fetch('/api/pixie-gifts/recipients', {
-        method: 'POST',
-        headers: headers(),
-        body: JSON.stringify({ gift_id: giftId, from_group: groupId }),
-      });
-      if (res.ok) {
-        await fetchRecipients();
+      if (!isOnline) {
+        await queueMutation({ type: 'pixie-delivery', url: '/api/pixie-gifts/recipients', method: 'POST', body: { gift_id: giftId, from_group: groupId } });
         setAddMode('none');
+        getPendingMutationCount().then(setOfflinePendingCount).catch(() => {});
+      } else {
+        const res = await fetch('/api/pixie-gifts/recipients', {
+          method: 'POST',
+          headers: headers(),
+          body: JSON.stringify({ gift_id: giftId, from_group: groupId }),
+        });
+        if (res.ok) {
+          await fetchRecipients();
+          setAddMode('none');
+        }
       }
     } catch { /* ignore */ }
   };
 
   const handleToggleDelivery = async (recipientId: string, currentDelivered: boolean) => {
     setTogglingId(recipientId);
+    const newValue = !currentDelivered;
     try {
-      const res = await fetch('/api/pixie-gifts/recipients', {
-        method: 'PATCH',
-        headers: headers(),
-        body: JSON.stringify({ id: recipientId, delivered: !currentDelivered }),
-      });
-      if (res.ok) {
+      if (!isOnline) {
+        await queueMutation({ type: 'pixie-delivery', url: '/api/pixie-gifts/recipients', method: 'PATCH', body: { id: recipientId, delivered: newValue } });
         setRecipients(prev => prev.map(r =>
           r.id === recipientId
-            ? { ...r, delivered: !r.delivered, delivered_at: !r.delivered ? new Date().toISOString() : null }
+            ? { ...r, delivered: newValue, delivered_at: newValue ? new Date().toISOString() : null }
             : r
         ));
+        getPendingMutationCount().then(setOfflinePendingCount).catch(() => {});
+      } else {
+        const res = await fetch('/api/pixie-gifts/recipients', {
+          method: 'PATCH',
+          headers: headers(),
+          body: JSON.stringify({ id: recipientId, delivered: newValue }),
+        });
+        if (res.ok) {
+          setRecipients(prev => prev.map(r =>
+            r.id === recipientId
+              ? { ...r, delivered: newValue, delivered_at: newValue ? new Date().toISOString() : null }
+              : r
+          ));
+        }
       }
     } catch { /* ignore */ } finally { setTogglingId(null); }
   };
@@ -220,15 +279,23 @@ export default function GiftDetailPage() {
   const handleSaveField = async (recipientId: string, field: 'recipient_name' | 'notes', value: string) => {
     setSavingFieldId(recipientId);
     try {
-      const res = await fetch('/api/pixie-gifts/recipients', {
-        method: 'PATCH',
-        headers: headers(),
-        body: JSON.stringify({ id: recipientId, [field]: value || null }),
-      });
-      if (res.ok) {
+      if (!isOnline) {
+        await queueMutation({ type: 'pixie-delivery', url: '/api/pixie-gifts/recipients', method: 'PATCH', body: { id: recipientId, [field]: value || null } });
         setRecipients(prev => prev.map(r =>
           r.id === recipientId ? { ...r, [field]: value || null } : r
         ));
+        getPendingMutationCount().then(setOfflinePendingCount).catch(() => {});
+      } else {
+        const res = await fetch('/api/pixie-gifts/recipients', {
+          method: 'PATCH',
+          headers: headers(),
+          body: JSON.stringify({ id: recipientId, [field]: value || null }),
+        });
+        if (res.ok) {
+          setRecipients(prev => prev.map(r =>
+            r.id === recipientId ? { ...r, [field]: value || null } : r
+          ));
+        }
       }
     } catch { /* ignore */ } finally {
       setSavingFieldId(null);
@@ -304,6 +371,8 @@ export default function GiftDetailPage() {
           Manage rooms and track deliveries for this gift.
         </p>
       </div>
+
+      <OfflineBanner pendingCount={offlinePendingCount} cacheKey={`pixie-gift:${giftId}`} />
 
       {loading ? (
         <div className="text-center py-12">

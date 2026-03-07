@@ -3,6 +3,8 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/components/AuthProvider';
+import { fetchWithTimeout } from '@/lib/fetch-utils';
+import { cacheData, getCachedData } from '@/lib/offline-store';
 
 interface Sailing {
   id: string;
@@ -32,30 +34,46 @@ export default function SailingPicker({ onSelect, selectedSailingId, hidePast }:
   const [sailings, setSailings] = useState<Sailing[]>([]);
   const [loading, setLoading] = useState(false);
   const [selected, setSelected] = useState<Sailing | null>(null);
+  const [fromCache, setFromCache] = useState(false);
   const onSelectRef = useRef(onSelect);
   onSelectRef.current = onSelect;
+
+  const applySailings = useCallback((list: Sailing[]) => {
+    setSailings(list);
+    if (selectedSailingId) {
+      const match = list.find((s: Sailing) => s.id === selectedSailingId);
+      if (match) {
+        setSelected(match);
+        onSelectRef.current(match);
+      }
+    }
+  }, [selectedSailingId]);
 
   const fetchSailings = useCallback(async () => {
     if (!session?.access_token) return;
     setLoading(true);
+    setFromCache(false);
     try {
-      const res = await fetch('/api/sailing-reviews/mine', {
+      const res = await fetchWithTimeout('/api/sailing-reviews/mine', {
         headers: { Authorization: `Bearer ${session.access_token}` },
       });
       if (res.ok) {
         const data = await res.json();
-        setSailings(data.sailings ?? []);
-        // Auto-select if selectedSailingId is provided
-        if (selectedSailingId) {
-          const match = (data.sailings ?? []).find((s: Sailing) => s.id === selectedSailingId);
-          if (match) {
-            setSelected(match);
-            onSelectRef.current(match);
-          }
-        }
+        const list = data.sailings ?? [];
+        applySailings(list);
+        await cacheData('user-sailings', list);
       }
-    } catch { /* supplemental */ } finally { setLoading(false); }
-  }, [session?.access_token, selectedSailingId]);
+    } catch {
+      // Network error or timeout — try IndexedDB cache
+      try {
+        const cached = await getCachedData<Sailing[]>('user-sailings');
+        if (cached) {
+          applySailings(cached.data);
+          setFromCache(true);
+        }
+      } catch { /* no cache available */ }
+    } finally { setLoading(false); }
+  }, [session?.access_token, applySailings]);
 
   useEffect(() => {
     if (user) fetchSailings();
@@ -166,7 +184,9 @@ export default function SailingPicker({ onSelect, selectedSailingId, hidePast }:
         </select>
       ) : (
         <div className="text-center py-3">
-          <p className="text-sm text-slate-500 dark:text-slate-400 mb-2">No sailings logged yet.</p>
+          <p className="text-sm text-slate-500 dark:text-slate-400 mb-2">
+            {fromCache ? 'Sailings unavailable offline' : 'No sailings logged yet.'}
+          </p>
         </div>
       )}
 

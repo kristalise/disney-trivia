@@ -4,6 +4,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import { User, Session } from '@supabase/supabase-js';
 import { getAuthClient } from '@/lib/auth';
 import { syncLocalProgressToCloud } from '@/lib/progress';
+import { useOfflineSync } from '@/hooks/useOfflineSync';
 
 interface AuthContextType {
   user: User | null;
@@ -59,6 +60,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setUser(null);
     setSession(null);
   };
+
+  // Mount offline sync - processes queued mutations/uploads when coming back online
+  useOfflineSync(session?.access_token, user?.id);
 
   return (
     <AuthContext.Provider value={{ user, session, loading, signOut: handleSignOut }}>

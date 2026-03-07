@@ -7,6 +7,8 @@ import sailingData from '@/data/sailing-data.json';
 import { isValidStateroomForShip, lookupStateroomInfo, getMaxOccupancy, TYPE_EMOJI } from '@/lib/stateroom-utils';
 import { getCastawayLevel, type CastawayInfo } from '@/lib/castaway-levels';
 import CastawayLevelUp from '@/components/CastawayLevelUp';
+import { useOnlineStatus } from '@/hooks/useOnlineStatus';
+import { submitOrQueueReview } from '@/lib/offline-store';
 
 const SHIPS = [
   'Disney Magic', 'Disney Wonder', 'Disney Dream', 'Disney Fantasy',
@@ -145,6 +147,7 @@ function Stepper({ label, sublabel, value, onChange, min = 0, max = 20 }: {
 
 export default function SailingReviewPage() {
   const { user, session } = useAuth();
+  const isOnline = useOnlineStatus();
 
   // Form state
   const [selectedShip, setSelectedShip] = useState<ShipName | ''>('');
@@ -344,76 +347,93 @@ export default function SailingReviewPage() {
         }
       }
 
-      const res = await fetch('/api/sailing-reviews', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          ...(session?.access_token ? { Authorization: `Bearer ${session.access_token}` } : {}),
-        },
-        body: JSON.stringify({
-          ship_name: selectedShip, sail_start_date: sailStartDate, sail_end_date: sailEndDate,
-          itinerary_name: itinLabel, embarkation_port: embarkationPort,
-          disembarkation_port: disembarkationPort || undefined,
-          ports_of_call: portsStr,
-          stateroom_numbers: stateroomNumbers.length > 0 ? stateroomNumbers.map(Number) : undefined,
-          adults: submitAdults || undefined,
-          children: submitChildren || undefined,
-          infants: submitInfants || undefined,
-          occasions: occasions.length > 0 ? occasions : undefined,
-          purchased_from: purchasedFrom || undefined,
-          total_cost: totalCost ? parseFloat(totalCost) : undefined,
-        }),
-      });
-      const data = await res.json();
-      if (!res.ok) { setSubmitError(data.error || 'Failed to submit'); setSubmitting(false); return; }
+      const reviewBody = {
+        ship_name: selectedShip, sail_start_date: sailStartDate, sail_end_date: sailEndDate,
+        itinerary_name: itinLabel, embarkation_port: embarkationPort,
+        disembarkation_port: disembarkationPort || undefined,
+        ports_of_call: portsStr,
+        stateroom_numbers: stateroomNumbers.length > 0 ? stateroomNumbers.map(Number) : undefined,
+        adults: submitAdults || undefined,
+        children: submitChildren || undefined,
+        infants: submitInfants || undefined,
+        occasions: occasions.length > 0 ? occasions : undefined,
+        purchased_from: purchasedFrom || undefined,
+        total_cost: totalCost ? parseFloat(totalCost) : undefined,
+      };
+      const reviewHeaders = {
+        'Content-Type': 'application/json',
+        ...(session?.access_token ? { Authorization: `Bearer ${session.access_token}` } : {}),
+      };
+      const result = await submitOrQueueReview('/api/sailing-reviews', reviewBody, reviewHeaders, isOnline);
 
-      // Detect Castaway Club level-up
-      const todayMid = new Date();
-      todayMid.setHours(0, 0, 0, 0);
-      const oldPastCount = mySailings.filter(s => new Date(s.sail_end_date + 'T23:59:59') < todayMid).length;
-      const newSailingEndDate = new Date(sailEndDate + 'T23:59:59');
-      const newPastCount = oldPastCount + (newSailingEndDate < todayMid ? 1 : 0);
-      const oldLevel = getCastawayLevel(oldPastCount);
-      const newLevel = getCastawayLevel(newPastCount);
-
-      setSubmitSuccess(true);
-      setSubmitSuccessMsg('Sailing logged!');
-      const newSailingId = data.review?.id || null;
-
-      // Save companions and invites
-      if (newSailingId && session?.access_token) {
-        const headers = { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` };
-        await Promise.all([
-          ...selectedCompanions.map(c =>
-            fetch('/api/sailing-companions', { method: 'POST', headers, body: JSON.stringify({ sailing_id: newSailingId, companion_id: c.id }) }).catch(() => {})
-          ),
-          ...pendingInvites.map(email =>
-            fetch('/api/sailing-invites', { method: 'POST', headers, body: JSON.stringify({ sailing_id: newSailingId, email }) }).catch(() => {})
-          ),
-        ]);
+      if (result.error) {
+        setSubmitError(result.error);
+        return;
       }
 
-      // Show level-up celebration and update profile if level changed
-      if (newLevel.level !== 'none' && newLevel.level !== oldLevel.level) {
-        setLevelUpInfo(newLevel);
-        if (user) {
-          fetch(`/api/profiles/${user.id}`, {
-            method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ dcl_membership: `${newLevel.label} Castaway` }),
-          }).catch(() => {});
+      if (result.queued) {
+        // Queued offline - don't try to navigate or save companions since we have no real ID
+        setSubmitSuccess(true);
+        setSubmitSuccessMsg('Sailing saved! It will sync when you\'re back online.');
+        // Reset form
+        setSelectedShip(''); setSailStartDate(''); setSailEndDate(''); setItineraryName('');
+        setEmbarkationPort(''); setDisembarkationPort(''); setSelectedPorts([]);
+        setOpenItineraryName(''); setOpenPortsOfCall(''); setIsOpenSailing(false);
+        setStateroomNumbers([]); setStateroomInput(''); setStateroomError(''); setRoomPax({});
+        setNumAdults(0); setNumChildren(0); setNumInfants(0);
+        setTotalCost(''); setOccasions([]); setPurchasedFrom('');
+        setSelectedCompanions([]); setPendingInvites([]); setCompanionSearch(''); setInviteEmail('');
+      } else {
+        const data = result.response as { review?: { id: string } } | undefined;
+
+        // Detect Castaway Club level-up
+        const todayMid = new Date();
+        todayMid.setHours(0, 0, 0, 0);
+        const oldPastCount = mySailings.filter(s => new Date(s.sail_end_date + 'T23:59:59') < todayMid).length;
+        const newSailingEndDate = new Date(sailEndDate + 'T23:59:59');
+        const newPastCount = oldPastCount + (newSailingEndDate < todayMid ? 1 : 0);
+        const oldLevel = getCastawayLevel(oldPastCount);
+        const newLevel = getCastawayLevel(newPastCount);
+
+        setSubmitSuccess(true);
+        setSubmitSuccessMsg('Sailing logged!');
+        const newSailingId = data?.review?.id || null;
+
+        // Save companions and invites
+        if (newSailingId && session?.access_token) {
+          const companionHeaders = { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` };
+          await Promise.all([
+            ...selectedCompanions.map(c =>
+              fetch('/api/sailing-companions', { method: 'POST', headers: companionHeaders, body: JSON.stringify({ sailing_id: newSailingId, companion_id: c.id }) }).catch(() => {})
+            ),
+            ...pendingInvites.map(email =>
+              fetch('/api/sailing-invites', { method: 'POST', headers: companionHeaders, body: JSON.stringify({ sailing_id: newSailingId, email }) }).catch(() => {})
+            ),
+          ]);
         }
-      }
 
-      // Reset form
-      setSelectedShip(''); setSailStartDate(''); setSailEndDate(''); setItineraryName('');
-      setEmbarkationPort(''); setDisembarkationPort(''); setSelectedPorts([]);
-      setOpenItineraryName(''); setOpenPortsOfCall(''); setIsOpenSailing(false);
-      setStateroomNumbers([]); setStateroomInput(''); setStateroomError(''); setRoomPax({});
-      setNumAdults(0); setNumChildren(0); setNumInfants(0);
-      setTotalCost(''); setOccasions([]); setPurchasedFrom('');
-      setSelectedCompanions([]); setPendingInvites([]); setCompanionSearch(''); setInviteEmail('');
-      fetchMySailings();
+        // Show level-up celebration and update profile if level changed
+        if (newLevel.level !== 'none' && newLevel.level !== oldLevel.level) {
+          setLevelUpInfo(newLevel);
+          if (user) {
+            fetch(`/api/profiles/${user.id}`, {
+              method: 'PATCH',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ dcl_membership: `${newLevel.label} Castaway` }),
+            }).catch(() => {});
+          }
+        }
+
+        // Reset form
+        setSelectedShip(''); setSailStartDate(''); setSailEndDate(''); setItineraryName('');
+        setEmbarkationPort(''); setDisembarkationPort(''); setSelectedPorts([]);
+        setOpenItineraryName(''); setOpenPortsOfCall(''); setIsOpenSailing(false);
+        setStateroomNumbers([]); setStateroomInput(''); setStateroomError(''); setRoomPax({});
+        setNumAdults(0); setNumChildren(0); setNumInfants(0);
+        setTotalCost(''); setOccasions([]); setPurchasedFrom('');
+        setSelectedCompanions([]); setPendingInvites([]); setCompanionSearch(''); setInviteEmail('');
+        fetchMySailings();
+      }
     } catch { setSubmitError('Failed to submit. Please try again.'); } finally { setSubmitting(false); }
   };
 

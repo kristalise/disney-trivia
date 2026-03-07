@@ -6,6 +6,9 @@ import Link from 'next/link';
 import { useAuth } from '@/components/AuthProvider';
 import DeliveryRoute from '@/components/DeliveryRoute';
 import { getDeck, getSide } from '@/lib/stateroom-utils';
+import { useOnlineStatus } from '@/hooks/useOnlineStatus';
+import OfflineBanner from '@/components/OfflineBanner';
+import { cacheData, getCachedData, queueMutation, getPendingMutationCount } from '@/lib/offline-store';
 
 const GIFT_PALETTE = [
   '#8B5CF6', // violet
@@ -67,6 +70,9 @@ function JointDustContent() {
   const [loading, setLoading] = useState(true);
   const [togglingId, setTogglingId] = useState<string | null>(null);
   const [filterDeck, setFilterDeck] = useState<number | null>(null);
+
+  const isOnline = useOnlineStatus();
+  const [offlinePendingCount, setOfflinePendingCount] = useState(0);
 
   // Route
   const [route, setRoute] = useState<RouteStop[] | null>(null);
@@ -136,32 +142,78 @@ function JointDustContent() {
         }
       }
       setRooms(roomMap);
-    } catch { /* ignore */ } finally { setLoading(false); }
+
+      // Cache data for offline use
+      const cachePayload = {
+        gifts: giftList,
+        rooms: Array.from(roomMap.entries()),
+      };
+      cacheData(`joint-dust:${sailingId}`, cachePayload).catch(() => {});
+    } catch {
+      // Fallback to cached data when offline/error
+      try {
+        const cached = await getCachedData(`joint-dust:${sailingId}`);
+        if (cached) {
+          const d = cached.data as { gifts?: GiftInfo[]; rooms?: [number, GiftRecipient[]][] };
+          setGifts(d.gifts ?? []);
+          setRooms(new Map(d.rooms ?? []));
+        }
+      } catch { /* ignore cache miss */ }
+    } finally { setLoading(false); }
   }, [session?.access_token, sailingId, authHeaders]);
 
   useEffect(() => { fetchAll(); }, [fetchAll]);
 
+  const updateRoomsOptimistically = (recipientId: string, stateroom: number, newDelivered: boolean) => {
+    setRooms(prev => {
+      const next = new Map(prev);
+      const roomGifts = [...(next.get(stateroom) ?? [])];
+      const idx = roomGifts.findIndex(g => g.recipientId === recipientId);
+      if (idx !== -1) {
+        roomGifts[idx] = { ...roomGifts[idx], delivered: newDelivered };
+        next.set(stateroom, roomGifts);
+      }
+      return next;
+    });
+  };
+
   const handleToggleDelivery = async (recipientId: string, giftId: string, stateroom: number, currentDelivered: boolean) => {
+    const newValue = !currentDelivered;
     setTogglingId(recipientId);
+
+    if (!isOnline) {
+      // Queue mutation for when back online
+      await queueMutation({ type: 'pixie-delivery', url: '/api/pixie-gifts/recipients', method: 'PATCH', body: { id: recipientId, delivered: newValue } });
+      updateRoomsOptimistically(recipientId, stateroom, newValue);
+      getPendingMutationCount().then(setOfflinePendingCount).catch(() => {});
+      setTogglingId(null);
+      return;
+    }
+
     try {
       const res = await fetch('/api/pixie-gifts/recipients', {
         method: 'PATCH',
         headers: headers(),
-        body: JSON.stringify({ id: recipientId, delivered: !currentDelivered }),
+        body: JSON.stringify({ id: recipientId, delivered: newValue }),
       });
       if (res.ok) {
-        setRooms(prev => {
-          const next = new Map(prev);
-          const roomGifts = [...(next.get(stateroom) ?? [])];
-          const idx = roomGifts.findIndex(g => g.recipientId === recipientId);
-          if (idx !== -1) {
-            roomGifts[idx] = { ...roomGifts[idx], delivered: !currentDelivered };
-            next.set(stateroom, roomGifts);
-          }
-          return next;
-        });
+        updateRoomsOptimistically(recipientId, stateroom, newValue);
       }
-    } catch { /* ignore */ } finally { setTogglingId(null); }
+    } catch {
+      // Network error — queue for later
+      await queueMutation({ type: 'pixie-delivery', url: '/api/pixie-gifts/recipients', method: 'PATCH', body: { id: recipientId, delivered: newValue } });
+      updateRoomsOptimistically(recipientId, stateroom, newValue);
+      getPendingMutationCount().then(setOfflinePendingCount).catch(() => {});
+    } finally { setTogglingId(null); }
+  };
+
+  const updateRoomFieldOptimistically = (stateroom: number, field: 'recipient_name' | 'notes', value: string) => {
+    setRooms(prev => {
+      const next = new Map(prev);
+      const updated = (next.get(stateroom) ?? []).map(gr => ({ ...gr, [field]: value || null }));
+      next.set(stateroom, updated);
+      return next;
+    });
   };
 
   const handleSaveField = async (stateroom: number, field: 'recipient_name' | 'notes', value: string) => {
@@ -169,6 +221,19 @@ function JointDustContent() {
     const roomGifts = rooms.get(stateroom);
     if (!roomGifts) return;
     setSavingRoom(stateroom);
+
+    if (!isOnline) {
+      // Queue each recipient update for when back online
+      for (const gr of roomGifts) {
+        await queueMutation({ type: 'pixie-delivery', url: '/api/pixie-gifts/recipients', method: 'PATCH', body: { id: gr.recipientId, [field]: value || null } });
+      }
+      updateRoomFieldOptimistically(stateroom, field, value);
+      getPendingMutationCount().then(setOfflinePendingCount).catch(() => {});
+      setSavingRoom(null);
+      setEditingField(null);
+      return;
+    }
+
     try {
       // Update all recipients for this stateroom in parallel
       await Promise.all(roomGifts.map(gr =>
@@ -179,13 +244,15 @@ function JointDustContent() {
         })
       ));
       // Update local state
-      setRooms(prev => {
-        const next = new Map(prev);
-        const updated = (next.get(stateroom) ?? []).map(gr => ({ ...gr, [field]: value || null }));
-        next.set(stateroom, updated);
-        return next;
-      });
-    } catch { /* ignore */ } finally {
+      updateRoomFieldOptimistically(stateroom, field, value);
+    } catch {
+      // Network error — queue for later
+      for (const gr of roomGifts) {
+        await queueMutation({ type: 'pixie-delivery', url: '/api/pixie-gifts/recipients', method: 'PATCH', body: { id: gr.recipientId, [field]: value || null } });
+      }
+      updateRoomFieldOptimistically(stateroom, field, value);
+      getPendingMutationCount().then(setOfflinePendingCount).catch(() => {});
+    } finally {
       setSavingRoom(null);
       setEditingField(null);
     }
@@ -297,6 +364,7 @@ function JointDustContent() {
 
   return (
     <div className="max-w-2xl mx-auto">
+      <OfflineBanner pendingCount={offlinePendingCount} cacheKey={sailingId ? `joint-dust:${sailingId}` : undefined} />
       <div className="mb-6">
         <Link href={`/planner/pixie-dust?sailing=${sailingId}`} className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center gap-1 text-sm mb-4">
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
