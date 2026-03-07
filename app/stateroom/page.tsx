@@ -186,6 +186,7 @@ export default function StateroomPage() {
   const [selectedShip, setSelectedShip] = useState<ShipName | ''>('');
   const [stateroomInput, setStateroomInput] = useState('');
   const [searched, setSearched] = useState(false);
+  const [searchError, setSearchError] = useState('');
 
   // Review state
   const [reviews, setReviews] = useState<Review[]>([]);
@@ -250,6 +251,23 @@ export default function StateroomPage() {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
+    setSearchError('');
+    if (!selectedShip) {
+      setSearchError('Please select a ship first.');
+      return;
+    }
+    if (!stateroomInput) {
+      setSearchError('Please enter a stateroom number.');
+      return;
+    }
+    const num = parseInt(stateroomInput, 10);
+    const rooms = data[selectedShip];
+    const found = rooms?.find((r) => r.stateroom === num);
+    if (!found) {
+      setSearchError(`Stateroom ${stateroomInput} does not exist on ${selectedShip}. Double-check the number and try again.`);
+      setSearched(false);
+      return;
+    }
     setSearched((s) => !s);
     setSubmitSuccess(false);
     setSubmitError('');
@@ -377,7 +395,7 @@ export default function StateroomPage() {
           Home
         </Link>
         <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
-          Stateroom Lookup & Reviews
+          Stateroom Lookup
         </h1>
         <p className="text-slate-600 dark:text-slate-400">
           Look up details about any Disney Cruise Line stateroom and read community reviews.
@@ -393,7 +411,7 @@ export default function StateroomPage() {
             </label>
             <select
               value={selectedShip}
-              onChange={(e) => setSelectedShip(e.target.value as ShipName | '')}
+              onChange={(e) => { setSelectedShip(e.target.value as ShipName | ''); setSearchError(''); }}
               className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-disney-blue dark:focus:ring-disney-gold focus:border-transparent"
             >
               <option value="">Select a ship...</option>
@@ -414,7 +432,7 @@ export default function StateroomPage() {
               inputMode="numeric"
               pattern="[0-9]*"
               value={stateroomInput}
-              onChange={(e) => setStateroomInput(e.target.value.replace(/\D/g, ''))}
+              onChange={(e) => { setStateroomInput(e.target.value.replace(/\D/g, '')); setSearchError(''); }}
               placeholder="e.g. 2050"
               className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-disney-blue dark:focus:ring-disney-gold focus:border-transparent"
             />
@@ -422,11 +440,19 @@ export default function StateroomPage() {
 
           <button
             type="submit"
-            disabled={!selectedShip || !stateroomInput}
-            className="w-full px-6 py-3 rounded-xl font-medium btn-disney disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full px-6 py-3 rounded-xl font-medium btn-disney"
           >
             Look Up Stateroom
           </button>
+
+          {searchError && (
+            <div className="mt-3 flex items-start gap-2 text-sm text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/20 rounded-xl px-4 py-3 border border-amber-200 dark:border-amber-800">
+              <svg className="w-4 h-4 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+              {searchError}
+            </div>
+          )}
         </div>
       </form>
 
