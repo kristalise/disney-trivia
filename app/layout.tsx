@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     description: "Practice 700+ Disney trivia questions. Perfect for cruise trivia nights! Quiz yourself on movies, parks, characters, and more.",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Disney Cruise Trivia App",
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Disney Cruise Trivia - Study & Win at Trivia Night",
     description: "Practice 700+ Disney trivia questions. Perfect for cruise trivia nights!",
-    images: ["/og-image.png"],
+    images: ["/og-image.jpg"],
   },
   robots: {
     index: true,
@@ -133,6 +133,25 @@ export default function RootLayout({
                 "@type": "Offer",
                 "price": "0",
                 "priceCurrency": "USD"
+              }
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "Disney Cruise Trivia",
+              "url": "https://www.disneytrivia.club",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://www.disneytrivia.club/search?q={search_term_string}"
+                },
+                "query-input": "required name=search_term_string"
               }
             }),
           }}

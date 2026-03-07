@@ -1,0 +1,193 @@
+{
+  "sections": [
+    {
+      "id": "before-you-board",
+      "title": "Before You Board",
+      "emoji": "📋",
+      "items": [
+        {
+          "question": "When should I complete online check-in?",
+          "answer": "Online check-in opens 30 days before sailing (earlier for Castaway Club members). Complete it as soon as it opens to get the earliest port arrival time. You'll upload ID photos, set up payment, and choose your port arrival window.",
+          "tags": ["check-in", "planning"]
+        },
+        {
+          "question": "What should I pack for a Disney cruise?",
+          "answer": "Beyond the basics: bring a lanyard for your Key to the World card, magnetic hooks for your stateroom door, a power strip (no surge protectors allowed), reef-safe sunscreen, and a light jacket for the air-conditioned dining rooms. Don't forget pirate night attire and formal night outfits.",
+          "tags": ["packing", "essentials"]
+        },
+        {
+          "question": "What are port arrival tips?",
+          "answer": "Arrive during your assigned arrival window. Port Canaveral and Miami have dedicated Disney terminals. Bring a carry-on bag with swimsuits and essentials — luggage may not arrive at your stateroom until evening. Eat lunch before boarding or grab food at Cabanas right away.",
+          "tags": ["embarkation", "port"]
+        },
+        {
+          "question": "What is the Castaway Club?",
+          "answer": "Disney's loyalty program for repeat cruisers. You automatically join after your first sailing. Levels are Silver (1-4 cruises), Gold (5-9), Platinum (10-24), and Pearl (25+). Higher levels get earlier booking windows for activities and onboard check-in.",
+          "tags": ["castaway-club", "loyalty"]
+        },
+        {
+          "question": "How do I book onboard activities before sailing?",
+          "answer": "Activity booking opens 75 days before sailing for new cruisers (up to 123 days for Pearl members). Book spa treatments, specialty dining, and excursions early — popular time slots fill up fast. You can modify bookings later through the Disney Cruise Line app.",
+          "tags": ["booking", "planning"]
+        }
+      ]
+    },
+    {
+      "id": "embarkation-day",
+      "title": "Embarkation Day",
+      "emoji": "🚢",
+      "items": [
+        {
+          "question": "What happens during the boarding process?",
+          "answer": "After checking in at the terminal, you'll go through security screening, then check in at the desk with your ID. You'll receive your Key to the World card (room key, charge card, and ID). Then walk the gangway for your magical welcome aboard!",
+          "tags": ["embarkation", "boarding"]
+        },
+        {
+          "question": "What should I do first on the ship?",
+          "answer": "Head straight to the pool deck for lunch (it's the only dining option until dinner). Explore the ship while it's empty. Register kids for youth clubs early to avoid lines later. Attend the Sail-Away Celebration on the pool deck — it's a highlight!",
+          "tags": ["embarkation", "tips"]
+        },
+        {
+          "question": "What are the key spots to visit on Day 1?",
+          "answer": "Guest Services (Deck 3) for any questions, the Youth Club area to register kids, the spa to book any remaining treatments, and the pool deck for the Sail-Away party. Also locate your dining rotation restaurants and your Muster Station.",
+          "tags": ["embarkation", "orientation"]
+        },
+        {
+          "question": "When can I access my stateroom?",
+          "answer": "Staterooms are typically available by 1:30 PM, though sometimes earlier. Your luggage will arrive throughout the afternoon and evening. Keep essentials in your carry-on bag for the first few hours.",
+          "tags": ["embarkation", "stateroom"]
+        }
+      ]
+    },
+    {
+      "id": "dining-101",
+      "title": "Dining 101",
+      "emoji": "🍽️",
+      "items": [
+        {
+          "question": "What is rotational dining?",
+          "answer": "Disney's unique system where you rotate through 3 main dining rooms during your cruise, but your serving team follows you. You'll have the same servers each night, which creates a wonderful personal connection. Your rotation is assigned at booking.",
+          "tags": ["dining", "rotational"]
+        },
+        {
+          "question": "How do specialty restaurants work?",
+          "answer": "Adults-only restaurants like Palo and Remy (or Enchanté on the Wish) require reservations and have an upcharge ($45-$125+). Book early during your activity booking window. The food and ambiance are a significant step up from the main dining rooms.",
+          "tags": ["dining", "specialty"]
+        },
+        {
+          "question": "Is room service available?",
+          "answer": "Yes! Room service is complimentary 24 hours a day. The menu includes pizza, sandwiches, cookies, and continental breakfast. It's perfect for a late-night snack or a lazy morning. Delivery takes 30-45 minutes.",
+          "tags": ["dining", "room-service"]
+        },
+        {
+          "question": "How are food allergies handled?",
+          "answer": "Disney is excellent with allergies. Notify them during booking and mention it to your server on the first night. Your head server will personally go over the menu with you each evening. Common allergens are well-managed and they can prepare special dishes.",
+          "tags": ["dining", "allergies"]
+        },
+        {
+          "question": "What are dining seating times?",
+          "answer": "Main seating is typically around 5:45 PM and second seating around 8:15 PM. First seating is popular with families with young children. Second seating works better if you want to enjoy late port days. You can request a change at Guest Services if needed.",
+          "tags": ["dining", "schedule"]
+        }
+      ]
+    },
+    {
+      "id": "stateroom-tips",
+      "title": "Stateroom Tips",
+      "emoji": "🛏",
+      "items": [
+        {
+          "question": "What's included in my stateroom?",
+          "answer": "A TV with Disney movies on demand, a small safe, hair dryer, shampoo/conditioner/body wash, life jackets, a phone for room service, and a daily Navigator newsletter. Verandah rooms include two deck chairs and a small table.",
+          "tags": ["stateroom", "amenities"]
+        },
+        {
+          "question": "What should I bring for the room?",
+          "answer": "Magnetic hooks for the metal walls (doors and walls are magnetic!), a power strip without surge protection, nightlights for kids, a small fan for white noise, and over-the-door shoe organizers for extra storage. Towel clips for the pool deck are handy too.",
+          "tags": ["stateroom", "packing"]
+        },
+        {
+          "question": "What about connecting staterooms?",
+          "answer": "Connecting rooms share an interior door. Request them at booking but they're not guaranteed until check-in. They're great for families who want separate sleeping spaces but easy access between rooms. Adjacent rooms (across the hall) are also an option.",
+          "tags": ["stateroom", "families"]
+        },
+        {
+          "question": "Are verandah rooms worth the upgrade?",
+          "answer": "Many cruisers say yes! The private outdoor space is perfect for morning coffee, watching the ship pull into port, or enjoying the ocean breeze. However, inside staterooms are very well-designed and you'll spend most of your time outside the room anyway.",
+          "tags": ["stateroom", "verandah"]
+        }
+      ]
+    },
+    {
+      "id": "onboard-activities",
+      "title": "Onboard Activities",
+      "emoji": "🎉",
+      "items": [
+        {
+          "question": "What are the youth clubs and age groups?",
+          "answer": "It's a Small World Nursery (6 months-3 years, fee required), Oceaneer Club/Lab (ages 3-12, complimentary), Edge (ages 11-14), and Vibe (ages 14-17). Kids are grouped by age and enjoy themed activities, games, and supervised fun. Registration is required.",
+          "tags": ["kids", "youth-clubs"]
+        },
+        {
+          "question": "What adult-only spaces are available?",
+          "answer": "Adults can enjoy Quiet Cove pool, the Spa & Salon, adults-only dining (Palo, Remy, Enchanté), and the nightclub/lounge district. After 9 PM, the main pool areas become adult-only too. Adult-exclusive areas are typically on upper decks.",
+          "tags": ["adults", "spaces"]
+        },
+        {
+          "question": "What are the pool areas like?",
+          "answer": "Each ship has a family pool (with water slides on newer ships), a kids splash area, and an adults-only Quiet Cove pool. The Wish and Treasure feature the AquaMouse water coaster. Pool areas can get crowded on sea days — arrive early for deck chairs.",
+          "tags": ["pools", "recreation"]
+        },
+        {
+          "question": "What shows and entertainment are there?",
+          "answer": "Disney Cruise Line features Broadway-caliber stage shows each evening in the Walt Disney Theatre. Plus deck parties (Pirate Night!), live music, trivia games, game shows, cooking demos, and character meet & greets throughout the day.",
+          "tags": ["entertainment", "shows"]
+        }
+      ]
+    },
+    {
+      "id": "port-days",
+      "title": "Port Days & Castaway Cay",
+      "emoji": "🏝️",
+      "items": [
+        {
+          "question": "How does tendering work?",
+          "answer": "At some ports, the ship anchors offshore and small boats (tenders) shuttle guests to shore. Listen for your deck/color group to be called. Tendering starts early and runs all day. If you have an excursion, you'll get priority tendering.",
+          "tags": ["ports", "tendering"]
+        },
+        {
+          "question": "What makes Castaway Cay special?",
+          "answer": "Disney's private island in the Bahamas! The ship docks directly (no tendering). Highlights: beautiful beaches, a family beach with water play, Serenity Bay (adults-only), snorkeling, bike rentals, and island BBQ lunch (included). Bring water shoes for the rocky areas.",
+          "tags": ["castaway-cay", "island"]
+        },
+        {
+          "question": "Should I book excursions through Disney or independently?",
+          "answer": "Disney excursions guarantee the ship will wait if you're delayed, and they're vetted for quality. Independent excursions are often cheaper and more flexible. For first-timers, Disney excursions offer peace of mind. Always leave plenty of time to return to the ship.",
+          "tags": ["excursions", "ports"]
+        }
+      ]
+    },
+    {
+      "id": "debarkation",
+      "title": "Debarkation",
+      "emoji": "🧳",
+      "items": [
+        {
+          "question": "What happens on packing night?",
+          "answer": "The night before departure, leave your luggage outside your stateroom door by 9-10 PM (check the Navigator for exact time). Pack a carry-on with essentials for the morning. Disney will transport your bags to the terminal for pickup after you disembark.",
+          "tags": ["debarkation", "packing"]
+        },
+        {
+          "question": "What's the difference between express walk-off and luggage valet?",
+          "answer": "Express walk-off: carry all your own luggage and leave the ship first thing (great for early flights). Luggage valet: Disney sends your bags directly to the airport (available at select ports). Standard disembarkation: leave bags out the night before, collect them in the terminal.",
+          "tags": ["debarkation", "options"]
+        },
+        {
+          "question": "Any last-day tips?",
+          "answer": "Settle your onboard account the night before at Guest Services. Enjoy a last breakfast. Take final photos. Remove Fish Extender gifts if participating. Double-check safe and drawers for forgotten items. Download any photos from Shutters/the app you want to keep.",
+          "tags": ["debarkation", "tips"]
+        }
+      ]
+    }
+  ]
+}

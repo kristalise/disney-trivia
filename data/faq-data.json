@@ -1,0 +1,67 @@
+{
+  "topics": [
+    {
+      "topic": "dining",
+      "emoji": "🍽️",
+      "questions": [
+        { "id": "dining-1", "question": "How does rotational dining work on Disney Cruise Line?", "answer": "Disney uses a unique rotational dining system where you visit a different themed restaurant each night, but your serving team follows you throughout the cruise. This gives you variety in ambiance while building a relationship with your servers who learn your preferences." },
+        { "id": "dining-2", "question": "Do I need reservations for the main dining rooms?", "answer": "No reservations needed for rotational dining — your table is assigned at booking. You'll be assigned either first seating (~5:45 PM) or second seating (~8:15 PM). You can request a change at Guest Services on embarkation day." },
+        { "id": "dining-3", "question": "How does Disney handle food allergies and dietary restrictions?", "answer": "Disney is exceptional with allergies. Note restrictions when booking, then inform your head server on night one. They'll personally review each evening's menu with you and can prepare allergen-free versions of most dishes. Common allergens (gluten, dairy, nuts, shellfish) are well-managed." },
+        { "id": "dining-4", "question": "What is the dress code for dinner?", "answer": "Cruise casual is the norm most nights — no swimwear or tank tops. Formal nights (usually one per cruise) call for dresses, suits, or dressy outfits. Pirate Night is themed casual. There's no strict enforcement but most guests enjoy dressing up." },
+        { "id": "dining-5", "question": "Are kids menus available?", "answer": "Yes! Every main dining room offers a kids menu with familiar favorites like chicken nuggets, mac and cheese, and pizza. Kids can also order from the adult menu. Servers are great at accommodating picky eaters." },
+        { "id": "dining-6", "question": "Is room service free?", "answer": "Yes, room service is complimentary 24 hours a day. The menu includes sandwiches, pizza, salads, cookies, fruit, and continental breakfast. It's perfect for a late-night snack or a relaxed morning." },
+        { "id": "dining-7", "question": "What are specialty dining restaurants?", "answer": "Adults-only upcharge restaurants (typically $45-$125+ per person) featuring premium cuisine. Popular options include Palo (Italian) and Remy/Enchanté (French fine dining). Book during your pre-cruise activity window as they sell out quickly." },
+        { "id": "dining-8", "question": "Can I order multiple entrees or desserts?", "answer": "Absolutely! This is one of the best things about Disney cruise dining. Order as many appetizers, entrees, and desserts as you like at no extra charge. Your servers will happily accommodate." }
+      ]
+    },
+    {
+      "topic": "staterooms",
+      "emoji": "🛏",
+      "questions": [
+        { "id": "state-1", "question": "What types of staterooms are available?", "answer": "Four main categories: Inside (no window, most affordable), Oceanview (porthole or window), Verandah (private balcony), and Concierge (premium suites with dedicated lounge and butler service). Each category has sub-categories based on size and location." },
+        { "id": "state-2", "question": "Which staterooms are best for families?", "answer": "Deluxe Family Oceanview or Verandah rooms sleep 4-5 and have a split bathroom design (sink/shower separate from toilet). Connecting rooms are great for larger families. Mid-ship locations minimize motion for kids prone to seasickness." },
+        { "id": "state-3", "question": "What are connecting rooms?", "answer": "Connecting rooms share an interior door between two adjacent staterooms. Request them at booking but they're subject to availability. They're ideal for families wanting separate sleeping spaces with easy access between rooms." },
+        { "id": "state-4", "question": "What's a guarantee category?", "answer": "A guarantee (GTY) booking means you get a stateroom in your chosen category but Disney picks the specific room. You might be upgraded but can't choose your location. It's often a good deal if you're flexible about room placement." },
+        { "id": "state-5", "question": "Is a verandah worth the extra cost?", "answer": "Many say yes for the private outdoor space — great for morning coffee, watching ports, or evening stargazing. However, inside rooms are well-designed with virtual portholes on newer ships. If you'll spend most time outside the room, an inside room works well." },
+        { "id": "state-6", "question": "What amenities are in the stateroom?", "answer": "TV with Disney movies, mini-fridge, hair dryer, safe, toiletries (H2O+ brand), phone for room service, and daily housekeeping. Your stateroom host will create towel animals and can provide extra pillows, blankets, or bed configurations on request." }
+      ]
+    },
+    {
+      "topic": "activities",
+      "emoji": "🎉",
+      "questions": [
+        { "id": "act-1", "question": "What ages are the youth clubs for?", "answer": "It's a Small World Nursery (6 months-3 years, fee required), Disney's Oceaneer Club and Lab (ages 3-12, complimentary), Edge (ages 11-14, complimentary), and Vibe (ages 14-17, complimentary). Kids must be registered before using the clubs." },
+        { "id": "act-2", "question": "Are there adult-only spaces on the ship?", "answer": "Yes! Quiet Cove Pool (18+), Senses Spa, the nightclub/lounge district (varies by ship), and specialty dining restaurants. After 9 PM, the main pool areas also become adult-only. Some ships have adult-only sundeck areas." },
+        { "id": "act-3", "question": "What are the pool areas like?", "answer": "Each ship has a family pool with slides, a kids splash area (AquaLab on newer ships), and an adult-only Quiet Cove pool. The Wish and Treasure feature the AquaMouse water coaster attraction. Pool chairs are first-come, first-served." },
+        { "id": "act-4", "question": "Is there a gym or fitness center?", "answer": "Yes, every ship has a fitness center open early morning to late evening. Equipment includes treadmills, bikes, free weights, and weight machines. Group fitness classes (yoga, cycling, Pilates) are available for an additional fee." },
+        { "id": "act-5", "question": "What entertainment happens at night?", "answer": "Broadway-style shows in the Walt Disney Theatre, live music in lounges, game shows, trivia, karaoke, dance parties, and themed deck parties. The nightclub district opens after 9 PM with different venues offering comedy, music, and dancing." },
+        { "id": "act-6", "question": "Can I use the youth clubs for babysitting?", "answer": "The Oceaneer Club/Lab is not babysitting but supervised activities during set hours. For infants/toddlers, the Nursery charges by the hour. Youth clubs operate on a scheduled program with various activities throughout the day." }
+      ]
+    },
+    {
+      "topic": "general",
+      "emoji": "ℹ️",
+      "questions": [
+        { "id": "gen-1", "question": "What is the Castaway Club?", "answer": "Disney's loyalty program — you automatically join after your first cruise. Levels: Silver (1-4 sailings), Gold (5-9), Platinum (10-24), Pearl (25+). Benefits include earlier check-in, priority activity booking, onboard gifts, and special receptions." },
+        { "id": "gen-2", "question": "What's included in the cruise fare?", "answer": "All meals in main dining rooms and buffets, room service, youth clubs (except nursery), pools, shows, character meet & greets, fitness center, and Castaway Cay activities. NOT included: alcoholic drinks, specialty dining, spa, excursions, wifi, and some premium activities." },
+        { "id": "gen-3", "question": "How does tipping work?", "answer": "Disney automatically adds gratuities to your onboard account: approximately $14.50/person/day. This covers your dining team and stateroom host. You can adjust the amount at Guest Services. Additional tips for exceptional service are appreciated but not expected." },
+        { "id": "gen-4", "question": "Is wifi available on the ship?", "answer": "Yes, but it's satellite-based so expect slower speeds than home. Packages range from basic (messaging) to premium (streaming). Prices vary by sailing length. The Disney Cruise Line app works without wifi for onboard features like messaging between guests." },
+        { "id": "gen-5", "question": "Are there laundry facilities?", "answer": "Yes, self-service laundry rooms are available on multiple decks with washers and dryers. Machines are free to use but you'll need to purchase detergent, softener, and dryer sheets from vending machines in the laundry rooms. Dry cleaning and pressing services are also available for a fee." },
+        { "id": "gen-6", "question": "What ports does Disney Cruise Line visit?", "answer": "Itineraries include the Bahamas, Caribbean, Alaska, Mediterranean, Northern Europe, Bermuda, Hawaii, Pacific Coast, Transatlantic, and more. Many sailings visit Castaway Cay, Disney's private island. New itineraries are added each season." },
+        { "id": "gen-7", "question": "Can I bring my own alcohol on board?", "answer": "You can bring a limited amount of beer and wine (up to 2 bottles of wine or 6 beers per adult per sailing). No hard liquor is allowed. Outside beverages brought aboard can only be consumed in your stateroom, not in public areas." },
+        { "id": "gen-8", "question": "What happens on Pirate Night?", "answer": "A special themed evening featuring a pirate deck party with fireworks (Disney is the only cruise line with at-sea fireworks!), character appearances in pirate attire, themed dinner menu, and pirate-themed entertainment. Dress up in pirate gear for maximum fun!" }
+      ]
+    },
+    {
+      "topic": "first-sail",
+      "emoji": "⭐",
+      "questions": [
+        { "id": "first-1", "question": "What should I expect on embarkation day?", "answer": "Arrive during your assigned window, check in at the terminal, pass through security, board the ship, and get oriented. Staterooms open around 1:30 PM. Luggage arrives throughout the afternoon. Head to the pool deck for lunch and the Sail-Away party." },
+        { "id": "first-2", "question": "What are the must-pack essentials?", "answer": "Lanyard for Key to the World card, magnetic hooks, power strip (no surge protector), reef-safe sunscreen, formal/pirate night outfits, motion sickness medication, a light jacket for AC, and a day bag for port excursions. Check the prohibited items list on Disney's website." },
+        { "id": "first-3", "question": "How do I get around the ship?", "answer": "Ships are organized by deck (numbered floors). Forward is the front, aft is the back, port is left, starboard is right. Elevators and stairs connect all decks. The Navigator app has full deck plans. Most ships have a central atrium/lobby that helps with orientation." },
+        { "id": "first-4", "question": "Is there a formal night?", "answer": "Most sailings have one formal night (longer cruises may have two). Dress expectations range from cocktail attire to formal gowns/suits. It's not strictly enforced but most guests enjoy dressing up. Great photo opportunities with character meet & greets in formal attire." },
+        { "id": "first-5", "question": "How can I avoid seasickness?", "answer": "Choose a mid-ship, lower-deck stateroom for the least motion. Bring motion sickness medication (Bonine or Dramamine) and start taking it before boarding. Sea-Bands (acupressure wristbands) help some people. Green apples and ginger also help settle stomachs." }
+      ]
+    }
+  ]
+}

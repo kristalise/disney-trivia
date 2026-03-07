@@ -2,8 +2,17 @@
 User-agent: *
 Allow: /
 
+# Disallow API routes
+Disallow: /api/
+
+# Disallow user-specific pages
+Disallow: /profile/
+Disallow: /planner/
+Disallow: /friends/
+Disallow: /auth/
+
 # Sitemaps
 Sitemap: https://www.disneytrivia.club/sitemap.xml
 
-# Disallow API routes
-Disallow: /api/
+# LLM discovery
+Allow: /llms.txt

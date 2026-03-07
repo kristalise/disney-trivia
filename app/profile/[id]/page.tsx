@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/components/AuthProvider';
@@ -92,6 +92,25 @@ interface FollowProfile {
   avatar_url: string | null;
 }
 
+interface FriendReview {
+  id: string;
+  review_type: string;
+  created_at: string;
+  ship_name?: string;
+  rating?: number;
+  overall_rating?: number;
+  stateroom_rating?: number;
+  venue_id?: string;
+  restaurant_id?: string;
+  activity_id?: string;
+  movie_id?: string;
+  title?: string;
+  verdict?: string;
+  stateroom_number?: string;
+  sail_start_date?: string;
+  sail_end_date?: string;
+}
+
 interface Stats {
   total_sailings: number;
   unique_ships: number;
@@ -175,7 +194,46 @@ export default function ProfilePage() {
   const [shipFilter, setShipFilter] = useState<string | null>(null);
   const [now, setNow] = useState(() => new Date());
   const [avatarTapCount, setAvatarTapCount] = useState(0);
-  const [activeTab, setActiveTab] = useState<'overview' | 'reviews'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'reviews' | 'friends' | 'trivia'>('overview');
+
+  // Friends tab state
+  const [friendStats, setFriendStats] = useState<Record<string, { totalReviews: number; totalSailings: number; uniqueShips: number; lastReviewDate: string | null }>>({});
+  const [friendStatsLoaded, setFriendStatsLoaded] = useState(false);
+  const [friendSort, setFriendSort] = useState<'alpha' | 'friendship' | 'sailings' | 'ships' | 'recent'>('alpha');
+  const [expandedFriendId, setExpandedFriendId] = useState<string | null>(null);
+  const [friendReviews, setFriendReviews] = useState<Record<string, FriendReview[]>>({});
+  const [friendReviewsLoading, setFriendReviewsLoading] = useState<string | null>(null);
+
+  // Ship badges scroll
+  const shipScrollRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+
+  const updateScrollArrows = useCallback(() => {
+    const el = shipScrollRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 0);
+    setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 1);
+  }, []);
+
+  useEffect(() => {
+    const el = shipScrollRef.current;
+    if (!el) return;
+    updateScrollArrows();
+    el.addEventListener('scroll', updateScrollArrows, { passive: true });
+    window.addEventListener('resize', updateScrollArrows);
+    return () => {
+      el.removeEventListener('scroll', updateScrollArrows);
+      window.removeEventListener('resize', updateScrollArrows);
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [updateScrollArrows]);
+
+  const scrollShips = (direction: 'left' | 'right') => {
+    const el = shipScrollRef.current;
+    if (!el) return;
+    el.scrollBy({ left: direction === 'left' ? -200 : 200, behavior: 'smooth' });
+  };
 
   useEffect(() => {
     const interval = setInterval(() => setNow(new Date()), 60_000);
@@ -322,6 +380,92 @@ export default function ProfilePage() {
     }
   }, [isOwnProfile]);
 
+  // Compute shared sailings per friend from companion data
+  const sharedSailingsMap = useMemo(() => {
+    const map: Record<string, number> = {};
+    for (const f of friends) {
+      let count = 0;
+      for (const s of sailings) {
+        if (s.companions?.some(c => c.companion_id === f.id)) count++;
+      }
+      map[f.id] = count;
+    }
+    return map;
+  }, [friends, sailings]);
+
+  // Fetch friend stats when friends tab is active
+  useEffect(() => {
+    if (activeTab !== 'friends' || friends.length === 0 || friendStatsLoaded) return;
+    const fetchStats = async () => {
+      const results: Record<string, { totalReviews: number; totalSailings: number; uniqueShips: number; lastReviewDate: string | null }> = {};
+      await Promise.all(
+        friends.map(async (f) => {
+          try {
+            const res = await fetch(`/api/profiles/${f.handle || f.id}`);
+            if (res.ok) {
+              const data = await res.json();
+              const totalReviews = data.stats?.total_reviews ?? 0;
+              const totalSailings = data.stats?.total_sailings ?? 0;
+              const uniqueShips = data.stats?.unique_ships ?? 0;
+              const lastReviewDate = data.recent_reviews?.length > 0
+                ? data.recent_reviews[0].created_at
+                : null;
+              results[f.id] = { totalReviews, totalSailings, uniqueShips, lastReviewDate };
+            } else {
+              results[f.id] = { totalReviews: 0, totalSailings: 0, uniqueShips: 0, lastReviewDate: null };
+            }
+          } catch {
+            results[f.id] = { totalReviews: 0, totalSailings: 0, uniqueShips: 0, lastReviewDate: null };
+          }
+        })
+      );
+      setFriendStats(results);
+      setFriendStatsLoaded(true);
+    };
+    fetchStats();
+  }, [activeTab, friends, friendStatsLoaded]);
+
+  // Sorted friends list
+  const sortedFriends = useMemo(() => {
+    const list = [...friends];
+    if (friendSort === 'alpha') {
+      list.sort((a, b) => a.display_name.localeCompare(b.display_name));
+    } else if (friendSort === 'friendship') {
+      list.sort((a, b) => (sharedSailingsMap[b.id] || 0) - (sharedSailingsMap[a.id] || 0));
+    } else if (friendSort === 'sailings') {
+      list.sort((a, b) => (friendStats[b.id]?.totalSailings || 0) - (friendStats[a.id]?.totalSailings || 0));
+    } else if (friendSort === 'ships') {
+      list.sort((a, b) => (friendStats[b.id]?.uniqueShips || 0) - (friendStats[a.id]?.uniqueShips || 0));
+    } else if (friendSort === 'recent') {
+      list.sort((a, b) => {
+        const dateA = friendStats[a.id]?.lastReviewDate || '';
+        const dateB = friendStats[b.id]?.lastReviewDate || '';
+        return dateB.localeCompare(dateA);
+      });
+    }
+    return list;
+  }, [friends, friendSort, sharedSailingsMap, friendStats]);
+
+  // Fetch reviews for a friend when expanded
+  const fetchFriendReviews = async (friendId: string, handle: string | null) => {
+    if (expandedFriendId === friendId) {
+      setExpandedFriendId(null);
+      return;
+    }
+    setExpandedFriendId(friendId);
+    if (friendReviews[friendId]) return; // already loaded
+    setFriendReviewsLoading(friendId);
+    try {
+      const res = await fetch(`/api/profiles/${handle || friendId}/reviews?limit=20`);
+      if (res.ok) {
+        const data = await res.json();
+        setFriendReviews(prev => ({ ...prev, [friendId]: data.reviews || [] }));
+      }
+    } catch { /* ignore */ } finally {
+      setFriendReviewsLoading(null);
+    }
+  };
+
   const handleFriendToggle = async () => {
     if (!user || !session?.access_token) return;
     setFollowLoading(true);
@@ -367,7 +511,6 @@ export default function ProfilePage() {
     );
   }
 
-  const showTriviaSection = isOwnProfile || (profile.show_trivia_stats && triviaStats);
   const triviaAccuracy = triviaStats
     ? triviaStats.questionsAnswered > 0
       ? Math.round((triviaStats.correctAnswers / triviaStats.questionsAnswered) * 100)
@@ -378,11 +521,11 @@ export default function ProfilePage() {
     <div className="max-w-2xl mx-auto">
       {/* Back nav */}
       <div className="mb-6">
-        <Link href="/Secret-menU" className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center gap-1 text-sm">
+        <Link href={isOwnProfile ? '/Secret-menU' : '/friends'} className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center gap-1 text-sm">
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
-          Cruise Guide
+          {isOwnProfile ? 'Cruise Guide' : 'Friends'}
         </Link>
       </div>
 
@@ -427,6 +570,16 @@ export default function ProfilePage() {
             </div>
           </div>
         </div>
+
+        {/* View Friends & Connections */}
+        {isOwnProfile && (
+          <Link
+            href="/friends"
+            className="block mt-3 w-full text-center px-4 py-2 rounded-xl text-sm font-medium bg-slate-50 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors"
+          >
+            View Friends &amp; Connections
+          </Link>
+        )}
 
         {/* Name, handle, location */}
         <div className="mb-3">
@@ -485,89 +638,262 @@ export default function ProfilePage() {
           ) : null}
         </div>
 
-        {/* Friends button for own profile */}
-        {isOwnProfile && (
-          <Link
-            href="/friends"
-            className="block mt-3 w-full text-center px-4 py-2 rounded-xl text-sm font-medium bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors"
-          >
-            View Friends &amp; Connections
-          </Link>
-        )}
       </div>
 
       {/* Ship Badges — Instagram story style */}
-      {isOwnProfile && sailedShips.length > 0 && (
-        <div className="flex gap-4 overflow-x-auto pb-2 mb-6 scrollbar-hide">
-          {sailedShips.map(ship => {
-            const isActive = shipFilter === ship;
-            const shortName = ship.replace('Disney ', '');
-            return (
-              <button
-                key={ship}
-                onClick={() => setShipFilter(isActive ? null : ship)}
-                className="flex flex-col items-center gap-1.5 flex-shrink-0 group"
-              >
-                <div className={`w-[72px] h-[72px] rounded-full p-[3px] transition-all ${
-                  isActive
-                    ? 'bg-gradient-to-tr from-disney-blue via-disney-gold to-disney-blue'
-                    : 'bg-gradient-to-tr from-slate-300 to-slate-200 dark:from-slate-600 dark:to-slate-500 group-hover:from-disney-blue/60 group-hover:via-disney-gold/60 group-hover:to-disney-blue/60'
-                }`}>
-                  <div className="w-full h-full rounded-full bg-white dark:bg-slate-800 p-[3px] flex items-center justify-center overflow-hidden">
-                    <img
-                      src={SHIP_LOGOS[ship]}
-                      alt={ship}
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                </div>
-                <span className={`text-[11px] font-medium text-center leading-tight transition-colors ${
-                  isActive
-                    ? 'text-disney-blue dark:text-disney-gold'
-                    : 'text-slate-500 dark:text-slate-400'
-                }`}>
-                  {shortName}
-                </span>
-              </button>
-            );
-          })}
+      {sailedShips.length > 0 && (
+        <div className="relative mb-6">
+          {/* Left arrow */}
+          {canScrollLeft && (
+            <button
+              onClick={() => scrollShips('left')}
+              className="hidden sm:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 items-center justify-center rounded-full bg-white dark:bg-slate-700 shadow-md border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-600 transition-colors"
+              aria-label="Scroll left"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+          )}
+
+          <div ref={shipScrollRef} className="overflow-x-auto pb-2 scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch' }}>
+            <div className="flex gap-4 w-max px-1">
+              {sailedShips.map(ship => {
+                const isActive = shipFilter === ship;
+                const shortName = ship.replace('Disney ', '');
+                return (
+                  <button
+                    key={ship}
+                    onClick={() => setShipFilter(isActive ? null : ship)}
+                    className="flex flex-col items-center gap-1.5 group"
+                  >
+                    <div className={`w-[72px] h-[72px] rounded-full p-[3px] transition-all ${
+                      isActive
+                        ? 'bg-gradient-to-tr from-disney-blue via-disney-gold to-disney-blue'
+                        : 'bg-gradient-to-tr from-slate-300 to-slate-200 dark:from-slate-600 dark:to-slate-500 group-hover:from-disney-blue/60 group-hover:via-disney-gold/60 group-hover:to-disney-blue/60'
+                    }`}>
+                      <div className="w-full h-full rounded-full bg-white dark:bg-slate-800 p-[3px] flex items-center justify-center overflow-hidden">
+                        <img
+                          src={SHIP_LOGOS[ship]}
+                          alt={ship}
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
+                    </div>
+                    <span className={`text-[11px] font-medium text-center leading-tight transition-colors ${
+                      isActive
+                        ? 'text-disney-blue dark:text-disney-gold'
+                        : 'text-slate-500 dark:text-slate-400'
+                    }`}>
+                      {shortName}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Right arrow */}
+          {canScrollRight && (
+            <button
+              onClick={() => scrollShips('right')}
+              className="hidden sm:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 items-center justify-center rounded-full bg-white dark:bg-slate-700 shadow-md border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-600 transition-colors"
+              aria-label="Scroll right"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          )}
         </div>
       )}
 
-      {/* Tab Bar — own profile only */}
-      {isOwnProfile && (
-        <div className="flex gap-1 mb-6 bg-slate-100 dark:bg-slate-800 rounded-xl p-1">
-          <button
-            onClick={() => setActiveTab('overview')}
-            className={`flex-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-              activeTab === 'overview'
-                ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm'
-                : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300'
-            }`}
-          >
-            Overview
-          </button>
-          <button
-            onClick={() => setActiveTab('reviews')}
-            className={`flex-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-              activeTab === 'reviews'
-                ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm'
-                : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300'
-            }`}
-          >
-            Reviews
-          </button>
-        </div>
-      )}
+      {/* Tab Bar */}
+      <div className="flex gap-1 mb-6 bg-slate-100 dark:bg-slate-800 rounded-xl p-1">
+        {isOwnProfile ? (
+          <>
+            {(['overview', 'reviews', 'friends', 'trivia'] as const).map(tab => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`flex-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors capitalize ${
+                  activeTab === tab
+                    ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm'
+                    : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300'
+                }`}
+              >
+                {tab}
+              </button>
+            ))}
+          </>
+        ) : (
+          <>
+            {(['overview', 'reviews'] as const).map(tab => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`flex-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  activeTab === tab
+                    ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm'
+                    : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300'
+                }`}
+              >
+                {tab === 'overview' ? 'Sailings' : 'Reviews'}
+              </button>
+            ))}
+          </>
+        )}
+      </div>
 
       {/* Reviews Tab */}
-      {isOwnProfile && activeTab === 'reviews' && (
+      {activeTab === 'reviews' && (
         <ProfileReviewsTab userId={profile.id} />
       )}
 
-      {/* Overview Tab Content */}
+      {/* Friends Tab */}
+      {isOwnProfile && activeTab === 'friends' && (
+        <div>
+          {/* Sort Controls */}
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-bold text-slate-900 dark:text-white">
+              Friends
+              <span className="text-sm font-normal text-slate-500 dark:text-slate-400 ml-2">({friends.length})</span>
+            </h2>
+            <div className="flex gap-1 bg-slate-100 dark:bg-slate-800 rounded-lg p-0.5 overflow-x-auto">
+              {([['alpha', 'A–Z'], ['friendship', 'Friendship'], ['sailings', 'Sailings'], ['ships', 'Ships'], ['recent', 'Recent']] as const).map(([key, label]) => (
+                <button
+                  key={key}
+                  onClick={() => setFriendSort(key)}
+                  className={`px-2.5 py-1 rounded-md text-xs font-medium transition-colors whitespace-nowrap ${
+                    friendSort === key
+                      ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm'
+                      : 'text-slate-500 dark:text-slate-400'
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Friends List */}
+          <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700 divide-y divide-slate-100 dark:divide-slate-700">
+            {sortedFriends.length === 0 ? (
+              <div className="text-center py-8">
+                <div className="text-3xl mb-2">👫</div>
+                <p className="text-sm text-slate-500 dark:text-slate-400">No friends yet. Visit other profiles to add friends!</p>
+              </div>
+            ) : (
+              sortedFriends.map(f => {
+                const shared = sharedSailingsMap[f.id] || 0;
+                const fStats = friendStats[f.id];
+                const isExpanded = expandedFriendId === f.id;
+                const reviews = friendReviews[f.id];
+                const isLoadingReviews = friendReviewsLoading === f.id;
+
+                return (
+                  <div key={f.id}>
+                    <div className="px-4 py-3 flex items-center gap-3">
+                      {/* Avatar + Name */}
+                      <Link href={`/profile/${f.handle || f.id}`} className="flex items-center gap-3 flex-1 min-w-0">
+                        <Avatar url={f.avatar_url} name={f.display_name} size="sm" />
+                        <div className="min-w-0">
+                          <div className="text-sm font-semibold text-slate-900 dark:text-white truncate">{f.display_name}</div>
+                          {f.handle && <div className="text-xs text-slate-500 dark:text-slate-400 truncate">@{f.handle}</div>}
+                        </div>
+                      </Link>
+
+                      {/* Stats */}
+                      <div className="grid grid-cols-4 gap-1 flex-shrink-0" style={{ width: '180px' }}>
+                        <div className="text-center">
+                          <div className="text-sm font-bold text-slate-900 dark:text-white">{shared}</div>
+                          <div className="text-[10px] text-slate-500 dark:text-slate-400">Together</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-sm font-bold text-slate-900 dark:text-white">
+                            {fStats ? fStats.totalSailings : '—'}
+                          </div>
+                          <div className="text-[10px] text-slate-500 dark:text-slate-400">Sailings</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-sm font-bold text-slate-900 dark:text-white">
+                            {fStats ? fStats.uniqueShips : '—'}
+                          </div>
+                          <div className="text-[10px] text-slate-500 dark:text-slate-400">Ships</div>
+                        </div>
+                        <button
+                          onClick={() => fetchFriendReviews(f.id, f.handle)}
+                          className="text-center hover:bg-slate-50 dark:hover:bg-slate-700 rounded-lg transition-colors"
+                        >
+                          <div className="text-sm font-bold text-disney-blue dark:text-disney-gold">
+                            {fStats ? fStats.totalReviews : '—'}
+                          </div>
+                          <div className="text-[10px] text-slate-500 dark:text-slate-400">Reviews</div>
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Expanded Reviews */}
+                    {isExpanded && (
+                      <div className="bg-slate-50 dark:bg-slate-800/50 border-t border-slate-100 dark:border-slate-700 px-4 py-3">
+                        {isLoadingReviews ? (
+                          <p className="text-xs text-slate-500 dark:text-slate-400 text-center py-2">Loading reviews...</p>
+                        ) : reviews && reviews.length > 0 ? (
+                          <div className="space-y-2">
+                            {reviews.map(r => (
+                              <div key={`${r.review_type}-${r.id}`} className="flex items-center gap-2.5 py-1.5">
+                                <span className="text-base flex-shrink-0">
+                                  {r.review_type === 'venue' ? '📍' :
+                                   r.review_type === 'foodie' || r.review_type === 'dining' ? '🍽' :
+                                   r.review_type === 'activity' ? '🎭' :
+                                   r.review_type === 'stateroom' ? '🛏' :
+                                   r.review_type === 'movie' ? '🎬' :
+                                   r.review_type === 'sailing' ? '🚢' :
+                                   r.review_type === 'hack' ? '🏴‍☠️' : '📝'}
+                                </span>
+                                <div className="flex-1 min-w-0">
+                                  <div className="text-xs font-medium text-slate-900 dark:text-white truncate">
+                                    {r.venue_id || r.restaurant_id || r.activity_id || r.movie_id || r.title ||
+                                     (r.stateroom_number ? `Stateroom #${r.stateroom_number}` : null) ||
+                                     (r.sail_start_date ? `${new Date(r.sail_start_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} – ${new Date(r.sail_end_date!).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}` : null) ||
+                                     r.review_type}
+                                  </div>
+                                  <div className="flex items-center gap-1.5 text-[10px] text-slate-500 dark:text-slate-400">
+                                    {r.ship_name && <span>{r.ship_name}</span>}
+                                    <span>{new Date(r.created_at).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</span>
+                                    {r.verdict && (
+                                      <span className={`px-1 py-0.5 rounded text-[10px] font-medium ${
+                                        r.verdict === 'Must Try' ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400' :
+                                        r.verdict === 'Worth It' ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400' :
+                                        'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400'
+                                      }`}>{r.verdict}</span>
+                                    )}
+                                  </div>
+                                </div>
+                                {(r.rating || r.overall_rating || r.stateroom_rating) && (
+                                  <div className="flex-shrink-0">
+                                    <StarDisplay rating={r.rating || r.overall_rating || r.stateroom_rating || 0} size="sm" />
+                                  </div>
+                                )}
+                              </div>
+                            ))}
+                          </div>
+                        ) : (
+                          <p className="text-xs text-slate-500 dark:text-slate-400 text-center py-2">No reviews yet.</p>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                );
+              })
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Overview / Sailings Tab Content */}
       {/* Currently Sailing */}
-      {activeTab === 'overview' && isOwnProfile && currentlySailing.length > 0 && (
+      {activeTab === 'overview' && currentlySailing.length > 0 && (
         <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-200 dark:border-slate-700 mb-6">
           <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Currently Sailing</h2>
           <div className="space-y-4">
@@ -628,7 +954,7 @@ export default function ProfilePage() {
       )}
 
       {/* Upcoming Sailings */}
-      {activeTab === 'overview' && isOwnProfile && upcomingSailings.length > 0 && (
+      {activeTab === 'overview' && upcomingSailings.length > 0 && (
         <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-200 dark:border-slate-700 mb-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-bold text-slate-900 dark:text-white">
@@ -670,7 +996,7 @@ export default function ProfilePage() {
                   )}
                   <div className="flex flex-wrap gap-2 text-xs text-slate-500 dark:text-slate-400 mb-2 mt-1">
                     <span>From {sailing.embarkation_port}</span>
-                    {sailing.ports_of_call && <span>via {sailing.ports_of_call}</span>}
+                    {sailing.ports_of_call && <span>Ports:</span>}
                     {sailing.stateroom_numbers && sailing.stateroom_numbers.length > 0 && (
                       <span>Room{sailing.stateroom_numbers.length > 1 ? 's' : ''} {sailing.stateroom_numbers.join(', ')}</span>
                     )}
@@ -710,7 +1036,7 @@ export default function ProfilePage() {
       )}
 
       {/* Past Sailings */}
-      {activeTab === 'overview' && isOwnProfile && pastSailings.length > 0 && (
+      {activeTab === 'overview' && pastSailings.length > 0 && (
         <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-200 dark:border-slate-700 mb-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-bold text-slate-900 dark:text-white">
@@ -729,7 +1055,7 @@ export default function ProfilePage() {
           </div>
           <div className="space-y-4">
             {pastSailings.map((sailing) => (
-              <div key={sailing.id} onClick={() => router.push(`/Secret-menU/sailing/${sailing.id}/review`)} className="pb-4 border-b border-slate-100 dark:border-slate-700 last:border-0 last:pb-0 hover:bg-slate-50 dark:hover:bg-slate-700/50 -mx-2 px-2 py-2 rounded-xl transition-colors cursor-pointer">
+              <div key={sailing.id} onClick={() => isOwnProfile && router.push(`/Secret-menU/sailing/${sailing.id}/review`)} className={`pb-4 border-b border-slate-100 dark:border-slate-700 last:border-0 last:pb-0 -mx-2 px-2 py-2 rounded-xl transition-colors ${isOwnProfile ? 'hover:bg-slate-50 dark:hover:bg-slate-700/50 cursor-pointer' : ''}`}>
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="font-semibold text-slate-900 dark:text-white">{sailing.ship_name}</h3>
                   <span className="text-xs text-slate-400 dark:text-slate-500">
@@ -743,12 +1069,12 @@ export default function ProfilePage() {
                 )}
                 <div className="flex flex-wrap gap-2 text-xs text-slate-500 dark:text-slate-400 mb-2">
                   <span>From {sailing.embarkation_port}</span>
-                  {sailing.ports_of_call && <span>via {sailing.ports_of_call}</span>}
+                  {sailing.ports_of_call && <span>Ports:</span>}
                   {sailing.stateroom_numbers && sailing.stateroom_numbers.length > 0 && (
                     <span>Room{sailing.stateroom_numbers.length > 1 ? 's' : ''} {sailing.stateroom_numbers.join(', ')}</span>
                   )}
                   {sailing.num_pax && <span>{sailing.num_pax} pax</span>}
-                  {sailing.cost_per_pax != null && <span>${Number(sailing.cost_per_pax).toLocaleString()}/pax</span>}
+                  {isOwnProfile && sailing.cost_per_pax != null && <span>${Number(sailing.cost_per_pax).toLocaleString()}/pax</span>}
                 </div>
                 {sailing.overall_rating != null ? (
                   <>
@@ -835,39 +1161,61 @@ export default function ProfilePage() {
         </div>
       )}
 
-      {/* Trivia Stats */}
-      {activeTab === 'overview' && showTriviaSection && triviaStats && (
-        <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-200 dark:border-slate-700 mb-6">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Trivia Stats</h2>
-          <div className="grid grid-cols-3 gap-4 text-center">
-            <div>
-              <div className="text-2xl font-bold text-slate-900 dark:text-white">{triviaAccuracy}%</div>
-              <div className="text-xs text-slate-500 dark:text-slate-400">Accuracy</div>
-            </div>
-            <div>
-              <div className="text-2xl font-bold text-slate-900 dark:text-white">{triviaStats.quizSessions.length}</div>
-              <div className="text-xs text-slate-500 dark:text-slate-400">Quizzes</div>
-            </div>
-            <div>
-              <div className="text-2xl font-bold text-slate-900 dark:text-white">{triviaStats.questionsAnswered}</div>
-              <div className="text-xs text-slate-500 dark:text-slate-400">Questions</div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Friends */}
-      {activeTab === 'overview' && friends.length > 0 && (
-        <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-200 dark:border-slate-700 mb-6">
-          <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-2">Friends</h3>
-          <div className="flex flex-wrap gap-2">
-            {friends.slice(0, 20).map(f => (
-              <Link key={f.id} href={`/profile/${f.handle || f.id}`} className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-slate-50 dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors">
-                <Avatar url={f.avatar_url} name={f.display_name} size="sm" />
-                <span className="text-xs font-medium text-slate-700 dark:text-slate-300">{f.display_name}</span>
+      {/* Trivia Tab */}
+      {isOwnProfile && activeTab === 'trivia' && (
+        <div>
+          {triviaStats ? (
+            <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-200 dark:border-slate-700 mb-6">
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Trivia Stats</h2>
+              <div className="grid grid-cols-3 gap-4 text-center mb-6">
+                <div>
+                  <div className="text-2xl font-bold text-slate-900 dark:text-white">{triviaAccuracy}%</div>
+                  <div className="text-xs text-slate-500 dark:text-slate-400">Accuracy</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-slate-900 dark:text-white">{triviaStats.quizSessions.length}</div>
+                  <div className="text-xs text-slate-500 dark:text-slate-400">Quizzes</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-slate-900 dark:text-white">{triviaStats.questionsAnswered}</div>
+                  <div className="text-xs text-slate-500 dark:text-slate-400">Questions</div>
+                </div>
+              </div>
+              {triviaStats.quizSessions.length > 0 && (
+                <div>
+                  <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-3">Recent Quizzes</h3>
+                  <div className="space-y-2">
+                    {triviaStats.quizSessions.slice(0, 10).map((session, i) => (
+                      <div key={i} className="flex items-center justify-between py-2 border-b border-slate-100 dark:border-slate-700 last:border-0">
+                        <div className="min-w-0">
+                          <div className="text-sm font-medium text-slate-900 dark:text-white capitalize truncate">
+                            {session.categorySlug.replace(/-/g, ' ')}
+                          </div>
+                          <div className="text-xs text-slate-500 dark:text-slate-400">
+                            {new Date(session.completedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                          </div>
+                        </div>
+                        <div className="text-sm font-bold text-slate-900 dark:text-white">
+                          {session.score}/{session.totalQuestions}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+              <Link href="/quiz" className="block mt-4 w-full text-center px-4 py-2.5 rounded-xl text-sm font-medium btn-disney">
+                Play Trivia
               </Link>
-            ))}
-          </div>
+            </div>
+          ) : (
+            <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-200 dark:border-slate-700 text-center">
+              <div className="text-3xl mb-2">🧠</div>
+              <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">No trivia stats yet. Take a quiz to get started!</p>
+              <Link href="/quiz" className="inline-block px-6 py-2.5 rounded-xl text-sm font-medium btn-disney">
+                Play Trivia
+              </Link>
+            </div>
+          )}
         </div>
       )}
     </div>

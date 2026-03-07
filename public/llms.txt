@@ -1,0 +1,36 @@
+# Disney Cruise Trivia
+> The ultimate Disney cruise companion — trivia study, ship guides, dining reviews, venue details, and community wisdom for Disney Cruise Line.
+
+## About
+Disney Cruise Trivia is a free fan-made web app for Disney Cruise Line enthusiasts. It helps cruisers study trivia, discover onboard venues, plan their sailings, and share community knowledge.
+
+## Content Areas
+
+### Trivia
+700+ trivia questions across 13 categories: Animation, Pixar, Star Wars, Marvel, Villains, Princesses, Music, Parks, Cruise, Walt History, Broadway, Food, Mixed.
+
+### Cruise Guide (Secret Menu)
+Comprehensive onboard guide covering:
+- **Ships**: Disney Magic, Disney Wonder, Disney Dream, Disney Fantasy, Disney Wish, Disney Treasure, Disney Destiny, Disney Adventure
+- **Venues**: 153 venue concepts across 8 ships (bars, lounges, pools, restaurants, theaters, youth clubs, and more)
+- **Dining**: Rotational dining, specialty restaurants, quick service, bars & lounges
+- **Activities**: Pools, water rides, sports, fitness, youth clubs, character experiences
+- **Entertainment**: Live shows, deck parties, nightclubs
+- **Shopping**: Onboard retail stores
+- **Staterooms**: Room categories, deck plans, stateroom guides
+- **Cruise Hacks**: Community-rated tips and insider knowledge
+
+### Community Features
+- Venue reviews with ratings
+- Sailing reviews and logs
+- Dining reviews
+- Cruise hack submissions with verdicts (Must Try / Worth It / Skip It)
+- First-Timer Guide for new cruisers
+- Castaway Club Wisdom — tips organized by member level
+- Community Q&A
+
+### Guide Categories
+Dining, Character Experiences, Live Shows & Entertainment, Deck Parties, Nightclubs & Lounges, Pools & Water, Sports & Recreation, Youth Clubs, Spa & Salon, Shops & Retail
+
+## Sitemap
+https://www.disneytrivia.club/sitemap.xml

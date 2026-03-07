@@ -1,0 +1,159 @@
+{
+  "levels": [
+    {
+      "level": "new",
+      "label": "First Sail",
+      "emoji": "⚓",
+      "sailings": "0",
+      "description": "Welcome aboard! Everyone starts here before their first Disney cruise.",
+      "benefits": [
+        { "perk": "Online check-in opens 30 days before sailing", "type": "official" },
+        { "perk": "Activity & excursion booking opens 75 days before sailing", "type": "official" },
+        { "perk": "Access to all complimentary onboard activities, dining, and entertainment", "type": "official" },
+        { "perk": "Automatic enrollment in Castaway Club after your first completed sailing", "type": "official" }
+      ],
+      "hiddenPerks": [
+        { "perk": "Your serving team will go out of their way to make first-timers feel special — let them know!", "type": "hidden" },
+        { "perk": "First-time cruiser buttons are available at Guest Services — wear one and crew members will give you extra attention", "type": "hidden" },
+        { "perk": "Book your next cruise onboard for a reduced deposit ($250 vs $500+) and $100-$200 onboard credit — you can change dates later", "type": "hidden" }
+      ],
+      "tips": [
+        { "id": "new-1", "title": "Download the Disney Cruise Line app", "tip": "The Navigator app replaces the paper daily schedule. It shows show times, dining details, deck plans, and lets you message other guests on the ship for free.", "category": "First-Time" },
+        { "id": "new-2", "title": "Bring a lanyard for your Key to the World card", "tip": "You'll use this card constantly — for your room, charging purchases, and getting on/off the ship. A lanyard keeps it accessible and hard to lose.", "category": "Packing" },
+        { "id": "new-3", "title": "Set up your onboard account before sailing", "tip": "Complete online check-in including payment setup and health questionnaire. Upload passport photos. This speeds up your port arrival significantly.", "category": "Embarkation" },
+        { "id": "new-4", "title": "Eat lunch at the pool deck immediately after boarding", "tip": "Cabanas (or the equivalent quick-service spot) is the only dining option open when you first board. Eat first, explore second — you'll have a long day ahead.", "category": "Dining" },
+        { "id": "new-5", "title": "Attend the Sail-Away Celebration", "tip": "The deck party as the ship departs is pure magic. Get there early for a good viewing spot. Characters appear, confetti flies, and the excitement of your cruise officially begins.", "category": "First-Time" },
+        { "id": "new-6", "title": "Register kids for youth clubs on Day 1", "tip": "Lines for youth club registration can be long. Do it early while the ship is still relatively empty and before the Sail-Away party if possible.", "category": "Kids" }
+      ]
+    },
+    {
+      "level": "silver",
+      "label": "Silver",
+      "emoji": "🥈",
+      "sailings": "1–4",
+      "description": "You've caught the Disney cruise bug. Silver status is earned after your first completed sailing.",
+      "benefits": [
+        { "perk": "Online check-in opens 33 days before sailing (3 days early)", "type": "official" },
+        { "perk": "Activity & excursion booking opens 90 days before sailing (15 days early)", "type": "official" },
+        { "perk": "Castaway Club welcome-back gift in your stateroom", "type": "official" },
+        { "perk": "Exclusive Castaway Club lanyard on first Silver sailing", "type": "official" },
+        { "perk": "Access to Silver-and-above Castaway Club reception onboard", "type": "official" },
+        { "perk": "Special 25% off select merchandise discount on embarkation day", "type": "official" }
+      ],
+      "hiddenPerks": [
+        { "perk": "Silver members sometimes receive complimentary room upgrades when the ship isn't full — book a lower category and get lucky", "type": "hidden" },
+        { "perk": "The extra 15 days for activity booking is a huge advantage for snagging popular spa and dining reservations", "type": "hidden" },
+        { "perk": "Mention your Castaway status to your servers — they often mark special occasions with extra desserts or attention", "type": "hidden" },
+        { "perk": "Silver status counts for everyone in your stateroom — your whole party benefits from your booking windows", "type": "hidden" }
+      ],
+      "tips": [
+        { "id": "silver-1", "title": "Request dining changes early", "tip": "If you want to switch seating times or have a larger table, go to Guest Services on embarkation day. Changes are first-come, first-served and the best options go quickly.", "category": "Dining" },
+        { "id": "silver-2", "title": "Use the laundry rooms strategically", "tip": "Laundry rooms on Deck 2 and 6 are free to use (detergent costs extra). Go early morning or during dinner when everyone is in the dining rooms. Bring your own detergent pods.", "category": "Saving Money" },
+        { "id": "silver-3", "title": "Book Palo brunch instead of dinner", "tip": "Palo brunch on sea days is the same price as dinner but includes both breakfast and lunch items plus the incredible pizza and soufflé. Better value and a more relaxed atmosphere.", "category": "Dining" },
+        { "id": "silver-4", "title": "Get the drink package math right", "tip": "Calculate how many drinks per day you'd need to break even on a beverage package. For most cruisers, 4-5 alcoholic drinks per day is the breakeven point. Buy individual drinks if you're a light drinker.", "category": "Saving Money" },
+        { "id": "silver-5", "title": "Check the Navigator for character schedules", "tip": "Character appearances rotate through specific locations throughout the day. Check your daily Navigator or the app to plan meet & greets and avoid long waits by going to less obvious times.", "category": "Kids" },
+        { "id": "silver-6", "title": "Magnetic hooks are a game-changer", "tip": "Stateroom walls and doors are metal. Magnetic hooks let you hang hats, lanyards, wet swimsuits, and shoe organizers without damaging anything. Bring at least 4-6.", "category": "Packing" }
+      ]
+    },
+    {
+      "level": "gold",
+      "label": "Gold",
+      "emoji": "🥇",
+      "sailings": "5–9",
+      "description": "A seasoned cruiser. Gold status unlocks even earlier booking windows and exclusive recognition.",
+      "benefits": [
+        { "perk": "Online check-in opens 35 days before sailing (5 days early)", "type": "official" },
+        { "perk": "Activity & excursion booking opens 105 days before sailing (30 days early)", "type": "official" },
+        { "perk": "Gold Castaway Club welcome-back gift (upgraded from Silver)", "type": "official" },
+        { "perk": "Exclusive Gold Castaway Club lanyard", "type": "official" },
+        { "perk": "Gold-level meet and greet with ship officers", "type": "official" },
+        { "perk": "Priority check-in line at the port terminal", "type": "official" },
+        { "perk": "Access to all Silver-level benefits", "type": "official" }
+      ],
+      "hiddenPerks": [
+        { "perk": "Gold members get 105-day booking — that's 30 extra days to grab premium Palo/Remy reservations and the best excursion time slots before most guests", "type": "hidden" },
+        { "perk": "The Gold officer meet & greet is a chance to tour the bridge on some sailings — ask your Guest Services team about availability", "type": "hidden" },
+        { "perk": "Gold and above members occasionally receive Castaway Cay cabana upgrade offers at a discount", "type": "hidden" },
+        { "perk": "At Castaway Cay, Gold members can sometimes access the bike rental and snorkel equipment before general guests", "type": "hidden" }
+      ],
+      "tips": [
+        { "id": "gold-1", "title": "Order from tomorrow's menu tonight", "tip": "Your servers can bring you items from the next evening's menu as extras. If you see something amazing on tomorrow's menu in the Navigator, ask your server to prepare it tonight.", "category": "Dining" },
+        { "id": "gold-2", "title": "Use the room service breakfast trick", "tip": "Order room service breakfast to arrive 15 minutes before your wake-up time. Fill out the door hanger the night before. It's complimentary and lets you start the day without rushing to a restaurant.", "category": "Dining" },
+        { "id": "gold-3", "title": "Book Castaway Cay cabanas early", "tip": "Private cabanas on Castaway Cay sell out immediately during the booking window. Set an alarm for the exact opening time. Serenity Bay cabanas are the most peaceful option.", "category": "Saving Money" },
+        { "id": "gold-4", "title": "Check for onboard booking discounts", "tip": "Book your next cruise while still on the ship. You'll get a reduced deposit ($250 vs $500+) and an onboard credit ($100-$200). You can change dates and itineraries later.", "category": "Saving Money" },
+        { "id": "gold-5", "title": "Skip the crowded pool deck on sea days", "tip": "Head to the Quiet Cove pool or explore the adults-only sundeck areas while families crowd the main pool. The Aqua Mouse/Duck line is shortest in the first 30 minutes after opening.", "category": "First-Time" },
+        { "id": "gold-6", "title": "Bring glow sticks and Fish Extender gifts", "tip": "Fish Extenders are a community gift exchange tradition. Join a Facebook group for your sailing to participate. Also, glow sticks for Pirate Night make the deck party more fun.", "category": "Packing" }
+      ]
+    },
+    {
+      "level": "platinum",
+      "label": "Platinum",
+      "emoji": "💎",
+      "sailings": "10–24",
+      "description": "Disney Cruise Line royalty. Platinum brings significant booking advantages and exclusive onboard recognition.",
+      "benefits": [
+        { "perk": "Online check-in opens 38 days before sailing (8 days early)", "type": "official" },
+        { "perk": "Activity & excursion booking opens 120 days before sailing (45 days early)", "type": "official" },
+        { "perk": "Platinum Castaway Club welcome-back gift (premium tier)", "type": "official" },
+        { "perk": "Exclusive Platinum Castaway Club lanyard", "type": "official" },
+        { "perk": "Platinum & Pearl exclusive reception with senior ship officers", "type": "official" },
+        { "perk": "Priority tendering at ports (board tenders before general guests)", "type": "official" },
+        { "perk": "Priority check-in at port terminal", "type": "official" },
+        { "perk": "Complimentary specialty dining upgrade on select sailings", "type": "official" },
+        { "perk": "All Gold and Silver benefits included", "type": "official" }
+      ],
+      "hiddenPerks": [
+        { "perk": "Platinum members are first in line for complimentary stateroom upgrades when higher categories go unsold", "type": "hidden" },
+        { "perk": "120-day activity booking means you can book popular time slots months before Silver and new cruisers even have access", "type": "hidden" },
+        { "perk": "Priority tendering is a massive time saver at tender ports — you'll be ashore while others are still waiting", "type": "hidden" },
+        { "perk": "The Platinum/Pearl reception often includes behind-the-scenes tidbits about the ship, upcoming itineraries, and new ships", "type": "hidden" },
+        { "perk": "Some Platinum members report receiving surprise onboard credit or spa discount offers via their stateroom TV", "type": "hidden" },
+        { "perk": "Your Castaway status is noted by the crew — Platinum guests often get preferential seating requests honored more readily", "type": "hidden" }
+      ],
+      "tips": [
+        { "id": "plat-1", "title": "Know your Platinum perks", "tip": "Platinum members get priority tendering, a welcome-aboard gift, earlier check-in and activity windows, and a meet & greet with senior officers. Check the Navigator for the Platinum/Pearl reception.", "category": "First-Time" },
+        { "id": "plat-2", "title": "Time your spa visits for port days", "tip": "The spa runs port day specials and is much quieter when most guests are ashore. Book treatments on port days for the best deals and most relaxing experience.", "category": "Saving Money" },
+        { "id": "plat-3", "title": "Request specific table assignments", "tip": "If you've cruised enough to know your preferences, request a specific table size or location during check-in. Window tables and smaller tables for couples are in high demand.", "category": "Dining" },
+        { "id": "plat-4", "title": "Maximize onboard credit stacking", "tip": "Stack Disney Visa onboard credit, booking onboard credit, and any promotional credits. Gift cards purchased at a discount (Target 5% with RedCard) can be applied to your onboard account.", "category": "Saving Money" },
+        { "id": "plat-5", "title": "Pack for themed nights", "tip": "Beyond Pirate Night, some sailings have Marvel, Star Wars, or Frozen themed evenings. Check your itinerary for special theme nights and pack accordingly — costumes and themed outfits add to the fun.", "category": "Packing" },
+        { "id": "plat-6", "title": "Use the app for character wait times", "tip": "Character meet & greet wait times are displayed in the app. Characters with the shortest waits are often in less obvious locations like the atrium or near restaurants rather than the main character area.", "category": "Kids" }
+      ]
+    },
+    {
+      "level": "pearl",
+      "label": "Pearl",
+      "emoji": "🤍",
+      "sailings": "25+",
+      "description": "The highest Castaway Club tier. Pearl members are among Disney Cruise Line's most loyal guests, with the best perks available.",
+      "benefits": [
+        { "perk": "Online check-in opens 40 days before sailing (10 days early)", "type": "official" },
+        { "perk": "Activity & excursion booking opens 123 days before sailing (48 days early)", "type": "official" },
+        { "perk": "Pearl Castaway Club welcome-back gift (highest tier)", "type": "official" },
+        { "perk": "Exclusive Pearl Castaway Club lanyard and pin", "type": "official" },
+        { "perk": "Platinum & Pearl exclusive reception with Captain and senior officers", "type": "official" },
+        { "perk": "Priority tendering at all ports", "type": "official" },
+        { "perk": "Priority check-in with dedicated Pearl line at port", "type": "official" },
+        { "perk": "Complimentary specialty dining on select sailings", "type": "official" },
+        { "perk": "Exclusive Pearl stateroom gift and welcome letter from the Captain", "type": "official" },
+        { "perk": "All Platinum, Gold, and Silver benefits included", "type": "official" }
+      ],
+      "hiddenPerks": [
+        { "perk": "Pearl members get the absolute earliest booking window at 123 days — practically guaranteed to secure any reservation you want", "type": "hidden" },
+        { "perk": "Some Pearl members report being offered complimentary Concierge-level amenities like fruit plates, chocolate-covered strawberries, or wine on embarkation day", "type": "hidden" },
+        { "perk": "Pearl guests are sometimes personally greeted by name by the Captain or Hotel Director during the voyage", "type": "hidden" },
+        { "perk": "The welcome-back gift has historically included items like exclusive artwork, ornaments, or collectible pins not available for purchase", "type": "hidden" },
+        { "perk": "Pearl members have the best chance of complimentary upgrades — including to Concierge or suite categories when available", "type": "hidden" },
+        { "perk": "On some sailings, Pearl members receive invitations to exclusive behind-the-scenes tours (galley tours, bridge visits, or entertainment backstage)", "type": "hidden" },
+        { "perk": "Your repeat cruiser status is flagged ship-wide — expect crew members to acknowledge your loyalty throughout the voyage", "type": "hidden" }
+      ],
+      "tips": [
+        { "id": "pearl-1", "title": "The concierge lounge is your secret weapon", "tip": "If you've upgraded to concierge, the lounge offers complimentary snacks, drinks, and a dedicated concierge team. Even without concierge, Pearl members get select similar perks.", "category": "First-Time" },
+        { "id": "pearl-2", "title": "Build relationships with your servers", "tip": "After 25+ cruises, you may start getting the same serving teams. Remember their names, tip generously, and they'll go above and beyond — special desserts, off-menu items, and personalized touches.", "category": "Dining" },
+        { "id": "pearl-3", "title": "Combine back-to-back sailings for maximum value", "tip": "Back-to-back cruises often offer a discount on the second sailing and let you stay onboard during turnaround day. You'll keep your stateroom and enjoy the ship while it's nearly empty.", "category": "Saving Money" },
+        { "id": "pearl-4", "title": "Know the best stateroom locations", "tip": "Mid-ship on lower decks provides the smoothest ride. Forward staterooms on higher decks offer the best views. Avoid rooms near laundry rooms (noise) or under the pool deck. Check deck plans carefully.", "category": "Packing" },
+        { "id": "pearl-5", "title": "Organize group cruises", "tip": "With your experience, you're the perfect person to organize group sailings. Groups of 8+ staterooms get perks like onboard credit and sometimes a free stateroom for the organizer.", "category": "Saving Money" },
+        { "id": "pearl-6", "title": "Share your knowledge with first-timers", "tip": "The Disney cruise community thrives on shared knowledge. Help new cruisers at your dinner table, in the lounges, or online. Your decades of experience is incredibly valuable — pay it forward!", "category": "First-Time" }
+      ]
+    }
+  ]
+}
