@@ -237,7 +237,7 @@ export default function SecretMenuPage() {
   return (
     <div className="max-w-2xl mx-auto min-h-[60vh]">
       {/* Header */}
-      <div className="mb-8">
+      <div className="mb-6">
         <Link
           href="/"
           className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center gap-1 text-sm mb-4"
@@ -247,10 +247,10 @@ export default function SecretMenuPage() {
           </svg>
           Home
         </Link>
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">
           Disney Cruise Companion
         </h1>
-        <p className="text-slate-600 dark:text-slate-400">
+        <p className="text-sm text-slate-600 dark:text-slate-400">
           Your ultimate all-in-one tool to create magic experiences for you and your fellow cruisers.
         </p>
       </div>
@@ -544,8 +544,8 @@ export default function SecretMenuPage() {
 
       {/* Cruise Info */}
       <div>
-        <h2 className="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-1 px-1">Plan & Manage Sailings</h2>
-        <p className="text-xs text-slate-500 dark:text-slate-400 mb-3 px-1">Track your sailings, explore ships, and look up staterooms.</p>
+        <h2 className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-0.5 px-1">Plan & Manage Sailings</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-2.5 px-1">Track your sailings, explore ships, and look up staterooms.</p>
         <div className="grid grid-cols-2 gap-3">
           <Link
             href="/Secret-menU/ships"
@@ -594,7 +594,7 @@ export default function SecretMenuPage() {
       </div>
 
       {/* Browse Guides */}
-      <div className="mt-6">
+      <div className="mt-8">
         <div className="grid grid-cols-2 gap-3">
           <Link
             href="/Secret-menU/foodies"
@@ -640,9 +640,9 @@ export default function SecretMenuPage() {
       </div>
 
       {/* Disney Magic Culture */}
-      <div className="mt-6">
-        <h2 className="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-1 px-1">Disney Magic Culture</h2>
-        <p className="text-xs text-slate-500 dark:text-slate-400 mb-3 px-1">A community built on kindness, love, and dreams — where guests share pixie dust and make magic for each other.</p>
+      <div className="mt-8">
+        <h2 className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-0.5 px-1">Disney Magic Culture</h2>
+        <p className="text-xs text-slate-400 dark:text-slate-500 mb-2.5 px-1">A community built on kindness, love, and dreams — where guests share pixie dust and make magic for each other.</p>
         <div className="grid grid-cols-2 gap-3">
           {user ? (
             <Link
@@ -715,7 +715,7 @@ export default function SecretMenuPage() {
       </div>
 
       {/* Community & Tips Section */}
-      <div className="mt-6">
+      <div className="mt-8">
         <div className="grid grid-cols-2 gap-3">
           <Link
             href="/Secret-menU/castaway-wisdom"
