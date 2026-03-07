@@ -62,6 +62,18 @@
         { "id": "first-4", "question": "Is there a formal night?", "answer": "Most sailings have one formal night (longer cruises may have two). Dress expectations range from cocktail attire to formal gowns/suits. It's not strictly enforced but most guests enjoy dressing up. Great photo opportunities with character meet & greets in formal attire." },
         { "id": "first-5", "question": "How can I avoid seasickness?", "answer": "Choose a mid-ship, lower-deck stateroom for the least motion. Bring motion sickness medication (Bonine or Dramamine) and start taking it before boarding. Sea-Bands (acupressure wristbands) help some people. Green apples and ginger also help settle stomachs." }
       ]
+    },
+    {
+      "topic": "international",
+      "emoji": "🌍",
+      "questions": [
+        { "id": "intl-1", "question": "What currency is used onboard Disney cruise ships?", "answer": "All Disney ships operate in US dollars regardless of sailing region. Your Key to the World card links to a credit card so no cash is needed onboard. At international ports, local currency or major credit cards are accepted by most vendors." },
+        { "id": "intl-2", "question": "What travel documents do I need for international sailings?", "answer": "A valid passport is required for all international itineraries and strongly recommended even for closed-loop US sailings. Check entry requirements for each port — some countries require visas or have specific passport validity rules (often 6 months beyond travel dates). Disney provides destination-specific guidance after booking." },
+        { "id": "intl-3", "question": "What electrical outlets are available in staterooms?", "answer": "Every stateroom has both US-style (Type A/B, 110V) and European-style (Type F, 220V) outlets. Most modern electronics handle dual voltage automatically. Bring a power strip without surge protection for extra outlets — surge protectors are not allowed onboard." },
+        { "id": "intl-4", "question": "What global ports does Disney Cruise Line visit?", "answer": "Disney sails to the Bahamas, Caribbean, Alaska, Mediterranean, Northern Europe, British Isles, Norway, Iceland, Bermuda, Hawaii, Panama Canal, and Southeast Asia (from Singapore). New ports and itineraries are added each season. European sailings depart from Barcelona, Rome, Copenhagen, and Southampton among others." },
+        { "id": "intl-5", "question": "How do time zone changes work during a cruise?", "answer": "On itineraries that cross time zones, the ship adjusts clocks overnight — usually moving forward or back one hour. The daily Navigator and the Disney Cruise Line app will note any time changes. Transatlantic crossings involve multiple time changes spread across sea days. Your phone may jump between time zones at ports, so rely on ship time." },
+        { "id": "intl-6", "question": "How do gratuities work on international itineraries?", "answer": "Automatic gratuities ($14.50/person/day in USD) apply on all sailings worldwide. The amount is the same regardless of region. For port excursions, local guides and drivers may expect tips in local currency — research tipping customs for your specific destinations. Carry small bills in euros, pounds, or local currency for port days." }
+      ]
     }
   ]
 }

@@ -3,6 +3,8 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/components/AuthProvider';
+import FaqVoteButtons from '@/components/FaqVoteButtons';
+import { useFaqVotes } from '@/hooks/useFaqVotes';
 import faqData from '@/data/faq-data.json';
 
 const TOPICS = faqData.topics.map(t => ({ key: t.topic, label: t.topic.charAt(0).toUpperCase() + t.topic.slice(1).replace('-', ' '), emoji: t.emoji }));
@@ -51,6 +53,13 @@ export default function QAPage() {
   const [answerText, setAnswerText] = useState('');
   const [answeringId, setAnsweringId] = useState<string | null>(null);
   const [answerSubmitting, setAnswerSubmitting] = useState(false);
+
+  // FAQ voting
+  const qaVoteIds = useMemo(() =>
+    faqData.topics.flatMap(t => t.questions.map(q => `qa:${q.id}`)),
+    []
+  );
+  const { votes: qaVotes, handleVote: handleQaVote } = useFaqVotes(qaVoteIds);
 
   const fetchQuestions = useCallback(async () => {
     setLoading(true);
@@ -223,6 +232,9 @@ export default function QAPage() {
                   {expandedFaq.has(faq.id) && (
                     <div className="px-5 pb-4 pl-12">
                       <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{faq.answer}</p>
+                      <div className="flex justify-end mt-2">
+                        <FaqVoteButtons voteKey={`qa:${faq.id}`} votes={qaVotes} onVote={handleQaVote} />
+                      </div>
                     </div>
                   )}
                 </div>

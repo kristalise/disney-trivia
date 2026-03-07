@@ -1,6 +1,43 @@
 {
   "sections": [
     {
+      "id": "disney-etiquette",
+      "title": "Disney Etiquette",
+      "emoji": "🤝",
+      "items": [
+        {
+          "question": "What are Fish Extenders?",
+          "answer": "Fish Extenders (FEs) are fabric pocket organizers that hang from the metal fish hook outside your stateroom door. Guests join FE groups before the cruise (usually organized on Facebook or DisBoards) and exchange small gifts with other cabins in the group. Gifts are typically inexpensive — think candy, keychains, magnets, or homemade treats. Participation is completely optional and you'll never be judged for skipping it, but many cruisers love the surprise and community it brings.",
+          "tags": ["fish-extenders", "traditions"]
+        },
+        {
+          "question": "What is Pixie Dusting?",
+          "answer": "Pixie Dusting is the Disney cruise tradition of spreading surprise kindness to fellow guests. It might be leaving a small gift on a random stateroom door, buying a drink for the family at the next table, or leaving a kind note for someone celebrating a birthday. Unlike Fish Extenders, Pixie Dusting is spontaneous and anonymous — there's no sign-up and no obligation to reciprocate. It's part of the generous community spirit that makes Disney cruises feel special.",
+          "tags": ["pixie-dust", "traditions"]
+        },
+        {
+          "question": "What are door magnets and decorations?",
+          "answer": "Decorating your stateroom door with magnets is a beloved Disney cruise tradition. Guests use custom magnets to celebrate birthdays, anniversaries, first sailings, or just show off their Disney spirit. The stateroom doors are magnetic, so no adhesive needed. You can buy pre-made magnets on Etsy or make your own. Some families go all out with full door themes! Just keep decorations on your own door and remove them on the last night before debarkation.",
+          "tags": ["door-magnets", "traditions"]
+        },
+        {
+          "question": "What's proper elevator and hallway etiquette?",
+          "answer": "Stateroom hallways carry sound easily, so keep voices low after 10 PM and avoid letting doors slam — use the handle to close them gently. For elevators, let guests exit before entering and consider taking the stairs for just one or two decks, especially during busy times like dinner rotations and port arrival. Be mindful of stroller traffic in narrow corridors and hold doors for fellow guests.",
+          "tags": ["etiquette", "courtesy"]
+        },
+        {
+          "question": "What are the unwritten dining room rules?",
+          "answer": "Your serving team works hard to make dinner magical, so arrive on time for your seating and let Guest Services know if you'll miss a night. Tipping beyond the automatic gratuities is appreciated for exceptional service. Stick with your assigned table — switching disrupts the servers' sections. Dress codes (cruise casual, semi-formal, or formal night) are enforced in the main dining rooms, though the buffet is always relaxed. And yes, you can absolutely order more than one entrée or dessert!",
+          "tags": ["dining", "etiquette"]
+        },
+        {
+          "question": "How should I behave at the pool and on deck?",
+          "answer": "Don't reserve deck chairs with towels and then disappear for hours — it's the most common cruise etiquette complaint. In the Walt Disney Theatre, silence your phone, keep screens off, and avoid saving large blocks of seats once the doors open. At the Quiet Cove adult pool, respect the peaceful atmosphere. On Castaway Cay, leave your beach spot tidy. And be kind to the towel animal on your bed each night — your stateroom host made it just for you!",
+          "tags": ["pools", "etiquette"]
+        }
+      ]
+    },
+    {
       "id": "before-you-board",
       "title": "Before You Board",
       "emoji": "📋",
@@ -186,6 +223,53 @@
           "question": "Any last-day tips?",
           "answer": "Settle your onboard account the night before at Guest Services. Enjoy a last breakfast. Take final photos. Remove Fish Extender gifts if participating. Double-check safe and drawers for forgotten items. Download any photos from Shutters/the app you want to keep.",
           "tags": ["debarkation", "tips"]
+        }
+      ]
+    },
+    {
+      "id": "international-cruising",
+      "title": "International Cruising",
+      "emoji": "🌍",
+      "items": [
+        {
+          "question": "What currency is used onboard?",
+          "answer": "All Disney cruise ships use US dollars for onboard purchases regardless of sailing region. Your Key to the World card is linked to a credit card, so you won't need cash onboard. At international ports, local currency or credit cards are accepted by most vendors. ATMs are available at many ports but may charge foreign transaction fees.",
+          "tags": ["currency", "international"]
+        },
+        {
+          "question": "How do gratuities work on international sailings?",
+          "answer": "Automatic gratuities are charged in US dollars at the same rate on all sailings (approximately $14.50/person/day). On European and Asian itineraries, some local excursion guides and port drivers may expect tips in local currency — carry small bills in euros, pounds, or the local currency. Tipping customs vary by region, so research your specific ports.",
+          "tags": ["gratuities", "international"]
+        },
+        {
+          "question": "Are there cultural differences on international sailings?",
+          "answer": "Disney maintains its signature family-friendly atmosphere on all sailings, but the guest mix may differ. European and Asian sailings tend to attract a more international crowd with diverse languages and customs. Entertainment and activities are conducted in English with some multilingual offerings on select itineraries. Dining menus may feature region-inspired dishes alongside Disney classics.",
+          "tags": ["culture", "international"]
+        },
+        {
+          "question": "What should I know about sailing from Singapore?",
+          "answer": "Singapore is Disney Cruise Line's first Southeast Asian homeport. The Marina Bay Cruise Centre is modern and well-connected by taxi and MRT. Expect tropical weather year-round — pack light, breathable clothing and plenty of sunscreen. Itineraries typically visit destinations in Malaysia, Vietnam, and Thailand. Singapore itself is worth exploring for a few days before or after your cruise.",
+          "tags": ["singapore", "homeport", "asia"]
+        },
+        {
+          "question": "What are tips for European itineraries?",
+          "answer": "European sailings depart from ports like Barcelona, Rome (Civitavecchia), Copenhagen, and Southampton. These cruises tend to be longer (7-14 nights) and more port-intensive. Comfortable walking shoes are essential for cobblestone streets and historic sites. Many ports require tenders. Carry euros (or local currency) for port purchases. Consider arriving a day early to avoid flight delay stress.",
+          "tags": ["europe", "itineraries"]
+        },
+        {
+          "question": "What about Asian itinerary tips?",
+          "answer": "Asian itineraries visit ports in Japan, Vietnam, Thailand, and more. Temples and cultural sites often require modest dress — bring clothing that covers shoulders and knees. Street food is a highlight at many ports but stick to busy stalls for food safety. Translation apps are helpful at ports where English isn't widely spoken. Local SIM cards or eSIMs are affordable for staying connected.",
+          "tags": ["asia", "itineraries"]
+        },
+        {
+          "question": "Will I have language barriers onboard or at ports?",
+          "answer": "Onboard, all crew members speak English and all signage, shows, and announcements are in English. On select international sailings, some activities and printed materials are offered in additional languages. At ports, language varies — major tourist areas typically have English-speaking guides, but downloading a translation app (like Google Translate with offline packs) is highly recommended.",
+          "tags": ["language", "communication"]
+        },
+        {
+          "question": "What type of electrical outlets are on the ship?",
+          "answer": "Disney cruise ships provide both US-style (Type A/B, 110V) and European-style (Type F, 220V) outlets in every stateroom. You won't need a voltage converter for most modern electronics (phones, laptops, cameras) as they handle dual voltage. Bring a power strip without surge protection — surge protectors are prohibited onboard. At international ports, you may need a plug adapter for local outlet types.",
+          "tags": ["electrical", "outlets", "packing"]
         }
       ]
     }

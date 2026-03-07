@@ -39,6 +39,7 @@ export interface EnrichedRoom extends Stateroom {
   sqft: number | null;
   sqftPerPax: number | null;
   trafficLight: TrafficLight;
+  matchPercent: number;
 }
 
 export interface DeckGroup {

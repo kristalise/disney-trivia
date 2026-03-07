@@ -154,6 +154,38 @@
         { "id": "pearl-5", "title": "Organize group cruises", "tip": "With your experience, you're the perfect person to organize group sailings. Groups of 8+ staterooms get perks like onboard credit and sometimes a free stateroom for the organizer.", "category": "Saving Money" },
         { "id": "pearl-6", "title": "Share your knowledge with first-timers", "tip": "The Disney cruise community thrives on shared knowledge. Help new cruisers at your dinner table, in the lounges, or online. Your decades of experience is incredibly valuable — pay it forward!", "category": "First-Time" }
       ]
+    },
+    {
+      "level": "concierge",
+      "label": "Concierge",
+      "emoji": "👑",
+      "sailings": "Any",
+      "description": "The premium stateroom experience. Concierge guests enjoy exclusive spaces, personalized service, and VIP treatment from embarkation to debarkation.",
+      "benefits": [
+        { "perk": "Private Concierge Lounge with complimentary snacks, beverages, and a dedicated concierge team", "type": "official" },
+        { "perk": "Priority check-in with a dedicated Concierge line at the port terminal", "type": "official" },
+        { "perk": "Welcome amenity basket in your stateroom with fruit, chocolates, and sparkling wine", "type": "official" },
+        { "perk": "Expanded room service menu with premium items not available to other stateroom categories", "type": "official" },
+        { "perk": "Exclusive Concierge Sun Deck with private pool, whirlpool, and bar service (select ships)", "type": "official" },
+        { "perk": "Priority seating and reservations for specialty dining, spa, and excursions", "type": "official" },
+        { "perk": "Complimentary laundry pressing service", "type": "official" },
+        { "perk": "Nightly turndown with premium pillow chocolates and bottled water", "type": "official" }
+      ],
+      "hiddenPerks": [
+        { "perk": "The Concierge Lounge hosts a complimentary happy hour each evening with cocktails, wine, beer, and appetizers — a hidden gem most non-Concierge guests never learn about", "type": "hidden" },
+        { "perk": "Concierge guests sometimes receive invitations for private character meet & greets in the lounge — shorter lines, more one-on-one time, and exclusive photo opportunities", "type": "hidden" },
+        { "perk": "On select sailings, Concierge guests get access to behind-the-scenes events like galley tours, bridge visits, and cast meet & greets not offered to other guests", "type": "hidden" },
+        { "perk": "Your Concierge team can often arrange special celebrations — custom cakes, in-room decorations, or surprise character visits for birthdays and anniversaries", "type": "hidden" },
+        { "perk": "Concierge staterooms on some ships have oversized verandahs with premium furniture, offering significantly more outdoor space than standard Verandah rooms", "type": "hidden" }
+      ],
+      "tips": [
+        { "id": "conc-1", "title": "Make friends with your Concierge team on Day 1", "tip": "Visit the Concierge Lounge immediately after boarding and introduce yourself to the team. They can make dining changes, book excursions, and handle special requests faster than Guest Services. Building rapport early means better service all cruise.", "category": "First-Time" },
+        { "id": "conc-2", "title": "Don't skip the happy hour", "tip": "The Concierge Lounge happy hour (typically 5-7 PM) offers complimentary cocktails and appetizers that rival specialty dining. It's the best-kept secret of the Concierge experience and saves you money on bar purchases throughout the trip.", "category": "Dining" },
+        { "id": "conc-3", "title": "Use the expanded room service menu", "tip": "Concierge guests get access to premium room service items including shrimp cocktail, filet mignon, and lobster tail. Order breakfast to your stateroom for a luxurious morning on your private verandah.", "category": "Dining" },
+        { "id": "conc-4", "title": "The Sun Deck is worth early mornings", "tip": "The Concierge Sun Deck is rarely crowded before 10 AM. Grab a lounge chair, order a coffee from the bar, and enjoy the private pool and ocean views without the main deck crowds.", "category": "First-Time" },
+        { "id": "conc-5", "title": "Ask about Castaway Cay cabana priority", "tip": "Concierge guests often get first access to Castaway Cay cabana reservations. Ask your Concierge team about availability before your island day — they can sometimes secure cabanas that appear sold out.", "category": "Saving Money" },
+        { "id": "conc-6", "title": "Is Concierge worth the upgrade?", "tip": "For special occasions, absolutely. For families, the extra space and Sun Deck are game-changers. For frequent cruisers who already have Pearl status, the overlap in perks is significant — evaluate whether the premium price adds enough beyond your existing Castaway Club benefits.", "category": "Saving Money" }
+      ]
     }
   ]
 }

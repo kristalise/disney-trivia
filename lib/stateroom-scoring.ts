@@ -99,6 +99,7 @@ export function assignTrafficLights(rooms: EnrichedRoom[]): void {
   if (rooms.length === 0) return;
   if (rooms.length === 1) {
     rooms[0].trafficLight = 'yellow';
+    rooms[0].matchPercent = 50;
     return;
   }
 
@@ -108,13 +109,14 @@ export function assignTrafficLights(rooms: EnrichedRoom[]): void {
 
   if (n === 1) {
     // All rooms have the same score
-    rooms.forEach(r => { r.trafficLight = 'yellow'; });
+    rooms.forEach(r => { r.trafficLight = 'yellow'; r.matchPercent = 50; });
     return;
   }
 
   // Map each unique score to a percentile (0 = worst, 1 = best)
-  // Then assign traffic light based on that percentile
+  // Then assign traffic light and match percentage based on that percentile
   const scoreToLight = new Map<number, TrafficLight>();
+  const scoreToPercent = new Map<number, number>();
   for (let i = 0; i < n; i++) {
     const pct = i / (n - 1);
     let light: TrafficLight;
@@ -122,10 +124,12 @@ export function assignTrafficLights(rooms: EnrichedRoom[]): void {
     else if (pct <= 0.2) light = 'red';
     else light = 'yellow';
     scoreToLight.set(uniqueScores[i], light);
+    scoreToPercent.set(uniqueScores[i], Math.round(pct * 100));
   }
 
   rooms.forEach(r => {
     r.trafficLight = scoreToLight.get(r.score) || 'yellow';
+    r.matchPercent = scoreToPercent.get(r.score) ?? 50;
   });
 }
 
@@ -465,6 +469,7 @@ export function filterAndScore(params: ScoringParams): FilterResult {
       sqft,
       sqftPerPax: sqft != null && partySize > 0 ? Math.round(sqft / partySize) : null,
       trafficLight: 'yellow' as TrafficLight,
+      matchPercent: 0,
     };
   });
 
@@ -528,7 +533,7 @@ export function filterAndScore(params: ScoringParams): FilterResult {
       kidsDeckList,
       teenDeckList,
     });
-    return { ...r, score, scoreReasons: reasons, trafficLight: 'yellow' as TrafficLight };
+    return { ...r, score, scoreReasons: reasons, trafficLight: 'yellow' as TrafficLight, matchPercent: 0 };
   });
 
   // Assign traffic lights using bell curve distribution
@@ -580,6 +585,7 @@ export function scoreCompareRooms(
       sqft,
       sqftPerPax: sqft != null && partySize > 0 ? Math.round(sqft / partySize) : null,
       trafficLight: 'yellow' as TrafficLight,
+      matchPercent: 0,
     };
   });
 
@@ -605,7 +611,7 @@ export function scoreCompareRooms(
       kidsDeckList,
       teenDeckList,
     });
-    return { ...r, score, scoreReasons: reasons, trafficLight: 'yellow' as TrafficLight };
+    return { ...r, score, scoreReasons: reasons, trafficLight: 'yellow' as TrafficLight, matchPercent: 0 };
   });
 
   // Assign traffic lights using bell curve distribution

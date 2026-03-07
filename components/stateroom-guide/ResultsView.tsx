@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useCallback, useEffect, useRef } from 'react';
-import type { EnrichedRoom, DeckGroup, ShipName } from '@/lib/stateroom-types';
-import { scoreCompareRooms } from '@/lib/stateroom-scoring';
+import type { EnrichedRoom, DeckGroup, ShipName, TrafficLight } from '@/lib/stateroom-types';
+import { scoreCompareRooms, TRAFFIC_LIGHT_LABELS } from '@/lib/stateroom-scoring';
 import type { BudgetLevel, TravelParty } from '@/lib/stateroom-types';
 import RoomCompareCard from './RoomCompareCard';
 import DeckGroupCard from './DeckGroupCard';
@@ -37,6 +37,7 @@ export default function ResultsView({
   const [expandedDeck, setExpandedDeck] = useState<number | null>(null);
   const [showAllRooms, setShowAllRooms] = useState<Record<number, boolean>>({});
   const [shareModal, setShareModal] = useState<{ url: string; text: string } | null>(null);
+  const [lightFilter, setLightFilter] = useState<TrafficLight | 'all'>('all');
 
   // Room compare input
   const [roomInput, setRoomInput] = useState('');
@@ -111,6 +112,18 @@ export default function ResultsView({
       text: `Check out these ${selectedShip} stateroom recommendations!`,
     });
   }, [shareUrl, selectedShip]);
+
+  // Traffic light counts and filtering
+  const lightCounts: Record<TrafficLight, number> = { green: 0, yellow: 0, red: 0 };
+  for (const r of filtered) lightCounts[r.trafficLight]++;
+
+  const filteredDeckGroups = lightFilter === 'all'
+    ? deckGroups
+    : deckGroups
+        .map(dg => ({ ...dg, rooms: dg.rooms.filter(r => r.trafficLight === lightFilter) }))
+        .filter(dg => dg.rooms.length > 0);
+
+  const filteredTotal = lightFilter === 'all' ? filtered.length : lightCounts[lightFilter];
 
   // No results
   if (filtered.length === 0) {
@@ -231,12 +244,26 @@ export default function ResultsView({
         <RoomCompareCard rooms={scoredCompareRooms} ship={selectedShip} />
       )}
 
-      {/* Summary Bar */}
+      {/* Summary Bar with Filter Dropdown */}
       <div className="flex items-center justify-between mb-4 px-1">
-        <p className="text-sm text-slate-600 dark:text-slate-400">
-          <span className="font-bold text-slate-900 dark:text-white">{filtered.length}</span>{' '}
-          {filtered.length === 1 ? 'room' : 'rooms'} found
-        </p>
+        <div className="flex items-center gap-3">
+          <p className="text-sm text-slate-600 dark:text-slate-400">
+            <span className="font-bold text-slate-900 dark:text-white">{filteredTotal}</span>{' '}
+            {filteredTotal === 1 ? 'room' : 'rooms'} found
+          </p>
+          <select
+            value={lightFilter}
+            onChange={(e) => setLightFilter(e.target.value as TrafficLight | 'all')}
+            className="px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 text-xs font-medium text-slate-700 dark:text-slate-300 focus:ring-2 focus:ring-disney-blue dark:focus:ring-disney-gold focus:border-transparent"
+          >
+            <option value="all">All ({filtered.length})</option>
+            {(['green', 'yellow', 'red'] as TrafficLight[]).map(light => (
+              <option key={light} value={light}>
+                {TRAFFIC_LIGHT_LABELS[light]} ({lightCounts[light]})
+              </option>
+            ))}
+          </select>
+        </div>
         <div className="flex items-center gap-3">
           <button
             type="button"
@@ -259,7 +286,7 @@ export default function ResultsView({
       </div>
 
       {/* Deck Group Cards */}
-      {deckGroups.map(({ deck, rooms, topScore }) => (
+      {filteredDeckGroups.map(({ deck, rooms, topScore }) => (
         <DeckGroupCard
           key={deck}
           deck={deck}

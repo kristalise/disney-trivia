@@ -13,9 +13,10 @@ const LEVEL_META: Record<string, { label: string; emoji: string; color: string; 
   gold:     { label: 'Gold',       emoji: '\uD83E\uDD47', color: 'text-yellow-300', gradient: 'from-amber-600 to-yellow-700',  border: 'border-amber-400/30',   textAccent: 'text-amber-200' },
   platinum: { label: 'Platinum',   emoji: '\uD83D\uDC8E', color: 'text-blue-200',   gradient: 'from-blue-600 to-indigo-700',   border: 'border-blue-400/30',    textAccent: 'text-blue-200' },
   pearl:    { label: 'Pearl',      emoji: '\uD83E\uDD0D', color: 'text-slate-100',  gradient: 'from-slate-300 to-slate-400 dark:from-slate-500 dark:to-slate-600', border: 'border-white/30', textAccent: 'text-slate-700 dark:text-slate-200' },
+  concierge:{ label: 'Concierge',  emoji: '👑', color: 'text-purple-100', gradient: 'from-purple-600 to-indigo-700', border: 'border-purple-400/30', textAccent: 'text-purple-200' },
 };
 
-const LEVEL_ORDER = ['new', 'silver', 'gold', 'platinum', 'pearl'];
+const LEVEL_ORDER = ['new', 'silver', 'gold', 'platinum', 'pearl', 'concierge'];
 
 interface CommunityTip {
   id: string;

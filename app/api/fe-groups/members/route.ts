@@ -3,12 +3,18 @@ import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 function getSupabase(authHeader?: string | null) {
   if (!supabaseUrl || !supabaseAnonKey) return null;
   return createClient(supabaseUrl, supabaseAnonKey, {
     global: { headers: authHeader ? { Authorization: authHeader } : {} },
   });
+}
+
+function getAdminSupabase() {
+  if (!supabaseUrl || !supabaseServiceKey) return null;
+  return createClient(supabaseUrl, supabaseServiceKey);
 }
 
 export async function GET(request: NextRequest) {
@@ -24,14 +30,19 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Authentication required.' }, { status: 401 });
     }
 
+    const admin = getAdminSupabase();
+    if (!admin) {
+      return NextResponse.json({ error: 'Server configuration error' }, { status: 503 });
+    }
+
     const { searchParams } = new URL(request.url);
     const groupId = searchParams.get('group_id');
     if (!groupId) {
       return NextResponse.json({ error: 'group_id is required' }, { status: 400 });
     }
 
-    // Verify user is a member of the group
-    const { data: membership } = await supabase
+    // Verify user is a member or creator of the group
+    const { data: membership } = await admin
       .from('fe_group_members')
       .select('id')
       .eq('group_id', groupId)
@@ -39,8 +50,7 @@ export async function GET(request: NextRequest) {
       .maybeSingle();
 
     if (!membership) {
-      // Check if user is creator
-      const { data: group } = await supabase
+      const { data: group } = await admin
         .from('fe_groups')
         .select('id')
         .eq('id', groupId)
@@ -52,7 +62,7 @@ export async function GET(request: NextRequest) {
       }
     }
 
-    const { data: members, error } = await supabase
+    const { data: members, error } = await admin
       .from('fe_group_members')
       .select('id, user_id, stateroom_number, display_name, joined_at')
       .eq('group_id', groupId)
@@ -64,7 +74,7 @@ export async function GET(request: NextRequest) {
     const userIds = (members ?? []).map(m => m.user_id);
     let profiles: Record<string, { display_name: string; avatar_url: string | null; handle: string | null }> = {};
     if (userIds.length > 0) {
-      const { data: profileData } = await supabase
+      const { data: profileData } = await admin
         .from('user_profiles')
         .select('id, display_name, avatar_url, handle')
         .in('id', userIds);
@@ -82,7 +92,8 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ members: enrichedMembers });
   } catch (error) {
     console.error('Error fetching group members:', error);
-    return NextResponse.json({ error: 'Failed to fetch members' }, { status: 500 });
+    const msg = error instanceof Error ? error.message : 'Unknown error';
+    return NextResponse.json({ error: `Failed to fetch members: ${msg}` }, { status: 500 });
   }
 }
 
@@ -99,6 +110,11 @@ export async function PATCH(request: NextRequest) {
       return NextResponse.json({ error: 'Authentication required.' }, { status: 401 });
     }
 
+    const admin = getAdminSupabase();
+    if (!admin) {
+      return NextResponse.json({ error: 'Server configuration error' }, { status: 503 });
+    }
+
     const body = await request.json();
     const { group_id, stateroom_number } = body;
 
@@ -106,7 +122,8 @@ export async function PATCH(request: NextRequest) {
       return NextResponse.json({ error: 'group_id and stateroom_number are required' }, { status: 400 });
     }
 
-    const { data, error } = await supabase
+    // Only allow updating own membership
+    const { data, error } = await admin
       .from('fe_group_members')
       .update({ stateroom_number: Number(stateroom_number) })
       .eq('group_id', group_id)
@@ -119,7 +136,8 @@ export async function PATCH(request: NextRequest) {
     return NextResponse.json({ success: true, member: data });
   } catch (error) {
     console.error('Error updating membership:', error);
-    return NextResponse.json({ error: 'Failed to update membership' }, { status: 500 });
+    const msg = error instanceof Error ? error.message : 'Unknown error';
+    return NextResponse.json({ error: `Failed to update membership: ${msg}` }, { status: 500 });
   }
 }
 
@@ -136,13 +154,19 @@ export async function DELETE(request: NextRequest) {
       return NextResponse.json({ error: 'Authentication required.' }, { status: 401 });
     }
 
+    const admin = getAdminSupabase();
+    if (!admin) {
+      return NextResponse.json({ error: 'Server configuration error' }, { status: 503 });
+    }
+
     const body = await request.json();
     const { group_id } = body;
     if (!group_id) {
       return NextResponse.json({ error: 'group_id is required' }, { status: 400 });
     }
 
-    const { error } = await supabase
+    // Only allow deleting own membership
+    const { error } = await admin
       .from('fe_group_members')
       .delete()
       .eq('group_id', group_id)
@@ -153,6 +177,7 @@ export async function DELETE(request: NextRequest) {
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Error leaving group:', error);
-    return NextResponse.json({ error: 'Failed to leave group' }, { status: 500 });
+    const msg = error instanceof Error ? error.message : 'Unknown error';
+    return NextResponse.json({ error: `Failed to leave group: ${msg}` }, { status: 500 });
   }
 }

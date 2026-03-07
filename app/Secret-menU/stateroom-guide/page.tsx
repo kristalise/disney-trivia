@@ -290,26 +290,24 @@ function StateroomGuidePage() {
           Cruise Guide
         </Link>
         <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">
-          AI Stateroom Finder
+          Stateroom Intelligence
         </h1>
-        <p className="text-sm font-medium text-disney-blue dark:text-disney-gold mb-2">
+        <p className="text-sm font-medium text-disney-blue dark:text-disney-gold">
           Smart recommendations powered by our stateroom intelligence engine
-        </p>
-        <p className="text-slate-600 dark:text-slate-400 text-sm">
-          Already eyeing a room? Look it up below. Starting from scratch? Our wizard scores every cabin on your ship to find your perfect match — just answer a few quick questions.
         </p>
       </div>
 
       {/* Stateroom Lookup */}
       <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-200 dark:border-slate-700 mb-6">
-        <h2 className="text-base font-bold text-slate-900 dark:text-white mb-4">Room Lookup</h2>
+        <h2 className="text-base font-bold text-slate-900 dark:text-white mb-1">Stateroom Lookup</h2>
+        <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">Already eyeing a room? Look it up below.</p>
         <div className="flex gap-3">
           <select
             value={lookupShip}
             onChange={(e) => { setLookupShip(e.target.value as ShipName | ''); setLookupNotFound(false); }}
             className={selectCls + ' flex-1'}
           >
-            <option value="">Ship...</option>
+            <option value="">Select Ship</option>
             {SHIP_ORDER.map((ship) => (
               <option key={ship} value={ship}>{ship.replace('Disney ', '')}</option>
             ))}
@@ -342,6 +340,10 @@ function StateroomGuidePage() {
       {/* Wizard steps 1-4 */}
       {currentStep < 5 && (
         <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-200 dark:border-slate-700 mb-6">
+          <div className="mb-4">
+            <h2 className="text-base font-bold text-slate-900 dark:text-white mb-1">Stateroom Magic</h2>
+            <p className="text-sm text-slate-500 dark:text-slate-400">Starting from scratch? Our wizard scores every cabin on your ship to find your perfect match — just answer a few quick questions and tell us what stateroom is available.</p>
+          </div>
           <WizardStepper currentStep={currentStep} onStepClick={goToStep} />
 
           {currentStep === 1 && (
@@ -437,6 +439,8 @@ function StateroomGuidePage() {
             selectedThemes={selectedThemes}
             selectedDecks={selectedDecks}
             selectedSections={selectedSections}
+            filteredCount={results.filtered.length}
+            totalShipRooms={(data[selectedShip] || []).length}
             onEditStep={goToStep}
             onClear={clearPreferences}
           />

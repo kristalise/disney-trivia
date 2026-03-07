@@ -96,11 +96,14 @@ CREATE POLICY "Creators can delete groups"
   USING (auth.uid() = creator_id);
 
 -- FE Group Members
+-- NOTE: Avoid self-referencing fe_group_members in its own SELECT policy (causes circular RLS).
+-- Instead: allow users to see their own rows + all members of groups they created.
+-- The API uses a two-step approach: first get group_ids from own rows, then query members.
 CREATE POLICY "Members can view group members"
   ON fe_group_members FOR SELECT
   USING (
-    group_id IN (SELECT id FROM fe_groups WHERE creator_id = auth.uid())
-    OR group_id IN (SELECT group_id FROM fe_group_members WHERE user_id = auth.uid())
+    user_id = auth.uid()
+    OR group_id IN (SELECT id FROM fe_groups WHERE creator_id = auth.uid())
   );
 
 CREATE POLICY "Users can join groups"
