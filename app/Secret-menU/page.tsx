@@ -371,7 +371,6 @@ export default function SecretMenuPage() {
 
       {/* Browse Guides */}
       <div className="mt-6">
-        <h2 className="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-3 px-1">Browse Guides</h2>
         <div className="grid grid-cols-2 gap-3">
           <Link
             href="/Secret-menU/foodies"
@@ -493,7 +492,6 @@ export default function SecretMenuPage() {
 
       {/* Community & Tips Section */}
       <div className="mt-6">
-        <h2 className="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-3 px-1">Community & Tips</h2>
         <div className="grid grid-cols-2 gap-3">
           <Link
             href="/Secret-menU/first-timer"
