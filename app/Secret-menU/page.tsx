@@ -439,6 +439,53 @@ export default function SecretMenuPage() {
 
       </div>
 
+      {/* Browse Guides Section */}
+      <div className="mt-6">
+        <h2 className="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-3 px-1">Browse Guides</h2>
+        <div className="grid grid-cols-2 gap-3">
+          <Link
+            href="/Secret-menU/foodies"
+            className="bg-white dark:bg-slate-800 rounded-xl p-3.5 shadow-sm border border-slate-200 dark:border-slate-700 hover:border-disney-gold transition-all hover:shadow-md flex items-center gap-3"
+          >
+            <span className="text-2xl">🍽</span>
+            <div className="min-w-0">
+              <div className="text-sm font-semibold text-slate-900 dark:text-white">Foodies</div>
+              <div className="text-xs text-slate-500 dark:text-slate-400">Dining & bars</div>
+            </div>
+          </Link>
+          <Link
+            href="/Secret-menU/entertainment"
+            className="bg-white dark:bg-slate-800 rounded-xl p-3.5 shadow-sm border border-slate-200 dark:border-slate-700 hover:border-disney-gold transition-all hover:shadow-md flex items-center gap-3"
+          >
+            <span className="text-2xl">🎭</span>
+            <div className="min-w-0">
+              <div className="text-sm font-semibold text-slate-900 dark:text-white">Entertainment</div>
+              <div className="text-xs text-slate-500 dark:text-slate-400">Shows & nightlife</div>
+            </div>
+          </Link>
+          <Link
+            href="/Secret-menU/things-to-do"
+            className="bg-white dark:bg-slate-800 rounded-xl p-3.5 shadow-sm border border-slate-200 dark:border-slate-700 hover:border-disney-gold transition-all hover:shadow-md flex items-center gap-3"
+          >
+            <span className="text-2xl">🏊</span>
+            <div className="min-w-0">
+              <div className="text-sm font-semibold text-slate-900 dark:text-white">Things To Do</div>
+              <div className="text-xs text-slate-500 dark:text-slate-400">Activities & sports</div>
+            </div>
+          </Link>
+          <Link
+            href="/Secret-menU/shopping"
+            className="bg-white dark:bg-slate-800 rounded-xl p-3.5 shadow-sm border border-slate-200 dark:border-slate-700 hover:border-disney-gold transition-all hover:shadow-md flex items-center gap-3"
+          >
+            <span className="text-2xl">🛍</span>
+            <div className="min-w-0">
+              <div className="text-sm font-semibold text-slate-900 dark:text-white">Shopping</div>
+              <div className="text-xs text-slate-500 dark:text-slate-400">Shops & boutiques</div>
+            </div>
+          </Link>
+        </div>
+      </div>
+
       {/* Community & Tips Section */}
       <div className="mt-6">
         <h2 className="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-3 px-1">Community & Tips</h2>
