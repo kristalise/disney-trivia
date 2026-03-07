@@ -172,6 +172,10 @@ export default function RootLayout({
                 All trademarks and images belong to their respective owners. This is a digital pixie dust for Disney Adventure Maiden Voyage by KristabelQ.
               </p>
               <p>&copy; 2026 Disney Cruise Trivia. All rights reserved.</p>
+              <p className="text-slate-400 dark:text-slate-500">
+                Last updated: {new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}{' '}
+                {new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}
+              </p>
             </div>
           </footer>
         </ClientProviders>
