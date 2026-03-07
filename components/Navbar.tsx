@@ -52,7 +52,7 @@ export default function Navbar() {
               />
             </Link>
 
-            <div className="flex-1 flex items-center justify-center gap-2 sm:gap-4">
+            <div className="flex-1 flex items-center justify-center gap-1 sm:gap-4">
               {navItems.map((item) => {
                 const isActive = pathname === item.href ||
                   (item.href !== '/' && pathname.startsWith(item.href));
@@ -61,7 +61,7 @@ export default function Navbar() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    className={`px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium whitespace-nowrap transition-colors ${
                       item.highlight
                         ? isActive
                           ? 'bg-red-500 text-white'

@@ -635,34 +635,27 @@ export default function ProfilePage() {
               });
             }
 
-            // Reviewer Classification
+            // Reviewer Classifications — one badge per type with reviews
             if (stats.total_reviews >= 3) {
               const rc = stats.review_counts;
-              const types: { key: string; count: number }[] = [
-                { key: 'food', count: rc.dining + rc.foodie },
-                { key: 'activity', count: rc.activity },
-                { key: 'stateroom', count: rc.stateroom },
-                { key: 'hacks', count: rc.hacks },
-                { key: 'venue', count: rc.venue },
-                { key: 'movie', count: rc.movie },
-                { key: 'sailing', count: rc.sailing },
-              ];
-              const dominant = types.reduce((a, b) => b.count > a.count ? b : a);
-              if (dominant.count > 0) {
-                const classMap: Record<string, string> = {
-                  food: '🍽 Foodie',
-                  activity: '🎭 Adventurer',
-                  stateroom: '🛏 Stateroom Critic',
-                  hacks: '🏴‍☠️ Hack Master',
-                  venue: '📍 Venue Explorer',
-                  movie: '🎬 Movie Buff',
-                  sailing: '🚢 Voyage Reviewer',
-                };
-                badges.push({
-                  label: classMap[dominant.key],
-                  style: 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400',
+              const classMap: Record<string, { count: number; label: string }> = {
+                food: { count: rc.dining + rc.foodie, label: '🍽 Foodie' },
+                activity: { count: rc.activity, label: '🎭 Adventurer' },
+                stateroom: { count: rc.stateroom, label: '🛏 Stateroom Critic' },
+                hacks: { count: rc.hacks, label: '🏴‍☠️ Hack Master' },
+                venue: { count: rc.venue, label: '📍 Venue Explorer' },
+                movie: { count: rc.movie, label: '🎬 Movie Buff' },
+                sailing: { count: rc.sailing, label: '🚢 Voyage Reviewer' },
+              };
+              Object.values(classMap)
+                .filter(t => t.count > 0)
+                .sort((a, b) => b.count - a.count)
+                .forEach(t => {
+                  badges.push({
+                    label: t.label,
+                    style: 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400',
+                  });
                 });
-              }
             }
 
             return (
