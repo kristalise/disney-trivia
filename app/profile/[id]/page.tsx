@@ -8,6 +8,7 @@ import { fetchUserProgress } from '@/lib/progress';
 import SocialIcons from '@/components/SocialIcons';
 import QRCodeButton from '@/components/QRCodeButton';
 import ProfileReviewsTab from '@/components/ProfileReviewsTab';
+import { getCastawayLevel } from '@/lib/castaway-levels';
 
 const SHIP_LOGOS: Record<string, string> = {
   'Disney Magic': '/ship-logos/magic.png',
@@ -123,6 +124,9 @@ interface Stats {
     dining: number;
     activity: number;
     hacks: number;
+    venue: number;
+    foodie: number;
+    movie: number;
   };
 }
 
@@ -591,11 +595,86 @@ export default function ProfilePage() {
             {profile.home_port && <span>📍 {profile.home_port}</span>}
             {profile.favorite_ship && <span>🚢 {profile.favorite_ship}</span>}
           </div>
-          {profile.dcl_membership && (
-            <span className="inline-block mt-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-disney-gold/20 text-disney-gold dark:bg-disney-gold/30">
-              {profile.dcl_membership}
-            </span>
-          )}
+          {/* Achievement Badges */}
+          {stats && (() => {
+            const badges: { label: string; style: string }[] = [];
+
+            // Castaway Level
+            const castaway = getCastawayLevel(stats.total_sailings);
+            const castawayStyles: Record<string, string> = {
+              pearl: 'bg-slate-200 text-slate-700 dark:bg-slate-600 dark:text-slate-200',
+              platinum: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
+              gold: 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400',
+              silver: 'bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300',
+              none: 'bg-sky-100 text-sky-700 dark:bg-sky-900/30 dark:text-sky-400',
+            };
+            badges.push({
+              label: `${castaway.emoji} ${castaway.label} Castaway`,
+              style: castawayStyles[castaway.level],
+            });
+
+            // Fleet Master
+            if (stats.unique_ships >= 8) {
+              badges.push({
+                label: '🚢 Fleet Master',
+                style: 'bg-disney-gold/20 text-disney-gold dark:bg-disney-gold/30',
+              });
+            }
+
+            // Reviewer Tier
+            if (stats.total_reviews >= 1) {
+              let tierLabel: string;
+              if (stats.total_reviews >= 50) tierLabel = 'Master Reviewer';
+              else if (stats.total_reviews >= 30) tierLabel = 'Expert Reviewer';
+              else if (stats.total_reviews >= 15) tierLabel = 'Seasoned Reviewer';
+              else if (stats.total_reviews >= 5) tierLabel = 'Active Reviewer';
+              else tierLabel = 'New Reviewer';
+              badges.push({
+                label: `📝 ${tierLabel}`,
+                style: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
+              });
+            }
+
+            // Reviewer Classification
+            if (stats.total_reviews >= 3) {
+              const rc = stats.review_counts;
+              const types: { key: string; count: number }[] = [
+                { key: 'food', count: rc.dining + rc.foodie },
+                { key: 'activity', count: rc.activity },
+                { key: 'stateroom', count: rc.stateroom },
+                { key: 'hacks', count: rc.hacks },
+                { key: 'venue', count: rc.venue },
+                { key: 'movie', count: rc.movie },
+                { key: 'sailing', count: rc.sailing },
+              ];
+              const dominant = types.reduce((a, b) => b.count > a.count ? b : a);
+              if (dominant.count > 0) {
+                const classMap: Record<string, string> = {
+                  food: '🍽 Foodie',
+                  activity: '🎭 Adventurer',
+                  stateroom: '🛏 Stateroom Critic',
+                  hacks: '🏴‍☠️ Hack Master',
+                  venue: '📍 Venue Explorer',
+                  movie: '🎬 Movie Buff',
+                  sailing: '🚢 Voyage Reviewer',
+                };
+                badges.push({
+                  label: classMap[dominant.key],
+                  style: 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400',
+                });
+              }
+            }
+
+            return (
+              <div className="flex flex-wrap gap-1.5 mt-1.5">
+                {badges.map((b) => (
+                  <span key={b.label} className={`inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold ${b.style}`}>
+                    {b.label}
+                  </span>
+                ))}
+              </div>
+            );
+          })()}
         </div>
 
         {profile.bio && (

@@ -58,6 +58,9 @@ export async function GET(
       diningCount,
       activityCount,
       hacksCount,
+      venueCount,
+      foodieCount,
+      movieCount,
       followerData,
       followingData,
     ] = await Promise.all([
@@ -69,6 +72,9 @@ export async function GET(
       supabase.from('dining_reviews').select('id', { count: 'exact' }).eq('user_id', profileId),
       supabase.from('activity_reviews').select('id', { count: 'exact' }).eq('user_id', profileId),
       supabase.from('cruise_hack_reviews').select('id', { count: 'exact' }).eq('user_id', profileId),
+      supabase.from('venue_reviews').select('id', { count: 'exact' }).eq('user_id', profileId),
+      supabase.from('foodie_reviews').select('id', { count: 'exact' }).eq('user_id', profileId),
+      supabase.from('movie_reviews').select('id', { count: 'exact' }).eq('user_id', profileId),
       supabase.from('follows').select('follower_id').eq('following_id', profileId),
       supabase.from('follows').select('following_id').eq('follower_id', profileId),
     ]);
@@ -93,6 +99,9 @@ export async function GET(
       dining: diningCount.count ?? 0,
       activity: activityCount.count ?? 0,
       hacks: hacksCount.count ?? 0,
+      venue: venueCount.count ?? 0,
+      foodie: foodieCount.count ?? 0,
+      movie: movieCount.count ?? 0,
     };
     const totalReviews = Object.values(reviewCounts).reduce((s, v) => s + v, 0);
 
