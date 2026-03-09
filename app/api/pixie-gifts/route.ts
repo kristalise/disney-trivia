@@ -114,7 +114,7 @@ export async function POST(request: NextRequest) {
         .select('stateroom_numbers')
         .eq('id', sailing_id)
         .eq('user_id', user.id)
-        .single();
+        .maybeSingle();
       const ownRooms = new Set((userSailing?.stateroom_numbers ?? []).map(Number));
 
       const filteredEntries = ownRooms.size > 0

@@ -252,13 +252,8 @@ function PixieDustContent() {
   // Error feedback
   const [feError, setFeError] = useState<string | null>(null);
 
-  // Collapsible guide — expanded on first visit only
-  const [guideOpen, setGuideOpen] = useState(() => {
-    if (typeof window === 'undefined') return true;
-    const seen = localStorage.getItem('pixie-guide-seen');
-    if (!seen) localStorage.setItem('pixie-guide-seen', '1');
-    return !seen;
-  });
+  // Collapsible guide — always collapsed
+  const [guideOpen, setGuideOpen] = useState(false);
 
   const headers = useCallback(() => ({
     'Content-Type': 'application/json',
