@@ -176,8 +176,10 @@ export async function POST(request: NextRequest) {
           giftsCreated++;
         }
 
-        // Upsert recipients with name+notes
-        const inserts = groupEntries.map(e => ({
+        // Upsert recipients with name+notes (deduplicate by stateroom to avoid PG 21000 error)
+        const deduped = new Map<number, typeof groupEntries[0]>();
+        for (const e of groupEntries) deduped.set(e.stateroom_number, e);
+        const inserts = Array.from(deduped.values()).map(e => ({
           gift_id: giftId,
           stateroom_number: e.stateroom_number,
           recipient_name: e.recipient_name,
