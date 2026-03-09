@@ -811,8 +811,10 @@ function PixieDustContent() {
           )}
 
           {/* Packing List */}
-          {gifts.length > 0 && gifts.some(g => g.recipient_count > g.delivered_count) && (
-            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700 mb-4 overflow-hidden">
+          {gifts.length > 0 && gifts.some(g => g.recipient_count > g.delivered_count) && (() => {
+            const totalUndelivered = gifts.reduce((s, g) => s + g.recipient_count - g.delivered_count, 0);
+            return (
+            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border-2 border-purple-200 dark:border-purple-800/50 mb-4 overflow-hidden">
               <button
                 type="button"
                 onClick={() => {
@@ -820,24 +822,24 @@ function PixieDustContent() {
                   setPackingOpen(next);
                   if (next && packingRecipients.length === 0) fetchPackingList(gifts);
                 }}
-                className="w-full flex items-center justify-between px-5 py-4 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
+                className="w-full flex items-center justify-between px-5 py-4 bg-purple-50 dark:bg-purple-900/20 hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors"
               >
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2.5">
                   <span className="text-lg">📋</span>
-                  <h3 className="font-bold text-slate-900 dark:text-white">Packing List</h3>
-                  <span className="text-sm text-slate-400 dark:text-slate-500">
-                    ({gifts.reduce((s, g) => s + g.recipient_count - g.delivered_count, 0)} undelivered)
+                  <h3 className="font-bold text-purple-900 dark:text-purple-200">Packing List</h3>
+                  <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-purple-200 dark:bg-purple-800 text-purple-700 dark:text-purple-300">
+                    {totalUndelivered} to deliver
                   </span>
                 </div>
                 <svg
-                  className={`w-4 h-4 text-slate-400 transition-transform ${packingOpen ? 'rotate-180' : ''}`}
+                  className={`w-4 h-4 text-purple-400 transition-transform ${packingOpen ? 'rotate-180' : ''}`}
                   fill="none" stroke="currentColor" viewBox="0 0 24 24"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
               {packingOpen && (
-                <div className="border-t border-slate-100 dark:border-slate-700">
+                <div className="border-t border-purple-100 dark:border-purple-800/50">
                   {packingLoading ? (
                     <div className="text-center py-6">
                       <p className="text-sm text-slate-500 dark:text-slate-400 animate-pulse">Loading packing list...</p>
@@ -865,11 +867,11 @@ function PixieDustContent() {
                           }
                           return (
                             <div key={deck}>
-                              <div className="px-5 py-2 bg-slate-50 dark:bg-slate-900/50 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between">
-                                <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                              <div className="px-5 py-2 bg-purple-50/50 dark:bg-purple-900/10 border-b border-purple-100 dark:border-purple-800/30 flex items-center justify-between">
+                                <span className="text-xs font-bold text-purple-700 dark:text-purple-300 uppercase tracking-wider">
                                   Deck {deck} — {deckItems.length} gift{deckItems.length !== 1 ? 's' : ''}
                                 </span>
-                                <span className="text-[10px] text-slate-400 dark:text-slate-500">
+                                <span className="text-[10px] text-purple-500/70 dark:text-purple-400/70">
                                   {Object.entries(giftCounts).map(([name, count]) => `${name}: ${count}`).join(', ')}
                                 </span>
                               </div>
@@ -893,9 +895,9 @@ function PixieDustContent() {
                             </div>
                           );
                         })}
-                        <div className="px-5 py-3 bg-slate-50 dark:bg-slate-900/50 border-t border-slate-200 dark:border-slate-700 text-center">
-                          <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
-                            Total: {packingRecipients.length} undelivered across {decks.length} deck{decks.length !== 1 ? 's' : ''}
+                        <div className="px-5 py-3 bg-purple-50/50 dark:bg-purple-900/10 border-t border-purple-100 dark:border-purple-800/30 text-center">
+                          <span className="text-xs font-medium text-purple-600 dark:text-purple-400">
+                            {packingRecipients.length} undelivered across {decks.length} deck{decks.length !== 1 ? 's' : ''}
                           </span>
                         </div>
                       </>
@@ -904,7 +906,8 @@ function PixieDustContent() {
                 </div>
               )}
             </div>
-          )}
+            );
+          })()}
           </>)}
 
           {/* Dusted By Section */}

@@ -44,35 +44,37 @@ interface FEGroup {
 function PackingListSection({ decks, byDeck, total }: { decks: number[]; byDeck: Record<number, Recipient[]>; total: number }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 mb-4 overflow-hidden">
+    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border-2 border-purple-200 dark:border-purple-800/50 mb-4 overflow-hidden">
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between px-5 py-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
+        className="w-full flex items-center justify-between px-5 py-3 bg-purple-50 dark:bg-purple-900/20 hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors"
       >
         <div className="flex items-center gap-2">
           <span className="text-base">📋</span>
-          <span className="font-bold text-slate-900 dark:text-white text-sm">Packing List</span>
-          <span className="text-xs text-slate-400 dark:text-slate-500">({total} undelivered)</span>
+          <span className="font-bold text-purple-900 dark:text-purple-200 text-sm">Packing List</span>
+          <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-purple-200 dark:bg-purple-800 text-purple-700 dark:text-purple-300">
+            {total} to deliver
+          </span>
         </div>
         <svg
-          className={`w-4 h-4 text-slate-400 transition-transform ${open ? 'rotate-180' : ''}`}
+          className={`w-4 h-4 text-purple-400 transition-transform ${open ? 'rotate-180' : ''}`}
           fill="none" stroke="currentColor" viewBox="0 0 24 24"
         >
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
       </button>
       {open && (
-        <div className="border-t border-slate-100 dark:border-slate-700">
+        <div className="border-t border-purple-100 dark:border-purple-800/50">
           {decks.map(deck => {
             const deckItems = byDeck[deck].sort((a, b) => a.stateroom_number - b.stateroom_number);
             return (
               <div key={deck}>
-                <div className="px-5 py-1.5 bg-slate-50 dark:bg-slate-900/50 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between">
-                  <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                <div className="px-5 py-1.5 bg-purple-50/50 dark:bg-purple-900/10 border-b border-purple-100 dark:border-purple-800/30 flex items-center justify-between">
+                  <span className="text-xs font-bold text-purple-700 dark:text-purple-300 uppercase tracking-wider">
                     Deck {deck}
                   </span>
-                  <span className="text-[10px] text-slate-400 dark:text-slate-500 bg-slate-200 dark:bg-slate-700 px-1.5 py-0.5 rounded-full">
+                  <span className="text-[10px] font-bold text-purple-600 dark:text-purple-400 bg-purple-100 dark:bg-purple-800/40 px-1.5 py-0.5 rounded-full">
                     {deckItems.length}
                   </span>
                 </div>

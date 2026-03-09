@@ -99,6 +99,16 @@ export default function BulkGiftImporter({ existingGifts, sailingId, onComplete,
     setConfirming(false);
   };
 
+  const reassignGift = (oldName: string, newName: string) => {
+    if (!parsed || oldName === newName) return;
+    setParsed({
+      ...parsed,
+      entries: parsed.entries.map(e =>
+        e.gift_name === oldName ? { ...e, gift_name: newName } : e
+      ),
+    });
+  };
+
   const handleConfirm = async () => {
     if (!parsed || parsed.entries.length === 0) return;
     setImporting(true);
@@ -266,6 +276,17 @@ export default function BulkGiftImporter({ existingGifts, sailingId, onComplete,
           {/* Preview table grouped by gift type */}
           {groupedByGift && Object.entries(groupedByGift).map(([giftName, entries]) => {
             const match = matchGift(giftName);
+            // Build options: existing gifts + current name if it's new
+            const giftOptions = [...existingGifts.map(g => g.name)];
+            if (!match) giftOptions.push(giftName);
+            // Deduplicate (case-insensitive)
+            const seen = new Set<string>();
+            const uniqueOptions = giftOptions.filter(n => {
+              const lower = n.toLowerCase();
+              if (seen.has(lower)) return false;
+              seen.add(lower);
+              return true;
+            });
             return (
               <div key={giftName} className="mb-3">
                 <div
@@ -273,10 +294,23 @@ export default function BulkGiftImporter({ existingGifts, sailingId, onComplete,
                   style={{ backgroundColor: match ? `${match.color}20` : '#f1f5f920', color: match?.color || '#64748b' }}
                 >
                   <span>{match?.emoji || '🎁'}</span>
-                  <span>{giftName}</span>
+                  {uniqueOptions.length > 1 ? (
+                    <select
+                      value={giftName}
+                      onChange={e => reassignGift(giftName, e.target.value)}
+                      className="bg-transparent font-bold text-xs border border-current/20 rounded-lg px-1.5 py-0.5 cursor-pointer hover:border-current/40 transition-colors"
+                      style={{ color: 'inherit' }}
+                    >
+                      {uniqueOptions.map(name => (
+                        <option key={name} value={name}>{name}</option>
+                      ))}
+                    </select>
+                  ) : (
+                    <span>{giftName}</span>
+                  )}
                   <span className="opacity-60">({entries.length})</span>
                   {!match && (
-                    <span className="ml-auto text-[10px] font-normal text-amber-600 dark:text-amber-400">New gift — will be created</span>
+                    <span className="ml-auto text-[10px] font-normal text-amber-600 dark:text-amber-400">New — will be created</span>
                   )}
                 </div>
                 <table className="w-full text-xs border border-slate-200 dark:border-slate-700 border-t-0">
