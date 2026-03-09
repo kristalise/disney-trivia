@@ -298,7 +298,7 @@ export default function BulkGiftImporter({ existingGifts, sailingId, onComplete,
                     <select
                       value={giftName}
                       onChange={e => reassignGift(giftName, e.target.value)}
-                      className="bg-transparent font-bold text-xs border border-current/20 rounded-lg px-1.5 py-0.5 cursor-pointer hover:border-current/40 transition-colors"
+                      className="bg-white dark:bg-slate-800 font-bold text-xs border border-current/20 rounded-lg px-1.5 py-0.5 cursor-pointer hover:border-current/40 transition-colors"
                       style={{ color: 'inherit' }}
                     >
                       {uniqueOptions.map(name => (

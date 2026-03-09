@@ -48,6 +48,7 @@ interface PackingRecipient {
   id: string;
   stateroom_number: number;
   recipient_name: string | null;
+  notes: string | null;
   gift_emoji: string;
   gift_name: string;
   gift_color: string;
@@ -65,9 +66,9 @@ function PackingListBody({ recipients, togglingId, onToggle }: {
   togglingId: string | null;
   onToggle: (id: string) => void;
 }) {
-  const [collapsedDecks, setCollapsedDecks] = useState<Set<number>>(new Set());
+  const [expandedDecks, setExpandedDecks] = useState<Set<number>>(new Set());
   const toggleDeck = (deck: number) => {
-    setCollapsedDecks(prev => {
+    setExpandedDecks(prev => {
       const next = new Set(prev);
       next.has(deck) ? next.delete(deck) : next.add(deck);
       return next;
@@ -82,9 +83,15 @@ function PackingListBody({ recipients, togglingId, onToggle }: {
   }
   const decks = Object.keys(byDeck).map(Number).sort((a, b) => a - b);
 
-  // Receipt summary: total per gift type across all decks
+  // Packing view toggle
+  const [packingView, setPackingView] = useState<string>('overall');
+
+  // Receipt summary: filtered by view (overall or per-deck)
+  const summaryRecipients = packingView === 'overall'
+    ? recipients
+    : byDeck[Number(packingView)] ?? [];
   const totalByGift: Record<string, { count: number; emoji: string }> = {};
-  for (const r of recipients) {
+  for (const r of summaryRecipients) {
     if (!totalByGift[r.gift_name]) totalByGift[r.gift_name] = { count: 0, emoji: r.gift_emoji };
     totalByGift[r.gift_name].count++;
   }
@@ -93,7 +100,19 @@ function PackingListBody({ recipients, togglingId, onToggle }: {
     <>
       {/* Receipt-style summary */}
       <div className="px-5 py-3 border-b border-purple-100 dark:border-purple-800/30 bg-purple-50/30 dark:bg-purple-900/5">
-        <p className="text-xs font-bold text-purple-900 dark:text-purple-200 uppercase tracking-wide mb-1.5">What to pack</p>
+        <div className="flex items-center justify-between mb-1.5">
+          <p className="text-xs font-bold text-purple-900 dark:text-purple-200 uppercase tracking-wide">What to pack</p>
+          <select
+            value={packingView}
+            onChange={e => setPackingView(e.target.value)}
+            className="px-2 py-0.5 rounded-lg border border-purple-200 dark:border-purple-700 bg-white dark:bg-slate-800 text-xs font-medium text-purple-700 dark:text-purple-300"
+          >
+            <option value="overall">Overall</option>
+            {decks.map(deck => (
+              <option key={deck} value={deck}>Deck {deck}</option>
+            ))}
+          </select>
+        </div>
         <div className="space-y-0.5">
           {Object.entries(totalByGift).map(([name, { count, emoji }]) => (
             <div key={name} className="flex items-center justify-between">
@@ -103,7 +122,7 @@ function PackingListBody({ recipients, togglingId, onToggle }: {
           ))}
           <div className="flex items-center justify-between pt-1 mt-1 border-t border-purple-200 dark:border-purple-700">
             <span className="text-sm font-bold text-slate-900 dark:text-white">Total</span>
-            <span className="text-sm font-bold text-slate-900 dark:text-white">{recipients.length}</span>
+            <span className="text-sm font-bold text-slate-900 dark:text-white">{summaryRecipients.length}</span>
           </div>
         </div>
       </div>
@@ -114,7 +133,7 @@ function PackingListBody({ recipients, togglingId, onToggle }: {
         for (const r of deckItems) {
           giftCounts[r.gift_name] = (giftCounts[r.gift_name] || 0) + 1;
         }
-        const isCollapsed = collapsedDecks.has(deck);
+        const isCollapsed = !expandedDecks.has(deck);
         return (
           <div key={deck}>
             <button
@@ -135,30 +154,35 @@ function PackingListBody({ recipients, togglingId, onToggle }: {
               </div>
             </button>
             {!isCollapsed && deckItems.map((r, idx) => (
-              <div key={`${r.id}-${idx}`} className="px-5 py-2 border-b border-slate-100 dark:border-slate-700 last:border-0 flex items-center gap-3">
-                <button
-                  type="button"
-                  disabled={togglingId === r.id}
-                  onClick={() => onToggle(r.id)}
-                  className={`flex-shrink-0 w-5 h-5 rounded-md border-2 flex items-center justify-center transition-colors border-slate-300 dark:border-slate-600 hover:border-green-500 ${togglingId === r.id ? 'opacity-50' : ''}`}
-                >
-                  {togglingId === r.id && (
-                    <div className="w-2.5 h-2.5 rounded-sm bg-slate-300 dark:bg-slate-500 animate-pulse" />
+              <div key={`${r.id}-${idx}`} className="px-5 py-2 border-b border-slate-100 dark:border-slate-700 last:border-0">
+                <div className="flex items-center gap-3">
+                  <button
+                    type="button"
+                    disabled={togglingId === r.id}
+                    onClick={() => onToggle(r.id)}
+                    className={`flex-shrink-0 w-5 h-5 rounded-md border-2 flex items-center justify-center transition-colors border-slate-300 dark:border-slate-600 hover:border-green-500 ${togglingId === r.id ? 'opacity-50' : ''}`}
+                  >
+                    {togglingId === r.id && (
+                      <div className="w-2.5 h-2.5 rounded-sm bg-slate-300 dark:bg-slate-500 animate-pulse" />
+                    )}
+                  </button>
+                  <span className="text-base flex-shrink-0" title={r.gift_name}>{r.gift_emoji}</span>
+                  <span className="text-sm font-medium text-slate-900 dark:text-white">
+                    Room {r.stateroom_number}
+                  </span>
+                  {r.recipient_name && (
+                    <span className="text-xs text-slate-600 dark:text-slate-300 truncate">{r.recipient_name}</span>
                   )}
-                </button>
-                <span className="text-base flex-shrink-0" title={r.gift_name}>{r.gift_emoji}</span>
-                <span className="text-sm font-medium text-slate-900 dark:text-white">
-                  Room {r.stateroom_number}
-                </span>
-                {r.recipient_name && (
-                  <span className="text-xs text-slate-600 dark:text-slate-300 truncate">{r.recipient_name}</span>
+                  <span
+                    className="ml-auto text-[10px] px-1.5 py-0.5 rounded-full font-medium flex-shrink-0"
+                    style={{ backgroundColor: `${r.gift_color}20`, color: r.gift_color }}
+                  >
+                    {r.gift_name}
+                  </span>
+                </div>
+                {r.notes && (
+                  <p className="ml-8 mt-0.5 text-xs text-slate-500 dark:text-slate-400 truncate">{r.notes}</p>
                 )}
-                <span
-                  className="ml-auto text-[10px] px-1.5 py-0.5 rounded-full font-medium flex-shrink-0"
-                  style={{ backgroundColor: `${r.gift_color}20`, color: r.gift_color }}
-                >
-                  {r.gift_name}
-                </span>
               </div>
             ))}
           </div>
@@ -292,7 +316,7 @@ function PixieDustContent() {
     try {
       const allRecipients: PackingRecipient[] = [];
       await Promise.all(giftsList.map(async (gift) => {
-        let recipients: { id: string; stateroom_number: number; recipient_name: string | null; delivered: boolean }[] = [];
+        let recipients: { id: string; stateroom_number: number; recipient_name: string | null; notes: string | null; delivered: boolean }[] = [];
         try {
           const res = await fetch(`/api/pixie-gifts/recipients?gift_id=${gift.id}`, { headers: authHeaders() });
           if (res.ok) {
@@ -310,6 +334,7 @@ function PixieDustContent() {
               id: r.id,
               stateroom_number: r.stateroom_number,
               recipient_name: r.recipient_name,
+              notes: r.notes,
               gift_emoji: gift.emoji,
               gift_name: gift.name,
               gift_color: gift.color,
@@ -841,6 +866,42 @@ function PixieDustContent() {
               </div>
             )}
 
+            {/* Bulk Import */}
+            {gifts.length > 0 && (
+              <div className="px-5 pb-3 border-b border-slate-100 dark:border-slate-700">
+                {!showBulkImport ? (
+                  <button
+                    type="button"
+                    onClick={() => setShowBulkImport(true)}
+                    className="w-full px-3 py-2 rounded-xl text-xs font-medium border border-dashed border-slate-300 dark:border-slate-600 text-slate-500 dark:text-slate-400 hover:border-disney-blue dark:hover:border-disney-gold hover:text-disney-blue dark:hover:text-disney-gold transition-colors"
+                  >
+                    Bulk Import Recipients
+                  </button>
+                ) : (
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <h4 className="font-bold text-slate-900 dark:text-white text-xs">Bulk Import</h4>
+                      <button
+                        type="button"
+                        onClick={() => setShowBulkImport(false)}
+                        className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                      </button>
+                    </div>
+                    <BulkGiftImporter
+                      existingGifts={gifts.map(g => ({ id: g.id, name: g.name, emoji: g.emoji, color: g.color }))}
+                      sailingId={selectedSailing.id}
+                      onComplete={() => { setShowBulkImport(false); fetchData(selectedSailing.id); }}
+                      headers={headers}
+                      isOnline={isOnline}
+                      onOfflinePendingChange={setOfflinePendingCount}
+                    />
+                  </div>
+                )}
+              </div>
+            )}
+
             <div className="px-5 pb-4">
               {gifts.length > 0 ? (
                 <div className="space-y-3">
@@ -922,41 +983,6 @@ function PixieDustContent() {
               )}
             </div>
           </div>
-          {/* Bulk Import */}
-          {gifts.length > 0 && (
-            <div className="mb-4">
-              {!showBulkImport ? (
-                <button
-                  type="button"
-                  onClick={() => setShowBulkImport(true)}
-                  className="w-full px-4 py-3 rounded-2xl text-sm font-medium border-2 border-dashed border-slate-300 dark:border-slate-600 text-slate-500 dark:text-slate-400 hover:border-disney-blue dark:hover:border-disney-gold hover:text-disney-blue dark:hover:text-disney-gold transition-colors"
-                >
-                  Bulk Import Recipients
-                </button>
-              ) : (
-                <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700 p-4">
-                  <div className="flex items-center justify-between mb-3">
-                    <h3 className="font-bold text-slate-900 dark:text-white text-sm">Bulk Import</h3>
-                    <button
-                      type="button"
-                      onClick={() => setShowBulkImport(false)}
-                      className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
-                    >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
-                    </button>
-                  </div>
-                  <BulkGiftImporter
-                    existingGifts={gifts.map(g => ({ id: g.id, name: g.name, emoji: g.emoji, color: g.color }))}
-                    sailingId={selectedSailing.id}
-                    onComplete={() => { setShowBulkImport(false); fetchData(selectedSailing.id); }}
-                    headers={headers}
-                    isOnline={isOnline}
-                    onOfflinePendingChange={setOfflinePendingCount}
-                  />
-                </div>
-              )}
-            </div>
-          )}
 
           {/* Packing List */}
           {gifts.length > 0 && gifts.some(g => g.recipient_count > g.delivered_count) && (() => {

@@ -41,89 +41,6 @@ interface FEGroup {
   member_count: number;
 }
 
-function PackingListSection({ decks, byDeck, total, togglingId, onToggle }: {
-  decks: number[];
-  byDeck: Record<number, Recipient[]>;
-  total: number;
-  togglingId: string | null;
-  onToggle: (id: string, delivered: boolean) => void;
-}) {
-  const [open, setOpen] = useState(false);
-  const [collapsedDecks, setCollapsedDecks] = useState<Set<number>>(new Set());
-  const toggleDeck = (deck: number) => {
-    setCollapsedDecks(prev => {
-      const next = new Set(prev);
-      next.has(deck) ? next.delete(deck) : next.add(deck);
-      return next;
-    });
-  };
-  return (
-    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border-2 border-purple-200 dark:border-purple-800/50 mb-4 overflow-hidden">
-      <button
-        type="button"
-        onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between px-5 py-3 bg-purple-50 dark:bg-purple-900/20 hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors"
-      >
-        <div className="flex items-center gap-2">
-          <span className="text-base">📋</span>
-          <span className="font-bold text-purple-900 dark:text-purple-200 text-sm">Packing List</span>
-          <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-purple-200 dark:bg-purple-800 text-purple-700 dark:text-purple-300">
-            {total} to deliver
-          </span>
-        </div>
-        <svg
-          className={`w-4 h-4 text-purple-400 transition-transform ${open ? 'rotate-180' : ''}`}
-          fill="none" stroke="currentColor" viewBox="0 0 24 24"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
-      </button>
-      {open && (
-        <div className="border-t border-purple-100 dark:border-purple-800/50">
-          {decks.map(deck => {
-            const deckItems = byDeck[deck].sort((a, b) => a.stateroom_number - b.stateroom_number);
-            const isCollapsed = collapsedDecks.has(deck);
-            return (
-              <div key={deck}>
-                <button
-                  type="button"
-                  onClick={() => toggleDeck(deck)}
-                  className="w-full px-5 py-2 bg-purple-50/50 dark:bg-purple-900/10 border-b border-purple-100 dark:border-purple-800/30 flex items-center justify-between hover:bg-purple-100/50 dark:hover:bg-purple-900/20 transition-colors"
-                >
-                  <span className="text-xs font-bold text-purple-800 dark:text-purple-200 uppercase tracking-wider">
-                    Deck {deck} — {deckItems.length} room{deckItems.length !== 1 ? 's' : ''}
-                  </span>
-                  <svg className={`w-3.5 h-3.5 text-purple-400 transition-transform ${isCollapsed ? '' : 'rotate-180'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                {!isCollapsed && deckItems.map(r => (
-                  <div key={r.id} className="px-5 py-2 border-b border-slate-100 dark:border-slate-700 last:border-0 flex items-center gap-3">
-                    <button
-                      type="button"
-                      disabled={togglingId === r.id}
-                      onClick={() => onToggle(r.id, r.delivered)}
-                      className={`flex-shrink-0 w-5 h-5 rounded-md border-2 flex items-center justify-center transition-colors border-slate-300 dark:border-slate-600 hover:border-green-500 ${togglingId === r.id ? 'opacity-50' : ''}`}
-                    >
-                      {togglingId === r.id && (
-                        <div className="w-2.5 h-2.5 rounded-sm bg-slate-300 dark:bg-slate-500 animate-pulse" />
-                      )}
-                    </button>
-                    <span className="text-sm font-medium text-slate-900 dark:text-white">{r.stateroom_number}</span>
-                    {r.recipient_name && (
-                      <span className="text-xs text-slate-600 dark:text-slate-300 truncate">{r.recipient_name}</span>
-                    )}
-                  </div>
-                ))}
-              </div>
-            );
-          })}
-        </div>
-      )}
-    </div>
-  );
-}
-
 export default function GiftDetailPage() {
   const params = useParams();
   const router = useRouter();
@@ -482,20 +399,47 @@ export default function GiftDetailPage() {
             </div>
           )}
 
-          {/* Packing List */}
-          {recipients.filter(r => !r.delivered).length > 0 && (() => {
-            const undelivered = recipients.filter(r => !r.delivered);
-            const byDeck: Record<number, typeof undelivered> = {};
-            for (const r of undelivered) {
-              const deck = getDeck(r.stateroom_number);
-              if (!byDeck[deck]) byDeck[deck] = [];
-              byDeck[deck].push(r);
-            }
-            const decks = Object.keys(byDeck).map(Number).sort((a, b) => a - b);
-            return (
-              <PackingListSection decks={decks} byDeck={byDeck} total={undelivered.length} togglingId={togglingId} onToggle={handleToggleDelivery} />
-            );
-          })()}
+          {/* Route Optimizer */}
+          {recipients.filter(r => !r.delivered).length > 0 && (
+            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700 mb-4 overflow-hidden">
+              <div className="px-5 py-4">
+                <h3 className="font-bold text-slate-900 dark:text-white text-sm mb-1">Plan Dusting Route</h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400 mb-3">
+                  Enter your stateroom to plan an efficient loop &mdash; walks each corridor side then crosses over to minimize backtracking.
+                </p>
+                <div className="flex gap-2">
+                  <input
+                    type="number"
+                    value={startRoom || ''}
+                    onChange={e => { setStartRoom(Number(e.target.value)); setRoute(null); }}
+                    placeholder="Your room number (start &amp; end)"
+                    className="flex-1 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-sm text-slate-900 dark:text-white"
+                  />
+                  <button
+                    type="button"
+                    disabled={!startRoom || optimizing}
+                    onClick={handleOptimizeRoute}
+                    className="px-4 py-2 rounded-xl text-sm font-medium btn-disney disabled:opacity-50"
+                  >
+                    {optimizing ? 'Planning...' : 'Plan Route'}
+                  </button>
+                </div>
+              </div>
+
+              {route && (
+                <div className="px-5 pb-4">
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mb-2">
+                    {route.length} stop{route.length !== 1 ? 's' : ''} across {new Set(route.map(r => r.deck)).size} deck{new Set(route.map(r => r.deck)).size !== 1 ? 's' : ''} &mdash; nearest deck first, one corridor side at a time
+                  </p>
+                  <DeliveryRoute
+                    route={route}
+                    startStateroom={startRoom}
+                    deliveredRooms={deliveredSet}
+                  />
+                </div>
+              )}
+            </div>
+          )}
 
           {/* Add Rooms */}
           <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700 mb-4 overflow-hidden">
@@ -737,48 +681,6 @@ export default function GiftDetailPage() {
                   </div>
                 );
               })}
-            </div>
-          )}
-
-          {/* Route Optimizer */}
-          {recipients.filter(r => !r.delivered).length > 0 && (
-            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700 mb-4 overflow-hidden">
-              <div className="px-5 py-4">
-                <h3 className="font-bold text-slate-900 dark:text-white text-sm mb-1">Plan Dusting Route</h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400 mb-3">
-                  Enter your stateroom to plan an efficient loop &mdash; walks each corridor side then crosses over to minimize backtracking.
-                </p>
-                <div className="flex gap-2">
-                  <input
-                    type="number"
-                    value={startRoom || ''}
-                    onChange={e => { setStartRoom(Number(e.target.value)); setRoute(null); }}
-                    placeholder="Your room number (start &amp; end)"
-                    className="flex-1 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-sm text-slate-900 dark:text-white"
-                  />
-                  <button
-                    type="button"
-                    disabled={!startRoom || optimizing}
-                    onClick={handleOptimizeRoute}
-                    className="px-4 py-2 rounded-xl text-sm font-medium btn-disney disabled:opacity-50"
-                  >
-                    {optimizing ? 'Planning...' : 'Plan Route'}
-                  </button>
-                </div>
-              </div>
-
-              {route && (
-                <div className="px-5 pb-4">
-                  <p className="text-xs text-slate-500 dark:text-slate-400 mb-2">
-                    {route.length} stop{route.length !== 1 ? 's' : ''} across {new Set(route.map(r => r.deck)).size} deck{new Set(route.map(r => r.deck)).size !== 1 ? 's' : ''} &mdash; nearest deck first, one corridor side at a time
-                  </p>
-                  <DeliveryRoute
-                    route={route}
-                    startStateroom={startRoom}
-                    deliveredRooms={deliveredSet}
-                  />
-                </div>
-              )}
             </div>
           )}
 

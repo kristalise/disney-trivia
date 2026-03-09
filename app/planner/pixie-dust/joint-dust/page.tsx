@@ -440,6 +440,48 @@ function JointDustContent() {
             </div>
           )}
 
+          {/* Route Optimizer */}
+          {hasUndelivered && (
+            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700 mb-4 overflow-hidden">
+              <div className="px-5 py-4">
+                <h3 className="font-bold text-slate-900 dark:text-white text-sm mb-1">Plan Dusting Route</h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400 mb-3">
+                  Enter your stateroom to plan an efficient loop across all gifts &mdash; visits every room that still has undelivered items.
+                </p>
+                <div className="flex gap-2">
+                  <input
+                    type="number"
+                    value={startRoom || ''}
+                    onChange={e => { setStartRoom(Number(e.target.value)); setRoute(null); }}
+                    placeholder="Your room number (start &amp; end)"
+                    className="flex-1 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-sm text-slate-900 dark:text-white"
+                  />
+                  <button
+                    type="button"
+                    disabled={!startRoom || optimizing}
+                    onClick={handleOptimizeRoute}
+                    className="px-4 py-2 rounded-xl text-sm font-medium btn-disney disabled:opacity-50"
+                  >
+                    {optimizing ? 'Planning...' : 'Plan Route'}
+                  </button>
+                </div>
+              </div>
+
+              {route && (
+                <div className="px-5 pb-4">
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mb-2">
+                    {route.length} stop{route.length !== 1 ? 's' : ''} across {new Set(route.map(r => r.deck)).size} deck{new Set(route.map(r => r.deck)).size !== 1 ? 's' : ''} &mdash; nearest deck first, one corridor side at a time
+                  </p>
+                  <DeliveryRoute
+                    route={route}
+                    startStateroom={startRoom}
+                    deliveredRooms={deliveredRoomSet}
+                  />
+                </div>
+              )}
+            </div>
+          )}
+
           {/* Delivery Checklist by Deck */}
           {sortedDecks.length > 0 && (
             <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700 mb-4 overflow-hidden">
@@ -628,48 +670,6 @@ function JointDustContent() {
                   </div>
                 );
               })}
-            </div>
-          )}
-
-          {/* Route Optimizer */}
-          {hasUndelivered && (
-            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700 mb-4 overflow-hidden">
-              <div className="px-5 py-4">
-                <h3 className="font-bold text-slate-900 dark:text-white text-sm mb-1">Plan Dusting Route</h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400 mb-3">
-                  Enter your stateroom to plan an efficient loop across all gifts &mdash; visits every room that still has undelivered items.
-                </p>
-                <div className="flex gap-2">
-                  <input
-                    type="number"
-                    value={startRoom || ''}
-                    onChange={e => { setStartRoom(Number(e.target.value)); setRoute(null); }}
-                    placeholder="Your room number (start &amp; end)"
-                    className="flex-1 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-sm text-slate-900 dark:text-white"
-                  />
-                  <button
-                    type="button"
-                    disabled={!startRoom || optimizing}
-                    onClick={handleOptimizeRoute}
-                    className="px-4 py-2 rounded-xl text-sm font-medium btn-disney disabled:opacity-50"
-                  >
-                    {optimizing ? 'Planning...' : 'Plan Route'}
-                  </button>
-                </div>
-              </div>
-
-              {route && (
-                <div className="px-5 pb-4">
-                  <p className="text-xs text-slate-500 dark:text-slate-400 mb-2">
-                    {route.length} stop{route.length !== 1 ? 's' : ''} across {new Set(route.map(r => r.deck)).size} deck{new Set(route.map(r => r.deck)).size !== 1 ? 's' : ''} &mdash; nearest deck first, one corridor side at a time
-                  </p>
-                  <DeliveryRoute
-                    route={route}
-                    startStateroom={startRoom}
-                    deliveredRooms={deliveredRoomSet}
-                  />
-                </div>
-              )}
             </div>
           )}
 
