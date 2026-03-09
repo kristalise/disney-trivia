@@ -179,8 +179,10 @@ export default function SecretMenuPage() {
   const castaway = useMemo(() => getCastawayLevel(pastSailingCount), [pastSailingCount]);
 
   const upcomingSailings = useMemo(() => {
+    const todayMid = new Date(now);
+    todayMid.setHours(0, 0, 0, 0);
     return sailings
-      .filter(s => parseLocal(s.sail_start_date) > now)
+      .filter(s => parseLocal(s.sail_start_date) >= todayMid)
       .sort((a, b) => parseLocal(a.sail_start_date).getTime() - parseLocal(b.sail_start_date).getTime());
   }, [sailings, now]);
 
@@ -254,31 +256,32 @@ export default function SecretMenuPage() {
   const checkinAllDone = CHECKIN_TASKS.every(t => checkinTasks[t.id]);
   const activityAllDone = activityPlannerItems.length > 0 && activityPlannerItems.every(it => activityChecked[it.id]);
 
+  const effectivePatTime = patTime ?? '14:00';
+
   const countdown = useMemo(() => {
     if (!nextSailing) return null;
-    const sailLocal = parseLocal(nextSailing.sail_start_date).getTime();
-    const diff = sailLocal - now.getTime();
-    if (diff > 0) {
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const tz = getPortTimezone(nextSailing.embarkation_port);
+    const [ph, pm] = effectivePatTime.split(':').map(Number);
+    const patTarget = portTimeToDate(nextSailing.sail_start_date, ph, pm, tz);
+    const diff = patTarget.getTime() - now.getTime();
+    if (diff <= 0) return null;
+    const sailLocal = parseLocal(nextSailing.sail_start_date);
+    const todayMid = new Date(now);
+    todayMid.setHours(0, 0, 0, 0);
+    const isToday = sailLocal.getTime() === todayMid.getTime();
+    if (isToday) {
+      // Boarding phase — live seconds
+      const hours = Math.floor(diff / (1000 * 60 * 60));
       const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      return { days, hours, minutes, phase: 'sailing' as const };
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      return { days: 0, hours, minutes, seconds, phase: 'boarding' as const };
     }
-    // Sail date reached — switch to boarding countdown if PAT is set
-    if (patTime && nextSailing.embarkation_port) {
-      const [h, m] = patTime.split(':').map(Number);
-      const tz = getPortTimezone(nextSailing.embarkation_port);
-      const boardingTime = portTimeToDate(nextSailing.sail_start_date, h, m, tz);
-      const boardingDiff = boardingTime.getTime() - now.getTime();
-      if (boardingDiff > 0) {
-        const hours = Math.floor(boardingDiff / (1000 * 60 * 60));
-        const minutes = Math.floor((boardingDiff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((boardingDiff % (1000 * 60)) / 1000);
-        return { days: 0, hours, minutes, seconds, phase: 'boarding' as const };
-      }
-    }
-    return null;
-  }, [nextSailing, now, patTime]);
+    // Pre-boarding — count down to PAT time
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    return { days, hours, minutes, phase: 'sailing' as const };
+  }, [nextSailing, now, effectivePatTime]);
 
   // Tick every second during boarding phase for live seconds display
   const isBoarding = countdown?.phase === 'boarding';
@@ -393,7 +396,7 @@ export default function SecretMenuPage() {
               </div>
               <div className="text-xs text-cyan-200 mt-2">
                 {countdown.phase === 'boarding'
-                  ? `Port arrival at ${PAT_OPTIONS.find(o => o.value === patTime)?.label ?? patTime}`
+                  ? `Port arrival at ${PAT_OPTIONS.find(o => o.value === effectivePatTime)?.label ?? effectivePatTime}`
                   : parseLocal(nextSailing.sail_start_date).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}
               </div>
             </div>
