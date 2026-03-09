@@ -41,7 +41,13 @@ interface FEGroup {
   member_count: number;
 }
 
-function PackingListSection({ decks, byDeck, total }: { decks: number[]; byDeck: Record<number, Recipient[]>; total: number }) {
+function PackingListSection({ decks, byDeck, total, togglingId, onToggle }: {
+  decks: number[];
+  byDeck: Record<number, Recipient[]>;
+  total: number;
+  togglingId: string | null;
+  onToggle: (id: string, delivered: boolean) => void;
+}) {
   const [open, setOpen] = useState(false);
   return (
     <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border-2 border-purple-200 dark:border-purple-800/50 mb-4 overflow-hidden">
@@ -79,7 +85,17 @@ function PackingListSection({ decks, byDeck, total }: { decks: number[]; byDeck:
                   </span>
                 </div>
                 {deckItems.map(r => (
-                  <div key={r.id} className="px-5 py-1.5 border-b border-slate-100 dark:border-slate-700 last:border-0 flex items-center gap-2">
+                  <div key={r.id} className="px-5 py-2 border-b border-slate-100 dark:border-slate-700 last:border-0 flex items-center gap-3">
+                    <button
+                      type="button"
+                      disabled={togglingId === r.id}
+                      onClick={() => onToggle(r.id, r.delivered)}
+                      className={`flex-shrink-0 w-5 h-5 rounded-md border-2 flex items-center justify-center transition-colors border-slate-300 dark:border-slate-600 hover:border-green-500 ${togglingId === r.id ? 'opacity-50' : ''}`}
+                    >
+                      {togglingId === r.id && (
+                        <div className="w-2.5 h-2.5 rounded-sm bg-slate-300 dark:bg-slate-500 animate-pulse" />
+                      )}
+                    </button>
                     <span className="text-sm font-mono text-slate-900 dark:text-white">{r.stateroom_number}</span>
                     {r.recipient_name && (
                       <span className="text-xs text-slate-500 dark:text-slate-400 truncate">{r.recipient_name}</span>
@@ -464,7 +480,7 @@ export default function GiftDetailPage() {
             }
             const decks = Object.keys(byDeck).map(Number).sort((a, b) => a - b);
             return (
-              <PackingListSection decks={decks} byDeck={byDeck} total={undelivered.length} />
+              <PackingListSection decks={decks} byDeck={byDeck} total={undelivered.length} togglingId={togglingId} onToggle={handleToggleDelivery} />
             );
           })()}
 

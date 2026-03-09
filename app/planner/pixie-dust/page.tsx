@@ -45,6 +45,7 @@ interface PixieGift {
 }
 
 interface PackingRecipient {
+  id: string;
   stateroom_number: number;
   recipient_name: string | null;
   gift_emoji: string;
@@ -109,6 +110,7 @@ function PixieDustContent() {
   const [packingOpen, setPackingOpen] = useState(false);
   const [packingRecipients, setPackingRecipients] = useState<PackingRecipient[]>([]);
   const [packingLoading, setPackingLoading] = useState(false);
+  const [packingTogglingId, setPackingTogglingId] = useState<string | null>(null);
 
   // Error feedback
   const [feError, setFeError] = useState<string | null>(null);
@@ -177,7 +179,7 @@ function PixieDustContent() {
     try {
       const allRecipients: PackingRecipient[] = [];
       await Promise.all(giftsList.map(async (gift) => {
-        let recipients: { stateroom_number: number; recipient_name: string | null; delivered: boolean }[] = [];
+        let recipients: { id: string; stateroom_number: number; recipient_name: string | null; delivered: boolean }[] = [];
         try {
           const res = await fetch(`/api/pixie-gifts/recipients?gift_id=${gift.id}`, { headers: authHeaders() });
           if (res.ok) {
@@ -192,6 +194,7 @@ function PixieDustContent() {
         for (const r of recipients) {
           if (!r.delivered) {
             allRecipients.push({
+              id: r.id,
               stateroom_number: r.stateroom_number,
               recipient_name: r.recipient_name,
               gift_emoji: gift.emoji,
@@ -208,6 +211,38 @@ function PixieDustContent() {
       setPackingLoading(false);
     }
   }, [session?.access_token, authHeaders]);
+
+  const handlePackingToggle = async (recipientId: string) => {
+    setPackingTogglingId(recipientId);
+    try {
+      if (!isOnline) {
+        await queueMutation({ type: 'pixie-delivery', url: '/api/pixie-gifts/recipients', method: 'PATCH', body: { id: recipientId, delivered: true } });
+        setPackingRecipients(prev => prev.filter(r => r.id !== recipientId));
+        setGifts(prev => prev.map(g => {
+          const match = packingRecipients.find(r => r.id === recipientId);
+          if (match && match.gift_name === g.name) return { ...g, delivered_count: g.delivered_count + 1 };
+          return g;
+        }));
+        getPendingMutationCount().then(setOfflinePendingCount).catch(() => {});
+      } else {
+        const res = await fetch('/api/pixie-gifts/recipients', {
+          method: 'PATCH',
+          headers: headers(),
+          body: JSON.stringify({ id: recipientId, delivered: true }),
+        });
+        if (res.ok) {
+          setPackingRecipients(prev => prev.filter(r => r.id !== recipientId));
+          setGifts(prev => prev.map(g => {
+            const match = packingRecipients.find(r => r.id === recipientId);
+            if (match && match.gift_name === g.name) return { ...g, delivered_count: g.delivered_count + 1 };
+            return g;
+          }));
+        }
+      }
+    } catch { /* ignore */ } finally {
+      setPackingTogglingId(null);
+    }
+  };
 
   const handleCreateGroup = async () => {
     if (!selectedSailing || !newGroupName.trim() || !newGroupRoom.trim()) return;
@@ -876,7 +911,17 @@ function PixieDustContent() {
                                 </span>
                               </div>
                               {deckItems.map((r, idx) => (
-                                <div key={`${r.stateroom_number}-${r.gift_name}-${idx}`} className="px-5 py-2 border-b border-slate-100 dark:border-slate-700 last:border-0 flex items-center gap-3">
+                                <div key={`${r.id}-${idx}`} className="px-5 py-2 border-b border-slate-100 dark:border-slate-700 last:border-0 flex items-center gap-3">
+                                  <button
+                                    type="button"
+                                    disabled={packingTogglingId === r.id}
+                                    onClick={() => handlePackingToggle(r.id)}
+                                    className={`flex-shrink-0 w-5 h-5 rounded-md border-2 flex items-center justify-center transition-colors border-slate-300 dark:border-slate-600 hover:border-green-500 ${packingTogglingId === r.id ? 'opacity-50' : ''}`}
+                                  >
+                                    {packingTogglingId === r.id && (
+                                      <div className="w-2.5 h-2.5 rounded-sm bg-slate-300 dark:bg-slate-500 animate-pulse" />
+                                    )}
+                                  </button>
                                   <span className="text-base flex-shrink-0" title={r.gift_name}>{r.gift_emoji}</span>
                                   <span className="text-sm font-medium text-slate-900 dark:text-white">
                                     Room {r.stateroom_number}
@@ -885,7 +930,7 @@ function PixieDustContent() {
                                     <span className="text-xs text-slate-500 dark:text-slate-400 truncate">{r.recipient_name}</span>
                                   )}
                                   <span
-                                    className="ml-auto text-[10px] px-1.5 py-0.5 rounded-full font-medium"
+                                    className="ml-auto text-[10px] px-1.5 py-0.5 rounded-full font-medium flex-shrink-0"
                                     style={{ backgroundColor: `${r.gift_color}20`, color: r.gift_color }}
                                   >
                                     {r.gift_name}
