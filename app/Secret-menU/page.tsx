@@ -20,6 +20,60 @@ const CHECKIN_TASKS = [
 
 const BOOKABLE_TYPES = ['activity', 'entertainment', 'dining', 'shopping'];
 
+const PAT_OPTIONS = [
+  { value: '11:00', label: '11:00 AM' },
+  { value: '11:15', label: '11:15 AM' },
+  { value: '11:30', label: '11:30 AM' },
+  { value: '11:45', label: '11:45 AM' },
+  { value: '12:00', label: '12:00 PM' },
+  { value: '12:15', label: '12:15 PM' },
+  { value: '12:30', label: '12:30 PM' },
+  { value: '12:45', label: '12:45 PM' },
+  { value: '13:00', label: '1:00 PM' },
+  { value: '13:15', label: '1:15 PM' },
+  { value: '13:30', label: '1:30 PM' },
+  { value: '13:45', label: '1:45 PM' },
+  { value: '14:00', label: '2:00 PM' },
+];
+
+function getPortTimezone(port: string): string {
+  const p = port.toLowerCase();
+  if (p.includes('canaveral') || p.includes('miami') || p.includes('fort lauderdale') || p.includes('new york') || p.includes('quebec')) return 'America/New_York';
+  if (p.includes('galveston') || p.includes('new orleans')) return 'America/Chicago';
+  if (p.includes('san diego') || p.includes('los angeles') || p.includes('seattle') || p.includes('vancouver')) return 'America/Los_Angeles';
+  if (p.includes('honolulu') || p.includes('hawai')) return 'Pacific/Honolulu';
+  if (p.includes('san juan') || p.includes('puerto rico')) return 'America/Puerto_Rico';
+  if (p.includes('southampton') || p.includes('dover') || p.includes('liverpool') || p.includes('newcastle') || p.includes('tilbury') || p.includes('london')) return 'Europe/London';
+  if (p.includes('barcelona')) return 'Europe/Madrid';
+  if (p.includes('civitavecchia') || p.includes('rome') || p.includes('venice')) return 'Europe/Rome';
+  if (p.includes('copenhagen')) return 'Europe/Copenhagen';
+  if (p.includes('bremerhaven')) return 'Europe/Berlin';
+  if (p.includes('eemshaven') || p.includes('netherlands')) return 'Europe/Amsterdam';
+  if (p.includes('singapore')) return 'Asia/Singapore';
+  if (p.includes('tokyo') || p.includes('japan')) return 'Asia/Tokyo';
+  if (p.includes('auckland') || p.includes('new zealand')) return 'Pacific/Auckland';
+  if (p.includes('sydney')) return 'Australia/Sydney';
+  if (p.includes('melbourne')) return 'Australia/Melbourne';
+  if (p.includes('brisbane')) return 'Australia/Brisbane';
+  return 'America/New_York';
+}
+
+/** Convert a date + local time in a given timezone to a UTC Date */
+function portTimeToDate(dateStr: string, hours: number, minutes: number, tz: string): Date {
+  const [y, m, d] = dateStr.split('-').map(Number);
+  const ts = Date.UTC(y, m - 1, d, hours, minutes, 0);
+  const fmt = new Intl.DateTimeFormat('en-US', {
+    timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit', hour12: false,
+  });
+  const parts = fmt.formatToParts(new Date(ts));
+  const g = (t: string) => parseInt(parts.find(p => p.type === t)?.value || '0');
+  const tzDate = Date.UTC(g('year'), g('month') - 1, g('day'), g('hour') === 24 ? 0 : g('hour'), g('minute'), 0);
+  const offset = ts - tzDate;
+  const targetLocal = Date.UTC(y, m - 1, d, hours, minutes, 0);
+  return new Date(targetLocal + offset);
+}
+
 interface PlannerItem {
   id: string;
   sailing_id: string;
@@ -70,6 +124,7 @@ interface Sailing {
   sail_start_date: string;
   sail_end_date: string;
   itinerary_name: string | null;
+  embarkation_port: string;
 }
 
 function parseLocal(ds: string) {
@@ -87,6 +142,7 @@ export default function SecretMenuPage() {
   const [checkinTasks, setCheckinTasks] = useState<Record<string, boolean>>({});
   const [activityPlannerItems, setActivityPlannerItems] = useState<PlannerItem[]>([]);
   const [activityChecked, setActivityChecked] = useState<Record<string, boolean>>({});
+  const [patTime, setPatTime] = useState<string | null>(null);
 
   useEffect(() => {
     if (!user) return;
@@ -107,7 +163,7 @@ export default function SecretMenuPage() {
       .catch(() => {});
   }, [user, session?.access_token]);
 
-  // Tick the countdown every minute
+  // Tick the countdown every minute (upgraded to every second during boarding phase below)
   useEffect(() => {
     const interval = setInterval(() => setNow(new Date()), 60_000);
     return () => clearInterval(interval);
@@ -140,6 +196,9 @@ export default function SecretMenuPage() {
       const storedAct = localStorage.getItem(`activity-checked:${nextSailing.id}`);
       if (storedAct) setActivityChecked(JSON.parse(storedAct));
       else setActivityChecked({});
+      const storedPat = localStorage.getItem(`pat-time:${nextSailing.id}`);
+      if (storedPat) setPatTime(storedPat);
+      else setPatTime(null);
     } catch { /* ignore */ }
   }, [nextSailing?.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -168,8 +227,18 @@ export default function SecretMenuPage() {
     setCheckinTasks(prev => {
       const next = { ...prev, [taskId]: !prev[taskId] };
       localStorage.setItem(`checkin-tasks:${nextSailing.id}`, JSON.stringify(next));
+      if (taskId === 'pat' && !next[taskId]) {
+        setPatTime(null);
+        localStorage.removeItem(`pat-time:${nextSailing.id}`);
+      }
       return next;
     });
+  }, [nextSailing]);
+
+  const handlePatTimeChange = useCallback((time: string) => {
+    if (!nextSailing) return;
+    setPatTime(time);
+    localStorage.setItem(`pat-time:${nextSailing.id}`, time);
   }, [nextSailing]);
 
   const toggleActivityItem = useCallback((itemId: string) => {
@@ -189,12 +258,35 @@ export default function SecretMenuPage() {
     if (!nextSailing) return null;
     const sailLocal = parseLocal(nextSailing.sail_start_date).getTime();
     const diff = sailLocal - now.getTime();
-    if (diff <= 0) return null;
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    return { days, hours, minutes };
-  }, [nextSailing, now]);
+    if (diff > 0) {
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      return { days, hours, minutes, phase: 'sailing' as const };
+    }
+    // Sail date reached — switch to boarding countdown if PAT is set
+    if (patTime && nextSailing.embarkation_port) {
+      const [h, m] = patTime.split(':').map(Number);
+      const tz = getPortTimezone(nextSailing.embarkation_port);
+      const boardingTime = portTimeToDate(nextSailing.sail_start_date, h, m, tz);
+      const boardingDiff = boardingTime.getTime() - now.getTime();
+      if (boardingDiff > 0) {
+        const hours = Math.floor(boardingDiff / (1000 * 60 * 60));
+        const minutes = Math.floor((boardingDiff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((boardingDiff % (1000 * 60)) / 1000);
+        return { days: 0, hours, minutes, seconds, phase: 'boarding' as const };
+      }
+    }
+    return null;
+  }, [nextSailing, now, patTime]);
+
+  // Tick every second during boarding phase for live seconds display
+  const isBoarding = countdown?.phase === 'boarding';
+  useEffect(() => {
+    if (!isBoarding) return;
+    const interval = setInterval(() => setNow(new Date()), 1_000);
+    return () => clearInterval(interval);
+  }, [isBoarding]);
 
   // Castaway Club milestones for upcoming sailing
   const milestones = useMemo(() => {
@@ -262,11 +354,11 @@ export default function SecretMenuPage() {
             href="/planner"
             className="block p-5 hover:bg-white/5 transition-colors"
           >
-            <div className="absolute top-1/2 right-4 -translate-y-1/2 text-[7rem] opacity-15 select-none leading-none">🚢</div>
+            <div className="absolute top-1/2 right-4 -translate-y-1/2 text-[7rem] opacity-15 select-none leading-none">{countdown.phase === 'boarding' ? '⚓' : '🚢'}</div>
             <div className="relative">
               <div className="flex items-center gap-2 mb-1">
                 <span className="text-sm font-medium text-cyan-100 dark:text-cyan-200">
-                  Next Sailing — {nextSailing.ship_name}
+                  {countdown.phase === 'boarding' ? 'Boarding' : 'Next Sailing'} — {nextSailing.ship_name}
                 </span>
                 {castaway.level !== 'none' && (
                   <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold bg-white/20 ${castaway.color}`}>
@@ -278,10 +370,12 @@ export default function SecretMenuPage() {
                 <div className="text-xs text-cyan-200 dark:text-cyan-300 mb-3">{nextSailing.itinerary_name}</div>
               )}
               <div className="flex gap-3">
-                <div className="bg-white/20 rounded-xl px-4 py-2 text-center min-w-[4.5rem]">
-                  <div className="text-2xl font-bold text-white">{countdown.days}</div>
-                  <div className="text-xs text-cyan-100">{countdown.days === 1 ? 'day' : 'days'}</div>
-                </div>
+                {countdown.phase !== 'boarding' && (
+                  <div className="bg-white/20 rounded-xl px-4 py-2 text-center min-w-[4.5rem]">
+                    <div className="text-2xl font-bold text-white">{countdown.days}</div>
+                    <div className="text-xs text-cyan-100">{countdown.days === 1 ? 'day' : 'days'}</div>
+                  </div>
+                )}
                 <div className="bg-white/20 rounded-xl px-4 py-2 text-center min-w-[4.5rem]">
                   <div className="text-2xl font-bold text-white">{countdown.hours}</div>
                   <div className="text-xs text-cyan-100">{countdown.hours === 1 ? 'hour' : 'hours'}</div>
@@ -290,9 +384,17 @@ export default function SecretMenuPage() {
                   <div className="text-2xl font-bold text-white">{countdown.minutes}</div>
                   <div className="text-xs text-cyan-100">{countdown.minutes === 1 ? 'min' : 'mins'}</div>
                 </div>
+                {countdown.phase === 'boarding' && 'seconds' in countdown && (
+                  <div className="bg-white/20 rounded-xl px-4 py-2 text-center min-w-[4.5rem]">
+                    <div className="text-2xl font-bold text-white">{countdown.seconds}</div>
+                    <div className="text-xs text-cyan-100">secs</div>
+                  </div>
+                )}
               </div>
               <div className="text-xs text-cyan-200 mt-2">
-                {parseLocal(nextSailing.sail_start_date).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}
+                {countdown.phase === 'boarding'
+                  ? `Port arrival at ${PAT_OPTIONS.find(o => o.value === patTime)?.label ?? patTime}`
+                  : parseLocal(nextSailing.sail_start_date).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}
               </div>
             </div>
           </Link>
@@ -394,28 +496,46 @@ export default function SecretMenuPage() {
                         ) : (
                           // Check-in sub-items (static)
                           CHECKIN_TASKS.map(task => (
-                            <label
-                              key={task.id}
-                              className="flex items-center gap-2 text-xs cursor-pointer group/item"
-                            >
-                              <span
-                                onClick={(e) => { e.preventDefault(); toggleCheckinTask(task.id); }}
-                                className={`flex-shrink-0 w-3.5 h-3.5 rounded flex items-center justify-center border transition-colors cursor-pointer ${
-                                  checkinTasks[task.id]
-                                    ? 'bg-green-500 border-green-500 text-white'
-                                    : 'border-white/30 text-transparent group-hover/item:border-white/50'
-                                }`}
+                            <div key={task.id}>
+                              <label
+                                className="flex items-center gap-2 text-xs cursor-pointer group/item"
                               >
-                                {checkinTasks[task.id] && (
-                                  <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                                  </svg>
-                                )}
-                              </span>
-                              <span className={`${checkinTasks[task.id] ? 'text-green-200/70 line-through' : 'text-cyan-100'}`}>
-                                {task.label}
-                              </span>
-                            </label>
+                                <span
+                                  onClick={(e) => { e.preventDefault(); toggleCheckinTask(task.id); }}
+                                  className={`flex-shrink-0 w-3.5 h-3.5 rounded flex items-center justify-center border transition-colors cursor-pointer ${
+                                    checkinTasks[task.id]
+                                      ? 'bg-green-500 border-green-500 text-white'
+                                      : 'border-white/30 text-transparent group-hover/item:border-white/50'
+                                  }`}
+                                >
+                                  {checkinTasks[task.id] && (
+                                    <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                    </svg>
+                                  )}
+                                </span>
+                                <span className={`${checkinTasks[task.id] ? 'text-green-200/70 line-through' : 'text-cyan-100'}`}>
+                                  {task.label}
+                                </span>
+                              </label>
+                              {task.id === 'pat' && checkinTasks['pat'] && (
+                                <div className="ml-6 mt-1.5 mb-0.5">
+                                  <select
+                                    value={patTime || ''}
+                                    onChange={(e) => handlePatTimeChange(e.target.value)}
+                                    onClick={(e) => e.stopPropagation()}
+                                    className="bg-white/10 border border-white/20 rounded-md px-2 py-1 text-xs text-white cursor-pointer focus:outline-none focus:ring-1 focus:ring-cyan-300"
+                                  >
+                                    <option value="" disabled className="text-slate-900">Select time...</option>
+                                    {PAT_OPTIONS.map(opt => (
+                                      <option key={opt.value} value={opt.value} className="text-slate-900">
+                                        {opt.label}
+                                      </option>
+                                    ))}
+                                  </select>
+                                </div>
+                              )}
+                            </div>
                           ))
                         )}
                       </div>
