@@ -60,6 +60,119 @@ interface DustedBy {
   created_at: string;
 }
 
+function PackingListBody({ recipients, togglingId, onToggle }: {
+  recipients: PackingRecipient[];
+  togglingId: string | null;
+  onToggle: (id: string) => void;
+}) {
+  const [collapsedDecks, setCollapsedDecks] = useState<Set<number>>(new Set());
+  const toggleDeck = (deck: number) => {
+    setCollapsedDecks(prev => {
+      const next = new Set(prev);
+      next.has(deck) ? next.delete(deck) : next.add(deck);
+      return next;
+    });
+  };
+
+  const byDeck: Record<number, PackingRecipient[]> = {};
+  for (const r of recipients) {
+    const deck = getDeck(r.stateroom_number);
+    if (!byDeck[deck]) byDeck[deck] = [];
+    byDeck[deck].push(r);
+  }
+  const decks = Object.keys(byDeck).map(Number).sort((a, b) => a - b);
+
+  // Receipt summary: total per gift type across all decks
+  const totalByGift: Record<string, { count: number; emoji: string }> = {};
+  for (const r of recipients) {
+    if (!totalByGift[r.gift_name]) totalByGift[r.gift_name] = { count: 0, emoji: r.gift_emoji };
+    totalByGift[r.gift_name].count++;
+  }
+
+  return (
+    <>
+      {/* Receipt-style summary */}
+      <div className="px-5 py-3 border-b border-purple-100 dark:border-purple-800/30 bg-purple-50/30 dark:bg-purple-900/5">
+        <p className="text-xs font-bold text-purple-900 dark:text-purple-200 uppercase tracking-wide mb-1.5">What to pack</p>
+        <div className="space-y-0.5">
+          {Object.entries(totalByGift).map(([name, { count, emoji }]) => (
+            <div key={name} className="flex items-center justify-between">
+              <span className="text-sm text-slate-800 dark:text-slate-200">{emoji} {name}</span>
+              <span className="text-sm font-bold text-slate-900 dark:text-white">{count}</span>
+            </div>
+          ))}
+          <div className="flex items-center justify-between pt-1 mt-1 border-t border-purple-200 dark:border-purple-700">
+            <span className="text-sm font-bold text-slate-900 dark:text-white">Total</span>
+            <span className="text-sm font-bold text-slate-900 dark:text-white">{recipients.length}</span>
+          </div>
+        </div>
+      </div>
+
+      {decks.map(deck => {
+        const deckItems = byDeck[deck].sort((a, b) => a.stateroom_number - b.stateroom_number);
+        const giftCounts: Record<string, number> = {};
+        for (const r of deckItems) {
+          giftCounts[r.gift_name] = (giftCounts[r.gift_name] || 0) + 1;
+        }
+        const isCollapsed = collapsedDecks.has(deck);
+        return (
+          <div key={deck}>
+            <button
+              type="button"
+              onClick={() => toggleDeck(deck)}
+              className="w-full px-5 py-2 bg-purple-50/50 dark:bg-purple-900/10 border-b border-purple-100 dark:border-purple-800/30 flex items-center justify-between hover:bg-purple-100/50 dark:hover:bg-purple-900/20 transition-colors"
+            >
+              <span className="text-xs font-bold text-purple-800 dark:text-purple-200 uppercase tracking-wider">
+                Deck {deck} — {deckItems.length} gift{deckItems.length !== 1 ? 's' : ''}
+              </span>
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] text-purple-600 dark:text-purple-400">
+                  {Object.entries(giftCounts).map(([name, count]) => `${name}: ${count}`).join(', ')}
+                </span>
+                <svg className={`w-3.5 h-3.5 text-purple-400 transition-transform ${isCollapsed ? '' : 'rotate-180'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+            </button>
+            {!isCollapsed && deckItems.map((r, idx) => (
+              <div key={`${r.id}-${idx}`} className="px-5 py-2 border-b border-slate-100 dark:border-slate-700 last:border-0 flex items-center gap-3">
+                <button
+                  type="button"
+                  disabled={togglingId === r.id}
+                  onClick={() => onToggle(r.id)}
+                  className={`flex-shrink-0 w-5 h-5 rounded-md border-2 flex items-center justify-center transition-colors border-slate-300 dark:border-slate-600 hover:border-green-500 ${togglingId === r.id ? 'opacity-50' : ''}`}
+                >
+                  {togglingId === r.id && (
+                    <div className="w-2.5 h-2.5 rounded-sm bg-slate-300 dark:bg-slate-500 animate-pulse" />
+                  )}
+                </button>
+                <span className="text-base flex-shrink-0" title={r.gift_name}>{r.gift_emoji}</span>
+                <span className="text-sm font-medium text-slate-900 dark:text-white">
+                  Room {r.stateroom_number}
+                </span>
+                {r.recipient_name && (
+                  <span className="text-xs text-slate-600 dark:text-slate-300 truncate">{r.recipient_name}</span>
+                )}
+                <span
+                  className="ml-auto text-[10px] px-1.5 py-0.5 rounded-full font-medium flex-shrink-0"
+                  style={{ backgroundColor: `${r.gift_color}20`, color: r.gift_color }}
+                >
+                  {r.gift_name}
+                </span>
+              </div>
+            ))}
+          </div>
+        );
+      })}
+      <div className="px-5 py-3 bg-purple-50/50 dark:bg-purple-900/10 border-t border-purple-100 dark:border-purple-800/30 text-center">
+        <span className="text-xs font-medium text-purple-600 dark:text-purple-400">
+          {recipients.length} undelivered across {decks.length} deck{decks.length !== 1 ? 's' : ''}
+        </span>
+      </div>
+    </>
+  );
+}
+
 export default function PixieDustPage() {
   return (
     <Suspense>
@@ -883,71 +996,13 @@ function PixieDustContent() {
                     <div className="text-center py-6">
                       <p className="text-sm text-slate-500 dark:text-slate-400">All gifts delivered!</p>
                     </div>
-                  ) : (() => {
-                    const byDeck: Record<number, PackingRecipient[]> = {};
-                    for (const r of packingRecipients) {
-                      const deck = getDeck(r.stateroom_number);
-                      if (!byDeck[deck]) byDeck[deck] = [];
-                      byDeck[deck].push(r);
-                    }
-                    const decks = Object.keys(byDeck).map(Number).sort((a, b) => a - b);
-                    return (
-                      <>
-                        {decks.map(deck => {
-                          const deckItems = byDeck[deck].sort((a, b) => a.stateroom_number - b.stateroom_number);
-                          // Count per gift type on this deck
-                          const giftCounts: Record<string, number> = {};
-                          for (const r of deckItems) {
-                            giftCounts[r.gift_name] = (giftCounts[r.gift_name] || 0) + 1;
-                          }
-                          return (
-                            <div key={deck}>
-                              <div className="px-5 py-2 bg-purple-50/50 dark:bg-purple-900/10 border-b border-purple-100 dark:border-purple-800/30 flex items-center justify-between">
-                                <span className="text-xs font-bold text-purple-700 dark:text-purple-300 uppercase tracking-wider">
-                                  Deck {deck} — {deckItems.length} gift{deckItems.length !== 1 ? 's' : ''}
-                                </span>
-                                <span className="text-[10px] text-purple-500/70 dark:text-purple-400/70">
-                                  {Object.entries(giftCounts).map(([name, count]) => `${name}: ${count}`).join(', ')}
-                                </span>
-                              </div>
-                              {deckItems.map((r, idx) => (
-                                <div key={`${r.id}-${idx}`} className="px-5 py-2 border-b border-slate-100 dark:border-slate-700 last:border-0 flex items-center gap-3">
-                                  <button
-                                    type="button"
-                                    disabled={packingTogglingId === r.id}
-                                    onClick={() => handlePackingToggle(r.id)}
-                                    className={`flex-shrink-0 w-5 h-5 rounded-md border-2 flex items-center justify-center transition-colors border-slate-300 dark:border-slate-600 hover:border-green-500 ${packingTogglingId === r.id ? 'opacity-50' : ''}`}
-                                  >
-                                    {packingTogglingId === r.id && (
-                                      <div className="w-2.5 h-2.5 rounded-sm bg-slate-300 dark:bg-slate-500 animate-pulse" />
-                                    )}
-                                  </button>
-                                  <span className="text-base flex-shrink-0" title={r.gift_name}>{r.gift_emoji}</span>
-                                  <span className="text-sm font-medium text-slate-900 dark:text-white">
-                                    Room {r.stateroom_number}
-                                  </span>
-                                  {r.recipient_name && (
-                                    <span className="text-xs text-slate-500 dark:text-slate-400 truncate">{r.recipient_name}</span>
-                                  )}
-                                  <span
-                                    className="ml-auto text-[10px] px-1.5 py-0.5 rounded-full font-medium flex-shrink-0"
-                                    style={{ backgroundColor: `${r.gift_color}20`, color: r.gift_color }}
-                                  >
-                                    {r.gift_name}
-                                  </span>
-                                </div>
-                              ))}
-                            </div>
-                          );
-                        })}
-                        <div className="px-5 py-3 bg-purple-50/50 dark:bg-purple-900/10 border-t border-purple-100 dark:border-purple-800/30 text-center">
-                          <span className="text-xs font-medium text-purple-600 dark:text-purple-400">
-                            {packingRecipients.length} undelivered across {decks.length} deck{decks.length !== 1 ? 's' : ''}
-                          </span>
-                        </div>
-                      </>
-                    );
-                  })()}
+                  ) : (
+                    <PackingListBody
+                      recipients={packingRecipients}
+                      togglingId={packingTogglingId}
+                      onToggle={handlePackingToggle}
+                    />
+                  )}
                 </div>
               )}
             </div>
