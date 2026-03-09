@@ -41,6 +41,58 @@ interface FEGroup {
   member_count: number;
 }
 
+function PackingListSection({ decks, byDeck, total }: { decks: number[]; byDeck: Record<number, Recipient[]>; total: number }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 mb-4 overflow-hidden">
+      <button
+        type="button"
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between px-5 py-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
+      >
+        <div className="flex items-center gap-2">
+          <span className="text-base">📋</span>
+          <span className="font-bold text-slate-900 dark:text-white text-sm">Packing List</span>
+          <span className="text-xs text-slate-400 dark:text-slate-500">({total} undelivered)</span>
+        </div>
+        <svg
+          className={`w-4 h-4 text-slate-400 transition-transform ${open ? 'rotate-180' : ''}`}
+          fill="none" stroke="currentColor" viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      {open && (
+        <div className="border-t border-slate-100 dark:border-slate-700">
+          {decks.map(deck => {
+            const deckItems = byDeck[deck].sort((a, b) => a.stateroom_number - b.stateroom_number);
+            return (
+              <div key={deck}>
+                <div className="px-5 py-1.5 bg-slate-50 dark:bg-slate-900/50 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between">
+                  <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                    Deck {deck}
+                  </span>
+                  <span className="text-[10px] text-slate-400 dark:text-slate-500 bg-slate-200 dark:bg-slate-700 px-1.5 py-0.5 rounded-full">
+                    {deckItems.length}
+                  </span>
+                </div>
+                {deckItems.map(r => (
+                  <div key={r.id} className="px-5 py-1.5 border-b border-slate-100 dark:border-slate-700 last:border-0 flex items-center gap-2">
+                    <span className="text-sm font-mono text-slate-900 dark:text-white">{r.stateroom_number}</span>
+                    {r.recipient_name && (
+                      <span className="text-xs text-slate-500 dark:text-slate-400 truncate">{r.recipient_name}</span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function GiftDetailPage() {
   const params = useParams();
   const router = useRouter();
@@ -398,6 +450,21 @@ export default function GiftDetailPage() {
               </div>
             </div>
           )}
+
+          {/* Packing List */}
+          {recipients.filter(r => !r.delivered).length > 0 && (() => {
+            const undelivered = recipients.filter(r => !r.delivered);
+            const byDeck: Record<number, typeof undelivered> = {};
+            for (const r of undelivered) {
+              const deck = getDeck(r.stateroom_number);
+              if (!byDeck[deck]) byDeck[deck] = [];
+              byDeck[deck].push(r);
+            }
+            const decks = Object.keys(byDeck).map(Number).sort((a, b) => a - b);
+            return (
+              <PackingListSection decks={decks} byDeck={byDeck} total={undelivered.length} />
+            );
+          })()}
 
           {/* Add Rooms */}
           <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700 mb-4 overflow-hidden">

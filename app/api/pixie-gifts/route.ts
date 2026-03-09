@@ -80,10 +80,125 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { sailing_id, name, emoji, color } = body;
+    const { sailing_id, name, emoji, color, bulk_import } = body;
 
-    if (!sailing_id || !name) {
-      return NextResponse.json({ error: 'sailing_id and name are required' }, { status: 400 });
+    if (!sailing_id) {
+      return NextResponse.json({ error: 'sailing_id is required' }, { status: 400 });
+    }
+
+    const GIFT_PALETTE = [
+      '#8B5CF6', '#0EA5E9', '#F97316', '#10B981', '#EC4899',
+      '#EAB308', '#06B6D4', '#E11D48', '#6366F1', '#84CC16',
+    ];
+
+    // ── Bulk import mode ──
+    if (Array.isArray(bulk_import)) {
+      // Validate entries
+      const entries = bulk_import
+        .filter((e: { stateroom_number?: number; gift_name?: string }) => e.stateroom_number && e.gift_name)
+        .map((e: { stateroom_number: number; recipient_name?: string; notes?: string; gift_name: string }) => ({
+          stateroom_number: Number(e.stateroom_number),
+          recipient_name: e.recipient_name ? String(e.recipient_name).replace(/<[^>]*>/g, '').trim().slice(0, 100) : null,
+          notes: e.notes ? String(e.notes).replace(/<[^>]*>/g, '').trim().slice(0, 500) : null,
+          gift_name: String(e.gift_name).replace(/<[^>]*>/g, '').trim().slice(0, 100),
+        }))
+        .filter(e => e.stateroom_number >= 1000 && e.gift_name);
+
+      if (entries.length === 0) {
+        return NextResponse.json({ error: 'No valid entries in bulk_import' }, { status: 400 });
+      }
+
+      // Prevent self-delivery
+      const { data: userSailing } = await supabase
+        .from('sailing_reviews')
+        .select('stateroom_numbers')
+        .eq('id', sailing_id)
+        .eq('user_id', user.id)
+        .single();
+      const ownRooms = new Set((userSailing?.stateroom_numbers ?? []).map(Number));
+
+      const filteredEntries = ownRooms.size > 0
+        ? entries.filter(e => !ownRooms.has(e.stateroom_number))
+        : entries;
+
+      if (filteredEntries.length === 0) {
+        return NextResponse.json({ error: 'All entries were your own stateroom' }, { status: 400 });
+      }
+
+      // Group by gift_name
+      const byGiftName: Record<string, typeof filteredEntries> = {};
+      for (const entry of filteredEntries) {
+        const key = entry.gift_name.toLowerCase();
+        if (!byGiftName[key]) byGiftName[key] = [];
+        byGiftName[key].push(entry);
+      }
+
+      // Fetch existing gifts for this sailing
+      const { data: existingGifts } = await supabase
+        .from('pixie_gifts')
+        .select('id, name, sort_order')
+        .eq('user_id', user.id)
+        .eq('sailing_id', sailing_id)
+        .order('sort_order', { ascending: false });
+
+      let maxOrder = existingGifts?.[0]?.sort_order ?? -1;
+      const giftMap = new Map<string, string>(); // lowercase name → gift id
+      for (const g of existingGifts ?? []) {
+        giftMap.set(g.name.toLowerCase(), g.id);
+      }
+
+      let giftsCreated = 0;
+      let recipientsAdded = 0;
+
+      for (const [lowerName, groupEntries] of Object.entries(byGiftName)) {
+        let giftId: string = giftMap.get(lowerName) ?? '';
+
+        // Create gift if not found
+        if (!giftId) {
+          maxOrder++;
+          const displayName = groupEntries[0].gift_name; // preserve original casing
+          const { data: newGift, error: createErr } = await supabase
+            .from('pixie_gifts')
+            .insert({
+              user_id: user.id,
+              sailing_id,
+              name: displayName,
+              emoji: '🎁',
+              color: GIFT_PALETTE[maxOrder % GIFT_PALETTE.length],
+              sort_order: maxOrder,
+            })
+            .select('id')
+            .single();
+
+          if (createErr || !newGift) throw createErr ?? new Error('Failed to create gift');
+          giftId = newGift.id;
+          giftMap.set(lowerName, giftId);
+          giftsCreated++;
+        }
+
+        // Upsert recipients with name+notes
+        const inserts = groupEntries.map(e => ({
+          gift_id: giftId,
+          stateroom_number: e.stateroom_number,
+          recipient_name: e.recipient_name,
+          notes: e.notes,
+        }));
+
+        const { data: inserted, error: insertErr } = await supabase
+          .from('pixie_gift_recipients')
+          .upsert(inserts, { onConflict: 'gift_id,stateroom_number' })
+          .select('id');
+
+        if (insertErr) throw insertErr;
+        recipientsAdded += (inserted ?? []).length;
+      }
+
+      return NextResponse.json({ success: true, gifts_created: giftsCreated, recipients_added: recipientsAdded });
+    }
+
+    // ── Single gift create mode ──
+    if (!name) {
+      return NextResponse.json({ error: 'name is required' }, { status: 400 });
     }
 
     const sanitizedName = String(name).replace(/<[^>]*>/g, '').trim().slice(0, 100);
@@ -101,11 +216,6 @@ export async function POST(request: NextRequest) {
       .limit(1);
 
     const nextOrder = (existing?.[0]?.sort_order ?? -1) + 1;
-
-    const GIFT_PALETTE = [
-      '#8B5CF6', '#0EA5E9', '#F97316', '#10B981', '#EC4899',
-      '#EAB308', '#06B6D4', '#E11D48', '#6366F1', '#84CC16',
-    ];
     const autoColor = GIFT_PALETTE[nextOrder % GIFT_PALETTE.length];
 
     const { data: gift, error } = await supabase

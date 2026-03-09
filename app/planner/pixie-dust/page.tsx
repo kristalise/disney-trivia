@@ -7,6 +7,8 @@ import { useAuth } from '@/components/AuthProvider';
 import SailingPicker from '@/components/SailingPicker';
 import { useOnlineStatus } from '@/hooks/useOnlineStatus';
 import OfflineBanner from '@/components/OfflineBanner';
+import BulkGiftImporter from '@/components/BulkGiftImporter';
+import { getDeck } from '@/lib/stateroom-utils';
 import { cacheData, getCachedData, queueMutation, getPendingMutationCount } from '@/lib/offline-store';
 
 interface Sailing {
@@ -40,6 +42,14 @@ interface PixieGift {
   color: string;
   recipient_count: number;
   delivered_count: number;
+}
+
+interface PackingRecipient {
+  stateroom_number: number;
+  recipient_name: string | null;
+  gift_emoji: string;
+  gift_name: string;
+  gift_color: string;
 }
 
 interface DustedBy {
@@ -91,6 +101,14 @@ function PixieDustContent() {
   // Inline gift rename
   const [editingGiftId, setEditingGiftId] = useState<string | null>(null);
   const [editGiftName, setEditGiftName] = useState('');
+
+  // Bulk import
+  const [showBulkImport, setShowBulkImport] = useState(false);
+
+  // Packing list
+  const [packingOpen, setPackingOpen] = useState(false);
+  const [packingRecipients, setPackingRecipients] = useState<PackingRecipient[]>([]);
+  const [packingLoading, setPackingLoading] = useState(false);
 
   // Error feedback
   const [feError, setFeError] = useState<string | null>(null);
@@ -148,6 +166,47 @@ function PixieDustContent() {
         setFeError('Unable to load data. Please check your connection.');
       }
     } finally { setLoading(false); }
+  }, [session?.access_token, authHeaders]);
+
+  const fetchPackingList = useCallback(async (giftsList: PixieGift[]) => {
+    if (!session?.access_token || giftsList.length === 0) {
+      setPackingRecipients([]);
+      return;
+    }
+    setPackingLoading(true);
+    try {
+      const allRecipients: PackingRecipient[] = [];
+      await Promise.all(giftsList.map(async (gift) => {
+        let recipients: { stateroom_number: number; recipient_name: string | null; delivered: boolean }[] = [];
+        try {
+          const res = await fetch(`/api/pixie-gifts/recipients?gift_id=${gift.id}`, { headers: authHeaders() });
+          if (res.ok) {
+            const data = await res.json();
+            recipients = data.recipients ?? [];
+          }
+        } catch {
+          // Offline: try cached data
+          const cached = await getCachedData<{ recipients?: typeof recipients }>(`pixie-gift:${gift.id}`).catch(() => null);
+          if (cached) recipients = cached.data.recipients ?? [];
+        }
+        for (const r of recipients) {
+          if (!r.delivered) {
+            allRecipients.push({
+              stateroom_number: r.stateroom_number,
+              recipient_name: r.recipient_name,
+              gift_emoji: gift.emoji,
+              gift_name: gift.name,
+              gift_color: gift.color,
+            });
+          }
+        }
+      }));
+      setPackingRecipients(allRecipients);
+    } catch {
+      setPackingRecipients([]);
+    } finally {
+      setPackingLoading(false);
+    }
   }, [session?.access_token, authHeaders]);
 
   const handleCreateGroup = async () => {
@@ -715,6 +774,137 @@ function PixieDustContent() {
               )}
             </div>
           </div>
+          {/* Bulk Import */}
+          {gifts.length > 0 && (
+            <div className="mb-4">
+              {!showBulkImport ? (
+                <button
+                  type="button"
+                  onClick={() => setShowBulkImport(true)}
+                  className="w-full px-4 py-3 rounded-2xl text-sm font-medium border-2 border-dashed border-slate-300 dark:border-slate-600 text-slate-500 dark:text-slate-400 hover:border-disney-blue dark:hover:border-disney-gold hover:text-disney-blue dark:hover:text-disney-gold transition-colors"
+                >
+                  Bulk Import Recipients
+                </button>
+              ) : (
+                <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700 p-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="font-bold text-slate-900 dark:text-white text-sm">Bulk Import</h3>
+                    <button
+                      type="button"
+                      onClick={() => setShowBulkImport(false)}
+                      className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                    </button>
+                  </div>
+                  <BulkGiftImporter
+                    existingGifts={gifts.map(g => ({ id: g.id, name: g.name, emoji: g.emoji, color: g.color }))}
+                    sailingId={selectedSailing.id}
+                    onComplete={() => { setShowBulkImport(false); fetchData(selectedSailing.id); }}
+                    headers={headers}
+                    isOnline={isOnline}
+                    onOfflinePendingChange={setOfflinePendingCount}
+                  />
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Packing List */}
+          {gifts.length > 0 && gifts.some(g => g.recipient_count > g.delivered_count) && (
+            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700 mb-4 overflow-hidden">
+              <button
+                type="button"
+                onClick={() => {
+                  const next = !packingOpen;
+                  setPackingOpen(next);
+                  if (next && packingRecipients.length === 0) fetchPackingList(gifts);
+                }}
+                className="w-full flex items-center justify-between px-5 py-4 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
+              >
+                <div className="flex items-center gap-2">
+                  <span className="text-lg">📋</span>
+                  <h3 className="font-bold text-slate-900 dark:text-white">Packing List</h3>
+                  <span className="text-sm text-slate-400 dark:text-slate-500">
+                    ({gifts.reduce((s, g) => s + g.recipient_count - g.delivered_count, 0)} undelivered)
+                  </span>
+                </div>
+                <svg
+                  className={`w-4 h-4 text-slate-400 transition-transform ${packingOpen ? 'rotate-180' : ''}`}
+                  fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              {packingOpen && (
+                <div className="border-t border-slate-100 dark:border-slate-700">
+                  {packingLoading ? (
+                    <div className="text-center py-6">
+                      <p className="text-sm text-slate-500 dark:text-slate-400 animate-pulse">Loading packing list...</p>
+                    </div>
+                  ) : packingRecipients.length === 0 ? (
+                    <div className="text-center py-6">
+                      <p className="text-sm text-slate-500 dark:text-slate-400">All gifts delivered!</p>
+                    </div>
+                  ) : (() => {
+                    const byDeck: Record<number, PackingRecipient[]> = {};
+                    for (const r of packingRecipients) {
+                      const deck = getDeck(r.stateroom_number);
+                      if (!byDeck[deck]) byDeck[deck] = [];
+                      byDeck[deck].push(r);
+                    }
+                    const decks = Object.keys(byDeck).map(Number).sort((a, b) => a - b);
+                    return (
+                      <>
+                        {decks.map(deck => {
+                          const deckItems = byDeck[deck].sort((a, b) => a.stateroom_number - b.stateroom_number);
+                          // Count per gift type on this deck
+                          const giftCounts: Record<string, number> = {};
+                          for (const r of deckItems) {
+                            giftCounts[r.gift_name] = (giftCounts[r.gift_name] || 0) + 1;
+                          }
+                          return (
+                            <div key={deck}>
+                              <div className="px-5 py-2 bg-slate-50 dark:bg-slate-900/50 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between">
+                                <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                                  Deck {deck} — {deckItems.length} gift{deckItems.length !== 1 ? 's' : ''}
+                                </span>
+                                <span className="text-[10px] text-slate-400 dark:text-slate-500">
+                                  {Object.entries(giftCounts).map(([name, count]) => `${name}: ${count}`).join(', ')}
+                                </span>
+                              </div>
+                              {deckItems.map((r, idx) => (
+                                <div key={`${r.stateroom_number}-${r.gift_name}-${idx}`} className="px-5 py-2 border-b border-slate-100 dark:border-slate-700 last:border-0 flex items-center gap-3">
+                                  <span className="text-base flex-shrink-0" title={r.gift_name}>{r.gift_emoji}</span>
+                                  <span className="text-sm font-medium text-slate-900 dark:text-white">
+                                    Room {r.stateroom_number}
+                                  </span>
+                                  {r.recipient_name && (
+                                    <span className="text-xs text-slate-500 dark:text-slate-400 truncate">{r.recipient_name}</span>
+                                  )}
+                                  <span
+                                    className="ml-auto text-[10px] px-1.5 py-0.5 rounded-full font-medium"
+                                    style={{ backgroundColor: `${r.gift_color}20`, color: r.gift_color }}
+                                  >
+                                    {r.gift_name}
+                                  </span>
+                                </div>
+                              ))}
+                            </div>
+                          );
+                        })}
+                        <div className="px-5 py-3 bg-slate-50 dark:bg-slate-900/50 border-t border-slate-200 dark:border-slate-700 text-center">
+                          <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
+                            Total: {packingRecipients.length} undelivered across {decks.length} deck{decks.length !== 1 ? 's' : ''}
+                          </span>
+                        </div>
+                      </>
+                    );
+                  })()}
+                </div>
+              )}
+            </div>
+          )}
           </>)}
 
           {/* Dusted By Section */}
