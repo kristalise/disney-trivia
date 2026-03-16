@@ -3,7 +3,6 @@
 import { useState, useMemo, useCallback, Suspense } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useAuth } from '@/components/AuthProvider';
 import stateroomData from '@/data/stateroom-data.json';
 import { getCategoryType } from '@/lib/stateroom-utils';
 import { SHIP_ORDER } from '@/lib/ship-order';
@@ -32,7 +31,6 @@ export default function StateroomGuidePageWrapper() {
 }
 
 function StateroomGuidePage() {
-  const { user } = useAuth();
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -299,14 +297,6 @@ function StateroomGuidePage() {
         </p>
       </div>
 
-      {!user ? (
-        <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg border border-slate-200 dark:border-slate-700 text-center">
-          <div className="text-4xl mb-3">🔒</div>
-          <p className="text-sm text-slate-500 dark:text-slate-400 mb-3">Sign in to use the stateroom guide.</p>
-          <Link href="/auth" className="inline-block px-6 py-2.5 rounded-xl font-medium btn-disney">Sign In</Link>
-        </div>
-      ) : (<>
-
       {/* Stateroom Lookup */}
       <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-200 dark:border-slate-700 mb-6">
         <h2 className="text-base font-bold text-slate-900 dark:text-white mb-1">Stateroom Lookup</h2>
@@ -494,7 +484,6 @@ function StateroomGuidePage() {
         </div>
       )}
 
-      </>)}
     </div>
   );
 }

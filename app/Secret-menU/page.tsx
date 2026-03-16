@@ -705,14 +705,22 @@ export default function SecretMenuPage() {
             <div className="text-xs text-indigo-200 dark:text-indigo-300 mt-0.5">Everything onboard</div>
           </Link>
 
-          <Link
-            href="/Secret-menU/stateroom-guide"
-            className="bg-gradient-to-br from-teal-600 to-emerald-600 dark:from-teal-800 dark:to-emerald-800 rounded-2xl p-4 shadow-lg border border-teal-400/30 dark:border-teal-500/30 hover:border-disney-gold transition-all hover:shadow-xl hover:scale-[1.02] active:scale-95 text-center"
-          >
-            <div className="text-3xl mb-2">🛏</div>
-            <div className="text-sm font-bold text-white">Stateroom Guide</div>
-            <div className="text-xs text-teal-200 dark:text-teal-300 mt-0.5">Find your room</div>
-          </Link>
+          {user ? (
+            <Link
+              href="/Secret-menU/stateroom-guide"
+              className="bg-gradient-to-br from-teal-600 to-emerald-600 dark:from-teal-800 dark:to-emerald-800 rounded-2xl p-4 shadow-lg border border-teal-400/30 dark:border-teal-500/30 hover:border-disney-gold transition-all hover:shadow-xl hover:scale-[1.02] active:scale-95 text-center"
+            >
+              <div className="text-3xl mb-2">🛏</div>
+              <div className="text-sm font-bold text-white">Stateroom Guide</div>
+              <div className="text-xs text-teal-200 dark:text-teal-300 mt-0.5">Find your room</div>
+            </Link>
+          ) : (
+            <div className="bg-gradient-to-br from-teal-600 to-emerald-600 dark:from-teal-800 dark:to-emerald-800 rounded-2xl p-4 shadow-lg border border-teal-400/30 dark:border-teal-500/30 text-center opacity-40 cursor-not-allowed">
+              <div className="text-3xl mb-2">🛏</div>
+              <div className="text-sm font-bold text-white">Stateroom Guide</div>
+              <div className="text-xs text-teal-200 dark:text-teal-300 mt-0.5">Sign in required</div>
+            </div>
+          )}
         </div>
       </div>
 
