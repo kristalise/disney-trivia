@@ -458,8 +458,11 @@ export default function CharacterChecklistPage() {
       </div>
 
       {!user && (
-        <div className="text-center py-12">
-          <p className="text-slate-500 dark:text-slate-400">Sign in to track your character meets.</p>
+        <div className="px-4 py-3 rounded-xl bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 text-sm text-amber-700 dark:text-amber-300 flex items-center gap-2 mb-4">
+          <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          Sign in to save your progress. Without an account, your checklist won&apos;t be saved.
         </div>
       )}
 
@@ -470,7 +473,7 @@ export default function CharacterChecklistPage() {
       )}
 
       {/* Character Categories */}
-      {user && !loading && (
+      {(!user || !loading) && (
         <div className="space-y-3">
           {/* Character Search */}
           <div className="relative">
@@ -605,8 +608,8 @@ export default function CharacterChecklistPage() {
                                 return (
                                   <button
                                     key={ch.id}
-                                    onClick={() => openModal(ch)}
-                                    className="flex flex-col items-center gap-1.5 w-[72px] group"
+                                    onClick={() => user && openModal(ch)}
+                                    className={`flex flex-col items-center gap-1.5 w-[72px] group ${!user ? 'cursor-default' : ''}`}
                                   >
                                     {/* Bubble */}
                                     <div className={`relative w-14 h-14 rounded-full flex items-center justify-center text-lg font-bold transition-all ${
