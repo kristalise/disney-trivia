@@ -48,6 +48,20 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Gift not found or not yours' }, { status: 403 });
     }
 
+    // Get ship_name and sail_end_date from sailing_reviews
+    let shipName: string | null = null;
+    let sailEndDate: string | null = null;
+    if (gift.sailing_id) {
+      const { data: sailing } = await supabase
+        .from('sailing_reviews')
+        .select('ship_name, sail_end_date')
+        .eq('id', gift.sailing_id)
+        .eq('user_id', user.id)
+        .single();
+      shipName = sailing?.ship_name ?? null;
+      sailEndDate = sailing?.sail_end_date ?? null;
+    }
+
     const { data: recipients, error } = await supabase
       .from('pixie_gift_recipients')
       .select('id, stateroom_number, delivered, delivered_at, recipient_name, notes')
@@ -58,7 +72,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({
       recipients: recipients ?? [],
-      gift: { id: gift.id, name: gift.name, emoji: gift.emoji, color: gift.color, sailing_id: gift.sailing_id },
+      gift: { id: gift.id, name: gift.name, emoji: gift.emoji, color: gift.color, sailing_id: gift.sailing_id, ship_name: shipName, sail_end_date: sailEndDate ?? null },
     });
   } catch (error) {
     console.error('Error fetching recipients:', error);

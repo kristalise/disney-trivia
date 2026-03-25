@@ -17,6 +17,8 @@ interface PixieGift {
   emoji: string;
   color: string;
   sailing_id: string;
+  ship_name: string | null;
+  sail_end_date: string | null;
 }
 
 interface Recipient {
@@ -31,7 +33,7 @@ interface Recipient {
 interface RouteStop {
   stateroom: number;
   deck: number;
-  side?: 'port' | 'starboard';
+  side?: 'port' | 'starboard' | 'center';
   direction?: 'forward' | 'aft';
 }
 
@@ -328,7 +330,7 @@ export default function GiftDetailPage() {
       const res = await fetch('/api/pixie-dust/route-optimizer', {
         method: 'POST',
         headers: headers(),
-        body: JSON.stringify({ start_stateroom: startRoom, target_staterooms: undelivered }),
+        body: JSON.stringify({ start_stateroom: startRoom, target_staterooms: undelivered, ship_name: gift?.ship_name }),
       });
       if (res.ok) {
         const data = await res.json();
@@ -350,6 +352,7 @@ export default function GiftDetailPage() {
   const total = recipients.length;
   const progressPct = total > 0 ? Math.round((delivered / total) * 100) : 0;
   const deliveredSet = new Set(recipients.filter(r => r.delivered).map(r => r.stateroom_number));
+  const isPastSailing = gift?.sail_end_date ? new Date(gift.sail_end_date) < new Date() : false;
 
   const backHref = gift?.sailing_id
     ? `/planner/pixie-dust?sailing=${gift.sailing_id}`
@@ -368,7 +371,7 @@ export default function GiftDetailPage() {
           {gift ? <>{gift.emoji} {gift.name}</> : 'Gift Delivery'}
         </h1>
         <p className="text-slate-600 dark:text-slate-400 text-sm">
-          Manage rooms and track deliveries for this gift.
+          {isPastSailing ? 'Delivery history for this gift.' : 'Manage rooms and track deliveries for this gift.'}
         </p>
       </div>
 
@@ -400,7 +403,7 @@ export default function GiftDetailPage() {
           )}
 
           {/* Route Optimizer */}
-          {recipients.filter(r => !r.delivered).length > 0 && (
+          {!isPastSailing && recipients.filter(r => !r.delivered).length > 0 && (
             <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700 mb-4 overflow-hidden">
               <div className="px-5 py-4">
                 <h3 className="font-bold text-slate-900 dark:text-white text-sm mb-1">Plan Dusting Route</h3>
@@ -442,6 +445,7 @@ export default function GiftDetailPage() {
           )}
 
           {/* Add Rooms */}
+          {!isPastSailing && (
           <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700 mb-4 overflow-hidden">
             <div className="flex items-center justify-between px-5 py-4">
               <h3 className="font-bold text-slate-900 dark:text-white text-sm">Add Staterooms</h3>
@@ -519,6 +523,7 @@ export default function GiftDetailPage() {
               </div>
             )}
           </div>
+          )}
 
           {/* Delivery Checklist by Deck */}
           {sortedDecks.length > 0 && (
@@ -564,28 +569,42 @@ export default function GiftDetailPage() {
                     </div>
                     {sorted.map(r => {
                       const side = getSide(r.stateroom_number);
-                      const isEditingName = editingField?.id === r.id && editingField.field === 'recipient_name';
-                      const isEditingNotes = editingField?.id === r.id && editingField.field === 'notes';
+                      const isEditingName = !isPastSailing && editingField?.id === r.id && editingField.field === 'recipient_name';
+                      const isEditingNotes = !isPastSailing && editingField?.id === r.id && editingField.field === 'notes';
                       const isSaving = savingFieldId === r.id;
                       return (
                         <div key={r.id} className="px-5 py-2.5 border-b border-slate-100 dark:border-slate-700 last:border-0">
                           <div className="flex items-center gap-3">
-                            <button
-                              type="button"
-                              disabled={togglingId === r.id}
-                              onClick={() => handleToggleDelivery(r.id, r.delivered)}
-                              className={`flex-shrink-0 w-6 h-6 rounded-lg border-2 flex items-center justify-center transition-colors ${
+                            {isPastSailing ? (
+                              <span className={`flex-shrink-0 w-6 h-6 rounded-lg border-2 flex items-center justify-center ${
                                 r.delivered
                                   ? 'bg-green-500 border-green-500'
-                                  : 'border-slate-300 dark:border-slate-600 hover:border-green-500'
-                              } ${togglingId === r.id ? 'opacity-50' : ''}`}
-                            >
-                              {r.delivered && (
-                                <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                                </svg>
-                              )}
-                            </button>
+                                  : 'border-slate-300 dark:border-slate-600'
+                              }`}>
+                                {r.delivered && (
+                                  <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                  </svg>
+                                )}
+                              </span>
+                            ) : (
+                              <button
+                                type="button"
+                                disabled={togglingId === r.id}
+                                onClick={() => handleToggleDelivery(r.id, r.delivered)}
+                                className={`flex-shrink-0 w-6 h-6 rounded-lg border-2 flex items-center justify-center transition-colors ${
+                                  r.delivered
+                                    ? 'bg-green-500 border-green-500'
+                                    : 'border-slate-300 dark:border-slate-600 hover:border-green-500'
+                                } ${togglingId === r.id ? 'opacity-50' : ''}`}
+                              >
+                                {r.delivered && (
+                                  <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                  </svg>
+                                )}
+                              </button>
+                            )}
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center gap-1.5">
                                 <span className={`text-sm font-medium ${
@@ -605,6 +624,10 @@ export default function GiftDetailPage() {
                                     placeholder="Name"
                                     className="px-1.5 py-0 rounded border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-xs text-slate-700 dark:text-slate-300 w-24"
                                   />
+                                ) : isPastSailing ? (
+                                  r.recipient_name && (
+                                    <span className="text-xs text-slate-600 dark:text-slate-400 truncate max-w-[100px]">{r.recipient_name}</span>
+                                  )
                                 ) : (
                                   <button
                                     type="button"
@@ -634,6 +657,7 @@ export default function GiftDetailPage() {
                                 {new Date(r.delivered_at).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}
                               </span>
                             )}
+                            {!isPastSailing && (
                             <button
                               type="button"
                               disabled={deletingId === r.id}
@@ -642,6 +666,7 @@ export default function GiftDetailPage() {
                             >
                               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
                             </button>
+                            )}
                           </div>
                           {/* Notes row */}
                           {isEditingNotes ? (
@@ -658,6 +683,10 @@ export default function GiftDetailPage() {
                                 className="w-full px-2 py-1 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-xs text-slate-700 dark:text-slate-300 resize-none"
                               />
                             </div>
+                          ) : isPastSailing ? (
+                            r.notes && (
+                              <p className="ml-9 mt-0.5 text-xs text-slate-500 dark:text-slate-400 truncate">{r.notes}</p>
+                            )
                           ) : r.notes ? (
                             <button
                               type="button"
@@ -695,6 +724,7 @@ export default function GiftDetailPage() {
           )}
 
           {/* Delete Gift */}
+          {!isPastSailing && (
           <div className="text-center mt-2 mb-8">
             {showDeleteConfirm ? (
               <div className="inline-flex items-center gap-3">
@@ -725,6 +755,7 @@ export default function GiftDetailPage() {
               </button>
             )}
           </div>
+          )}
         </>
       )}
     </div>

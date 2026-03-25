@@ -8,7 +8,7 @@ import ImageCropUpload from '@/components/ImageCropUpload';
 import diningData from '@/data/dining-data.json';
 import activityData from '@/data/activity-data.json';
 import { getVenueData, getVenueById } from '@/lib/unified-data';
-import { lookupStateroomInfo } from '@/lib/stateroom-utils';
+import { lookupStateroomInfo, isValidStateroomForShip } from '@/lib/stateroom-utils';
 import { useOnlineStatus } from '@/hooks/useOnlineStatus';
 import { submitOrQueueReview } from '@/lib/offline-store';
 
@@ -141,6 +141,13 @@ export default function SailingReviewHub() {
   const [deleteLoading, setDeleteLoading] = useState(false);
   const [deleteConfirmText, setDeleteConfirmText] = useState('');
 
+  // Edit staterooms
+  const [editingStaterooms, setEditingStaterooms] = useState(false);
+  const [editStaterooms, setEditStaterooms] = useState<number[]>([]);
+  const [stateroomInput, setStateroomInput] = useState('');
+  const [stateroomError, setStateroomError] = useState('');
+  const [stateroomSaving, setStateroomSaving] = useState(false);
+
   const headers = useCallback(() => ({
     'Content-Type': 'application/json',
     ...(session?.access_token ? { Authorization: `Bearer ${session.access_token}` } : {}),
@@ -158,6 +165,38 @@ export default function SailingReviewHub() {
         router.push(`/profile/${user?.id}`);
       }
     } catch { /* ignore */ } finally { setDeleteLoading(false); }
+  };
+
+  const handleAddStateroom = () => {
+    setStateroomError('');
+    const num = parseInt(stateroomInput, 10);
+    if (isNaN(num) || num <= 0) { setStateroomError('Enter a valid room number.'); return; }
+    if (editStaterooms.includes(num)) { setStateroomError('Already added.'); return; }
+    if (sailing && !isValidStateroomForShip(num, sailing.ship_name)) {
+      setStateroomError(`Room ${num} doesn't exist on ${sailing.ship_name}`);
+      return;
+    }
+    setEditStaterooms(prev => [...prev, num]);
+    setStateroomInput('');
+  };
+
+  const handleSaveStaterooms = async () => {
+    setStateroomSaving(true);
+    setStateroomError('');
+    try {
+      const res = await fetch('/api/sailing-reviews', {
+        method: 'PATCH',
+        headers: headers(),
+        body: JSON.stringify({
+          id: sailingId,
+          stateroom_numbers: editStaterooms.length > 0 ? editStaterooms : null,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) { setStateroomError(data.error || 'Failed to save.'); return; }
+      setSailing(prev => prev ? { ...prev, stateroom_numbers: editStaterooms.length > 0 ? editStaterooms : null } : null);
+      setEditingStaterooms(false);
+    } catch { setStateroomError('Failed to save.'); } finally { setStateroomSaving(false); }
   };
 
   // Fetch sailing details
@@ -531,10 +570,114 @@ export default function SailingReviewHub() {
         <div className="flex flex-wrap gap-2 text-xs text-slate-500 dark:text-slate-400 mt-1">
           <span>From {sailing.embarkation_port}</span>
           {sailing.ports_of_call && <span>via {sailing.ports_of_call}</span>}
-          {stateroomNumbers.length > 0 && (
-            <span>Room{stateroomNumbers.length > 1 ? 's' : ''} {stateroomNumbers.join(', ')}</span>
-          )}
           {sailing.num_pax && <span>{sailing.num_pax} pax</span>}
+        </div>
+
+        {/* Staterooms — display or edit */}
+        <div className="mt-3 pt-3 border-t border-slate-100 dark:border-slate-700">
+          {editingStaterooms ? (
+            <div>
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                Stateroom Number(s)
+                {editStaterooms.length > 0 && (
+                  <span className="font-normal text-slate-400 dark:text-slate-500 ml-1">({editStaterooms.length} added)</span>
+                )}
+              </label>
+              <div className="flex gap-2 mb-2">
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                  value={stateroomInput}
+                  onChange={(e) => { setStateroomInput(e.target.value.replace(/\D/g, '')); setStateroomError(''); }}
+                  placeholder="e.g. 8500"
+                  onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleAddStateroom(); } }}
+                  className="flex-1 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-sm text-slate-900 dark:text-white"
+                />
+                <button
+                  type="button"
+                  disabled={!stateroomInput}
+                  onClick={handleAddStateroom}
+                  className="px-3 py-2 rounded-xl text-sm font-medium btn-disney disabled:opacity-50 flex-shrink-0"
+                >
+                  Add
+                </button>
+              </div>
+              {stateroomError && <p className="text-xs text-red-600 dark:text-red-400 mb-2">{stateroomError}</p>}
+              {editStaterooms.length > 0 && (
+                <div className="space-y-1.5 mb-3">
+                  {editStaterooms.map((num) => {
+                    const info = lookupStateroomInfo(num, shipName);
+                    return (
+                      <div key={num} className="flex items-center gap-2 flex-wrap bg-slate-50 dark:bg-slate-900 rounded-xl px-3 py-2 border border-slate-200 dark:border-slate-600">
+                        <span className="font-semibold text-sm text-slate-900 dark:text-white">#{num}</span>
+                        {info && (
+                          <>
+                            <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400">Deck {info.deck}</span>
+                            <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400">{info.typeEmoji} {info.type}</span>
+                          </>
+                        )}
+                        <button
+                          type="button"
+                          onClick={() => setEditStaterooms(prev => prev.filter(n => n !== num))}
+                          className="ml-auto text-slate-400 hover:text-red-500"
+                        >
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  onClick={handleSaveStaterooms}
+                  disabled={stateroomSaving}
+                  className="px-4 py-2 rounded-xl text-sm font-medium btn-disney disabled:opacity-50"
+                >
+                  {stateroomSaving ? 'Saving...' : 'Save'}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => { setEditingStaterooms(false); setStateroomError(''); setStateroomInput(''); }}
+                  className="px-4 py-2 rounded-xl text-sm font-medium bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2 flex-wrap text-xs text-slate-500 dark:text-slate-400">
+                {stateroomNumbers.length > 0 ? (
+                  <>
+                    <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                      Room{stateroomNumbers.length > 1 ? 's' : ''}:
+                    </span>
+                    {stateroomNumbers.map(num => {
+                      const info = lookupStateroomInfo(num, shipName);
+                      return (
+                        <span key={num} className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium">
+                          #{num}
+                          {info && <span className="text-slate-400 dark:text-slate-500">{info.typeEmoji} Dk{info.deck}</span>}
+                        </span>
+                      );
+                    })}
+                  </>
+                ) : (
+                  <span className="text-sm text-slate-400 dark:text-slate-500 italic">No stateroom added</span>
+                )}
+              </div>
+              <button
+                type="button"
+                onClick={() => { setEditStaterooms([...stateroomNumbers]); setEditingStaterooms(true); setStateroomInput(''); setStateroomError(''); }}
+                className="flex-shrink-0 px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors"
+              >
+                {stateroomNumbers.length > 0 ? 'Edit' : '+ Add Stateroom'}
+              </button>
+            </div>
+          )}
         </div>
       </div>
 

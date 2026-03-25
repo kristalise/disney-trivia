@@ -48,7 +48,7 @@ interface RoomEntry {
 interface RouteStop {
   stateroom: number;
   deck: number;
-  side?: 'port' | 'starboard';
+  side?: 'port' | 'starboard' | 'center';
   direction?: 'forward' | 'aft';
 }
 
@@ -66,6 +66,8 @@ function JointDustContent() {
   const { session } = useAuth();
 
   const [gifts, setGifts] = useState<GiftInfo[]>([]);
+  const [shipName, setShipName] = useState<string | null>(null);
+  const [sailEndDate, setSailEndDate] = useState<string | null>(null);
   const [rooms, setRooms] = useState<Map<number, GiftRecipient[]>>(new Map());
   const [loading, setLoading] = useState(true);
   const [togglingId, setTogglingId] = useState<string | null>(null);
@@ -108,6 +110,8 @@ function JointDustContent() {
         id: g.id, name: g.name, emoji: g.emoji, color: g.color,
       }));
       setGifts(giftList);
+      if (giftsData.ship_name) setShipName(giftsData.ship_name);
+      if (giftsData.sail_end_date) setSailEndDate(giftsData.sail_end_date);
 
       if (giftList.length === 0) return;
 
@@ -289,7 +293,7 @@ function JointDustContent() {
       const res = await fetch('/api/pixie-dust/route-optimizer', {
         method: 'POST',
         headers: headers(),
-        body: JSON.stringify({ start_stateroom: startRoom, target_staterooms: Array.from(undelivered) }),
+        body: JSON.stringify({ start_stateroom: startRoom, target_staterooms: Array.from(undelivered), ship_name: shipName }),
       });
       if (res.ok) {
         const data = await res.json();
@@ -343,6 +347,7 @@ function JointDustContent() {
 
   // Has undelivered rooms for route optimizer
   const hasUndelivered = totalDeliveries > completedDeliveries;
+  const isPastSailing = sailEndDate ? new Date(sailEndDate) < new Date() : false;
 
   if (!sailingId) {
     return (
@@ -374,7 +379,7 @@ function JointDustContent() {
         </Link>
         <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">Joint Dusting</h1>
         <p className="text-slate-600 dark:text-slate-400 text-sm">
-          All gifts combined into one delivery route.
+          {isPastSailing ? 'Delivery history across all gifts.' : 'All gifts combined into one delivery route.'}
         </p>
       </div>
 
@@ -441,7 +446,7 @@ function JointDustContent() {
           )}
 
           {/* Route Optimizer */}
-          {hasUndelivered && (
+          {!isPastSailing && hasUndelivered && (
             <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700 mb-4 overflow-hidden">
               <div className="px-5 py-4">
                 <h3 className="font-bold text-slate-900 dark:text-white text-sm mb-1">Plan Dusting Route</h3>
@@ -547,8 +552,8 @@ function JointDustContent() {
                     {deckRooms.map(room => {
                       const side = getSide(room.stateroom);
                       const allDelivered = room.gifts.every(g => g.delivered);
-                      const isEditingName = editingField?.stateroom === room.stateroom && editingField.field === 'recipient_name';
-                      const isEditingNotes = editingField?.stateroom === room.stateroom && editingField.field === 'notes';
+                      const isEditingName = !isPastSailing && editingField?.stateroom === room.stateroom && editingField.field === 'recipient_name';
+                      const isEditingNotes = !isPastSailing && editingField?.stateroom === room.stateroom && editingField.field === 'notes';
                       const isSaving = savingRoom === room.stateroom;
                       return (
                         <div key={room.stateroom} className={`px-5 py-2.5 border-b border-slate-100 dark:border-slate-700 last:border-0 ${allDelivered ? 'opacity-50' : ''}`}>
@@ -571,6 +576,10 @@ function JointDustContent() {
                                   placeholder="Name"
                                   className="px-1.5 py-0 rounded border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-xs text-slate-700 dark:text-slate-300 w-24"
                                 />
+                              ) : isPastSailing ? (
+                                room.displayName && (
+                                  <span className="text-xs text-slate-600 dark:text-slate-400 truncate max-w-[100px]">{room.displayName}</span>
+                                )
                               ) : (
                                 <button
                                   type="button"
@@ -600,7 +609,31 @@ function JointDustContent() {
                               const giftInfo = gifts.find(g => g.id === gr.giftId);
                               if (!giftInfo) return null;
                               const c = giftColorMap.get(gr.giftId) ?? giftInfo.color;
-                              return (
+                              return isPastSailing ? (
+                                <span
+                                  key={gr.recipientId}
+                                  className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium border"
+                                  style={gr.delivered ? {
+                                    borderColor: '#86efac',
+                                    backgroundColor: '#f0fdf4',
+                                    color: '#15803d',
+                                  } : {
+                                    borderColor: c,
+                                    backgroundColor: `${c}12`,
+                                    color: c,
+                                  }}
+                                >
+                                  <span>{giftInfo.emoji}</span>
+                                  <span className={gr.delivered ? 'line-through' : ''}>{giftInfo.name}</span>
+                                  {gr.delivered ? (
+                                    <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+                                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                    </svg>
+                                  ) : (
+                                    <span className="w-3.5 h-3.5 rounded border-2 inline-block flex-shrink-0" style={{ borderColor: c }} />
+                                  )}
+                                </span>
+                              ) : (
                                 <button
                                   key={gr.recipientId}
                                   type="button"
@@ -647,6 +680,10 @@ function JointDustContent() {
                                 className="w-full px-2 py-1 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-xs text-slate-700 dark:text-slate-300 resize-none"
                               />
                             </div>
+                          ) : isPastSailing ? (
+                            room.displayNotes && (
+                              <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400 truncate">{room.displayNotes}</p>
+                            )
                           ) : room.displayNotes ? (
                             <button
                               type="button"

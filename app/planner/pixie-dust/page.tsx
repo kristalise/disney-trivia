@@ -660,8 +660,17 @@ function PixieDustContent() {
         const isUpcomingSailing = new Date(selectedSailing.sail_end_date) >= new Date();
         return (
         <>
-          {/* FE Groups & Gifts (upcoming only) */}
-          {isUpcomingSailing && (<>
+          {/* Past sailing banner */}
+          {!isUpcomingSailing && (
+            <div className="mb-4 px-4 py-3 rounded-2xl bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 flex items-center gap-2">
+              <svg className="w-4 h-4 text-amber-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <p className="text-xs text-amber-800 dark:text-amber-300">Past sailing &mdash; view only. Gift and group data is preserved for your records.</p>
+            </div>
+          )}
+
+          {/* FE Groups */}
           <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700 mb-4 overflow-hidden">
             <div className="flex items-center justify-between px-5 py-4">
               <div className="flex items-center gap-2">
@@ -669,6 +678,7 @@ function PixieDustContent() {
                 <h3 className="font-bold text-slate-900 dark:text-white">Fish Extender Groups</h3>
                 <span className="text-sm text-slate-400 dark:text-slate-500">({groups.length})</span>
               </div>
+              {isUpcomingSailing && (
               <div className="flex gap-2">
                 <button
                   type="button"
@@ -685,6 +695,7 @@ function PixieDustContent() {
                   + Create
                 </button>
               </div>
+              )}
             </div>
 
             {/* Error banner */}
@@ -701,7 +712,7 @@ function PixieDustContent() {
             )}
 
             {/* Join Form */}
-            {showJoinGroup && (
+            {isUpcomingSailing && showJoinGroup && (
               <div className="px-5 pb-4 border-t border-slate-100 dark:border-slate-700 pt-3">
                 <div className="flex gap-2 mb-2">
                   <input
@@ -732,7 +743,7 @@ function PixieDustContent() {
             )}
 
             {/* Create Form */}
-            {showCreateGroup && (
+            {isUpcomingSailing && showCreateGroup && (
               <div className="px-5 pb-4 border-t border-slate-100 dark:border-slate-700 pt-3">
                 <input
                   type="text"
@@ -781,7 +792,7 @@ function PixieDustContent() {
                         >
                           Copy code
                         </button>
-                        {group.is_creator && (
+                        {isUpcomingSailing && group.is_creator && (
                           <button
                             type="button"
                             onClick={() => handleDeleteGroup(group.id)}
@@ -796,7 +807,7 @@ function PixieDustContent() {
                 </div>
               ) : (
                 <p className="text-sm text-slate-500 dark:text-slate-400 text-center py-4">
-                  No FE groups yet. Create one or join with an invite code.
+                  {isUpcomingSailing ? 'No FE groups yet. Create one or join with an invite code.' : 'No FE groups were created for this sailing.'}
                 </p>
               )}
             </div>
@@ -819,6 +830,7 @@ function PixieDustContent() {
                     Joint Dusting
                   </Link>
                 )}
+                {isUpcomingSailing && (
                 <button
                   type="button"
                   onClick={() => setShowCreateGift(!showCreateGift)}
@@ -826,10 +838,11 @@ function PixieDustContent() {
                 >
                   {showCreateGift ? 'Close' : '+ Add Gift'}
                 </button>
+                )}
               </div>
             </div>
 
-            {showCreateGift && (
+            {isUpcomingSailing && showCreateGift && (
               <div className="px-5 pb-4 border-t border-slate-100 dark:border-slate-700 pt-3">
                 <div className="flex gap-2 mb-2">
                   <select
@@ -862,7 +875,7 @@ function PixieDustContent() {
             )}
 
             {/* Bulk Import */}
-            {gifts.length > 0 && (
+            {isUpcomingSailing && gifts.length > 0 && (
               <div className="px-5 pb-3 border-b border-slate-100 dark:border-slate-700">
                 {!showBulkImport ? (
                   <button
@@ -902,7 +915,7 @@ function PixieDustContent() {
                 <div className="space-y-3">
                   {gifts.map(gift => {
                     const pct = gift.recipient_count > 0 ? Math.round((gift.delivered_count / gift.recipient_count) * 100) : 0;
-                    const isEditing = editingGiftId === gift.id;
+                    const isEditing = isUpcomingSailing && editingGiftId === gift.id;
                     return isEditing ? (
                       <div
                         key={gift.id}
@@ -939,6 +952,7 @@ function PixieDustContent() {
                             <span className="font-semibold text-slate-900 dark:text-white text-sm truncate">
                               {gift.name}
                             </span>
+                            {isUpcomingSailing && (
                             <button
                               type="button"
                               onClick={(e) => { e.preventDefault(); e.stopPropagation(); setEditingGiftId(gift.id); setEditGiftName(gift.name); }}
@@ -947,6 +961,7 @@ function PixieDustContent() {
                             >
                               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
                             </button>
+                            )}
                           </div>
                           <div className="flex items-center gap-2 flex-shrink-0 ml-2">
                             <span className="text-xs text-slate-500 dark:text-slate-400">
@@ -965,7 +980,9 @@ function PixieDustContent() {
                             />
                           </div>
                         ) : (
-                          <p className="text-xs text-slate-400 dark:text-slate-500">No rooms added yet — tap to add recipients</p>
+                          <p className="text-xs text-slate-400 dark:text-slate-500">
+                            {isUpcomingSailing ? 'No rooms added yet — tap to add recipients' : 'No recipients were added'}
+                          </p>
                         )}
                       </Link>
                     );
@@ -973,14 +990,14 @@ function PixieDustContent() {
                 </div>
               ) : (
                 <p className="text-sm text-slate-500 dark:text-slate-400 text-center py-4">
-                  No gifts yet. Create a gift type to start planning deliveries.
+                  {isUpcomingSailing ? 'No gifts yet. Create a gift type to start planning deliveries.' : 'No gifts were created for this sailing.'}
                 </p>
               )}
             </div>
           </div>
 
           {/* Packing List */}
-          {gifts.length > 0 && gifts.some(g => g.recipient_count > g.delivered_count) && (() => {
+          {isUpcomingSailing && gifts.length > 0 && gifts.some(g => g.recipient_count > g.delivered_count) && (() => {
             const totalUndelivered = gifts.reduce((s, g) => s + g.recipient_count - g.delivered_count, 0);
             return (
             <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border-2 border-purple-200 dark:border-purple-800/50 mb-4 overflow-hidden">
@@ -1029,7 +1046,6 @@ function PixieDustContent() {
             </div>
             );
           })()}
-          </>)}
 
           {/* Dusted By Section */}
           <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700 mb-4 overflow-hidden">
@@ -1074,11 +1090,6 @@ function PixieDustContent() {
             Scan a QR code to thank your dusters
           </Link>
 
-          {!isUpcomingSailing && (
-            <p className="text-xs text-slate-400 dark:text-slate-500 text-center mb-4">
-              Select an upcoming sailing to plan gifts and manage FE groups.
-            </p>
-          )}
         </>
         );
       })()}

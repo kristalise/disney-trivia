@@ -31,6 +31,16 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'sailing_id is required' }, { status: 400 });
     }
 
+    // Get ship_name from sailing_reviews
+    const { data: sailingInfo } = await supabase
+      .from('sailing_reviews')
+      .select('ship_name, sail_end_date')
+      .eq('id', sailingId)
+      .eq('user_id', user.id)
+      .single();
+    const shipName = sailingInfo?.ship_name ?? null;
+    const sailEndDate = sailingInfo?.sail_end_date ?? null;
+
     const { data: gifts, error } = await supabase
       .from('pixie_gifts')
       .select('id, sailing_id, name, emoji, color, sort_order, created_at')
@@ -53,7 +63,7 @@ export async function GET(request: NextRequest) {
       return { ...gift, recipient_count: total, delivered_count: delivered };
     }));
 
-    return NextResponse.json({ gifts: giftsWithProgress });
+    return NextResponse.json({ gifts: giftsWithProgress, ship_name: shipName, sail_end_date: sailEndDate });
   } catch (error) {
     console.error('Error fetching pixie gifts:', error);
     return NextResponse.json({ error: 'Failed to fetch gifts' }, { status: 500 });
