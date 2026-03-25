@@ -1,7 +1,11 @@
 import { createBrowserClient } from '@supabase/ssr';
-import { User } from '@supabase/supabase-js';
+import { SupabaseClient, User } from '@supabase/supabase-js';
 
-export function getAuthClient() {
+let authClientInstance: SupabaseClient | null = null;
+
+export function getAuthClient(): SupabaseClient {
+  if (authClientInstance) return authClientInstance;
+
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
@@ -9,7 +13,8 @@ export function getAuthClient() {
     throw new Error('Missing Supabase environment variables: NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY must be set');
   }
 
-  return createBrowserClient(url, key);
+  authClientInstance = createBrowserClient(url, key);
+  return authClientInstance;
 }
 
 export async function signInWithEmail(email: string, password: string) {
