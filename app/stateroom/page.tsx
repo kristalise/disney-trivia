@@ -4,6 +4,7 @@ import { useState, useMemo, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import stateroomData from '@/data/stateroom-data.json';
 import { getDeckFromRoomNumber } from '@/lib/deck-plan-utils';
+import { getHiddenGem } from '@/lib/stateroom-utils';
 import { useAuth } from '@/components/AuthProvider';
 import { useOnlineStatus } from '@/hooks/useOnlineStatus';
 import { submitOrQueueReview } from '@/lib/offline-store';
@@ -483,6 +484,15 @@ export default function StateroomPage() {
                   </p>
                 </div>
               </div>
+
+              {selectedShip && getHiddenGem(selectedShip, result.stateroom) && (
+                <div className="mb-4 p-3 rounded-xl bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700/50 flex items-start gap-2.5">
+                  <span className="text-lg flex-shrink-0">💎</span>
+                  <p className="text-sm text-amber-800 dark:text-amber-200 font-medium">
+                    {getHiddenGem(selectedShip, result.stateroom)}
+                  </p>
+                </div>
+              )}
 
               <div className="space-y-0">
                 <DetailRow label="Category" value={result.category} />

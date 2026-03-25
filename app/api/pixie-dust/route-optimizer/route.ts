@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { optimizeDeliveryRoute } from '@/lib/route-optimizer';
+import { optimizeRoute } from '@/lib/route-optimizer';
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { start_stateroom, target_staterooms } = body;
+    const { start_stateroom, target_staterooms, ship_name } = body;
 
     if (!start_stateroom || !target_staterooms || !Array.isArray(target_staterooms)) {
       return NextResponse.json({ error: 'start_stateroom and target_staterooms are required' }, { status: 400 });
@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'No valid target staterooms' }, { status: 400 });
     }
 
-    const route = optimizeDeliveryRoute(startRoom, targets);
+    const route = optimizeRoute(startRoom, targets, ship_name);
 
     return NextResponse.json({ route, start_stateroom: startRoom });
   } catch (error) {

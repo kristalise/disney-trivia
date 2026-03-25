@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { EnrichedRoom, ShipName, TrafficLight } from '@/lib/stateroom-types';
 import { THEME_COLORS, themeWithEmoji } from '@/lib/stateroom-constants';
+import { getHiddenGem } from '@/lib/stateroom-utils';
 import categoryMetadata from '@/data/category-metadata.json';
 import ScoreBadge from './ScoreBadge';
 
@@ -124,6 +125,9 @@ export default function DeckGroupCard({
                         )}
                         {r.accessible && r.accessible !== 'NO' && (
                           <span className="text-xs text-amber-600 dark:text-amber-400">Accessible</span>
+                        )}
+                        {getHiddenGem(selectedShip, r.stateroom) && (
+                          <span className="px-1.5 py-0.5 rounded-full text-[10px] font-semibold bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300">💎 Hidden Gem</span>
                         )}
                       </div>
                     </div>

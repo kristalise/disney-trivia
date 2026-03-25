@@ -32,6 +32,19 @@ export const TYPE_EMOJI: Record<string, string> = {
   'Inside': '🛏',
 };
 
+const HIDDEN_GEMS: Record<string, Map<number, string>> = {
+  'Disney Adventure': new Map<number, string>([
+    ...[16708, 16707, 16702, 16700, 16703, 16206, 16106, 16877, 16916, 16918, 16919, 16917, 15918, 15919, 13877, 13916, 13918, 13920, 13919, 13917, 13579, 12877, 12906, 12902, 12901, 12903, 12579, 11879]
+      .map(n => [n, 'You\'ve found a hidden gem! This stateroom has a bigger balcony!'] as [number, string]),
+    ...[16875, 16871, 16569, 16573, 9703, 9700, 9706, 10700, 10703, 10706, 10101, 10201, 11703, 11700, 11706, 9101, 9100, 9200, 9201, 10100, 10200]
+      .map(n => [n, 'You\'ve found a hidden gem! This stateroom is bigger than others of the same category!'] as [number, string]),
+  ]),
+};
+
+export function getHiddenGem(shipName: string, stateroom: number): string | null {
+  return HIDDEN_GEMS[shipName]?.get(stateroom) ?? null;
+}
+
 export function getCategoryType(category: string | null): string {
   if (!category) return 'Unknown';
   const num = parseInt(category.replace(/^0+/, ''), 10);

@@ -3,7 +3,7 @@
 interface RouteStop {
   stateroom: number;
   deck: number;
-  side?: 'port' | 'starboard';
+  side?: 'port' | 'starboard' | 'center';
   direction?: 'forward' | 'aft';
 }
 
@@ -43,7 +43,7 @@ export default function DeliveryRoute({ route, startStateroom, deliveredRooms }:
     const switchIndex = sides.findIndex((s, i) => i > 0 && s !== firstSide);
 
     if (switchIndex > 0 && firstSide) {
-      const sideLabel = (s: string) => s === 'port' ? 'Port' : 'Starboard';
+      const sideLabel = (s: string) => s === 'port' ? 'Port' : s === 'center' ? 'Center' : 'Starboard';
       return `${sideLabel(firstSide)} side, then ${sideLabel(sides[switchIndex]!)} side`;
     }
     return null;
@@ -121,9 +121,11 @@ export default function DeliveryRoute({ route, startStateroom, deliveredRooms }:
                       <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-medium ${
                         stop.side === 'port'
                           ? 'bg-red-50 dark:bg-red-900/20 text-red-500 dark:text-red-400'
-                          : 'bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400'
+                          : stop.side === 'center'
+                            ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-500 dark:text-blue-400'
+                            : 'bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400'
                       }`}>
-                        {stop.side === 'port' ? 'Port side' : 'Starboard side'}
+                        {stop.side === 'port' ? 'Port side' : stop.side === 'center' ? 'Center' : 'Starboard side'}
                       </span>
                     )}
                     {isDelivered && (

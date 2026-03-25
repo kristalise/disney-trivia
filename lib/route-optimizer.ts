@@ -1,9 +1,10 @@
 import { getDeck, getSide, getRoomPosition } from '@/lib/stateroom-utils';
+import { optimizeAdventureRoute } from '@/lib/adventure-route-optimizer';
 
 export interface RouteStop {
   stateroom: number;
   deck: number;
-  side: 'port' | 'starboard';
+  side: 'port' | 'starboard' | 'center';
   direction: 'forward' | 'aft';
 }
 
@@ -106,4 +107,19 @@ export function optimizeDeliveryRoute(
   }
 
   return route;
+}
+
+/**
+ * Dispatcher: picks the right algorithm based on ship.
+ * Adventure has a multi-zone layout that doesn't fit the serpentine model.
+ */
+export function optimizeRoute(
+  startStateroom: number,
+  targetStaterooms: number[],
+  shipName?: string
+): RouteStop[] {
+  if (shipName === 'Disney Adventure') {
+    return optimizeAdventureRoute(startStateroom, targetStaterooms);
+  }
+  return optimizeDeliveryRoute(startStateroom, targetStaterooms);
 }

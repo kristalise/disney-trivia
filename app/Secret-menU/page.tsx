@@ -8,6 +8,7 @@ import { getFoodieVenueById } from '@/lib/foodie-data';
 import { getExperienceById } from '@/lib/entertainment-data';
 import { getActivityById as getThingsToDoById } from '@/lib/things-to-do-data';
 import { getShopById } from '@/lib/shopping-data';
+import { lookupStateroomInfo } from '@/lib/stateroom-utils';
 
 const CHECKIN_TASKS = [
   { id: 'passport', label: 'Upload passport or ID photos' },
@@ -34,6 +35,33 @@ const PAT_OPTIONS = [
   { value: '13:30', label: '1:30 PM' },
   { value: '13:45', label: '1:45 PM' },
   { value: '14:00', label: '2:00 PM' },
+];
+
+const CANCELLATION_TIERS_SHORT = [
+  { min: 90, label: '90+ days prior', desc: 'No fee — fully refundable', color: 'text-green-300' },
+  { min: 45, label: '89–45 days prior', desc: 'Loss of deposit', color: 'text-yellow-300' },
+  { min: 30, label: '44–30 days prior', desc: '50% cancellation fee', color: 'text-orange-300' },
+  { min: 15, label: '29–15 days prior', desc: '75% cancellation fee', color: 'text-red-300' },
+  { min: 0, label: '14 days or less', desc: '100% — non-refundable', color: 'text-red-400' },
+];
+
+const CANCELLATION_TIERS_LONG = [
+  { min: 120, label: '120+ days prior', desc: 'No fee — fully refundable', color: 'text-green-300' },
+  { min: 0, label: 'Under 120 days', desc: 'Cancellation fees apply', color: 'text-orange-300' },
+];
+
+const CANCELLATION_TIERS_CONCIERGE_SHORT = [
+  { min: 90, label: '90+ days prior', desc: 'Deposit non-refundable', color: 'text-yellow-300' },
+  { min: 45, label: '89–45 days prior', desc: '50% cancellation fee', color: 'text-orange-300' },
+  { min: 30, label: '44–30 days prior', desc: '75% cancellation fee', color: 'text-red-300' },
+  { min: 0, label: '29 days or less', desc: '100% — non-refundable', color: 'text-red-400' },
+];
+
+const CANCELLATION_TIERS_CONCIERGE_LONG = [
+  { min: 150, label: '150+ days prior', desc: 'Deposit non-refundable', color: 'text-yellow-300' },
+  { min: 90, label: '149–90 days prior', desc: '50% cancellation fee', color: 'text-orange-300' },
+  { min: 45, label: '89–45 days prior', desc: '75% cancellation fee', color: 'text-red-300' },
+  { min: 0, label: '44 days or less', desc: '100% — non-refundable', color: 'text-red-400' },
 ];
 
 function getPortTimezone(port: string): string {
@@ -125,6 +153,7 @@ interface Sailing {
   sail_end_date: string;
   itinerary_name: string | null;
   embarkation_port: string;
+  stateroom_numbers: number[] | null;
 }
 
 function parseLocal(ds: string) {
@@ -138,8 +167,9 @@ export default function SecretMenuPage() {
   const [sailings, setSailings] = useState<Sailing[]>([]);
   const [now, setNow] = useState(() => new Date());
   const [showUpcoming, setShowUpcoming] = useState(false);
-  const [expandedMilestone, setExpandedMilestone] = useState<'activity' | 'checkin' | null>(null);
+  const [expandedMilestone, setExpandedMilestone] = useState<'activity' | 'checkin' | 'payment' | 'cancellation' | null>(null);
   const [checkinTasks, setCheckinTasks] = useState<Record<string, boolean>>({});
+  const [paymentMade, setPaymentMade] = useState(false);
   const [activityPlannerItems, setActivityPlannerItems] = useState<PlannerItem[]>([]);
   const [activityChecked, setActivityChecked] = useState<Record<string, boolean>>({});
   const [patTime, setPatTime] = useState<string | null>(null);
@@ -201,6 +231,8 @@ export default function SecretMenuPage() {
       const storedPat = localStorage.getItem(`pat-time:${nextSailing.id}`);
       if (storedPat) setPatTime(storedPat);
       else setPatTime(null);
+      const storedPayment = localStorage.getItem(`payment-made:${nextSailing.id}`);
+      setPaymentMade(storedPayment === 'true');
     } catch { /* ignore */ }
   }, [nextSailing?.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -252,6 +284,15 @@ export default function SecretMenuPage() {
     });
   }, [nextSailing]);
 
+  const togglePaymentMade = useCallback(() => {
+    if (!nextSailing) return;
+    setPaymentMade(prev => {
+      const next = !prev;
+      localStorage.setItem(`payment-made:${nextSailing.id}`, String(next));
+      return next;
+    });
+  }, [nextSailing]);
+
   // Derive completion state for milestones
   const checkinAllDone = CHECKIN_TASKS.every(t => checkinTasks[t.id]);
   const activityAllDone = activityPlannerItems.length > 0 && activityPlannerItems.every(it => activityChecked[it.id]);
@@ -291,24 +332,57 @@ export default function SecretMenuPage() {
     return () => clearInterval(interval);
   }, [isBoarding]);
 
+  const cruiseNights = useMemo(() => {
+    if (!nextSailing) return 0;
+    const start = parseLocal(nextSailing.sail_start_date);
+    const end = parseLocal(nextSailing.sail_end_date);
+    return Math.round((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
+  }, [nextSailing]);
+
+  const daysUntilSailing = useMemo(() => {
+    if (!nextSailing) return 0;
+    const sailDate = parseLocal(nextSailing.sail_start_date);
+    const todayMid = new Date(now);
+    todayMid.setHours(0, 0, 0, 0);
+    return Math.round((sailDate.getTime() - todayMid.getTime()) / (1000 * 60 * 60 * 24));
+  }, [nextSailing, now]);
+
+  const isConcierge = useMemo(() => {
+    if (!nextSailing?.stateroom_numbers?.length) return false;
+    const info = lookupStateroomInfo(nextSailing.stateroom_numbers[0], nextSailing.ship_name);
+    return info?.type === 'Concierge / Suite';
+  }, [nextSailing]);
+
   // Castaway Club milestones for upcoming sailing
   const milestones = useMemo(() => {
     if (!nextSailing) return [];
     const sailDate = parseLocal(nextSailing.sail_start_date);
-    const todayMid = new Date(now);
-    todayMid.setHours(0, 0, 0, 0);
-    const calendarDaysOut = Math.round((sailDate.getTime() - todayMid.getTime()) / (1000 * 60 * 60 * 24));
 
-    const items: { label: string; daysOut: number; date: Date; done: boolean }[] = [];
+    const items: { label: string; type: 'payment' | 'activity' | 'checkin'; daysOut: number; date: Date; done: boolean }[] = [];
+
+    // Full payment due
+    const paymentDueDays = isConcierge
+      ? (cruiseNights >= 6 ? 150 : 90)
+      : (cruiseNights >= 6 ? 120 : 90);
+    const payDate = new Date(sailDate);
+    payDate.setDate(payDate.getDate() - paymentDueDays);
+    items.push({
+      label: 'Full payment due',
+      type: 'payment',
+      daysOut: paymentDueDays,
+      date: payDate,
+      done: daysUntilSailing <= paymentDueDays,
+    });
 
     // Activity booking window
     const actDate = new Date(sailDate);
     actDate.setDate(actDate.getDate() - castaway.activityDays);
     items.push({
       label: 'Activity booking opens',
+      type: 'activity',
       daysOut: castaway.activityDays,
       date: actDate,
-      done: calendarDaysOut <= castaway.activityDays,
+      done: daysUntilSailing <= castaway.activityDays,
     });
 
     // Online check-in window
@@ -316,13 +390,17 @@ export default function SecretMenuPage() {
     ciDate.setDate(ciDate.getDate() - castaway.checkInDays);
     items.push({
       label: 'Online check-in opens',
+      type: 'checkin',
       daysOut: castaway.checkInDays,
       date: ciDate,
-      done: calendarDaysOut <= castaway.checkInDays,
+      done: daysUntilSailing <= castaway.checkInDays,
     });
 
+    // Sort by daysOut descending (farthest out first)
+    items.sort((a, b) => b.daysOut - a.daysOut);
+
     return items;
-  }, [nextSailing, now, castaway]);
+  }, [nextSailing, daysUntilSailing, cruiseNights, isConcierge, castaway]);
 
 
   const voyageHref = user
@@ -406,10 +484,9 @@ export default function SecretMenuPage() {
           {milestones.length > 0 && (
             <div className="border-t border-white/15 px-5 py-3 space-y-1">
               {milestones.map((m, i) => {
-                const isActivity = m.label === 'Activity booking opens';
-                const milestoneKey = isActivity ? 'activity' : 'checkin';
+                const milestoneKey = m.type;
                 const isExpanded = expandedMilestone === milestoneKey;
-                const allDone = isActivity ? activityAllDone : checkinAllDone;
+                const allDone = m.type === 'activity' ? activityAllDone : m.type === 'checkin' ? checkinAllDone : paymentMade;
 
                 if (!m.done) {
                   // Future milestone — static display
@@ -447,8 +524,8 @@ export default function SecretMenuPage() {
                       <span className={`flex-1 text-left ${allDone ? 'text-green-200 line-through opacity-70' : 'text-cyan-100'}`}>
                         {m.label}
                       </span>
-                      <span className={`flex-shrink-0 font-medium mr-1 ${allDone ? 'text-green-300' : 'text-green-300'}`}>
-                        {allDone ? 'Complete' : 'Open now'}
+                      <span className={`flex-shrink-0 font-medium mr-1 ${allDone ? 'text-green-300' : m.type === 'payment' ? 'text-yellow-300' : 'text-green-300'}`}>
+                        {allDone ? 'Complete' : m.type === 'payment' ? 'Due now' : 'Open now'}
                       </span>
                       <svg
                         className={`w-3.5 h-3.5 text-white/50 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}
@@ -461,7 +538,34 @@ export default function SecretMenuPage() {
                     {/* Sub-checklist */}
                     {isExpanded && (
                       <div className="mt-1 mb-2 ml-6 bg-white/5 rounded-lg p-2.5 space-y-1.5">
-                        {isActivity ? (
+                        {m.type === 'payment' ? (
+                          <>
+                            <label className="flex items-center gap-2 text-xs cursor-pointer group/item">
+                              <span
+                                onClick={(e) => { e.preventDefault(); togglePaymentMade(); }}
+                                className={`flex-shrink-0 w-3.5 h-3.5 rounded flex items-center justify-center border transition-colors cursor-pointer ${
+                                  paymentMade
+                                    ? 'bg-green-500 border-green-500 text-white'
+                                    : 'border-white/30 text-transparent group-hover/item:border-white/50'
+                                }`}
+                              >
+                                {paymentMade && (
+                                  <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                  </svg>
+                                )}
+                              </span>
+                              <span className={`${paymentMade ? 'text-green-200/70 line-through' : 'text-cyan-100'}`}>
+                                Full payment made
+                              </span>
+                            </label>
+                            <div className="text-[10px] text-cyan-200/50 mt-1">
+                              {isConcierge
+                                ? `Due ${cruiseNights >= 6 ? '150' : '90'} days before sailing (Concierge / Suite)`
+                                : `Due ${cruiseNights >= 6 ? '120' : '90'} days before sailing for ${cruiseNights >= 6 ? '6+ night' : '1–5 night'} cruises`}
+                            </div>
+                          </>
+                        ) : m.type === 'activity' ? (
                           // Activity booking sub-items from planner
                           activityPlannerItems.length > 0 ? (
                             activityPlannerItems.map(item => (
@@ -546,6 +650,63 @@ export default function SecretMenuPage() {
                   </div>
                 );
               })}
+
+              {/* Cancellation Policy */}
+              {(() => {
+                const tiers = isConcierge
+                  ? (cruiseNights >= 6 ? CANCELLATION_TIERS_CONCIERGE_LONG : CANCELLATION_TIERS_CONCIERGE_SHORT)
+                  : (cruiseNights >= 6 ? CANCELLATION_TIERS_LONG : CANCELLATION_TIERS_SHORT);
+                const currentTier = tiers.find(t => daysUntilSailing >= t.min) || tiers[tiers.length - 1];
+                const isExpanded = expandedMilestone === 'cancellation';
+                return (
+                  <div className="pt-1">
+                    <button
+                      onClick={() => setExpandedMilestone(isExpanded ? null : 'cancellation')}
+                      className="w-full flex items-center gap-2.5 text-xs py-1 group"
+                    >
+                      <span className="flex-shrink-0 w-4 h-4 flex items-center justify-center text-sm">
+                        📋
+                      </span>
+                      <span className="flex-1 text-left text-cyan-100">
+                        Cancellation policy
+                        {isConcierge && <span className="ml-1.5 text-[10px] px-1.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300">Concierge</span>}
+                      </span>
+                      <span className={`flex-shrink-0 font-medium mr-1 ${currentTier.color}`}>
+                        {currentTier.desc}
+                      </span>
+                      <svg
+                        className={`w-3.5 h-3.5 text-white/50 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    {isExpanded && (
+                      <div className="mt-1 mb-2 ml-6 bg-white/5 rounded-lg p-2.5 space-y-1">
+                        {tiers.map((tier, ti) => {
+                          const isCurrent = tier === currentTier;
+                          return (
+                            <div key={ti} className={`flex items-start gap-2 text-xs ${isCurrent ? 'font-medium' : 'opacity-60'}`}>
+                              <span className={`flex-shrink-0 mt-0.5 ${tier.color}`}>
+                                {isCurrent ? '►' : '·'}
+                              </span>
+                              <div>
+                                <span className={tier.color}>{tier.label}</span>
+                                <span className="text-cyan-200/70 ml-1.5">— {tier.desc}</span>
+                              </div>
+                            </div>
+                          );
+                        })}
+                        <div className="text-[10px] text-cyan-200/40 mt-2 leading-relaxed">
+                          {isConcierge
+                            ? 'Showing Concierge / Suite policy based on your logged stateroom. Deposits are non-refundable.'
+                            : 'Suites & Concierge have stricter policies — deposits may be non-refundable with final payment up to 150 days prior.'}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })()}
             </div>
           )}
         </div>
@@ -585,10 +746,14 @@ export default function SecretMenuPage() {
                 activityDate.setDate(activityDate.getDate() - castaway.activityDays);
                 const checkInDate = new Date(sailDate);
                 checkInDate.setDate(checkInDate.getDate() - castaway.checkInDays);
+                const paymentDueDays = nights >= 6 ? 120 : 90;
+                const paymentDate = new Date(sailDate);
+                paymentDate.setDate(paymentDate.getDate() - paymentDueDays);
                 const todayMid = new Date(now);
                 todayMid.setHours(0, 0, 0, 0);
                 const activityOpen = todayMid >= activityDate;
                 const checkInOpen = todayMid >= checkInDate;
+                const paymentDue = todayMid >= paymentDate;
                 return (
                   <Link
                     key={s.id}
@@ -613,7 +778,15 @@ export default function SecretMenuPage() {
                         <div className="text-[10px] text-slate-500 dark:text-slate-400">{daysAway === 1 ? 'day' : 'days'} away</div>
                       </div>
                     </div>
-                    <div className="mt-2 pt-2 border-t border-slate-100 dark:border-slate-700 grid grid-cols-2 gap-2">
+                    <div className="mt-2 pt-2 border-t border-slate-100 dark:border-slate-700 grid grid-cols-3 gap-2">
+                      <div className="flex items-center gap-1.5 text-[11px]">
+                        <span className={`w-3.5 h-3.5 rounded-full flex items-center justify-center text-[8px] ${paymentDue ? 'bg-yellow-100 dark:bg-yellow-900/40 text-yellow-600 dark:text-yellow-400' : 'bg-slate-100 dark:bg-slate-700 text-slate-400'}`}>
+                          {paymentDue ? '!' : '○'}
+                        </span>
+                        <span className={paymentDue ? 'text-yellow-600 dark:text-yellow-400' : 'text-slate-500 dark:text-slate-400'}>
+                          Payment {paymentDue ? 'due' : paymentDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                        </span>
+                      </div>
                       <div className="flex items-center gap-1.5 text-[11px]">
                         <span className={`w-3.5 h-3.5 rounded-full flex items-center justify-center text-[8px] ${activityOpen ? 'bg-green-100 dark:bg-green-900/40 text-green-600 dark:text-green-400' : 'bg-slate-100 dark:bg-slate-700 text-slate-400'}`}>
                           {activityOpen ? '✓' : '○'}

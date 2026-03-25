@@ -1,6 +1,6 @@
 import type { ShipName, BudgetLevel, TravelParty, Stateroom, EnrichedRoom, ScoreReason, FilterResult, DeckGroup, TrafficLight, BedCount, VerandahViewType } from './stateroom-types';
 import { BUDGET_OPTIONS, KIDS_DECKS, TEEN_DECKS } from './stateroom-constants';
-import { getCategoryType, getDeck, getSection, TYPE_EMOJI, roomHasVerandah, getVerandahViewType } from './stateroom-utils';
+import { getCategoryType, getDeck, getSection, TYPE_EMOJI, roomHasVerandah, getVerandahViewType, getHiddenGem } from './stateroom-utils';
 import stateroomData from '@/data/stateroom-data.json';
 import categoryMetadata from '@/data/category-metadata.json';
 
@@ -452,6 +452,17 @@ export function filterAndScore(params: ScoringParams): FilterResult {
       if (!budgetTypes.includes(t)) budgetTypes.push(t);
     }
   }
+
+  // Disney Adventure: budget & concierge filter by specific categories, reasonable & splurge show all rooms
+  const isAdventure = selectedShip === 'Disney Adventure';
+  const adventureCategoryFilter: string[] | null = isAdventure ? (() => {
+    const cats: string[] = [];
+    const hasSoft = budgets.some(b => b === 'reasonable' || b === 'splurge');
+    if (hasSoft) return null; // No category restriction — show all rooms
+    if (budgets.includes('budget')) cats.push('10A', '10B', '10C', '10D', '11A', '06D');
+    if (budgets.includes('concierge')) cats.push('01A', '01B', '01C', '02A', '02B', '02C', '03A', '03B', '03C', '04A', '04B', '04C', '04D');
+    return cats.length > 0 ? cats : null;
+  })() : null;
   const kidsDeckList = KIDS_DECKS[selectedShip] || [];
   const teenDeckList = TEEN_DECKS[selectedShip] || [];
 
@@ -475,13 +486,28 @@ export function filterAndScore(params: ScoringParams): FilterResult {
 
   // Hard filter (without deck/section, to derive available options)
   let baseRooms = enriched.filter(r => {
-    if (!budgetTypes.includes(r.type)) return false;
+    if (isAdventure) {
+      // Adventure: category-based filter for budget/concierge, no type filter for reasonable/splurge
+      if (adventureCategoryFilter !== null) {
+        if (!r.category || !adventureCategoryFilter.includes(r.category)) return false;
+      }
+      // When adventureCategoryFilter is null (reasonable/splurge selected), skip type filter entirely
+    } else {
+      if (!budgetTypes.includes(r.type)) return false;
+    }
     const perRoom = Math.ceil(partySize / numStaterooms);
     if (r.occupancy != null && r.occupancy < perRoom) return false;
     if (needsAccessible && (!r.accessible || r.accessible === 'NO')) return false;
     if (needsConnecting && (!r.connecting || r.connecting === 'NO')) return false;
     if (selectedThemes.length > 0 && (!r.theme || !selectedThemes.includes(r.theme))) return false;
-    if (noBunkBed && r.bedding && countBeds(r.bedding).hasBunk) return false;
+    if (noBunkBed) {
+      if (isAdventure) {
+        // Disney Adventure: exclude bunk categories by category code
+        if (r.category && ['11A', '09A', '07A'].includes(r.category)) return false;
+      } else {
+        if (r.bedding && countBeds(r.bedding).hasBunk) return false;
+      }
+    }
     // Verandah requirement
     if (requiresVerandah && !roomHasVerandah(selectedShip, r.category, r.verandahPartitions)) return false;
     // Verandah view type filter (Disney Adventure only, multi-select)

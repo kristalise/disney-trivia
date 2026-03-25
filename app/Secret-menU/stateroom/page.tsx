@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import stateroomData from '@/data/stateroom-data.json';
 import categoryMetadata from '@/data/category-metadata.json';
-import { getDeck as getDeckUtil, getSection, getSide } from '@/lib/stateroom-utils';
+import { getDeck as getDeckUtil, getSection, getSide, getHiddenGem } from '@/lib/stateroom-utils';
 import { getVenuesByDeck, getCategories } from '@/lib/unified-data';
 
 const venueCategories = getCategories();
@@ -572,6 +572,17 @@ function StateroomReviewContent() {
       {/* Stateroom Details */}
       {selectedShip && activeRoomNumber && (
         <>
+          {initializedFromParams && searchParams.get('room') && (
+            <button
+              onClick={() => window.history.back()}
+              className="flex items-center gap-1.5 text-sm text-disney-blue dark:text-disney-gold hover:underline mb-4"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+              Back to search
+            </button>
+          )}
           {result ? (() => {
             const catMeta = selectedShip && result.category
               ? categoryMeta[selectedShip]?.[result.category] ?? null
@@ -587,6 +598,15 @@ function StateroomReviewContent() {
                   </p>
                 </div>
               </div>
+
+              {selectedShip && getHiddenGem(selectedShip, result.stateroom) && (
+                <div className="mb-4 p-3 rounded-xl bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700/50 flex items-start gap-2.5">
+                  <span className="text-lg flex-shrink-0">💎</span>
+                  <p className="text-sm text-amber-800 dark:text-amber-200 font-medium">
+                    {getHiddenGem(selectedShip, result.stateroom)}
+                  </p>
+                </div>
+              )}
 
               {/* Category layout image & description */}
               {catMeta && (
