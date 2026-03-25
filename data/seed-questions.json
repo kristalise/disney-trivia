@@ -110,7 +110,12 @@
       "id": "q-ani1",
       "category_id": "cat-animation",
       "question": "What was the first full-length animated Disney feature film?",
-      "options": ["Pinocchio", "Snow White and the Seven Dwarfs", "Fantasia", "Dumbo"],
+      "options": [
+        "Pinocchio",
+        "Snow White and the Seven Dwarfs",
+        "Fantasia",
+        "Dumbo"
+      ],
       "correct_answer": 1,
       "explanation": "Snow White released in 1937 was Disney's first animated feature.",
       "difficulty": "easy",
@@ -120,7 +125,12 @@
       "id": "q-ani2",
       "category_id": "cat-animation",
       "question": "What year did Beauty and the Beast release?",
-      "options": ["1989", "1991", "1993", "1995"],
+      "options": [
+        "1989",
+        "1991",
+        "1993",
+        "1995"
+      ],
       "correct_answer": 1,
       "explanation": "Beauty and the Beast released in 1991 and was the first animated film nominated for Best Picture.",
       "difficulty": "medium",
@@ -130,7 +140,12 @@
       "id": "q-ani3",
       "category_id": "cat-animation",
       "question": "What type of fish is Nemo?",
-      "options": ["Blue Tang", "Clownfish", "Moorish Idol", "Yellow Tang"],
+      "options": [
+        "Blue Tang",
+        "Clownfish",
+        "Moorish Idol",
+        "Yellow Tang"
+      ],
       "correct_answer": 1,
       "explanation": "Nemo is a clownfish which live among sea anemones.",
       "difficulty": "easy",
@@ -140,7 +155,12 @@
       "id": "q-ani4",
       "category_id": "cat-animation",
       "question": "What is the name of the kingdom in Tangled?",
-      "options": ["Arendelle", "Corona", "Agrabah", "Motunui"],
+      "options": [
+        "Arendelle",
+        "Corona",
+        "Agrabah",
+        "Motunui"
+      ],
       "correct_answer": 1,
       "explanation": "Corona is where Rapunzel was born as a princess.",
       "difficulty": "medium",
@@ -150,7 +170,12 @@
       "id": "q-ani5",
       "category_id": "cat-animation",
       "question": "In Frozen what is Kristoff's reindeer's name?",
-      "options": ["Sven", "Olaf", "Marshmallow", "Duke"],
+      "options": [
+        "Sven",
+        "Olaf",
+        "Marshmallow",
+        "Duke"
+      ],
       "correct_answer": 0,
       "explanation": "Sven is Kristoff's loyal reindeer companion.",
       "difficulty": "easy",
@@ -160,7 +185,12 @@
       "id": "q-ani6",
       "category_id": "cat-animation",
       "question": "What is the restaurant name in Ratatouille?",
-      "options": ["Chez Pierre", "Gusteau's", "La Ratatouille", "Paris Cuisine"],
+      "options": [
+        "Chez Pierre",
+        "Gusteau's",
+        "La Ratatouille",
+        "Paris Cuisine"
+      ],
       "correct_answer": 1,
       "explanation": "Gusteau's is where Remy helps Linguini cook.",
       "difficulty": "medium",
@@ -170,7 +200,12 @@
       "id": "q-ani7",
       "category_id": "cat-animation",
       "question": "In Moana who is the demigod that helps her?",
-      "options": ["Tamatoa", "Te Fiti", "Maui", "Tui"],
+      "options": [
+        "Tamatoa",
+        "Te Fiti",
+        "Maui",
+        "Tui"
+      ],
       "correct_answer": 2,
       "explanation": "Maui is the shapeshifting demigod voiced by Dwayne Johnson.",
       "difficulty": "easy",
@@ -180,7 +215,12 @@
       "id": "q-ani8",
       "category_id": "cat-animation",
       "question": "In Zootopia what is the sloth's name at the DMV?",
-      "options": ["Finnick", "Flash", "Yax", "Clawhauser"],
+      "options": [
+        "Finnick",
+        "Flash",
+        "Yax",
+        "Clawhauser"
+      ],
       "correct_answer": 1,
       "explanation": "Flash is the hilariously slow sloth at the DMV.",
       "difficulty": "medium",
@@ -190,7 +230,12 @@
       "id": "q-ani9",
       "category_id": "cat-animation",
       "question": "What is the name of Woody's horse in Toy Story?",
-      "options": ["Bullseye", "Spirit", "Maximus", "Angus"],
+      "options": [
+        "Bullseye",
+        "Spirit",
+        "Maximus",
+        "Angus"
+      ],
       "correct_answer": 0,
       "explanation": "Bullseye is Woody's loyal horse who appears in Toy Story 2.",
       "difficulty": "easy",
@@ -200,7 +245,12 @@
       "id": "q-ani10",
       "category_id": "cat-animation",
       "question": "Which film features the song Circle of Life?",
-      "options": ["Tarzan", "The Lion King", "The Jungle Book", "Bambi"],
+      "options": [
+        "Tarzan",
+        "The Lion King",
+        "The Jungle Book",
+        "Bambi"
+      ],
       "correct_answer": 1,
       "explanation": "Circle of Life opens The Lion King as Simba is presented.",
       "difficulty": "easy",
@@ -210,7 +260,12 @@
       "id": "q-pix1",
       "category_id": "cat-pixar",
       "question": "What was the first Pixar feature film?",
-      "options": ["A Bug's Life", "Toy Story", "Finding Nemo", "Monsters Inc"],
+      "options": [
+        "A Bug's Life",
+        "Toy Story",
+        "Finding Nemo",
+        "Monsters Inc"
+      ],
       "correct_answer": 1,
       "explanation": "Toy Story released in 1995 was the first fully computer-animated feature film.",
       "difficulty": "easy",
@@ -220,7 +275,12 @@
       "id": "q-pix2",
       "category_id": "cat-pixar",
       "question": "What is the name of the emotion characters' headquarters in Inside Out?",
-      "options": ["Mind Central", "Headquarters", "Brain Station", "Emotion Center"],
+      "options": [
+        "Mind Central",
+        "Headquarters",
+        "Brain Station",
+        "Emotion Center"
+      ],
       "correct_answer": 1,
       "explanation": "Headquarters is where Joy, Sadness, and other emotions work.",
       "difficulty": "easy",
@@ -230,7 +290,12 @@
       "id": "q-pix3",
       "category_id": "cat-pixar",
       "question": "In Up how many balloons lift Carl's house?",
-      "options": ["Around 10,000", "Around 20,000", "Around 50,000", "Around 100,000"],
+      "options": [
+        "Around 10,000",
+        "Around 20,000",
+        "Around 50,000",
+        "Around 100,000"
+      ],
       "correct_answer": 1,
       "explanation": "Pixar calculated it would take about 20,622 balloons.",
       "difficulty": "hard",
@@ -240,7 +305,12 @@
       "id": "q-pix4",
       "category_id": "cat-pixar",
       "question": "What is the name of the robot in WALL-E that he falls in love with?",
-      "options": ["AVA", "EVE", "ELLA", "ADA"],
+      "options": [
+        "AVA",
+        "EVE",
+        "ELLA",
+        "ADA"
+      ],
       "correct_answer": 1,
       "explanation": "EVE is the sleek probe robot WALL-E falls in love with.",
       "difficulty": "easy",
@@ -250,7 +320,12 @@
       "id": "q-pix5",
       "category_id": "cat-pixar",
       "question": "In Coco what is the name of the Land of the Dead holiday?",
-      "options": ["Day of the Dead", "Dia de los Muertos", "All Saints Day", "Halloween"],
+      "options": [
+        "Day of the Dead",
+        "Dia de los Muertos",
+        "All Saints Day",
+        "Halloween"
+      ],
       "correct_answer": 1,
       "explanation": "Dia de los Muertos is the Mexican holiday celebrated in Coco.",
       "difficulty": "easy",
@@ -260,7 +335,12 @@
       "id": "q-pix6",
       "category_id": "cat-pixar",
       "question": "What company does Mr. Incredible work for as a claims adjuster?",
-      "options": ["Insuricare", "SafeCo", "Metrolife", "SecureAll"],
+      "options": [
+        "Insuricare",
+        "SafeCo",
+        "Metrolife",
+        "SecureAll"
+      ],
       "correct_answer": 0,
       "explanation": "Insuricare is where Bob Parr works his boring desk job.",
       "difficulty": "medium",
@@ -270,7 +350,12 @@
       "id": "q-pix7",
       "category_id": "cat-pixar",
       "question": "In Monsters Inc what powers the city?",
-      "options": ["Screams", "Laughs", "Dreams", "Tears"],
+      "options": [
+        "Screams",
+        "Laughs",
+        "Dreams",
+        "Tears"
+      ],
       "correct_answer": 0,
       "explanation": "Monstropolis is powered by children's screams until they discover laughs work better.",
       "difficulty": "easy",
@@ -280,7 +365,12 @@
       "id": "q-pix8",
       "category_id": "cat-pixar",
       "question": "What is the Pizza Planet truck?",
-      "options": ["A recurring Easter egg in Pixar films", "Al's delivery truck", "A character in Cars", "Andy's toy"],
+      "options": [
+        "A recurring Easter egg in Pixar films",
+        "Al's delivery truck",
+        "A character in Cars",
+        "Andy's toy"
+      ],
       "correct_answer": 0,
       "explanation": "The Pizza Planet truck appears in nearly every Pixar film as an Easter egg.",
       "difficulty": "medium",
@@ -290,7 +380,12 @@
       "id": "q-sw1",
       "category_id": "cat-star-wars",
       "question": "What is Baby Yoda's real name?",
-      "options": ["Yoda Jr", "Grogu", "Yaddle", "Minch"],
+      "options": [
+        "Yoda Jr",
+        "Grogu",
+        "Yaddle",
+        "Minch"
+      ],
       "correct_answer": 1,
       "explanation": "Grogu is the real name of the Child revealed in The Mandalorian.",
       "difficulty": "medium",
@@ -300,7 +395,12 @@
       "id": "q-sw2",
       "category_id": "cat-star-wars",
       "question": "What planet is Luke Skywalker from?",
-      "options": ["Alderaan", "Tatooine", "Naboo", "Coruscant"],
+      "options": [
+        "Alderaan",
+        "Tatooine",
+        "Naboo",
+        "Coruscant"
+      ],
       "correct_answer": 1,
       "explanation": "Luke grew up on the desert planet Tatooine with his uncle and aunt.",
       "difficulty": "easy",
@@ -310,7 +410,12 @@
       "id": "q-sw3",
       "category_id": "cat-star-wars",
       "question": "What color is Mace Windu's lightsaber?",
-      "options": ["Blue", "Green", "Purple", "Red"],
+      "options": [
+        "Blue",
+        "Green",
+        "Purple",
+        "Red"
+      ],
       "correct_answer": 2,
       "explanation": "Mace Windu has a unique purple lightsaber requested by Samuel L. Jackson.",
       "difficulty": "easy",
@@ -320,7 +425,12 @@
       "id": "q-sw4",
       "category_id": "cat-star-wars",
       "question": "Who is Kylo Ren's mother?",
-      "options": ["Padme Amidala", "Princess Leia", "Rey", "Jyn Erso"],
+      "options": [
+        "Padme Amidala",
+        "Princess Leia",
+        "Rey",
+        "Jyn Erso"
+      ],
       "correct_answer": 1,
       "explanation": "Kylo Ren is Ben Solo, son of Leia Organa and Han Solo.",
       "difficulty": "medium",
@@ -330,7 +440,12 @@
       "id": "q-sw5",
       "category_id": "cat-star-wars",
       "question": "What is the name of Han Solo's ship?",
-      "options": ["X-Wing", "TIE Fighter", "Millennium Falcon", "Star Destroyer"],
+      "options": [
+        "X-Wing",
+        "TIE Fighter",
+        "Millennium Falcon",
+        "Star Destroyer"
+      ],
       "correct_answer": 2,
       "explanation": "The Millennium Falcon is Han's famous light freighter.",
       "difficulty": "easy",
@@ -340,7 +455,12 @@
       "id": "q-sw6",
       "category_id": "cat-star-wars",
       "question": "Which planet is destroyed by the Death Star in A New Hope?",
-      "options": ["Naboo", "Alderaan", "Coruscant", "Tatooine"],
+      "options": [
+        "Naboo",
+        "Alderaan",
+        "Coruscant",
+        "Tatooine"
+      ],
       "correct_answer": 1,
       "explanation": "Alderaan, Princess Leia's home planet, is destroyed by the Death Star.",
       "difficulty": "medium",
@@ -350,7 +470,12 @@
       "id": "q-mar1",
       "category_id": "cat-marvel",
       "question": "What is the name of Thor's hammer?",
-      "options": ["Stormbreaker", "Mjolnir", "Gungnir", "Hofund"],
+      "options": [
+        "Stormbreaker",
+        "Mjolnir",
+        "Gungnir",
+        "Hofund"
+      ],
       "correct_answer": 1,
       "explanation": "Mjolnir is Thor's enchanted hammer that only the worthy can lift.",
       "difficulty": "easy",
@@ -360,7 +485,12 @@
       "id": "q-mar2",
       "category_id": "cat-marvel",
       "question": "What is Tony Stark's superhero name?",
-      "options": ["Steel Man", "Iron Man", "Metal Man", "Titanium Man"],
+      "options": [
+        "Steel Man",
+        "Iron Man",
+        "Metal Man",
+        "Titanium Man"
+      ],
       "correct_answer": 1,
       "explanation": "Tony Stark is Iron Man - genius, billionaire, playboy, philanthropist.",
       "difficulty": "easy",
@@ -370,7 +500,12 @@
       "id": "q-mar3",
       "category_id": "cat-marvel",
       "question": "What planet is Gamora from?",
-      "options": ["Xandar", "Zen-Whoberi", "Titan", "Knowhere"],
+      "options": [
+        "Xandar",
+        "Zen-Whoberi",
+        "Titan",
+        "Knowhere"
+      ],
       "correct_answer": 1,
       "explanation": "Gamora is from Zen-Whoberi before Thanos adopted her.",
       "difficulty": "hard",
@@ -380,7 +515,12 @@
       "id": "q-mar4",
       "category_id": "cat-marvel",
       "question": "What is the name of the fictional metal in Black Panther?",
-      "options": ["Adamantium", "Vibranium", "Uru", "Carbonadium"],
+      "options": [
+        "Adamantium",
+        "Vibranium",
+        "Uru",
+        "Carbonadium"
+      ],
       "correct_answer": 1,
       "explanation": "Vibranium is found in Wakanda and makes up Captain America's shield.",
       "difficulty": "medium",
@@ -390,7 +530,12 @@
       "id": "q-mar5",
       "category_id": "cat-marvel",
       "question": "Who is the villain in the first Avengers movie?",
-      "options": ["Ultron", "Thanos", "Loki", "Red Skull"],
+      "options": [
+        "Ultron",
+        "Thanos",
+        "Loki",
+        "Red Skull"
+      ],
       "correct_answer": 2,
       "explanation": "Loki leads the Chitauri invasion of New York in The Avengers.",
       "difficulty": "easy",
@@ -400,7 +545,12 @@
       "id": "q-mar6",
       "category_id": "cat-marvel",
       "question": "What stone is in Vision's forehead?",
-      "options": ["Space Stone", "Mind Stone", "Time Stone", "Soul Stone"],
+      "options": [
+        "Space Stone",
+        "Mind Stone",
+        "Time Stone",
+        "Soul Stone"
+      ],
       "correct_answer": 1,
       "explanation": "The Mind Stone powers Vision and was originally in Loki's scepter.",
       "difficulty": "medium",
@@ -410,7 +560,12 @@
       "id": "q-vil1",
       "category_id": "cat-villains",
       "question": "Who is the villain in The Little Mermaid?",
-      "options": ["Maleficent", "Cruella", "Ursula", "Mother Gothel"],
+      "options": [
+        "Maleficent",
+        "Cruella",
+        "Ursula",
+        "Mother Gothel"
+      ],
       "correct_answer": 2,
       "explanation": "Ursula is the sea witch who tricks Ariel into trading her voice.",
       "difficulty": "easy",
@@ -420,7 +575,12 @@
       "id": "q-vil2",
       "category_id": "cat-villains",
       "question": "What is the name of the villain in 101 Dalmatians?",
-      "options": ["Ursula", "Cruella de Vil", "Lady Tremaine", "Queen of Hearts"],
+      "options": [
+        "Ursula",
+        "Cruella de Vil",
+        "Lady Tremaine",
+        "Queen of Hearts"
+      ],
       "correct_answer": 1,
       "explanation": "Cruella de Vil wants to make a fur coat from dalmatian puppies.",
       "difficulty": "easy",
@@ -430,7 +590,12 @@
       "id": "q-vil3",
       "category_id": "cat-villains",
       "question": "Who is Simba's evil uncle in The Lion King?",
-      "options": ["Mufasa", "Scar", "Zazu", "Rafiki"],
+      "options": [
+        "Mufasa",
+        "Scar",
+        "Zazu",
+        "Rafiki"
+      ],
       "correct_answer": 1,
       "explanation": "Scar kills Mufasa and takes over Pride Rock.",
       "difficulty": "easy",
@@ -440,7 +605,12 @@
       "id": "q-vil4",
       "category_id": "cat-villains",
       "question": "What villain says 'Off with their heads'?",
-      "options": ["Cruella de Vil", "Maleficent", "Queen of Hearts", "Evil Queen"],
+      "options": [
+        "Cruella de Vil",
+        "Maleficent",
+        "Queen of Hearts",
+        "Evil Queen"
+      ],
       "correct_answer": 2,
       "explanation": "The Queen of Hearts from Alice in Wonderland loves ordering beheadings.",
       "difficulty": "easy",
@@ -450,7 +620,12 @@
       "id": "q-vil5",
       "category_id": "cat-villains",
       "question": "Who cursed Aurora in Sleeping Beauty?",
-      "options": ["Evil Queen", "Ursula", "Maleficent", "Mother Gothel"],
+      "options": [
+        "Evil Queen",
+        "Ursula",
+        "Maleficent",
+        "Mother Gothel"
+      ],
       "correct_answer": 2,
       "explanation": "Maleficent cursed Aurora to prick her finger on a spindle.",
       "difficulty": "easy",
@@ -460,7 +635,12 @@
       "id": "q-vil6",
       "category_id": "cat-villains",
       "question": "What is Jafar's position in Agrabah?",
-      "options": ["King", "Sultan", "Royal Vizier", "Guard Captain"],
+      "options": [
+        "King",
+        "Sultan",
+        "Royal Vizier",
+        "Guard Captain"
+      ],
       "correct_answer": 2,
       "explanation": "Jafar is the Royal Vizier who wants to take over Agrabah.",
       "difficulty": "medium",
@@ -470,7 +650,12 @@
       "id": "q-vil7",
       "category_id": "cat-villains",
       "question": "Who is the villain in Tangled?",
-      "options": ["Mother Gothel", "Lady Tremaine", "Yzma", "Ursula"],
+      "options": [
+        "Mother Gothel",
+        "Lady Tremaine",
+        "Yzma",
+        "Ursula"
+      ],
       "correct_answer": 0,
       "explanation": "Mother Gothel kidnapped Rapunzel to use her magical hair.",
       "difficulty": "easy",
@@ -480,7 +665,12 @@
       "id": "q-vil8",
       "category_id": "cat-villains",
       "question": "What does Hades rule in Hercules?",
-      "options": ["Mount Olympus", "The Ocean", "The Underworld", "The Sky"],
+      "options": [
+        "Mount Olympus",
+        "The Ocean",
+        "The Underworld",
+        "The Sky"
+      ],
       "correct_answer": 2,
       "explanation": "Hades is god of the Underworld and wants to overthrow Zeus.",
       "difficulty": "easy",
@@ -490,7 +680,12 @@
       "id": "q-pri1",
       "category_id": "cat-princesses",
       "question": "How many official Disney Princesses are there?",
-      "options": ["10", "12", "14", "15"],
+      "options": [
+        "10",
+        "12",
+        "14",
+        "15"
+      ],
       "correct_answer": 1,
       "explanation": "There are 12 official Disney Princesses in the lineup.",
       "difficulty": "medium",
@@ -500,7 +695,12 @@
       "id": "q-pri2",
       "category_id": "cat-princesses",
       "question": "Who is the first Disney Princess?",
-      "options": ["Cinderella", "Snow White", "Aurora", "Ariel"],
+      "options": [
+        "Cinderella",
+        "Snow White",
+        "Aurora",
+        "Ariel"
+      ],
       "correct_answer": 1,
       "explanation": "Snow White from 1937 is the first Disney Princess.",
       "difficulty": "easy",
@@ -510,7 +710,12 @@
       "id": "q-pri3",
       "category_id": "cat-princesses",
       "question": "Which princess has the power to heal with her hair?",
-      "options": ["Elsa", "Rapunzel", "Moana", "Pocahontas"],
+      "options": [
+        "Elsa",
+        "Rapunzel",
+        "Moana",
+        "Pocahontas"
+      ],
       "correct_answer": 1,
       "explanation": "Rapunzel's magical hair can heal injuries and reverse aging.",
       "difficulty": "easy",
@@ -520,7 +725,12 @@
       "id": "q-pri4",
       "category_id": "cat-princesses",
       "question": "Which princess is not royalty by birth or marriage?",
-      "options": ["Cinderella", "Mulan", "Aurora", "Jasmine"],
+      "options": [
+        "Cinderella",
+        "Mulan",
+        "Aurora",
+        "Jasmine"
+      ],
       "correct_answer": 1,
       "explanation": "Mulan is a warrior, not a princess, but is honorary.",
       "difficulty": "medium",
@@ -530,7 +740,12 @@
       "id": "q-pri5",
       "category_id": "cat-princesses",
       "question": "What is Ariel's father's name?",
-      "options": ["Poseidon", "Neptune", "Triton", "Aquaman"],
+      "options": [
+        "Poseidon",
+        "Neptune",
+        "Triton",
+        "Aquaman"
+      ],
       "correct_answer": 2,
       "explanation": "King Triton is Ariel's father and ruler of Atlantica.",
       "difficulty": "easy",
@@ -540,7 +755,12 @@
       "id": "q-pri6",
       "category_id": "cat-princesses",
       "question": "Which princess talks to animals and has forest friends?",
-      "options": ["Snow White", "Aurora", "Cinderella", "All of the above"],
+      "options": [
+        "Snow White",
+        "Aurora",
+        "Cinderella",
+        "All of the above"
+      ],
       "correct_answer": 3,
       "explanation": "Snow White, Aurora, and Cinderella all communicate with animals.",
       "difficulty": "medium",
@@ -550,7 +770,12 @@
       "id": "q-pri7",
       "category_id": "cat-princesses",
       "question": "Who is the youngest Disney Princess?",
-      "options": ["Snow White", "Jasmine", "Ariel", "Moana"],
+      "options": [
+        "Snow White",
+        "Jasmine",
+        "Ariel",
+        "Moana"
+      ],
       "correct_answer": 0,
       "explanation": "Snow White is canonically 14 years old, the youngest princess.",
       "difficulty": "hard",
@@ -560,7 +785,12 @@
       "id": "q-pri8",
       "category_id": "cat-princesses",
       "question": "Which princess cuts her hair in her movie?",
-      "options": ["Mulan", "Rapunzel", "Pocahontas", "Both A and B"],
+      "options": [
+        "Mulan",
+        "Rapunzel",
+        "Pocahontas",
+        "Both A and B"
+      ],
       "correct_answer": 3,
       "explanation": "Both Mulan and Rapunzel cut their hair in their films.",
       "difficulty": "medium",
@@ -570,7 +800,12 @@
       "id": "q-mus1",
       "category_id": "cat-music",
       "question": "Who composed the music for The Lion King?",
-      "options": ["Alan Menken", "Hans Zimmer", "Randy Newman", "Danny Elfman"],
+      "options": [
+        "Alan Menken",
+        "Hans Zimmer",
+        "Randy Newman",
+        "Danny Elfman"
+      ],
       "correct_answer": 1,
       "explanation": "Hans Zimmer composed the score with songs by Elton John and Tim Rice.",
       "difficulty": "medium",
@@ -580,7 +815,12 @@
       "id": "q-mus2",
       "category_id": "cat-music",
       "question": "Which movie features the song 'A Whole New World'?",
-      "options": ["The Little Mermaid", "Beauty and the Beast", "Aladdin", "Mulan"],
+      "options": [
+        "The Little Mermaid",
+        "Beauty and the Beast",
+        "Aladdin",
+        "Mulan"
+      ],
       "correct_answer": 2,
       "explanation": "'A Whole New World' is from Aladdin, sung on the magic carpet ride.",
       "difficulty": "easy",
@@ -590,7 +830,12 @@
       "id": "q-mus3",
       "category_id": "cat-music",
       "question": "Who wrote the songs for Frozen?",
-      "options": ["Kristen Anderson-Lopez and Robert Lopez", "Alan Menken", "Lin-Manuel Miranda", "Randy Newman"],
+      "options": [
+        "Kristen Anderson-Lopez and Robert Lopez",
+        "Alan Menken",
+        "Lin-Manuel Miranda",
+        "Randy Newman"
+      ],
       "correct_answer": 0,
       "explanation": "The Lopez duo wrote 'Let It Go' and all Frozen songs.",
       "difficulty": "medium",
@@ -600,7 +845,12 @@
       "id": "q-mus4",
       "category_id": "cat-music",
       "question": "What Disney movie features the song 'Under the Sea'?",
-      "options": ["Moana", "Finding Nemo", "The Little Mermaid", "Lilo and Stitch"],
+      "options": [
+        "Moana",
+        "Finding Nemo",
+        "The Little Mermaid",
+        "Lilo and Stitch"
+      ],
       "correct_answer": 2,
       "explanation": "'Under the Sea' is Sebastian's song in The Little Mermaid.",
       "difficulty": "easy",
@@ -610,7 +860,12 @@
       "id": "q-mus5",
       "category_id": "cat-music",
       "question": "Who composed most Disney Renaissance films like Little Mermaid and Beauty and the Beast?",
-      "options": ["Hans Zimmer", "Alan Menken", "John Williams", "Danny Elfman"],
+      "options": [
+        "Hans Zimmer",
+        "Alan Menken",
+        "John Williams",
+        "Danny Elfman"
+      ],
       "correct_answer": 1,
       "explanation": "Alan Menken composed 8 Disney films including the Renaissance era.",
       "difficulty": "medium",
@@ -620,7 +875,12 @@
       "id": "q-mus6",
       "category_id": "cat-music",
       "question": "Which movie features the song 'How Far I'll Go'?",
-      "options": ["Moana", "Frozen", "Tangled", "Brave"],
+      "options": [
+        "Moana",
+        "Frozen",
+        "Tangled",
+        "Brave"
+      ],
       "correct_answer": 0,
       "explanation": "'How Far I'll Go' is Moana's signature song written by Lin-Manuel Miranda.",
       "difficulty": "easy",
@@ -630,7 +890,12 @@
       "id": "q-mus7",
       "category_id": "cat-music",
       "question": "What song does Elsa sing when building her ice palace?",
-      "options": ["Do You Want to Build a Snowman", "Let It Go", "For the First Time in Forever", "Into the Unknown"],
+      "options": [
+        "Do You Want to Build a Snowman",
+        "Let It Go",
+        "For the First Time in Forever",
+        "Into the Unknown"
+      ],
       "correct_answer": 1,
       "explanation": "'Let It Go' plays as Elsa builds her ice palace and embraces her powers.",
       "difficulty": "easy",
@@ -640,7 +905,12 @@
       "id": "q-mus8",
       "category_id": "cat-music",
       "question": "Who wrote the songs for Encanto?",
-      "options": ["Lin-Manuel Miranda", "Alan Menken", "Robert Lopez", "Kristen Anderson-Lopez"],
+      "options": [
+        "Lin-Manuel Miranda",
+        "Alan Menken",
+        "Robert Lopez",
+        "Kristen Anderson-Lopez"
+      ],
       "correct_answer": 0,
       "explanation": "Lin-Manuel Miranda wrote all songs including 'We Don't Talk About Bruno'.",
       "difficulty": "easy",
@@ -650,7 +920,12 @@
       "id": "q-par1",
       "category_id": "cat-parks",
       "question": "What year did Disneyland open?",
-      "options": ["1950", "1955", "1960", "1965"],
+      "options": [
+        "1950",
+        "1955",
+        "1960",
+        "1965"
+      ],
       "correct_answer": 1,
       "explanation": "Disneyland opened July 17, 1955 in Anaheim, California.",
       "difficulty": "medium",
@@ -660,7 +935,12 @@
       "id": "q-par2",
       "category_id": "cat-parks",
       "question": "What is the name of the castle at Magic Kingdom?",
-      "options": ["Sleeping Beauty Castle", "Cinderella Castle", "Beast Castle", "Snow White Castle"],
+      "options": [
+        "Sleeping Beauty Castle",
+        "Cinderella Castle",
+        "Beast Castle",
+        "Snow White Castle"
+      ],
       "correct_answer": 1,
       "explanation": "Cinderella Castle is the 189-foot icon of Magic Kingdom.",
       "difficulty": "easy",
@@ -670,7 +950,12 @@
       "id": "q-par3",
       "category_id": "cat-parks",
       "question": "What is the Star Wars land called?",
-      "options": ["Star Wars Land", "Galaxy's Edge", "Batuu Territory", "Outer Rim"],
+      "options": [
+        "Star Wars Land",
+        "Galaxy's Edge",
+        "Batuu Territory",
+        "Outer Rim"
+      ],
       "correct_answer": 1,
       "explanation": "Star Wars: Galaxy's Edge is set on the planet Batuu.",
       "difficulty": "easy",
@@ -680,7 +965,12 @@
       "id": "q-par4",
       "category_id": "cat-parks",
       "question": "How many Disney theme park resorts exist worldwide?",
-      "options": ["4", "5", "6", "7"],
+      "options": [
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
       "correct_answer": 2,
       "explanation": "There are 6 Disney resorts in California, Florida, Tokyo, Paris, Hong Kong, and Shanghai.",
       "difficulty": "medium",
@@ -690,7 +980,12 @@
       "id": "q-par5",
       "category_id": "cat-parks",
       "question": "What is a Hidden Mickey?",
-      "options": ["Secret meet and greet", "Mickey shaped design hidden in parks", "Private dining", "After hours event"],
+      "options": [
+        "Secret meet and greet",
+        "Mickey shaped design hidden in parks",
+        "Private dining",
+        "After hours event"
+      ],
       "correct_answer": 1,
       "explanation": "Hidden Mickeys are subtle Mickey shapes hidden throughout Disney parks.",
       "difficulty": "easy",
@@ -700,7 +995,12 @@
       "id": "q-par6",
       "category_id": "cat-parks",
       "question": "What is the spherical structure at EPCOT called?",
-      "options": ["The Globe", "Spaceship Earth", "Future World", "Geosphere"],
+      "options": [
+        "The Globe",
+        "Spaceship Earth",
+        "Future World",
+        "Geosphere"
+      ],
       "correct_answer": 1,
       "explanation": "Spaceship Earth is the iconic geodesic sphere at EPCOT's entrance.",
       "difficulty": "easy",
@@ -710,7 +1010,12 @@
       "id": "q-par7",
       "category_id": "cat-parks",
       "question": "Which Disney park is the largest by acreage?",
-      "options": ["Magic Kingdom", "Disneyland", "Animal Kingdom", "Shanghai Disneyland"],
+      "options": [
+        "Magic Kingdom",
+        "Disneyland",
+        "Animal Kingdom",
+        "Shanghai Disneyland"
+      ],
       "correct_answer": 2,
       "explanation": "Animal Kingdom is about 580 acres, the largest Disney park.",
       "difficulty": "hard",
@@ -720,7 +1025,12 @@
       "id": "q-par8",
       "category_id": "cat-parks",
       "question": "What is the mine train coaster at Magic Kingdom?",
-      "options": ["Thunder Mountain", "Big Thunder Mountain Railroad", "Mine Train Adventure", "Gold Rush Mountain"],
+      "options": [
+        "Thunder Mountain",
+        "Big Thunder Mountain Railroad",
+        "Mine Train Adventure",
+        "Gold Rush Mountain"
+      ],
       "correct_answer": 1,
       "explanation": "Big Thunder Mountain Railroad is the 'wildest ride in the wilderness'.",
       "difficulty": "easy",
@@ -730,7 +1040,12 @@
       "id": "q-par9",
       "category_id": "cat-parks",
       "question": "What famous phrase is at Disneyland entrance?",
-      "options": ["Where Magic Lives", "Happiest Place on Earth", "Where Dreams Come True", "Magic is Here"],
+      "options": [
+        "Where Magic Lives",
+        "Happiest Place on Earth",
+        "Where Dreams Come True",
+        "Magic is Here"
+      ],
       "correct_answer": 1,
       "explanation": "'The Happiest Place on Earth' is Disneyland's famous tagline.",
       "difficulty": "easy",
@@ -740,7 +1055,12 @@
       "id": "q-par10",
       "category_id": "cat-parks",
       "question": "What year did Walt Disney World open?",
-      "options": ["1965", "1968", "1971", "1975"],
+      "options": [
+        "1965",
+        "1968",
+        "1971",
+        "1975"
+      ],
       "correct_answer": 2,
       "explanation": "Magic Kingdom opened October 1, 1971.",
       "difficulty": "medium",
@@ -750,7 +1070,12 @@
       "id": "q-cru1",
       "category_id": "cat-cruise",
       "question": "What was the first Disney cruise ship?",
-      "options": ["Disney Wonder", "Disney Magic", "Disney Dream", "Disney Fantasy"],
+      "options": [
+        "Disney Wonder",
+        "Disney Magic",
+        "Disney Dream",
+        "Disney Fantasy"
+      ],
       "correct_answer": 1,
       "explanation": "Disney Magic launched in 1998 as the first Disney cruise ship.",
       "difficulty": "medium",
@@ -760,7 +1085,12 @@
       "id": "q-cru2",
       "category_id": "cat-cruise",
       "question": "What is Disney's private island called?",
-      "options": ["Paradise Island", "Disney Island", "Castaway Cay", "Magic Island"],
+      "options": [
+        "Paradise Island",
+        "Disney Island",
+        "Castaway Cay",
+        "Magic Island"
+      ],
       "correct_answer": 2,
       "explanation": "Castaway Cay is Disney's private Bahamas island.",
       "difficulty": "easy",
@@ -770,7 +1100,12 @@
       "id": "q-cru3",
       "category_id": "cat-cruise",
       "question": "How many ships are in the Disney Cruise fleet as of 2024?",
-      "options": ["4", "5", "6", "7"],
+      "options": [
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
       "correct_answer": 1,
       "explanation": "Disney has 5 ships: Magic, Wonder, Dream, Fantasy, and Wish.",
       "difficulty": "medium",
@@ -780,7 +1115,12 @@
       "id": "q-cru4",
       "category_id": "cat-cruise",
       "question": "What is the adults only area on Disney ships called?",
-      "options": ["Adult Cove", "Quiet Cove", "Serenity Bay", "Adults Zone"],
+      "options": [
+        "Adult Cove",
+        "Quiet Cove",
+        "Serenity Bay",
+        "Adults Zone"
+      ],
       "correct_answer": 1,
       "explanation": "Quiet Cove has the adults-only pool and relaxation areas.",
       "difficulty": "medium",
@@ -790,7 +1130,12 @@
       "id": "q-cru5",
       "category_id": "cat-cruise",
       "question": "What unique dining concept does Disney Cruise use?",
-      "options": ["Fixed dining", "Buffet only", "Rotational dining", "Room service only"],
+      "options": [
+        "Fixed dining",
+        "Buffet only",
+        "Rotational dining",
+        "Room service only"
+      ],
       "correct_answer": 2,
       "explanation": "Rotational dining means you visit different restaurants but keep your servers.",
       "difficulty": "easy",
@@ -800,7 +1145,12 @@
       "id": "q-cru6",
       "category_id": "cat-cruise",
       "question": "What is the kids club on Disney cruise ships?",
-      "options": ["Mickey's Club", "Oceaneer Club", "Kids Cove", "Disney Kids Club"],
+      "options": [
+        "Mickey's Club",
+        "Oceaneer Club",
+        "Kids Cove",
+        "Disney Kids Club"
+      ],
       "correct_answer": 1,
       "explanation": "Oceaneer Club is for kids ages 3-12.",
       "difficulty": "easy",
@@ -810,7 +1160,12 @@
       "id": "q-cru7",
       "category_id": "cat-cruise",
       "question": "What is Disney's newest ship as of 2022?",
-      "options": ["Disney Treasure", "Disney Wish", "Disney Adventure", "Disney Destiny"],
+      "options": [
+        "Disney Treasure",
+        "Disney Wish",
+        "Disney Adventure",
+        "Disney Destiny"
+      ],
       "correct_answer": 1,
       "explanation": "Disney Wish debuted July 2022.",
       "difficulty": "easy",
@@ -820,7 +1175,12 @@
       "id": "q-cru8",
       "category_id": "cat-cruise",
       "question": "What is the adult beach on Castaway Cay?",
-      "options": ["Paradise Beach", "Serenity Bay", "Quiet Beach", "Adults Cove"],
+      "options": [
+        "Paradise Beach",
+        "Serenity Bay",
+        "Quiet Beach",
+        "Adults Cove"
+      ],
       "correct_answer": 1,
       "explanation": "Serenity Bay is the adults-only beach.",
       "difficulty": "medium",
@@ -830,7 +1190,12 @@
       "id": "q-cru9",
       "category_id": "cat-cruise",
       "question": "What does the ship horn play when departing?",
-      "options": ["Traditional horn", "When You Wish Upon a Star", "Mickey Mouse March", "Sailing Away"],
+      "options": [
+        "Traditional horn",
+        "When You Wish Upon a Star",
+        "Mickey Mouse March",
+        "Sailing Away"
+      ],
       "correct_answer": 1,
       "explanation": "Disney ships play 'When You Wish Upon a Star' on departure.",
       "difficulty": "easy",
@@ -840,7 +1205,12 @@
       "id": "q-cru10",
       "category_id": "cat-cruise",
       "question": "What is Pirate Night on Disney Cruise?",
-      "options": ["Themed dinner", "Deck party with fireworks", "Character meet and greet", "All of the above"],
+      "options": [
+        "Themed dinner",
+        "Deck party with fireworks",
+        "Character meet and greet",
+        "All of the above"
+      ],
       "correct_answer": 3,
       "explanation": "Pirate Night includes dinner, deck party, costumes, and fireworks.",
       "difficulty": "easy",
@@ -850,7 +1220,12 @@
       "id": "q-wal1",
       "category_id": "cat-walt-history",
       "question": "What year was Walt Disney born?",
-      "options": ["1899", "1901", "1905", "1910"],
+      "options": [
+        "1899",
+        "1901",
+        "1905",
+        "1910"
+      ],
       "correct_answer": 1,
       "explanation": "Walt Disney was born December 5, 1901 in Chicago.",
       "difficulty": "medium",
@@ -860,7 +1235,12 @@
       "id": "q-wal2",
       "category_id": "cat-walt-history",
       "question": "What was Walt Disney's brother's name?",
-      "options": ["Robert", "Roy O. Disney", "Raymond", "Richard"],
+      "options": [
+        "Robert",
+        "Roy O. Disney",
+        "Raymond",
+        "Richard"
+      ],
       "correct_answer": 1,
       "explanation": "Roy O. Disney cofounded Disney with Walt in 1923.",
       "difficulty": "medium",
@@ -870,7 +1250,12 @@
       "id": "q-wal3",
       "category_id": "cat-walt-history",
       "question": "What was Mickey Mouse's original name?",
-      "options": ["Mortimer Mouse", "Milton Mouse", "Martin Mouse", "Morris Mouse"],
+      "options": [
+        "Mortimer Mouse",
+        "Milton Mouse",
+        "Martin Mouse",
+        "Morris Mouse"
+      ],
       "correct_answer": 0,
       "explanation": "Walt wanted Mortimer, but wife Lillian suggested Mickey.",
       "difficulty": "medium",
@@ -880,7 +1265,12 @@
       "id": "q-wal4",
       "category_id": "cat-walt-history",
       "question": "What year did Mickey Mouse debut?",
-      "options": ["1920", "1925", "1928", "1932"],
+      "options": [
+        "1920",
+        "1925",
+        "1928",
+        "1932"
+      ],
       "correct_answer": 2,
       "explanation": "Mickey debuted in Steamboat Willie on November 18, 1928.",
       "difficulty": "medium",
@@ -890,7 +1280,12 @@
       "id": "q-wal5",
       "category_id": "cat-walt-history",
       "question": "Where is Walt Disney buried?",
-      "options": ["Forest Lawn Cemetery", "Disneyland", "Walt Disney World", "He was cremated"],
+      "options": [
+        "Forest Lawn Cemetery",
+        "Disneyland",
+        "Walt Disney World",
+        "He was cremated"
+      ],
       "correct_answer": 3,
       "explanation": "Walt Disney was cremated and his ashes are at Forest Lawn in Glendale.",
       "difficulty": "hard",
@@ -900,7 +1295,12 @@
       "id": "q-wal6",
       "category_id": "cat-walt-history",
       "question": "What was the name of Walt's first successful cartoon character?",
-      "options": ["Mickey Mouse", "Oswald the Lucky Rabbit", "Donald Duck", "Goofy"],
+      "options": [
+        "Mickey Mouse",
+        "Oswald the Lucky Rabbit",
+        "Donald Duck",
+        "Goofy"
+      ],
       "correct_answer": 1,
       "explanation": "Oswald was created before Mickey, but Walt lost the rights.",
       "difficulty": "medium",
@@ -910,7 +1310,12 @@
       "id": "q-bro1",
       "category_id": "cat-broadway",
       "question": "What was the first Disney Broadway musical?",
-      "options": ["Beauty and the Beast", "The Lion King", "The Little Mermaid", "Aladdin"],
+      "options": [
+        "Beauty and the Beast",
+        "The Lion King",
+        "The Little Mermaid",
+        "Aladdin"
+      ],
       "correct_answer": 0,
       "explanation": "Beauty and the Beast opened on Broadway in 1994.",
       "difficulty": "medium",
@@ -920,7 +1325,12 @@
       "id": "q-bro2",
       "category_id": "cat-broadway",
       "question": "What is the longest running Disney Broadway show?",
-      "options": ["Beauty and the Beast", "The Lion King", "Aladdin", "Frozen"],
+      "options": [
+        "Beauty and the Beast",
+        "The Lion King",
+        "Aladdin",
+        "Frozen"
+      ],
       "correct_answer": 1,
       "explanation": "The Lion King has run since 1997 and is 3rd longest running Broadway show ever.",
       "difficulty": "easy",
@@ -930,7 +1340,12 @@
       "id": "q-bro3",
       "category_id": "cat-broadway",
       "question": "Which Disney Broadway show features puppetry by Julie Taymor?",
-      "options": ["Beauty and the Beast", "The Lion King", "Aladdin", "Mary Poppins"],
+      "options": [
+        "Beauty and the Beast",
+        "The Lion King",
+        "Aladdin",
+        "Mary Poppins"
+      ],
       "correct_answer": 1,
       "explanation": "Julie Taymor's puppetry and masks are iconic in The Lion King.",
       "difficulty": "medium",
@@ -940,7 +1355,12 @@
       "id": "q-bro4",
       "category_id": "cat-broadway",
       "question": "What Disney movie became a Broadway show in 2014?",
-      "options": ["Frozen", "Aladdin", "The Little Mermaid", "Newsies"],
+      "options": [
+        "Frozen",
+        "Aladdin",
+        "The Little Mermaid",
+        "Newsies"
+      ],
       "correct_answer": 1,
       "explanation": "Aladdin opened on Broadway in March 2014.",
       "difficulty": "medium",
@@ -950,7 +1370,12 @@
       "id": "q-bro5",
       "category_id": "cat-broadway",
       "question": "Which show features the song 'Seize the Day'?",
-      "options": ["Newsies", "The Lion King", "Aladdin", "Tarzan"],
+      "options": [
+        "Newsies",
+        "The Lion King",
+        "Aladdin",
+        "Tarzan"
+      ],
       "correct_answer": 0,
       "explanation": "'Seize the Day' is the Act 1 finale of Newsies.",
       "difficulty": "medium",
@@ -960,7 +1385,12 @@
       "id": "q-foo1",
       "category_id": "cat-food",
       "question": "What flavor is the famous Dole Whip?",
-      "options": ["Orange", "Pineapple", "Mango", "Coconut"],
+      "options": [
+        "Orange",
+        "Pineapple",
+        "Mango",
+        "Coconut"
+      ],
       "correct_answer": 1,
       "explanation": "Pineapple Dole Whip is the iconic Disney parks frozen treat.",
       "difficulty": "easy",
@@ -970,7 +1400,12 @@
       "id": "q-foo2",
       "category_id": "cat-food",
       "question": "What is the bestselling food item at Disney parks?",
-      "options": ["Turkey Legs", "Churros", "Dole Whip", "Mickey Pretzels"],
+      "options": [
+        "Turkey Legs",
+        "Churros",
+        "Dole Whip",
+        "Mickey Pretzels"
+      ],
       "correct_answer": 1,
       "explanation": "Churros are the top seller with millions sold annually.",
       "difficulty": "medium",
@@ -980,7 +1415,12 @@
       "id": "q-foo3",
       "category_id": "cat-food",
       "question": "What is the name of the restaurant inside Pirates of the Caribbean at Disneyland?",
-      "options": ["The Blue Lagoon", "Blue Bayou", "Captain Jack's", "Pirates Cove"],
+      "options": [
+        "The Blue Lagoon",
+        "Blue Bayou",
+        "Captain Jack's",
+        "Pirates Cove"
+      ],
       "correct_answer": 1,
       "explanation": "Blue Bayou is the atmospheric restaurant inside the ride.",
       "difficulty": "medium",
@@ -990,7 +1430,12 @@
       "id": "q-foo4",
       "category_id": "cat-food",
       "question": "What shape are the famous Disney ice cream bars?",
-      "options": ["Mickey head", "Castle", "Star", "Circle"],
+      "options": [
+        "Mickey head",
+        "Castle",
+        "Star",
+        "Circle"
+      ],
       "correct_answer": 0,
       "explanation": "Mickey Premium Ice Cream Bars are shaped like Mickey's head.",
       "difficulty": "easy",
@@ -1000,7 +1445,12 @@
       "id": "q-foo5",
       "category_id": "cat-food",
       "question": "What is the signature drink at Oga's Cantina in Galaxy's Edge?",
-      "options": ["Blue Milk", "Fuzzy Tauntaun", "Jedi Mind Trick", "All are signature drinks"],
+      "options": [
+        "Blue Milk",
+        "Fuzzy Tauntaun",
+        "Jedi Mind Trick",
+        "All are signature drinks"
+      ],
       "correct_answer": 3,
       "explanation": "Oga's Cantina has many signature drinks including Blue Milk.",
       "difficulty": "medium",
@@ -1010,7 +1460,12 @@
       "id": "q-foo6",
       "category_id": "cat-food",
       "question": "What restaurant has the 50s TV dinner theme at Hollywood Studios?",
-      "options": ["Sci-Fi Dine-In", "50's Prime Time Cafe", "Hollywood and Vine", "ABC Commissary"],
+      "options": [
+        "Sci-Fi Dine-In",
+        "50's Prime Time Cafe",
+        "Hollywood and Vine",
+        "ABC Commissary"
+      ],
       "correct_answer": 1,
       "explanation": "50's Prime Time Cafe servers act as family members from the 50s.",
       "difficulty": "medium",
@@ -1020,7 +1475,12 @@
       "id": "q-mix1",
       "category_id": "cat-mixed",
       "question": "What does 'Ohana' mean in Lilo and Stitch?",
-      "options": ["Love", "Friend", "Family", "Together"],
+      "options": [
+        "Love",
+        "Friend",
+        "Family",
+        "Together"
+      ],
       "correct_answer": 2,
       "explanation": "Ohana means family, and family means nobody gets left behind.",
       "difficulty": "easy",
@@ -1030,7 +1490,12 @@
       "id": "q-mix2",
       "category_id": "cat-mixed",
       "question": "Which Disney Princess is based on a real person?",
-      "options": ["Mulan", "Pocahontas", "Moana", "Merida"],
+      "options": [
+        "Mulan",
+        "Pocahontas",
+        "Moana",
+        "Merida"
+      ],
       "correct_answer": 1,
       "explanation": "Pocahontas is based on a real Native American woman from the 1600s.",
       "difficulty": "medium",
@@ -1040,7 +1505,12 @@
       "id": "q-mix3",
       "category_id": "cat-mixed",
       "question": "What is Buzz Lightyear's famous catchphrase?",
-      "options": ["You've got a friend in me", "To infinity and beyond", "Reach for the sky", "I'm a space ranger"],
+      "options": [
+        "You've got a friend in me",
+        "To infinity and beyond",
+        "Reach for the sky",
+        "I'm a space ranger"
+      ],
       "correct_answer": 1,
       "explanation": "'To infinity and beyond' is Buzz's iconic catchphrase.",
       "difficulty": "easy",
@@ -1050,7 +1520,12 @@
       "id": "q-mix4",
       "category_id": "cat-mixed",
       "question": "Which Disney animated film has both parents alive throughout?",
-      "options": ["Tangled", "Sleeping Beauty", "101 Dalmatians", "Mulan"],
+      "options": [
+        "Tangled",
+        "Sleeping Beauty",
+        "101 Dalmatians",
+        "Mulan"
+      ],
       "correct_answer": 3,
       "explanation": "In Mulan, both parents are present and alive the whole film.",
       "difficulty": "hard",
@@ -1060,7 +1535,12 @@
       "id": "q-mix5",
       "category_id": "cat-mixed",
       "question": "What 'A113' refers to in Pixar films?",
-      "options": ["Secret code", "CalArts classroom number", "Hidden Mickey", "Director's birthday"],
+      "options": [
+        "Secret code",
+        "CalArts classroom number",
+        "Hidden Mickey",
+        "Director's birthday"
+      ],
       "correct_answer": 1,
       "explanation": "A113 is the CalArts classroom where many Pixar animators studied.",
       "difficulty": "medium",
@@ -1070,10 +1550,4605 @@
       "id": "q-mix6",
       "category_id": "cat-mixed",
       "question": "Who voiced both Darth Vader and Mufasa?",
-      "options": ["Morgan Freeman", "James Earl Jones", "Samuel L. Jackson", "Keith David"],
+      "options": [
+        "Morgan Freeman",
+        "James Earl Jones",
+        "Samuel L. Jackson",
+        "Keith David"
+      ],
       "correct_answer": 1,
       "explanation": "James Earl Jones' iconic voice brought both characters to life.",
       "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-ani11",
+      "category_id": "cat-animation",
+      "question": "What year did The Little Mermaid release?",
+      "options": [
+        "1985",
+        "1987",
+        "1989",
+        "1991"
+      ],
+      "correct_answer": 2,
+      "explanation": "The Little Mermaid released in 1989 and kicked off the Disney Renaissance.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-ani12",
+      "category_id": "cat-animation",
+      "question": "What is the name of Simba's childhood friend in The Lion King?",
+      "options": [
+        "Timon",
+        "Nala",
+        "Sarabi",
+        "Shenzi"
+      ],
+      "correct_answer": 1,
+      "explanation": "Nala is Simba's childhood friend who later becomes his queen.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-ani13",
+      "category_id": "cat-animation",
+      "question": "In Aladdin, how many wishes does the Genie grant?",
+      "options": [
+        "One",
+        "Two",
+        "Three",
+        "Unlimited"
+      ],
+      "correct_answer": 2,
+      "explanation": "The Genie grants three wishes but Aladdin uses his last wish to free the Genie.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-ani14",
+      "category_id": "cat-animation",
+      "question": "What is the name of the fairy in Peter Pan?",
+      "options": [
+        "Silvermist",
+        "Tinker Bell",
+        "Rosetta",
+        "Fawn"
+      ],
+      "correct_answer": 1,
+      "explanation": "Tinker Bell is Peter Pan's loyal fairy companion.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-ani15",
+      "category_id": "cat-animation",
+      "question": "Who voices Elsa in Frozen?",
+      "options": [
+        "Kristen Bell",
+        "Amy Adams",
+        "Idina Menzel",
+        "Mandy Moore"
+      ],
+      "correct_answer": 2,
+      "explanation": "Idina Menzel voices Elsa and performs the hit song Let It Go.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-ani16",
+      "category_id": "cat-animation",
+      "question": "In The Jungle Book, what type of animal is Baloo?",
+      "options": [
+        "Panther",
+        "Orangutan",
+        "Bear",
+        "Tiger"
+      ],
+      "correct_answer": 2,
+      "explanation": "Baloo is a fun-loving bear who teaches Mowgli the Bare Necessities.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-ani17",
+      "category_id": "cat-animation",
+      "question": "What is the name of Mulan's dragon companion?",
+      "options": [
+        "Mushu",
+        "Cri-Kee",
+        "Khan",
+        "Little Brother"
+      ],
+      "correct_answer": 0,
+      "explanation": "Mushu is a small red dragon voiced by Eddie Murphy who helps Mulan.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-ani18",
+      "category_id": "cat-animation",
+      "question": "In Bambi, what type of animal is Thumper?",
+      "options": [
+        "Skunk",
+        "Rabbit",
+        "Deer",
+        "Owl"
+      ],
+      "correct_answer": 1,
+      "explanation": "Thumper is Bambi's rabbit friend named for his habit of thumping his foot.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-ani19",
+      "category_id": "cat-animation",
+      "question": "What is Pocahontas's raccoon friend's name?",
+      "options": [
+        "Flit",
+        "Percy",
+        "Meeko",
+        "Nakoma"
+      ],
+      "correct_answer": 2,
+      "explanation": "Meeko is the mischievous raccoon who accompanies Pocahontas.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-ani20",
+      "category_id": "cat-animation",
+      "question": "Which Disney film features Experiment 626?",
+      "options": [
+        "Big Hero 6",
+        "Lilo & Stitch",
+        "Bolt",
+        "Wreck-It Ralph"
+      ],
+      "correct_answer": 1,
+      "explanation": "Stitch's official experiment number is 626, created by Dr. Jumba.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-ani21",
+      "category_id": "cat-animation",
+      "question": "In Encanto, what is Luisa's magical gift?",
+      "options": [
+        "Shape-shifting",
+        "Super strength",
+        "Healing",
+        "Weather control"
+      ],
+      "correct_answer": 1,
+      "explanation": "Luisa Madrigal has the gift of super strength and sings Surface Pressure.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-ani22",
+      "category_id": "cat-animation",
+      "question": "What is the name of the kingdom in Frozen?",
+      "options": [
+        "Corona",
+        "Arendelle",
+        "DunBroch",
+        "Motunui"
+      ],
+      "correct_answer": 1,
+      "explanation": "Arendelle is the Scandinavian-inspired kingdom where Elsa and Anna live.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-ani23",
+      "category_id": "cat-animation",
+      "question": "In Tarzan, who raises Tarzan as her own?",
+      "options": [
+        "Kala",
+        "Kerchak",
+        "Tantor",
+        "Sabor"
+      ],
+      "correct_answer": 0,
+      "explanation": "Kala is the gorilla who adopts and raises baby Tarzan as her son.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-ani24",
+      "category_id": "cat-animation",
+      "question": "What year did Frozen release?",
+      "options": [
+        "2011",
+        "2012",
+        "2013",
+        "2014"
+      ],
+      "correct_answer": 2,
+      "explanation": "Frozen released in November 2013 and became one of Disney's highest-grossing films.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-ani25",
+      "category_id": "cat-animation",
+      "question": "In The Princess and the Frog, what is Tiana's dream?",
+      "options": [
+        "To be a princess",
+        "To own a restaurant",
+        "To travel the world",
+        "To be a singer"
+      ],
+      "correct_answer": 1,
+      "explanation": "Tiana dreams of opening her own restaurant in New Orleans.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pix9",
+      "category_id": "cat-pixar",
+      "question": "What is the name of the clownfish father in Finding Nemo?",
+      "options": [
+        "Martin",
+        "Marlin",
+        "Marlo",
+        "Marcel"
+      ],
+      "correct_answer": 1,
+      "explanation": "Marlin is Nemo's overprotective father who crosses the ocean to find him.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pix10",
+      "category_id": "cat-pixar",
+      "question": "What is the name of the rat protagonist in Ratatouille?",
+      "options": [
+        "Emile",
+        "Remy",
+        "Alfredo",
+        "Gusteau"
+      ],
+      "correct_answer": 1,
+      "explanation": "Remy is the rat who dreams of becoming a chef in Paris.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pix11",
+      "category_id": "cat-pixar",
+      "question": "In Cars, what number is Lightning McQueen?",
+      "options": [
+        "43",
+        "86",
+        "95",
+        "100"
+      ],
+      "correct_answer": 2,
+      "explanation": "Lightning McQueen's number 95 references Toy Story's 1995 release year.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pix12",
+      "category_id": "cat-pixar",
+      "question": "What is the name of the lead emotion in Inside Out?",
+      "options": [
+        "Sadness",
+        "Anger",
+        "Joy",
+        "Fear"
+      ],
+      "correct_answer": 2,
+      "explanation": "Joy is the lead emotion who tries to keep Riley happy.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pix13",
+      "category_id": "cat-pixar",
+      "question": "In Finding Dory, what kind of fish is Dory?",
+      "options": [
+        "Clownfish",
+        "Blue Tang",
+        "Angelfish",
+        "Pufferfish"
+      ],
+      "correct_answer": 1,
+      "explanation": "Dory is a blue tang with short-term memory loss.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pix14",
+      "category_id": "cat-pixar",
+      "question": "What is one of Woody's famous pull-string phrases in Toy Story?",
+      "options": [
+        "Howdy partner",
+        "You're my favorite deputy",
+        "There's a snake in my boot",
+        "Reach for the sky"
+      ],
+      "correct_answer": 2,
+      "explanation": "There's a snake in my boot is one of Woody's most recognizable pull-string phrases.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pix15",
+      "category_id": "cat-pixar",
+      "question": "In Brave, what does Merida's mother turn into?",
+      "options": [
+        "A horse",
+        "A deer",
+        "A bear",
+        "A wolf"
+      ],
+      "correct_answer": 2,
+      "explanation": "Queen Elinor is transformed into a bear by a witch's spell.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pix16",
+      "category_id": "cat-pixar",
+      "question": "What is the name of the prospector toy villain in Toy Story 2?",
+      "options": [
+        "Bullseye",
+        "Jessie",
+        "Stinky Pete",
+        "Lotso"
+      ],
+      "correct_answer": 2,
+      "explanation": "Stinky Pete the Prospector is the villain who was never sold from a store shelf.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pix17",
+      "category_id": "cat-pixar",
+      "question": "In The Incredibles, what is Violet's superpower?",
+      "options": [
+        "Super speed",
+        "Force fields and invisibility",
+        "Super strength",
+        "Stretching"
+      ],
+      "correct_answer": 1,
+      "explanation": "Violet Parr can turn invisible and create protective force fields.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pix18",
+      "category_id": "cat-pixar",
+      "question": "What Pixar film is set in the Land of the Dead?",
+      "options": [
+        "Soul",
+        "Coco",
+        "Inside Out",
+        "Onward"
+      ],
+      "correct_answer": 1,
+      "explanation": "Coco follows Miguel to the colorful Land of the Dead on Dia de los Muertos.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pix19",
+      "category_id": "cat-pixar",
+      "question": "In Soul, what instrument does Joe Gardner play?",
+      "options": [
+        "Guitar",
+        "Drums",
+        "Piano",
+        "Saxophone"
+      ],
+      "correct_answer": 2,
+      "explanation": "Joe Gardner is a middle school band teacher and jazz pianist.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pix20",
+      "category_id": "cat-pixar",
+      "question": "In Turning Red, what does Mei transform into?",
+      "options": [
+        "A red fox",
+        "A red panda",
+        "A red bird",
+        "A red cat"
+      ],
+      "correct_answer": 1,
+      "explanation": "Meilin Lee transforms into a giant red panda whenever she gets emotional.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pix21",
+      "category_id": "cat-pixar",
+      "question": "In Luca, what are Luca and Alberto secretly?",
+      "options": [
+        "Robots",
+        "Sea monsters",
+        "Aliens",
+        "Ghosts"
+      ],
+      "correct_answer": 1,
+      "explanation": "Luca and Alberto are sea monsters who take human form on land.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pix22",
+      "category_id": "cat-pixar",
+      "question": "What club does Russell belong to in Up?",
+      "options": [
+        "Boy Scouts",
+        "Wilderness Explorers",
+        "Adventure Rangers",
+        "Junior Adventurers"
+      ],
+      "correct_answer": 1,
+      "explanation": "Russell is a Wilderness Explorer working to earn his Assisting the Elderly badge.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pix23",
+      "category_id": "cat-pixar",
+      "question": "In Elemental, what are the two main elements that fall in love?",
+      "options": [
+        "Fire and Water",
+        "Earth and Air",
+        "Fire and Air",
+        "Water and Earth"
+      ],
+      "correct_answer": 0,
+      "explanation": "Ember (fire) and Wade (water) fall in love despite being opposite elements.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pix24",
+      "category_id": "cat-pixar",
+      "question": "What is the name of the teddy bear villain in Toy Story 3?",
+      "options": [
+        "Bullseye",
+        "Big Baby",
+        "Lotso",
+        "Stinky Pete"
+      ],
+      "correct_answer": 2,
+      "explanation": "Lots-o'-Huggin' Bear is a strawberry-scented teddy bear who runs Sunnyside Daycare.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pix25",
+      "category_id": "cat-pixar",
+      "question": "What is the name of the old man in Up?",
+      "options": [
+        "Carl Fredricksen",
+        "Charles Muntz",
+        "Russell",
+        "Dug"
+      ],
+      "correct_answer": 0,
+      "explanation": "Carl Fredricksen ties thousands of balloons to his house to fly to Paradise Falls.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-sw7",
+      "category_id": "cat-star-wars",
+      "question": "Who is Luke Skywalker's father?",
+      "options": [
+        "Obi-Wan Kenobi",
+        "Darth Vader",
+        "Emperor Palpatine",
+        "Han Solo"
+      ],
+      "correct_answer": 1,
+      "explanation": "Darth Vader is Anakin Skywalker, Luke's father, revealed in The Empire Strikes Back.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-sw8",
+      "category_id": "cat-star-wars",
+      "question": "What is the name of Han Solo's Wookiee co-pilot?",
+      "options": [
+        "Wicket",
+        "Chewbacca",
+        "Tarfful",
+        "Lowbacca"
+      ],
+      "correct_answer": 1,
+      "explanation": "Chewbacca is Han Solo's loyal Wookiee co-pilot and best friend.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-sw9",
+      "category_id": "cat-star-wars",
+      "question": "What is the weapon of choice for a Jedi?",
+      "options": [
+        "Blaster",
+        "Lightsaber",
+        "Bowcaster",
+        "Vibroblade"
+      ],
+      "correct_answer": 1,
+      "explanation": "The lightsaber is described as an elegant weapon for a more civilized age.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-sw10",
+      "category_id": "cat-star-wars",
+      "question": "Who trained Luke Skywalker on Dagobah?",
+      "options": [
+        "Obi-Wan Kenobi",
+        "Mace Windu",
+        "Yoda",
+        "Qui-Gon Jinn"
+      ],
+      "correct_answer": 2,
+      "explanation": "Yoda trained Luke in the ways of the Force on the swamp planet Dagobah.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-sw11",
+      "category_id": "cat-star-wars",
+      "question": "What is the name of Boba Fett's father?",
+      "options": [
+        "Jango Fett",
+        "Cad Bane",
+        "Pre Vizsla",
+        "Din Djarin"
+      ],
+      "correct_answer": 0,
+      "explanation": "Jango Fett is Boba's father and the template for the Republic's clone army.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-sw12",
+      "category_id": "cat-star-wars",
+      "question": "In what year did the original Star Wars film release?",
+      "options": [
+        "1975",
+        "1977",
+        "1979",
+        "1980"
+      ],
+      "correct_answer": 1,
+      "explanation": "Star Wars (A New Hope) premiered on May 25, 1977.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-sw13",
+      "category_id": "cat-star-wars",
+      "question": "Which planet is the home of the Ewoks?",
+      "options": [
+        "Kashyyyk",
+        "Endor",
+        "Hoth",
+        "Dagobah"
+      ],
+      "correct_answer": 1,
+      "explanation": "The forest moon of Endor is home to the Ewoks who help defeat the Empire.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-sw14",
+      "category_id": "cat-star-wars",
+      "question": "Who is the Sith villain in The Phantom Menace?",
+      "options": [
+        "Count Dooku",
+        "Darth Vader",
+        "Darth Maul",
+        "General Grievous"
+      ],
+      "correct_answer": 2,
+      "explanation": "Darth Maul is the Sith apprentice with a distinctive double-bladed lightsaber.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-sw15",
+      "category_id": "cat-star-wars",
+      "question": "What planet is the Jedi Temple located on?",
+      "options": [
+        "Naboo",
+        "Coruscant",
+        "Kamino",
+        "Mustafar"
+      ],
+      "correct_answer": 1,
+      "explanation": "The Jedi Temple is on Coruscant, the capital of the Galactic Republic.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-sw16",
+      "category_id": "cat-star-wars",
+      "question": "What is the name of Boba Fett's ship?",
+      "options": [
+        "Razor Crest",
+        "Slave I",
+        "Outrider",
+        "Ghost"
+      ],
+      "correct_answer": 1,
+      "explanation": "Slave I is Boba Fett's ship that tracks Han Solo to Cloud City.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-sw17",
+      "category_id": "cat-star-wars",
+      "question": "Who says the famous line 'I am your father'?",
+      "options": [
+        "Emperor Palpatine",
+        "Obi-Wan Kenobi",
+        "Darth Vader",
+        "Yoda"
+      ],
+      "correct_answer": 2,
+      "explanation": "Darth Vader reveals he is Luke's father in The Empire Strikes Back.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-sw18",
+      "category_id": "cat-star-wars",
+      "question": "What type of trooper wears white armor in the Empire?",
+      "options": [
+        "Clone Trooper",
+        "Death Trooper",
+        "Stormtrooper",
+        "Scout Trooper"
+      ],
+      "correct_answer": 2,
+      "explanation": "Stormtroopers are the iconic white-armored soldiers of the Galactic Empire.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-sw19",
+      "category_id": "cat-star-wars",
+      "question": "What is unique about Kylo Ren's lightsaber?",
+      "options": [
+        "It's double-bladed",
+        "It has a curved hilt",
+        "It has a crossguard",
+        "It's dual-wielded"
+      ],
+      "correct_answer": 2,
+      "explanation": "Kylo Ren wields a unique crossguard lightsaber with unstable side vents.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-sw20",
+      "category_id": "cat-star-wars",
+      "question": "What is the Mandalorian's real name?",
+      "options": [
+        "Boba Fett",
+        "Cobb Vanth",
+        "Din Djarin",
+        "Pre Vizsla"
+      ],
+      "correct_answer": 2,
+      "explanation": "Din Djarin is the Mandalorian bounty hunter who adopts Grogu.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-sw21",
+      "category_id": "cat-star-wars",
+      "question": "What is Order 66?",
+      "options": [
+        "A trade agreement",
+        "A command to destroy the Jedi",
+        "A droid protocol",
+        "A rebel code"
+      ],
+      "correct_answer": 1,
+      "explanation": "Order 66 was Palpatine's command for clone troopers to execute the Jedi.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-sw22",
+      "category_id": "cat-star-wars",
+      "question": "What is the ice planet in The Empire Strikes Back?",
+      "options": [
+        "Hoth",
+        "Starkiller Base",
+        "Crait",
+        "Ilum"
+      ],
+      "correct_answer": 0,
+      "explanation": "Hoth is the frozen planet where the Rebel Alliance established Echo Base.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-sw23",
+      "category_id": "cat-star-wars",
+      "question": "Who is Rey's grandfather?",
+      "options": [
+        "Luke Skywalker",
+        "Han Solo",
+        "Emperor Palpatine",
+        "Obi-Wan Kenobi"
+      ],
+      "correct_answer": 2,
+      "explanation": "Rey is revealed to be the granddaughter of Emperor Palpatine in The Rise of Skywalker.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-sw24",
+      "category_id": "cat-star-wars",
+      "question": "What is Luke's call sign during the Death Star attack?",
+      "options": [
+        "Gold Leader",
+        "Red Five",
+        "Blue Leader",
+        "Rogue One"
+      ],
+      "correct_answer": 1,
+      "explanation": "Luke's call sign was Red Five during the Battle of Yavin.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-sw25",
+      "category_id": "cat-star-wars",
+      "question": "What is the name of Han Solo's son?",
+      "options": [
+        "Luke Solo",
+        "Anakin Solo",
+        "Ben Solo",
+        "Jacen Solo"
+      ],
+      "correct_answer": 2,
+      "explanation": "Ben Solo is the son of Han and Leia who becomes Kylo Ren.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mar7",
+      "category_id": "cat-marvel",
+      "question": "What is Captain America's shield made of?",
+      "options": [
+        "Adamantium",
+        "Vibranium",
+        "Uru",
+        "Titanium"
+      ],
+      "correct_answer": 1,
+      "explanation": "Captain America's shield is made of vibranium from Wakanda.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mar8",
+      "category_id": "cat-marvel",
+      "question": "What is the name of Tony Stark's AI assistant?",
+      "options": [
+        "Alexa",
+        "JARVIS",
+        "FRIDAY",
+        "Siri"
+      ],
+      "correct_answer": 1,
+      "explanation": "JARVIS (Just A Rather Very Intelligent System) is Tony's AI who later becomes Vision.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mar9",
+      "category_id": "cat-marvel",
+      "question": "Who snaps the Infinity Gauntlet to defeat Thanos in Endgame?",
+      "options": [
+        "Thor",
+        "Captain America",
+        "Tony Stark",
+        "Hulk"
+      ],
+      "correct_answer": 2,
+      "explanation": "Tony Stark sacrifices himself by snapping the Infinity Stones to defeat Thanos.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mar10",
+      "category_id": "cat-marvel",
+      "question": "What is the name of Thor's home realm?",
+      "options": [
+        "Midgard",
+        "Asgard",
+        "Jotunheim",
+        "Vanaheim"
+      ],
+      "correct_answer": 1,
+      "explanation": "Asgard is the home realm of Thor and the Asgardian gods.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mar11",
+      "category_id": "cat-marvel",
+      "question": "Who is the Winter Soldier?",
+      "options": [
+        "Sam Wilson",
+        "Bucky Barnes",
+        "John Walker",
+        "Helmut Zemo"
+      ],
+      "correct_answer": 1,
+      "explanation": "Bucky Barnes is Steve Rogers' childhood friend who was brainwashed into the Winter Soldier.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mar12",
+      "category_id": "cat-marvel",
+      "question": "What country is Black Panther the king of?",
+      "options": [
+        "Wakanda",
+        "Sokovia",
+        "Latveria",
+        "Genosha"
+      ],
+      "correct_answer": 0,
+      "explanation": "T'Challa is the king of Wakanda, a technologically advanced African nation.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mar13",
+      "category_id": "cat-marvel",
+      "question": "How many Infinity Stones are there?",
+      "options": [
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "correct_answer": 2,
+      "explanation": "There are six Infinity Stones: Space, Mind, Reality, Power, Time, and Soul.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mar14",
+      "category_id": "cat-marvel",
+      "question": "What is Hawkeye's real name?",
+      "options": [
+        "Clint Barton",
+        "Scott Lang",
+        "Sam Wilson",
+        "Bucky Barnes"
+      ],
+      "correct_answer": 0,
+      "explanation": "Clint Barton is Hawkeye, the expert archer and founding Avenger.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mar15",
+      "category_id": "cat-marvel",
+      "question": "What is the name of the raccoon in Guardians of the Galaxy?",
+      "options": [
+        "Rocky",
+        "Rocket",
+        "Ranger",
+        "Rascal"
+      ],
+      "correct_answer": 1,
+      "explanation": "Rocket is the genetically enhanced raccoon and weapons expert.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mar16",
+      "category_id": "cat-marvel",
+      "question": "What does Groot always say?",
+      "options": [
+        "I am Groot",
+        "We are Groot",
+        "Groot is here",
+        "Help me"
+      ],
+      "correct_answer": 0,
+      "explanation": "Groot can only say 'I am Groot' but each time it means something different.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mar17",
+      "category_id": "cat-marvel",
+      "question": "Who created Ultron in the MCU?",
+      "options": [
+        "Thanos",
+        "Tony Stark and Bruce Banner",
+        "Hank Pym",
+        "Wanda Maximoff"
+      ],
+      "correct_answer": 1,
+      "explanation": "Tony Stark and Bruce Banner created Ultron as a peacekeeping AI that went rogue.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mar18",
+      "category_id": "cat-marvel",
+      "question": "What artifact does Doctor Strange wear that contains the Time Stone?",
+      "options": [
+        "Cloak of Levitation",
+        "Sling Ring",
+        "Eye of Agamotto",
+        "Book of Vishanti"
+      ],
+      "correct_answer": 2,
+      "explanation": "The Eye of Agamotto is the pendant that houses the Time Stone.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mar19",
+      "category_id": "cat-marvel",
+      "question": "What is Ant-Man's real name in the MCU?",
+      "options": [
+        "Hank Pym",
+        "Scott Lang",
+        "Hope Van Dyne",
+        "Luis"
+      ],
+      "correct_answer": 1,
+      "explanation": "Scott Lang is the MCU's Ant-Man, a former thief turned superhero.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mar20",
+      "category_id": "cat-marvel",
+      "question": "Who is the main villain in Black Panther?",
+      "options": [
+        "Ulysses Klaue",
+        "Helmut Zemo",
+        "Erik Killmonger",
+        "M'Baku"
+      ],
+      "correct_answer": 2,
+      "explanation": "Erik Killmonger challenges T'Challa for the throne of Wakanda.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mar21",
+      "category_id": "cat-marvel",
+      "question": "What color is the Power Stone?",
+      "options": [
+        "Blue",
+        "Red",
+        "Purple",
+        "Green"
+      ],
+      "correct_answer": 2,
+      "explanation": "The Power Stone is purple and was first seen in Guardians of the Galaxy.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mar22",
+      "category_id": "cat-marvel",
+      "question": "Who wields the Stormbreaker axe?",
+      "options": [
+        "Captain America",
+        "Thor",
+        "Odin",
+        "Heimdall"
+      ],
+      "correct_answer": 1,
+      "explanation": "Thor forges Stormbreaker in Nidavellir to fight Thanos in Infinity War.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mar23",
+      "category_id": "cat-marvel",
+      "question": "Who is Peter Parker's aunt?",
+      "options": [
+        "Aunt May",
+        "Aunt June",
+        "Aunt Beth",
+        "Aunt Rose"
+      ],
+      "correct_answer": 0,
+      "explanation": "Aunt May raises Peter Parker and is played by Marisa Tomei in the MCU.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mar24",
+      "category_id": "cat-marvel",
+      "question": "What is the Quantum Realm?",
+      "options": [
+        "Another galaxy",
+        "A subatomic dimension",
+        "A virtual reality",
+        "An alien planet"
+      ],
+      "correct_answer": 1,
+      "explanation": "The Quantum Realm is a subatomic dimension accessible by shrinking beyond atomic scale.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mar25",
+      "category_id": "cat-marvel",
+      "question": "Who is the God of Thunder in the MCU?",
+      "options": [
+        "Loki",
+        "Odin",
+        "Thor",
+        "Heimdall"
+      ],
+      "correct_answer": 2,
+      "explanation": "Thor Odinson is the Asgardian God of Thunder and a founding Avenger.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-vil9",
+      "category_id": "cat-villains",
+      "question": "What is Captain Hook afraid of?",
+      "options": [
+        "Peter Pan",
+        "A crocodile",
+        "The sea",
+        "Flying"
+      ],
+      "correct_answer": 1,
+      "explanation": "Captain Hook fears the crocodile that swallowed his hand and a ticking clock.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-vil10",
+      "category_id": "cat-villains",
+      "question": "Who is the villain in The Emperor's New Groove?",
+      "options": [
+        "Maleficent",
+        "Yzma",
+        "Jafar",
+        "Gaston"
+      ],
+      "correct_answer": 1,
+      "explanation": "Yzma is the conniving advisor who wants to overthrow Emperor Kuzco.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-vil11",
+      "category_id": "cat-villains",
+      "question": "What does Gaston want in Beauty and the Beast?",
+      "options": [
+        "Gold",
+        "The Beast's castle",
+        "To marry Belle",
+        "To be king"
+      ],
+      "correct_answer": 2,
+      "explanation": "Gaston is obsessed with marrying Belle because she is the most beautiful girl in town.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-vil12",
+      "category_id": "cat-villains",
+      "question": "Who are Ursula's eel sidekicks in The Little Mermaid?",
+      "options": [
+        "Flotsam and Jetsam",
+        "Pain and Panic",
+        "Lock and Shock",
+        "Iago and Diablo"
+      ],
+      "correct_answer": 0,
+      "explanation": "Flotsam and Jetsam are Ursula's sneaky electric eel minions.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-vil13",
+      "category_id": "cat-villains",
+      "question": "What does Maleficent turn into at the end of Sleeping Beauty?",
+      "options": [
+        "A snake",
+        "A witch",
+        "A dragon",
+        "A raven"
+      ],
+      "correct_answer": 2,
+      "explanation": "Maleficent transforms into a fire-breathing dragon to fight Prince Phillip.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-vil14",
+      "category_id": "cat-villains",
+      "question": "Who is the villain in Pocahontas?",
+      "options": [
+        "Captain Hook",
+        "John Smith",
+        "Governor Ratcliffe",
+        "Claude Frollo"
+      ],
+      "correct_answer": 2,
+      "explanation": "Governor Ratcliffe leads the English settlers and greedily seeks gold in the New World.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-vil15",
+      "category_id": "cat-villains",
+      "question": "What is the name of Jafar's parrot?",
+      "options": [
+        "Iago",
+        "Diablo",
+        "Zazu",
+        "Scuttle"
+      ],
+      "correct_answer": 0,
+      "explanation": "Iago is Jafar's loud and scheming parrot sidekick voiced by Gilbert Gottfried.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-vil16",
+      "category_id": "cat-villains",
+      "question": "Who is the villain in The Hunchback of Notre Dame?",
+      "options": [
+        "Gaston",
+        "Claude Frollo",
+        "Ratcliffe",
+        "Dr. Facilier"
+      ],
+      "correct_answer": 1,
+      "explanation": "Judge Claude Frollo is the cruel minister who raises Quasimodo in the bell tower.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-vil17",
+      "category_id": "cat-villains",
+      "question": "What magic does Dr. Facilier use in The Princess and the Frog?",
+      "options": [
+        "A magic lamp",
+        "Voodoo magic",
+        "Sorcery",
+        "Alchemy"
+      ],
+      "correct_answer": 1,
+      "explanation": "Dr. Facilier, the Shadow Man, uses voodoo and makes deals with dark spirits.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-vil18",
+      "category_id": "cat-villains",
+      "question": "What is the Evil Queen's famous line in Snow White?",
+      "options": [
+        "Off with their heads",
+        "Mirror mirror on the wall",
+        "I'll get you my pretty",
+        "Long live the queen"
+      ],
+      "correct_answer": 1,
+      "explanation": "The Evil Queen asks her magic mirror who is the fairest of them all.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-vil19",
+      "category_id": "cat-villains",
+      "question": "What animal is Prince John in Disney's Robin Hood?",
+      "options": [
+        "Fox",
+        "Bear",
+        "Lion",
+        "Snake"
+      ],
+      "correct_answer": 2,
+      "explanation": "Prince John is a cowardly lion who rules England in King Richard's absence.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-vil20",
+      "category_id": "cat-villains",
+      "question": "What does Te Ka turn out to be in Moana?",
+      "options": [
+        "Te Fiti",
+        "Tamatoa",
+        "Maui's shadow",
+        "A volcano goddess"
+      ],
+      "correct_answer": 0,
+      "explanation": "Te Ka is actually the goddess Te Fiti, corrupted after her heart was stolen.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-vil21",
+      "category_id": "cat-villains",
+      "question": "What is Shere Khan in The Jungle Book?",
+      "options": [
+        "A bear",
+        "A panther",
+        "A tiger",
+        "A snake"
+      ],
+      "correct_answer": 2,
+      "explanation": "Shere Khan is the fearsome Bengal tiger who wants to kill Mowgli.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-vil22",
+      "category_id": "cat-villains",
+      "question": "Who is Cruella de Vil's obsession in 101 Dalmatians?",
+      "options": [
+        "Jewelry",
+        "Power",
+        "Dalmatian fur",
+        "Money"
+      ],
+      "correct_answer": 2,
+      "explanation": "Cruella is obsessed with making a fur coat from dalmatian puppy spots.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-vil23",
+      "category_id": "cat-villains",
+      "question": "Who is the villain in Big Hero 6?",
+      "options": [
+        "Professor Callaghan",
+        "Alistair Krei",
+        "Baymax",
+        "Tadashi"
+      ],
+      "correct_answer": 0,
+      "explanation": "Professor Callaghan is revealed to be the masked villain Yokai seeking revenge.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-vil24",
+      "category_id": "cat-villains",
+      "question": "Who is the villain in Wreck-It Ralph?",
+      "options": [
+        "Fix-It Felix",
+        "King Candy",
+        "Sergeant Calhoun",
+        "Vanellope"
+      ],
+      "correct_answer": 1,
+      "explanation": "King Candy is actually Turbo in disguise, a game-jumping villain.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-vil25",
+      "category_id": "cat-villains",
+      "question": "What are Pain and Panic in Hercules?",
+      "options": [
+        "Hades' imp minions",
+        "Titans",
+        "Heroes",
+        "Gods"
+      ],
+      "correct_answer": 0,
+      "explanation": "Pain and Panic are Hades' bumbling imp sidekicks in Hercules.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pri9",
+      "category_id": "cat-princesses",
+      "question": "What does Rapunzel use as a weapon in Tangled?",
+      "options": [
+        "A sword",
+        "A frying pan",
+        "A bow",
+        "Her hair"
+      ],
+      "correct_answer": 1,
+      "explanation": "Rapunzel's trusty frying pan becomes her signature weapon throughout Tangled.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pri10",
+      "category_id": "cat-princesses",
+      "question": "Where is Moana from?",
+      "options": [
+        "Hawaii",
+        "Motunui",
+        "Fiji",
+        "Tahiti"
+      ],
+      "correct_answer": 1,
+      "explanation": "Moana is from the fictional Polynesian island of Motunui.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pri11",
+      "category_id": "cat-princesses",
+      "question": "What is Tiana's best friend's name in The Princess and the Frog?",
+      "options": [
+        "Charlotte",
+        "Evangeline",
+        "Mama Odie",
+        "Eudora"
+      ],
+      "correct_answer": 0,
+      "explanation": "Charlotte La Bouff is Tiana's wealthy and princess-obsessed best friend.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pri12",
+      "category_id": "cat-princesses",
+      "question": "What does Cinderella lose at the ball?",
+      "options": [
+        "Her tiara",
+        "Her necklace",
+        "Her glass slipper",
+        "Her ring"
+      ],
+      "correct_answer": 2,
+      "explanation": "Cinderella loses her glass slipper on the palace steps as she flees at midnight.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pri13",
+      "category_id": "cat-princesses",
+      "question": "Which Disney Princess is Scottish?",
+      "options": [
+        "Rapunzel",
+        "Aurora",
+        "Merida",
+        "Moana"
+      ],
+      "correct_answer": 2,
+      "explanation": "Merida is the Scottish princess from Brave who is skilled with a bow and arrow.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pri14",
+      "category_id": "cat-princesses",
+      "question": "What animal does Jasmine have as a pet?",
+      "options": [
+        "A monkey",
+        "A parrot",
+        "A tiger",
+        "A horse"
+      ],
+      "correct_answer": 2,
+      "explanation": "Rajah is Princess Jasmine's loyal pet Bengal tiger.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pri15",
+      "category_id": "cat-princesses",
+      "question": "What is Aurora's other name in Sleeping Beauty?",
+      "options": [
+        "Rose",
+        "Briar Rose",
+        "Dawn",
+        "Rose Red"
+      ],
+      "correct_answer": 1,
+      "explanation": "Aurora is raised in the forest under the name Briar Rose by three good fairies.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pri16",
+      "category_id": "cat-princesses",
+      "question": "Who are the three fairies in Sleeping Beauty?",
+      "options": [
+        "Flora, Fauna, and Merryweather",
+        "Tinker Bell, Silvermist, and Rosetta",
+        "The Fairy Godmother and sisters",
+        "Mary, Clara, and Rose"
+      ],
+      "correct_answer": 0,
+      "explanation": "Flora, Fauna, and Merryweather are the three good fairies who raise Princess Aurora.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pri17",
+      "category_id": "cat-princesses",
+      "question": "What is Rapunzel's chameleon friend called?",
+      "options": [
+        "Maximus",
+        "Pascal",
+        "Flynn",
+        "Hook Hand"
+      ],
+      "correct_answer": 1,
+      "explanation": "Pascal is Rapunzel's loyal chameleon companion in Tangled.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pri18",
+      "category_id": "cat-princesses",
+      "question": "Which princess can control ice and snow?",
+      "options": [
+        "Anna",
+        "Elsa",
+        "Rapunzel",
+        "Moana"
+      ],
+      "correct_answer": 1,
+      "explanation": "Elsa has the magical power to create and control ice and snow.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pri19",
+      "category_id": "cat-princesses",
+      "question": "Who is Belle's father in Beauty and the Beast?",
+      "options": [
+        "Gaston",
+        "Maurice",
+        "Philippe",
+        "Lumiere"
+      ],
+      "correct_answer": 1,
+      "explanation": "Maurice is Belle's eccentric inventor father who gets lost in the forest.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pri20",
+      "category_id": "cat-princesses",
+      "question": "What does Ariel collect from the human world?",
+      "options": [
+        "Jewelry",
+        "Books",
+        "Human artifacts and gadgets",
+        "Seashells"
+      ],
+      "correct_answer": 2,
+      "explanation": "Ariel has a secret grotto filled with human objects she calls gadgets and gizmos.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pri21",
+      "category_id": "cat-princesses",
+      "question": "Which princess disguises herself as a man to join the army?",
+      "options": [
+        "Merida",
+        "Mulan",
+        "Jasmine",
+        "Moana"
+      ],
+      "correct_answer": 1,
+      "explanation": "Mulan disguises herself as Ping to take her father's place in the Chinese army.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pri22",
+      "category_id": "cat-princesses",
+      "question": "What is the name of Pocahontas's love interest?",
+      "options": [
+        "John Rolfe",
+        "John Smith",
+        "Captain Hook",
+        "Eric"
+      ],
+      "correct_answer": 1,
+      "explanation": "Captain John Smith is the English explorer who falls in love with Pocahontas.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pri23",
+      "category_id": "cat-princesses",
+      "question": "In Moana, what must be returned to Te Fiti?",
+      "options": [
+        "Her crown",
+        "Her heart",
+        "Her pearl",
+        "Her necklace"
+      ],
+      "correct_answer": 1,
+      "explanation": "Moana must return the heart of Te Fiti to stop the darkness spreading across the ocean.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pri24",
+      "category_id": "cat-princesses",
+      "question": "What is the name of Ariel's seagull friend?",
+      "options": [
+        "Sebastian",
+        "Flounder",
+        "Scuttle",
+        "Max"
+      ],
+      "correct_answer": 2,
+      "explanation": "Scuttle is the seagull who claims to know about human objects but gets everything wrong.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pri25",
+      "category_id": "cat-princesses",
+      "question": "Which Disney Princess does not sing a solo in her movie?",
+      "options": [
+        "Aurora",
+        "Merida",
+        "Jasmine",
+        "Moana"
+      ],
+      "correct_answer": 1,
+      "explanation": "Merida from Brave is the only Disney Princess who does not have a solo song in her film.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mus9",
+      "category_id": "cat-music",
+      "question": "What movie features the song 'Be Our Guest'?",
+      "options": [
+        "Cinderella",
+        "Aladdin",
+        "Beauty and the Beast",
+        "The Little Mermaid"
+      ],
+      "correct_answer": 2,
+      "explanation": "Be Our Guest is sung by Lumiere and the enchanted objects in Beauty and the Beast.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mus10",
+      "category_id": "cat-music",
+      "question": "Who sings 'Part of Your World' in The Little Mermaid?",
+      "options": [
+        "Belle",
+        "Ariel",
+        "Cinderella",
+        "Jasmine"
+      ],
+      "correct_answer": 1,
+      "explanation": "Part of Your World is Ariel's signature song about wanting to live on land.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mus11",
+      "category_id": "cat-music",
+      "question": "What Disney song from Pinocchio became the Disney company's theme?",
+      "options": [
+        "When You Wish Upon a Star",
+        "I've Got No Strings",
+        "Give a Little Whistle",
+        "Hi-Diddle-Dee-Dee"
+      ],
+      "correct_answer": 0,
+      "explanation": "When You Wish Upon a Star won an Oscar and became the Walt Disney Company's signature melody.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mus12",
+      "category_id": "cat-music",
+      "question": "Which Disney film features the song 'Hakuna Matata'?",
+      "options": [
+        "Aladdin",
+        "The Lion King",
+        "The Jungle Book",
+        "Tarzan"
+      ],
+      "correct_answer": 1,
+      "explanation": "Hakuna Matata means 'no worries' and is sung by Timon and Pumbaa in The Lion King.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mus13",
+      "category_id": "cat-music",
+      "question": "Who sings 'We Don't Talk About Bruno' in Encanto?",
+      "options": [
+        "Bruno",
+        "Mirabel",
+        "The whole Madrigal family",
+        "Luisa"
+      ],
+      "correct_answer": 2,
+      "explanation": "Multiple Madrigal family members each take turns singing about the taboo subject of Bruno.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mus14",
+      "category_id": "cat-music",
+      "question": "What movie features the song 'You've Got a Friend in Me'?",
+      "options": [
+        "Monsters Inc",
+        "Finding Nemo",
+        "Toy Story",
+        "Cars"
+      ],
+      "correct_answer": 2,
+      "explanation": "You've Got a Friend in Me by Randy Newman is the iconic Toy Story theme song.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mus15",
+      "category_id": "cat-music",
+      "question": "Who wrote the music for Mary Poppins?",
+      "options": [
+        "Alan Menken",
+        "The Sherman Brothers",
+        "Elton John",
+        "Randy Newman"
+      ],
+      "correct_answer": 1,
+      "explanation": "Richard and Robert Sherman wrote Supercalifragilisticexpialidocious and all Mary Poppins songs.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mus16",
+      "category_id": "cat-music",
+      "question": "What Disney song includes the lyric 'tale as old as time'?",
+      "options": [
+        "A Whole New World",
+        "Beauty and the Beast",
+        "Can You Feel the Love Tonight",
+        "Colors of the Wind"
+      ],
+      "correct_answer": 1,
+      "explanation": "Tale as old as time is the iconic opening lyric of the Beauty and the Beast waltz.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mus17",
+      "category_id": "cat-music",
+      "question": "Who wrote the songs for Tarzan?",
+      "options": [
+        "Elton John",
+        "Phil Collins",
+        "Alan Menken",
+        "Hans Zimmer"
+      ],
+      "correct_answer": 1,
+      "explanation": "Phil Collins wrote and performed all songs for Tarzan including You'll Be in My Heart.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mus18",
+      "category_id": "cat-music",
+      "question": "What Moana song does Dwayne Johnson perform?",
+      "options": [
+        "How Far I'll Go",
+        "Shiny",
+        "You're Welcome",
+        "We Know the Way"
+      ],
+      "correct_answer": 2,
+      "explanation": "Dwayne Johnson voices Maui and sings You're Welcome, written by Lin-Manuel Miranda.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mus19",
+      "category_id": "cat-music",
+      "question": "Which song is from Mulan?",
+      "options": [
+        "I'll Make a Man Out of You",
+        "Be Prepared",
+        "One Jump Ahead",
+        "Friend Like Me"
+      ],
+      "correct_answer": 0,
+      "explanation": "I'll Make a Man Out of You is the training montage song sung by Captain Li Shang.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mus20",
+      "category_id": "cat-music",
+      "question": "What movie features 'Colors of the Wind'?",
+      "options": [
+        "Moana",
+        "Brave",
+        "Pocahontas",
+        "Mulan"
+      ],
+      "correct_answer": 2,
+      "explanation": "Colors of the Wind is Pocahontas's signature song about respecting nature.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mus21",
+      "category_id": "cat-music",
+      "question": "Who wrote 'Can You Feel the Love Tonight' from The Lion King?",
+      "options": [
+        "Hans Zimmer",
+        "Alan Menken",
+        "Elton John and Tim Rice",
+        "Phil Collins"
+      ],
+      "correct_answer": 2,
+      "explanation": "Elton John composed the music and Tim Rice wrote the lyrics for The Lion King's songs.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mus22",
+      "category_id": "cat-music",
+      "question": "What is the opening song of Aladdin?",
+      "options": [
+        "A Whole New World",
+        "Friend Like Me",
+        "Prince Ali",
+        "Arabian Nights"
+      ],
+      "correct_answer": 3,
+      "explanation": "Arabian Nights is the opening number sung by a merchant introducing the story of Aladdin.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mus23",
+      "category_id": "cat-music",
+      "question": "Which Frozen song became a worldwide phenomenon and won an Academy Award?",
+      "options": [
+        "Do You Want to Build a Snowman",
+        "Let It Go",
+        "For the First Time in Forever",
+        "Into the Unknown"
+      ],
+      "correct_answer": 1,
+      "explanation": "Let It Go won the Academy Award for Best Original Song and became a cultural phenomenon.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mus24",
+      "category_id": "cat-music",
+      "question": "Which Disney Renaissance film does NOT have music by Alan Menken?",
+      "options": [
+        "The Little Mermaid",
+        "Beauty and the Beast",
+        "The Lion King",
+        "Aladdin"
+      ],
+      "correct_answer": 2,
+      "explanation": "The Lion King features music by Hans Zimmer with songs by Elton John and Tim Rice.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mus25",
+      "category_id": "cat-music",
+      "question": "What is Sebastian's full name in The Little Mermaid?",
+      "options": [
+        "Sebastian Crab",
+        "Horatio Thelonious Ignacious Crustaceous Sebastian",
+        "Sebastian the Crab",
+        "Sir Sebastian"
+      ],
+      "correct_answer": 1,
+      "explanation": "Sebastian's full name is Horatio Thelonious Ignacious Crustaceous Sebastian.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-prk11",
+      "category_id": "cat-parks",
+      "question": "How many happy haunts are in the Haunted Mansion?",
+      "options": [
+        "666",
+        "899",
+        "999",
+        "1013"
+      ],
+      "correct_answer": 2,
+      "explanation": "The Haunted Mansion features 999 happy haunts with room for one more.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-prk12",
+      "category_id": "cat-parks",
+      "question": "What is EPCOT an acronym for?",
+      "options": [
+        "Every Person Comes Out Tired",
+        "Experimental Prototype Community of Tomorrow",
+        "Entertainment Park of Creative Opportunities",
+        "Exciting Place for Children of Tomorrow"
+      ],
+      "correct_answer": 1,
+      "explanation": "EPCOT stands for Experimental Prototype Community of Tomorrow, Walt Disney's vision.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-prk13",
+      "category_id": "cat-parks",
+      "question": "Which Disney park has the Matterhorn Bobsleds?",
+      "options": [
+        "Magic Kingdom",
+        "Disneyland",
+        "Tokyo Disneyland",
+        "Shanghai Disneyland"
+      ],
+      "correct_answer": 1,
+      "explanation": "The Matterhorn Bobsleds at Disneyland was the world's first tubular steel roller coaster.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-prk14",
+      "category_id": "cat-parks",
+      "question": "What is the tallest mountain attraction at Walt Disney World?",
+      "options": [
+        "Space Mountain",
+        "Big Thunder Mountain",
+        "Splash Mountain",
+        "Expedition Everest"
+      ],
+      "correct_answer": 3,
+      "explanation": "Expedition Everest at Animal Kingdom stands at 199 feet tall.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-prk15",
+      "category_id": "cat-parks",
+      "question": "Which Disneyland land features Sleeping Beauty Castle?",
+      "options": [
+        "Main Street USA",
+        "Adventureland",
+        "Fantasyland",
+        "Tomorrowland"
+      ],
+      "correct_answer": 2,
+      "explanation": "Sleeping Beauty Castle is the gateway to Fantasyland at Disneyland.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-prk16",
+      "category_id": "cat-parks",
+      "question": "What Walt Disney World park is themed around movies?",
+      "options": [
+        "EPCOT",
+        "Magic Kingdom",
+        "Hollywood Studios",
+        "Animal Kingdom"
+      ],
+      "correct_answer": 2,
+      "explanation": "Disney's Hollywood Studios is themed around movies, TV, music, and theater.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-prk17",
+      "category_id": "cat-parks",
+      "question": "What is the Avatar-themed land called at Animal Kingdom?",
+      "options": [
+        "Avatar Land",
+        "Pandora - The World of Avatar",
+        "Na'vi Village",
+        "Hometree"
+      ],
+      "correct_answer": 1,
+      "explanation": "Pandora - The World of Avatar opened at Animal Kingdom in 2017.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-prk18",
+      "category_id": "cat-parks",
+      "question": "What ride lets you design and race your own car at EPCOT?",
+      "options": [
+        "Space Mountain",
+        "Test Track",
+        "Rock 'n' Roller Coaster",
+        "Radiator Springs Racers"
+      ],
+      "correct_answer": 1,
+      "explanation": "Test Track at EPCOT lets guests design a virtual car and test it on a high-speed track.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-prk19",
+      "category_id": "cat-parks",
+      "question": "What is the pirate-themed ride at Disney parks called?",
+      "options": [
+        "Jolly Roger's Revenge",
+        "Pirates of the Caribbean",
+        "Blackbeard's Bounty",
+        "Treasure Cove"
+      ],
+      "correct_answer": 1,
+      "explanation": "Pirates of the Caribbean was one of the last attractions personally supervised by Walt Disney.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-prk20",
+      "category_id": "cat-parks",
+      "question": "Which Walt Disney World resort has the monorail running through it?",
+      "options": [
+        "Art of Animation",
+        "All-Star Movies",
+        "Contemporary Resort",
+        "Caribbean Beach"
+      ],
+      "correct_answer": 2,
+      "explanation": "The Contemporary Resort has the monorail running through its iconic A-frame building.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-prk21",
+      "category_id": "cat-parks",
+      "question": "What is the indoor roller coaster in Tomorrowland?",
+      "options": [
+        "Rock 'n' Roller Coaster",
+        "Space Mountain",
+        "Flight of Passage",
+        "TRON Lightcycle"
+      ],
+      "correct_answer": 1,
+      "explanation": "Space Mountain is the classic indoor dark roller coaster in Tomorrowland.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-prk22",
+      "category_id": "cat-parks",
+      "question": "How many themed lands did Disneyland have on opening day in 1955?",
+      "options": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "correct_answer": 2,
+      "explanation": "Disneyland opened with Main Street USA, Adventureland, Frontierland, Fantasyland, and Tomorrowland.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-prk23",
+      "category_id": "cat-parks",
+      "question": "What is the name of Disney's flagship merchandise store on Main Street?",
+      "options": [
+        "Disney Trading Post",
+        "The Emporium",
+        "World of Disney",
+        "Disney Outfitters"
+      ],
+      "correct_answer": 1,
+      "explanation": "The Emporium is the large merchandise store on Main Street USA at Disney parks.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-prk24",
+      "category_id": "cat-parks",
+      "question": "What is the name of the nighttime show at EPCOT's World Showcase Lagoon?",
+      "options": [
+        "IllumiNations",
+        "Luminous",
+        "Harmonious",
+        "EPCOT Forever"
+      ],
+      "correct_answer": 1,
+      "explanation": "Luminous The Symphony of Us is the current nighttime spectacular at EPCOT.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-prk25",
+      "category_id": "cat-parks",
+      "question": "What ride replaced Splash Mountain at Magic Kingdom?",
+      "options": [
+        "Tiana's Bayou Adventure",
+        "Princess and the Frog Rapids",
+        "Down in New Orleans",
+        "Tiana's Palace Ride"
+      ],
+      "correct_answer": 0,
+      "explanation": "Tiana's Bayou Adventure replaced Splash Mountain, rethemed to The Princess and the Frog.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-cru11",
+      "category_id": "cat-cruise",
+      "question": "What is the water coaster on the Disney Dream and Fantasy called?",
+      "options": [
+        "AquaDunk",
+        "AquaDuck",
+        "AquaSlide",
+        "Pelican Plunge"
+      ],
+      "correct_answer": 1,
+      "explanation": "AquaDuck is the shipboard water coaster that extends over the edge of the ship.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-cru12",
+      "category_id": "cat-cruise",
+      "question": "What is the teen club called on Disney cruise ships?",
+      "options": [
+        "Club 17",
+        "Vibe",
+        "Edge",
+        "The Hangout"
+      ],
+      "correct_answer": 1,
+      "explanation": "Vibe is the exclusive teen hangout for ages 14-17 on Disney cruise ships.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-cru13",
+      "category_id": "cat-cruise",
+      "question": "What is Disney Cruise Line's second private destination in the Bahamas?",
+      "options": [
+        "Lighthouse Point",
+        "Treasure Cay",
+        "Eleuthera Beach",
+        "Disney Island"
+      ],
+      "correct_answer": 0,
+      "explanation": "Lighthouse Point on the island of Eleuthera is Disney's second Bahamas destination.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-cru14",
+      "category_id": "cat-cruise",
+      "question": "What celebration happens on deck as the ship departs?",
+      "options": [
+        "A farewell wave",
+        "The Sailing Away party",
+        "The Captain's toast",
+        "The bon voyage show"
+      ],
+      "correct_answer": 1,
+      "explanation": "The Sailing Away party is a fun deck celebration with characters as the ship departs port.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-cru15",
+      "category_id": "cat-cruise",
+      "question": "How many nights is the shortest regular Disney Cruise sailing?",
+      "options": [
+        "1 night",
+        "2 nights",
+        "3 nights",
+        "5 nights"
+      ],
+      "correct_answer": 2,
+      "explanation": "Three-night Bahamas cruises are the shortest regular Disney Cruise Line sailings.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-cru16",
+      "category_id": "cat-cruise",
+      "question": "What is the main entertainment theater called on Disney cruise ships?",
+      "options": [
+        "Walt Disney Theatre",
+        "Buena Vista Theatre",
+        "Grand Hall",
+        "Enchanted Stage"
+      ],
+      "correct_answer": 0,
+      "explanation": "The Walt Disney Theatre hosts Broadway-style stage shows on Disney cruise ships.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-cru17",
+      "category_id": "cat-cruise",
+      "question": "What age group is the Edge club for on Disney ships?",
+      "options": [
+        "3-7",
+        "8-10",
+        "11-14",
+        "15-17"
+      ],
+      "correct_answer": 2,
+      "explanation": "Edge is the tween hangout for ages 11-14 on Disney Cruise Line ships.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-cru18",
+      "category_id": "cat-cruise",
+      "question": "What is the nursery for babies on Disney ships called?",
+      "options": [
+        "It's a Small World Nursery",
+        "Neverland Nursery",
+        "Flounder's Reef",
+        "Pixie Hollow"
+      ],
+      "correct_answer": 0,
+      "explanation": "It's a Small World Nursery is available for infants and toddlers under age 3.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-cru19",
+      "category_id": "cat-cruise",
+      "question": "Where does Disney Cruise Line primarily depart from in Florida?",
+      "options": [
+        "Miami",
+        "Fort Lauderdale",
+        "Port Canaveral",
+        "Tampa"
+      ],
+      "correct_answer": 2,
+      "explanation": "Port Canaveral is Disney Cruise Line's primary departure port in Florida.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-cru20",
+      "category_id": "cat-cruise",
+      "question": "What is fish extender (FE) gifting on a Disney Cruise?",
+      "options": [
+        "A fishing excursion",
+        "A passenger gift exchange tradition",
+        "An onboard dining event",
+        "A character meet and greet"
+      ],
+      "correct_answer": 1,
+      "explanation": "Fish extender gifting is a fan tradition where passengers exchange small gifts hung on door hooks.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-cru21",
+      "category_id": "cat-cruise",
+      "question": "What type of stateroom has a private outdoor balcony?",
+      "options": [
+        "Interior",
+        "Oceanview",
+        "Verandah",
+        "Porthole"
+      ],
+      "correct_answer": 2,
+      "explanation": "Verandah staterooms feature a private balcony for enjoying ocean views.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-cru22",
+      "category_id": "cat-cruise",
+      "question": "What is Disney Cruise Line's loyalty program called?",
+      "options": [
+        "Disney Rewards",
+        "Castaway Club",
+        "Silver Seas Club",
+        "Magic Miles"
+      ],
+      "correct_answer": 1,
+      "explanation": "Castaway Club rewards repeat cruisers with Silver, Gold, and Platinum membership levels.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-cru23",
+      "category_id": "cat-cruise",
+      "question": "Which Disney ship introduced the AquaMouse water attraction?",
+      "options": [
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Wish",
+        "Disney Treasure"
+      ],
+      "correct_answer": 2,
+      "explanation": "Disney Wish introduced AquaMouse, a family water attraction with animated show scenes.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-cru24",
+      "category_id": "cat-cruise",
+      "question": "What year did the Disney Magic first set sail?",
+      "options": [
+        "1995",
+        "1998",
+        "2000",
+        "2002"
+      ],
+      "correct_answer": 1,
+      "explanation": "Disney Magic launched in 1998 as the very first Disney Cruise Line ship.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-cru25",
+      "category_id": "cat-cruise",
+      "question": "What is the name of the Disney Cruise Line's sixth ship?",
+      "options": [
+        "Disney Adventure",
+        "Disney Destiny",
+        "Disney Treasure",
+        "Disney Lighthouse"
+      ],
+      "correct_answer": 2,
+      "explanation": "Disney Treasure is the sixth ship in the Disney Cruise Line fleet.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-wlt7",
+      "category_id": "cat-walt-history",
+      "question": "What was Walt Disney's first theme park?",
+      "options": [
+        "Walt Disney World",
+        "Disneyland",
+        "EPCOT",
+        "Disney California Adventure"
+      ],
+      "correct_answer": 1,
+      "explanation": "Disneyland in Anaheim, California opened in 1955 as Walt's first theme park.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-wlt8",
+      "category_id": "cat-walt-history",
+      "question": "What year did Walt Disney pass away?",
+      "options": [
+        "1960",
+        "1964",
+        "1966",
+        "1970"
+      ],
+      "correct_answer": 2,
+      "explanation": "Walt Disney passed away on December 15, 1966 from lung cancer.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-wlt9",
+      "category_id": "cat-walt-history",
+      "question": "What was the first cartoon with fully synchronized sound throughout?",
+      "options": [
+        "Plane Crazy",
+        "Steamboat Willie",
+        "The Gallopin' Gaucho",
+        "The Barn Dance"
+      ],
+      "correct_answer": 1,
+      "explanation": "Steamboat Willie premiered in 1928 as the first cartoon with synchronized sound throughout.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-wlt10",
+      "category_id": "cat-walt-history",
+      "question": "What company did Walt and Roy Disney originally found?",
+      "options": [
+        "Walt Disney Productions",
+        "Disney Brothers Cartoon Studio",
+        "The Walt Disney Company",
+        "Disney Animation"
+      ],
+      "correct_answer": 1,
+      "explanation": "Walt and Roy Disney founded the Disney Brothers Cartoon Studio in 1923.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-wlt11",
+      "category_id": "cat-walt-history",
+      "question": "What small Missouri town inspired Main Street USA?",
+      "options": [
+        "St. Louis",
+        "Kansas City",
+        "Marceline",
+        "Springfield"
+      ],
+      "correct_answer": 2,
+      "explanation": "Walt spent formative childhood years in Marceline, Missouri which inspired Main Street USA.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-wlt12",
+      "category_id": "cat-walt-history",
+      "question": "How many competitive Academy Awards did Walt Disney win?",
+      "options": [
+        "12",
+        "22",
+        "32",
+        "42"
+      ],
+      "correct_answer": 1,
+      "explanation": "Walt Disney won 22 competitive Academy Awards, more than any other individual in history.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-wlt13",
+      "category_id": "cat-walt-history",
+      "question": "What was Disney's first fully live-action feature film?",
+      "options": [
+        "Treasure Island",
+        "20,000 Leagues Under the Sea",
+        "Old Yeller",
+        "Mary Poppins"
+      ],
+      "correct_answer": 0,
+      "explanation": "Treasure Island released in 1950 was Disney's first fully live-action feature film.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-wlt14",
+      "category_id": "cat-walt-history",
+      "question": "What did Disney produce for the US military during World War II?",
+      "options": [
+        "Weapons",
+        "Training and propaganda films",
+        "Uniforms",
+        "Nothing"
+      ],
+      "correct_answer": 1,
+      "explanation": "Disney produced training and propaganda films for the US military during WWII.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-wlt15",
+      "category_id": "cat-walt-history",
+      "question": "What TV show did Walt Disney personally host?",
+      "options": [
+        "The Mickey Mouse Show",
+        "Walt Disney's Wonderful World of Color",
+        "The Disney Hour",
+        "Disney Story Time"
+      ],
+      "correct_answer": 1,
+      "explanation": "Walt hosted the anthology TV series which premiered in 1954 and ran for decades.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-wlt16",
+      "category_id": "cat-walt-history",
+      "question": "Who was Walt Disney's wife?",
+      "options": [
+        "Mary Disney",
+        "Lillian Disney",
+        "Margaret Disney",
+        "Dorothy Disney"
+      ],
+      "correct_answer": 1,
+      "explanation": "Lillian Bounds married Walt Disney in 1925 and famously suggested the name Mickey.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-wlt17",
+      "category_id": "cat-walt-history",
+      "question": "What was Disney's first full-color animated short?",
+      "options": [
+        "Steamboat Willie",
+        "Flowers and Trees",
+        "The Three Little Pigs",
+        "The Old Mill"
+      ],
+      "correct_answer": 1,
+      "explanation": "Flowers and Trees (1932) was the first film in three-strip Technicolor and won an Oscar.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-wlt18",
+      "category_id": "cat-walt-history",
+      "question": "What year did The Walt Disney Company acquire Pixar?",
+      "options": [
+        "2000",
+        "2004",
+        "2006",
+        "2010"
+      ],
+      "correct_answer": 2,
+      "explanation": "Disney acquired Pixar in 2006 for approximately 7.4 billion dollars.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-wlt19",
+      "category_id": "cat-walt-history",
+      "question": "What year did Disney acquire Marvel Entertainment?",
+      "options": [
+        "2006",
+        "2009",
+        "2012",
+        "2015"
+      ],
+      "correct_answer": 1,
+      "explanation": "Disney acquired Marvel Entertainment in 2009 for approximately 4 billion dollars.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-wlt20",
+      "category_id": "cat-walt-history",
+      "question": "What year did Disney acquire Lucasfilm?",
+      "options": [
+        "2010",
+        "2012",
+        "2014",
+        "2016"
+      ],
+      "correct_answer": 1,
+      "explanation": "Disney acquired Lucasfilm and the Star Wars franchise in 2012 for 4.05 billion dollars.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-wlt21",
+      "category_id": "cat-walt-history",
+      "question": "Who led Disney as CEO during the Renaissance era of the 1990s?",
+      "options": [
+        "Bob Iger",
+        "Michael Eisner",
+        "Frank Wells",
+        "Jeffrey Katzenberg"
+      ],
+      "correct_answer": 1,
+      "explanation": "Michael Eisner was CEO from 1984 to 2005 and oversaw the Disney Renaissance era.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-wlt22",
+      "category_id": "cat-walt-history",
+      "question": "What year did the Disney Channel launch?",
+      "options": [
+        "1978",
+        "1983",
+        "1990",
+        "1995"
+      ],
+      "correct_answer": 1,
+      "explanation": "The Disney Channel launched on April 18, 1983 as a premium cable channel.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-wlt23",
+      "category_id": "cat-walt-history",
+      "question": "How many daughters did Walt Disney have?",
+      "options": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "correct_answer": 2,
+      "explanation": "Walt had two daughters: Diane (biological) and Sharon (adopted).",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-wlt24",
+      "category_id": "cat-walt-history",
+      "question": "What US state was Walt Disney born in?",
+      "options": [
+        "California",
+        "Missouri",
+        "Illinois",
+        "New York"
+      ],
+      "correct_answer": 2,
+      "explanation": "Walt Disney was born in Chicago, Illinois on December 5, 1901.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-wlt25",
+      "category_id": "cat-walt-history",
+      "question": "What was the first Disney feature to be entirely produced using CAPS digital technology?",
+      "options": [
+        "The Little Mermaid",
+        "The Rescuers Down Under",
+        "Beauty and the Beast",
+        "Aladdin"
+      ],
+      "correct_answer": 1,
+      "explanation": "The Rescuers Down Under (1990) was the first feature entirely produced using CAPS technology.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-bwy6",
+      "category_id": "cat-broadway",
+      "question": "What year did The Lion King open on Broadway?",
+      "options": [
+        "1994",
+        "1997",
+        "2000",
+        "2003"
+      ],
+      "correct_answer": 1,
+      "explanation": "The Lion King opened on Broadway on November 13, 1997 at the New Amsterdam Theatre.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-bwy7",
+      "category_id": "cat-broadway",
+      "question": "What Disney film was adapted into a Broadway show in 2018?",
+      "options": [
+        "Moana",
+        "Frozen",
+        "Tangled",
+        "Coco"
+      ],
+      "correct_answer": 1,
+      "explanation": "Frozen opened on Broadway in March 2018 at the St. James Theatre.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-bwy8",
+      "category_id": "cat-broadway",
+      "question": "Who directed the Broadway production of The Lion King?",
+      "options": [
+        "Rob Ashford",
+        "Julie Taymor",
+        "Thomas Schumacher",
+        "Casey Nicholaw"
+      ],
+      "correct_answer": 1,
+      "explanation": "Julie Taymor directed and designed the groundbreaking puppetry and staging.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-bwy9",
+      "category_id": "cat-broadway",
+      "question": "Which actor won a Tony Award for playing the Genie in Aladdin?",
+      "options": [
+        "Will Smith",
+        "James Monroe Iglehart",
+        "Robin Williams",
+        "Josh Gad"
+      ],
+      "correct_answer": 1,
+      "explanation": "James Monroe Iglehart won a Tony Award for his showstopping portrayal of the Genie.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-bwy10",
+      "category_id": "cat-broadway",
+      "question": "What song was written specifically for the Beauty and the Beast Broadway show?",
+      "options": [
+        "Be Our Guest",
+        "Home",
+        "Beauty and the Beast",
+        "Gaston"
+      ],
+      "correct_answer": 1,
+      "explanation": "Home was written specifically for the Broadway production as Belle's Act 1 ballad.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-bwy11",
+      "category_id": "cat-broadway",
+      "question": "Which Disney Broadway show is set during the 1899 newsboys' strike?",
+      "options": [
+        "Mary Poppins",
+        "Newsies",
+        "Aladdin",
+        "Frozen"
+      ],
+      "correct_answer": 1,
+      "explanation": "Newsies is set during the 1899 newsboys' strike against newspaper publishers in New York.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-bwy12",
+      "category_id": "cat-broadway",
+      "question": "What Disney Broadway show features songs by Phil Collins?",
+      "options": [
+        "Tarzan",
+        "The Lion King",
+        "Frozen",
+        "Aladdin"
+      ],
+      "correct_answer": 0,
+      "explanation": "Tarzan the musical features songs by Phil Collins from the animated film.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-bwy13",
+      "category_id": "cat-broadway",
+      "question": "How many Tony Awards did The Lion King win in 1998?",
+      "options": [
+        "2",
+        "4",
+        "6",
+        "8"
+      ],
+      "correct_answer": 2,
+      "explanation": "The Lion King won 6 Tony Awards in 1998 including Best Musical and Best Direction.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-bwy14",
+      "category_id": "cat-broadway",
+      "question": "What Disney show features a magic carpet that flies over the audience?",
+      "options": [
+        "Peter Pan",
+        "Aladdin",
+        "The Little Mermaid",
+        "Mary Poppins"
+      ],
+      "correct_answer": 1,
+      "explanation": "Aladdin's Broadway production features a magic carpet that soars over the audience.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-bwy15",
+      "category_id": "cat-broadway",
+      "question": "Which Disney Broadway show permanently closed after the COVID-19 shutdown?",
+      "options": [
+        "Aladdin",
+        "The Lion King",
+        "Frozen",
+        "Beauty and the Beast"
+      ],
+      "correct_answer": 2,
+      "explanation": "Frozen on Broadway permanently closed in 2020 after the COVID-19 shutdown.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-bwy16",
+      "category_id": "cat-broadway",
+      "question": "What is Ursula's big villain song in The Little Mermaid musical?",
+      "options": [
+        "Kiss the Girl",
+        "Under the Sea",
+        "Poor Unfortunate Souls",
+        "Part of Your World"
+      ],
+      "correct_answer": 2,
+      "explanation": "Poor Unfortunate Souls is Ursula's show-stopping villain number.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-bwy17",
+      "category_id": "cat-broadway",
+      "question": "Which Disney Broadway show features the song 'Santa Fe'?",
+      "options": [
+        "The Lion King",
+        "Newsies",
+        "Aladdin",
+        "Tarzan"
+      ],
+      "correct_answer": 1,
+      "explanation": "Santa Fe is Jack Kelly's dream song about escaping to a better life out west.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-bwy18",
+      "category_id": "cat-broadway",
+      "question": "What was Julie Taymor's historic achievement at the Tony Awards?",
+      "options": [
+        "Youngest winner",
+        "First woman to win Best Direction of a Musical",
+        "Most nominations",
+        "Most wins in one night"
+      ],
+      "correct_answer": 1,
+      "explanation": "Julie Taymor was the first woman to win the Tony for Best Direction of a Musical.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-bwy19",
+      "category_id": "cat-broadway",
+      "question": "What type of puppets represent animals in The Lion King on Broadway?",
+      "options": [
+        "Hand puppets",
+        "Marionettes",
+        "Body puppets and masks",
+        "Animatronics"
+      ],
+      "correct_answer": 2,
+      "explanation": "Julie Taymor designed innovative body puppets and masks that actors wear and manipulate.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-bwy20",
+      "category_id": "cat-broadway",
+      "question": "Which Disney Broadway show features 'Supercalifragilisticexpialidocious'?",
+      "options": [
+        "Beauty and the Beast",
+        "Mary Poppins",
+        "Frozen",
+        "Aladdin"
+      ],
+      "correct_answer": 1,
+      "explanation": "Mary Poppins the musical features the iconic tongue-twisting song from the 1964 film.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-bwy21",
+      "category_id": "cat-broadway",
+      "question": "Which Disney Broadway show features the song 'Carrying the Banner'?",
+      "options": [
+        "Mary Poppins",
+        "Newsies",
+        "The Lion King",
+        "Aladdin"
+      ],
+      "correct_answer": 1,
+      "explanation": "Carrying the Banner is the rousing opening ensemble number of Newsies.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-bwy22",
+      "category_id": "cat-broadway",
+      "question": "Which Disney film had both a Broadway musical AND a live-action remake first?",
+      "options": [
+        "The Lion King",
+        "Beauty and the Beast",
+        "Aladdin",
+        "The Little Mermaid"
+      ],
+      "correct_answer": 1,
+      "explanation": "Beauty and the Beast had a Broadway musical in 1994 and a live-action remake in 2017.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-bwy23",
+      "category_id": "cat-broadway",
+      "question": "What Disney Broadway show features an onstage beast-to-prince transformation?",
+      "options": [
+        "Beauty and the Beast",
+        "Frozen",
+        "The Lion King",
+        "Tarzan"
+      ],
+      "correct_answer": 0,
+      "explanation": "Beauty and the Beast features the dramatic transformation of the Beast back into the Prince.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-bwy24",
+      "category_id": "cat-broadway",
+      "question": "How long has The Lion King been running on Broadway (as of 2025)?",
+      "options": [
+        "Over 15 years",
+        "Over 20 years",
+        "Over 25 years",
+        "Over 30 years"
+      ],
+      "correct_answer": 2,
+      "explanation": "The Lion King has been running since 1997 and is one of Broadway's longest-running shows.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-bwy25",
+      "category_id": "cat-broadway",
+      "question": "What year did Aladdin open on Broadway?",
+      "options": [
+        "2011",
+        "2014",
+        "2016",
+        "2018"
+      ],
+      "correct_answer": 1,
+      "explanation": "Aladdin opened on Broadway in March 2014 and has been a hit ever since.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-fod7",
+      "category_id": "cat-food",
+      "question": "What is the sit-down restaurant inside Cinderella Castle?",
+      "options": [
+        "Royal Table",
+        "Cinderella's Royal Table",
+        "The Royal Banquet",
+        "Castle Dining"
+      ],
+      "correct_answer": 1,
+      "explanation": "Cinderella's Royal Table is the character dining restaurant inside Cinderella Castle.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-fod8",
+      "category_id": "cat-food",
+      "question": "What foods come in Mickey's head shape at Disney parks?",
+      "options": [
+        "Only ice cream bars",
+        "Only waffles",
+        "Only pretzels",
+        "All of the above and more"
+      ],
+      "correct_answer": 3,
+      "explanation": "Mickey-shaped foods include ice cream bars, waffles, pretzels, beignets, and rice krispie treats.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-fod9",
+      "category_id": "cat-food",
+      "question": "Where can you get the famous Grey Stuff at Walt Disney World?",
+      "options": [
+        "Be Our Guest Restaurant",
+        "Cinderella's Royal Table",
+        "Crystal Palace",
+        "Chef Mickey's"
+      ],
+      "correct_answer": 0,
+      "explanation": "The Grey Stuff is a cookies and cream mousse at Be Our Guest, inspired by the film's 'try the grey stuff, it's delicious.'",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-fod10",
+      "category_id": "cat-food",
+      "question": "What are the giant smoked snacks famous at Disney parks?",
+      "options": [
+        "Corn dogs",
+        "Turkey legs",
+        "Sausages",
+        "Ribs"
+      ],
+      "correct_answer": 1,
+      "explanation": "Giant smoked turkey legs are an iconic Disney parks snack weighing about 1.5 pounds.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-fod11",
+      "category_id": "cat-food",
+      "question": "What is the Polynesian-themed restaurant at Walt Disney World?",
+      "options": [
+        "Trader Sam's",
+        "'Ohana",
+        "Tiki Room Dining",
+        "Aloha Isle"
+      ],
+      "correct_answer": 1,
+      "explanation": "'Ohana at Disney's Polynesian Village Resort serves family-style Polynesian cuisine.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-fod12",
+      "category_id": "cat-food",
+      "question": "What is the signature snack at the Main Street Confectionery?",
+      "options": [
+        "Funnel cake",
+        "Candy apples",
+        "Cotton candy",
+        "Fudge"
+      ],
+      "correct_answer": 1,
+      "explanation": "Hand-dipped candy and caramel apples are the signature treat at Disney confectionery shops.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-fod13",
+      "category_id": "cat-food",
+      "question": "What is the popular wrap at Ronto Roasters in Galaxy's Edge?",
+      "options": [
+        "Ronto Wrap",
+        "Bantha Wrap",
+        "Jedi Wrap",
+        "Tatooine Wrap"
+      ],
+      "correct_answer": 0,
+      "explanation": "The Ronto Wrap is a pita filled with roasted pork and slaw, a popular Galaxy's Edge snack.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-fod14",
+      "category_id": "cat-food",
+      "question": "What EPCOT restaurant lets you eat next to a giant aquarium?",
+      "options": [
+        "Coral Reef Restaurant",
+        "The Seas Restaurant",
+        "Living Seas Cafe",
+        "Aquarium Grill"
+      ],
+      "correct_answer": 0,
+      "explanation": "Coral Reef Restaurant at The Seas pavilion features dining alongside a massive aquarium.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-fod15",
+      "category_id": "cat-food",
+      "question": "What restaurant at EPCOT simulates dining 220 miles above Earth?",
+      "options": [
+        "Space 220",
+        "Cosmic Ray's",
+        "Starlight Cafe",
+        "Galaxy Grill"
+      ],
+      "correct_answer": 0,
+      "explanation": "Space 220 simulates dining in space with virtual windows showing views of Earth below.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-fod16",
+      "category_id": "cat-food",
+      "question": "Where can you find LeFou's Brew at Magic Kingdom?",
+      "options": [
+        "Be Our Guest",
+        "Gaston's Tavern",
+        "Maurice's Treats",
+        "The Friar's Nook"
+      ],
+      "correct_answer": 1,
+      "explanation": "LeFou's Brew is a frozen apple juice drink topped with passion fruit foam at Gaston's Tavern.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-fod17",
+      "category_id": "cat-food",
+      "question": "What is a Kitchen Sink sundae at Disney?",
+      "options": [
+        "A dessert served in a mini kitchen sink",
+        "A small ice cream cup",
+        "A fondue",
+        "A shared appetizer"
+      ],
+      "correct_answer": 0,
+      "explanation": "The Kitchen Sink is a massive sundae served in a mini kitchen sink at Beaches & Cream.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-fod18",
+      "category_id": "cat-food",
+      "question": "What Hollywood Studios restaurant has a drive-in movie theme?",
+      "options": [
+        "50s Prime Time Cafe",
+        "Sci-Fi Dine-In Theater",
+        "Hollywood Brown Derby",
+        "Mama Melrose's"
+      ],
+      "correct_answer": 1,
+      "explanation": "Sci-Fi Dine-In Theater seats guests in car-shaped booths watching retro B-movie clips.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-fod19",
+      "category_id": "cat-food",
+      "question": "What famous restaurant sits at the top of the Contemporary Resort?",
+      "options": [
+        "Narcoossee's",
+        "California Grill",
+        "Chef Mickey's",
+        "The Wave"
+      ],
+      "correct_answer": 1,
+      "explanation": "California Grill on the 15th floor offers panoramic views of Magic Kingdom fireworks.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-fod20",
+      "category_id": "cat-food",
+      "question": "What is the Tonga Toast at the Polynesian Resort?",
+      "options": [
+        "Banana-stuffed French toast",
+        "Coconut cake",
+        "Pineapple pastry",
+        "Taro bread"
+      ],
+      "correct_answer": 0,
+      "explanation": "Tonga Toast is banana-stuffed sourdough French toast rolled in cinnamon sugar.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-fod21",
+      "category_id": "cat-food",
+      "question": "What is Blue Milk at Galaxy's Edge made from?",
+      "options": [
+        "Dairy milk",
+        "Plant-based milk blend",
+        "Blue food coloring in water",
+        "Coconut milk"
+      ],
+      "correct_answer": 1,
+      "explanation": "Blue Milk is a frozen plant-based blend with tropical flavors like dragon fruit and lime.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-fod22",
+      "category_id": "cat-food",
+      "question": "What is the popular collectible snack container at Disney parks?",
+      "options": [
+        "Character cups",
+        "Popcorn buckets",
+        "Souvenir plates",
+        "Themed lunch boxes"
+      ],
+      "correct_answer": 1,
+      "explanation": "Collectible popcorn buckets shaped like characters and attractions are hugely popular souvenirs.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-fod23",
+      "category_id": "cat-food",
+      "question": "What unique snack is Tokyo Disneyland most famous for?",
+      "options": [
+        "Churros",
+        "Many flavors of popcorn",
+        "Turkey legs",
+        "Dole Whip"
+      ],
+      "correct_answer": 1,
+      "explanation": "Tokyo Disneyland is famous for its many unique popcorn flavors sold in collectible buckets.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-fod24",
+      "category_id": "cat-food",
+      "question": "What is the School Bread from EPCOT's Norway pavilion?",
+      "options": [
+        "A custard-filled sweet roll",
+        "A cinnamon bun",
+        "A pretzel",
+        "A croissant"
+      ],
+      "correct_answer": 0,
+      "explanation": "School Bread is a sweet cardamom bun filled with vanilla custard and topped with coconut.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-fod25",
+      "category_id": "cat-food",
+      "question": "What is the Citrus Swirl flavor at Magic Kingdom?",
+      "options": [
+        "Lemon",
+        "Orange",
+        "Lime",
+        "Grapefruit"
+      ],
+      "correct_answer": 1,
+      "explanation": "The Citrus Swirl is an orange soft serve treat at Sunshine Tree Terrace in Adventureland.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mix7",
+      "category_id": "cat-mixed",
+      "question": "What live-action Disney film features a magic nanny with an umbrella?",
+      "options": [
+        "Enchanted",
+        "Bedknobs and Broomsticks",
+        "Mary Poppins",
+        "Nanny McPhee"
+      ],
+      "correct_answer": 2,
+      "explanation": "Mary Poppins arrives with her magic umbrella and carpet bag in the 1964 classic.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mix8",
+      "category_id": "cat-mixed",
+      "question": "What is Disney's streaming service called?",
+      "options": [
+        "Disney+",
+        "Disney Now",
+        "Disney Stream",
+        "Disney Go"
+      ],
+      "correct_answer": 0,
+      "explanation": "Disney+ launched on November 12, 2019 as Disney's dedicated streaming platform.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mix9",
+      "category_id": "cat-mixed",
+      "question": "In what movie does a wooden puppet wish to become a real boy?",
+      "options": [
+        "Toy Story",
+        "Pinocchio",
+        "The Nutcracker",
+        "Gepetto"
+      ],
+      "correct_answer": 1,
+      "explanation": "Pinocchio wishes upon a star to become a real boy in the 1940 Disney classic.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mix10",
+      "category_id": "cat-mixed",
+      "question": "What color are Mickey Mouse's shorts?",
+      "options": [
+        "Blue",
+        "Yellow",
+        "Red",
+        "Black"
+      ],
+      "correct_answer": 2,
+      "explanation": "Mickey Mouse's iconic outfit features red shorts with two white buttons.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mix11",
+      "category_id": "cat-mixed",
+      "question": "Who is Mickey Mouse's pet dog?",
+      "options": [
+        "Goofy",
+        "Pluto",
+        "Max",
+        "Figaro"
+      ],
+      "correct_answer": 1,
+      "explanation": "Pluto is Mickey Mouse's loyal pet dog who first appeared in 1930.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mix12",
+      "category_id": "cat-mixed",
+      "question": "What is the name of Donald Duck's girlfriend?",
+      "options": [
+        "Minnie",
+        "Daisy",
+        "Clara",
+        "Donna"
+      ],
+      "correct_answer": 1,
+      "explanation": "Daisy Duck is Donald's girlfriend who first appeared in 1940.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mix13",
+      "category_id": "cat-mixed",
+      "question": "What type of animal is Goofy?",
+      "options": [
+        "Dog",
+        "Cow",
+        "Bear",
+        "Horse"
+      ],
+      "correct_answer": 0,
+      "explanation": "Goofy is an anthropomorphic dog, despite his pet-like friend Pluto also being a dog.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mix14",
+      "category_id": "cat-mixed",
+      "question": "What animal is Dumbo?",
+      "options": [
+        "Mouse",
+        "Dog",
+        "Elephant",
+        "Bear"
+      ],
+      "correct_answer": 2,
+      "explanation": "Dumbo is a baby elephant with oversized ears that allow him to fly.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mix15",
+      "category_id": "cat-mixed",
+      "question": "Who is Goofy's son?",
+      "options": [
+        "Max",
+        "PJ",
+        "Bobby",
+        "Goofy Jr"
+      ],
+      "correct_answer": 0,
+      "explanation": "Max Goof is Goofy's son, featured in A Goofy Movie and the TV show Goof Troop.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mix16",
+      "category_id": "cat-mixed",
+      "question": "What year did Disney+ launch?",
+      "options": [
+        "2018",
+        "2019",
+        "2020",
+        "2021"
+      ],
+      "correct_answer": 1,
+      "explanation": "Disney+ launched on November 12, 2019 with over 10 million subscribers on day one.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mix17",
+      "category_id": "cat-mixed",
+      "question": "Which Pixar film features the line 'Just keep swimming'?",
+      "options": [
+        "Toy Story",
+        "Finding Nemo",
+        "The Incredibles",
+        "Monsters Inc"
+      ],
+      "correct_answer": 1,
+      "explanation": "Dory's motto 'Just keep swimming' is one of the most iconic lines from Finding Nemo.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mix18",
+      "category_id": "cat-mixed",
+      "question": "What is the Disney Vault?",
+      "options": [
+        "A theme park attraction",
+        "Disney's practice of limiting home video releases",
+        "Secure prop storage",
+        "A VIP dining experience"
+      ],
+      "correct_answer": 1,
+      "explanation": "The Disney Vault was the practice of periodically withdrawing films from sale to create demand.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mix19",
+      "category_id": "cat-mixed",
+      "question": "Who is Minnie Mouse's best friend?",
+      "options": [
+        "Clarabelle Cow",
+        "Daisy Duck",
+        "Pluto",
+        "Chip"
+      ],
+      "correct_answer": 1,
+      "explanation": "Daisy Duck is Minnie Mouse's best friend in the Disney universe.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mix20",
+      "category_id": "cat-mixed",
+      "question": "What Disney Channel show features twins living at a hotel?",
+      "options": [
+        "Hannah Montana",
+        "The Suite Life of Zack & Cody",
+        "Lizzie McGuire",
+        "That's So Raven"
+      ],
+      "correct_answer": 1,
+      "explanation": "Zack and Cody Martin live at the Tipton Hotel in this popular Disney Channel show.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mix21",
+      "category_id": "cat-mixed",
+      "question": "What hidden detail appears in nearly every Pixar film?",
+      "options": [
+        "A hidden Mickey",
+        "The Pizza Planet truck",
+        "A Pixar ball",
+        "A blue butterfly"
+      ],
+      "correct_answer": 1,
+      "explanation": "The Pizza Planet truck from Toy Story appears as an Easter egg in nearly every Pixar film.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mix22",
+      "category_id": "cat-mixed",
+      "question": "What does 'Hakuna Matata' mean?",
+      "options": [
+        "Be our guest",
+        "No worries",
+        "Family forever",
+        "Believe in yourself"
+      ],
+      "correct_answer": 1,
+      "explanation": "Hakuna Matata is a Swahili phrase meaning 'no worries' popularized by The Lion King.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mix23",
+      "category_id": "cat-mixed",
+      "question": "Which Disney Renaissance film came first?",
+      "options": [
+        "Beauty and the Beast",
+        "The Little Mermaid",
+        "Aladdin",
+        "The Lion King"
+      ],
+      "correct_answer": 1,
+      "explanation": "The Little Mermaid (1989) is considered the start of the Disney Renaissance.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mix24",
+      "category_id": "cat-mixed",
+      "question": "What year did Disney acquire 21st Century Fox?",
+      "options": [
+        "2017",
+        "2019",
+        "2020",
+        "2021"
+      ],
+      "correct_answer": 1,
+      "explanation": "Disney completed the acquisition of 21st Century Fox in March 2019 for 71.3 billion dollars.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mix25",
+      "category_id": "cat-mixed",
+      "question": "What is the hidden message in the dust cloud scene in The Lion King?",
+      "options": [
+        "SOS",
+        "SEX",
+        "SFX",
+        "Nothing"
+      ],
+      "correct_answer": 2,
+      "explanation": "The dust spells out SFX, a nod to the special effects team, despite popular urban legend.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-ani26",
+      "category_id": "cat-animation",
+      "question": "What is the name of the snowman Elsa creates in Frozen?",
+      "options": [
+        "Marshmallow",
+        "Olaf",
+        "Sven",
+        "Kristoff"
+      ],
+      "correct_answer": 1,
+      "explanation": "Olaf is the friendly snowman that Elsa brings to life with her powers.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-ani27",
+      "category_id": "cat-animation",
+      "question": "In Wreck-It Ralph, what game does Ralph come from?",
+      "options": [
+        "Sugar Rush",
+        "Fix-It Felix Jr.",
+        "Hero's Duty",
+        "TurboTime"
+      ],
+      "correct_answer": 1,
+      "explanation": "Ralph is the villain in the arcade game Fix-It Felix Jr.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-ani28",
+      "category_id": "cat-animation",
+      "question": "What animal does Kuzco turn into in The Emperor's New Groove?",
+      "options": [
+        "A frog",
+        "A cat",
+        "A llama",
+        "A donkey"
+      ],
+      "correct_answer": 2,
+      "explanation": "Emperor Kuzco is turned into a llama by Yzma's potion.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-ani29",
+      "category_id": "cat-animation",
+      "question": "Who is the villain in The Rescuers?",
+      "options": [
+        "Cruella",
+        "Madame Medusa",
+        "Ratigan",
+        "Yzma"
+      ],
+      "correct_answer": 1,
+      "explanation": "Madame Medusa kidnaps a young orphan girl to retrieve a diamond.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-ani30",
+      "category_id": "cat-animation",
+      "question": "In Big Hero 6, what does Baymax say when he activates?",
+      "options": [
+        "I am Baymax",
+        "Hello, I am Baymax, your personal healthcare companion",
+        "I am here to help",
+        "Baymax activated"
+      ],
+      "correct_answer": 1,
+      "explanation": "Baymax always introduces himself as your personal healthcare companion.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-ani31",
+      "category_id": "cat-animation",
+      "question": "What is the name of the magical flower in Tangled?",
+      "options": [
+        "Golden Flower",
+        "Sundrop Flower",
+        "Rapunzel's Rose",
+        "Healing Bloom"
+      ],
+      "correct_answer": 1,
+      "explanation": "The Sundrop Flower has magical healing properties that Mother Gothel hoards.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pix26",
+      "category_id": "cat-pixar",
+      "question": "What is the name of the dinosaur toy in Toy Story?",
+      "options": [
+        "Rex",
+        "Dino",
+        "Spike",
+        "Trixie"
+      ],
+      "correct_answer": 0,
+      "explanation": "Rex is the anxious Tyrannosaurus Rex toy who is afraid of everything.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pix27",
+      "category_id": "cat-pixar",
+      "question": "In Onward, what are the brothers trying to do?",
+      "options": [
+        "Find treasure",
+        "Bring back their father for one day",
+        "Save their kingdom",
+        "Learn magic at school"
+      ],
+      "correct_answer": 1,
+      "explanation": "Ian and Barley Lightfoot go on a quest to bring back their late father for 24 hours.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pix28",
+      "category_id": "cat-pixar",
+      "question": "What is the name of the fish tank gang leader in Finding Nemo?",
+      "options": [
+        "Bloat",
+        "Gill",
+        "Jacques",
+        "Deb"
+      ],
+      "correct_answer": 1,
+      "explanation": "Gill is the Moorish Idol who leads the Tank Gang escape plans.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pix29",
+      "category_id": "cat-pixar",
+      "question": "In Toy Story 4, what new toy does Bonnie make?",
+      "options": [
+        "Sporky",
+        "Forky",
+        "Knifey",
+        "Spoony"
+      ],
+      "correct_answer": 1,
+      "explanation": "Forky is a spork craft project that Bonnie brings to life as a new toy.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pix30",
+      "category_id": "cat-pixar",
+      "question": "What is Sulley's full name in Monsters, Inc.?",
+      "options": [
+        "Sullivan Monster",
+        "James P. Sullivan",
+        "Samuel Sullivan",
+        "John Sullivan"
+      ],
+      "correct_answer": 1,
+      "explanation": "James P. Sullivan, known as Sulley, is the top scarer at Monsters, Inc.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pix31",
+      "category_id": "cat-pixar",
+      "question": "What sport does Riley play in Inside Out?",
+      "options": [
+        "Soccer",
+        "Hockey",
+        "Basketball",
+        "Volleyball"
+      ],
+      "correct_answer": 1,
+      "explanation": "Riley plays hockey and her love of the sport creates a core memory island.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-sw26",
+      "category_id": "cat-star-wars",
+      "question": "What is the name of Yoda's species?",
+      "options": [
+        "Yodaling",
+        "Unknown",
+        "Dagobahn",
+        "Whills"
+      ],
+      "correct_answer": 1,
+      "explanation": "Yoda's species has never been officially named in Star Wars canon.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-sw27",
+      "category_id": "cat-star-wars",
+      "question": "What is the Rebel base in A New Hope?",
+      "options": [
+        "Hoth",
+        "Yavin 4",
+        "Endor",
+        "Dagobah"
+      ],
+      "correct_answer": 1,
+      "explanation": "The Rebel base on Yavin 4 is where they launch the attack on the Death Star.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-sw28",
+      "category_id": "cat-star-wars",
+      "question": "Who trained Obi-Wan Kenobi?",
+      "options": [
+        "Yoda",
+        "Mace Windu",
+        "Qui-Gon Jinn",
+        "Count Dooku"
+      ],
+      "correct_answer": 2,
+      "explanation": "Qui-Gon Jinn was Obi-Wan's Jedi Master who was killed by Darth Maul.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-sw29",
+      "category_id": "cat-star-wars",
+      "question": "What is the name of Anakin Skywalker's mother?",
+      "options": [
+        "Padme",
+        "Shmi",
+        "Satine",
+        "Breha"
+      ],
+      "correct_answer": 1,
+      "explanation": "Shmi Skywalker raised Anakin alone on Tatooine as a slave.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-sw30",
+      "category_id": "cat-star-wars",
+      "question": "What does AT-AT stand for?",
+      "options": [
+        "All Terrain Assault Tank",
+        "All Terrain Armored Transport",
+        "Armed Transport Attack Tank",
+        "Assault Terrain Armored Tank"
+      ],
+      "correct_answer": 1,
+      "explanation": "AT-AT stands for All Terrain Armored Transport, the Empire's iconic walking tanks.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-sw31",
+      "category_id": "cat-star-wars",
+      "question": "Who built C-3PO?",
+      "options": [
+        "Obi-Wan Kenobi",
+        "Watto",
+        "Anakin Skywalker",
+        "Padme Amidala"
+      ],
+      "correct_answer": 2,
+      "explanation": "Young Anakin Skywalker built C-3PO from spare parts on Tatooine.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mar26",
+      "category_id": "cat-marvel",
+      "question": "What is the name of Thor's mischievous brother?",
+      "options": [
+        "Baldur",
+        "Loki",
+        "Tyr",
+        "Heimdall"
+      ],
+      "correct_answer": 1,
+      "explanation": "Loki is the God of Mischief and Thor's adopted brother.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mar27",
+      "category_id": "cat-marvel",
+      "question": "What is Black Widow's real name?",
+      "options": [
+        "Wanda Maximoff",
+        "Natasha Romanoff",
+        "Hope Van Dyne",
+        "Maria Hill"
+      ],
+      "correct_answer": 1,
+      "explanation": "Natasha Romanoff is Black Widow, a former Russian spy and founding Avenger.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mar28",
+      "category_id": "cat-marvel",
+      "question": "Who is the main villain in Spider-Man: Homecoming?",
+      "options": [
+        "Green Goblin",
+        "Mysterio",
+        "Vulture",
+        "Doc Ock"
+      ],
+      "correct_answer": 2,
+      "explanation": "Adrian Toomes, the Vulture, is the villain played by Michael Keaton.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mar29",
+      "category_id": "cat-marvel",
+      "question": "Who becomes Captain America after Steve Rogers?",
+      "options": [
+        "Bucky Barnes",
+        "Sam Wilson",
+        "John Walker",
+        "Scott Lang"
+      ],
+      "correct_answer": 1,
+      "explanation": "Sam Wilson (Falcon) takes up the shield as the new Captain America.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mar30",
+      "category_id": "cat-marvel",
+      "question": "What planet is Thanos from?",
+      "options": [
+        "Xandar",
+        "Knowhere",
+        "Titan",
+        "Vormir"
+      ],
+      "correct_answer": 2,
+      "explanation": "Thanos is from the planet Titan, which was devastated by overpopulation.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mar31",
+      "category_id": "cat-marvel",
+      "question": "What is the name of Wakanda's heart-shaped plant?",
+      "options": [
+        "Vibranium flower",
+        "Heart-Shaped Herb",
+        "Panther root",
+        "Wakandan lotus"
+      ],
+      "correct_answer": 1,
+      "explanation": "The Heart-Shaped Herb grants the power of the Black Panther to its consumer.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-vil26",
+      "category_id": "cat-villains",
+      "question": "What is the name of Gaston's sidekick in Beauty and the Beast?",
+      "options": [
+        "LeFou",
+        "Pierre",
+        "Maurice",
+        "Cogsworth"
+      ],
+      "correct_answer": 0,
+      "explanation": "LeFou is Gaston's loyal but bumbling sidekick.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-vil27",
+      "category_id": "cat-villains",
+      "question": "What is Syndrome's real name in The Incredibles?",
+      "options": [
+        "Buddy Pine",
+        "Simon Lynch",
+        "Howard Duff",
+        "Edwin Pine"
+      ],
+      "correct_answer": 0,
+      "explanation": "Buddy Pine was Mr. Incredible's rejected fan who became the villain Syndrome.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-vil28",
+      "category_id": "cat-villains",
+      "question": "What does Ursula transform into to trick Prince Eric?",
+      "options": [
+        "A mermaid",
+        "A woman named Vanessa",
+        "A sea queen",
+        "A princess"
+      ],
+      "correct_answer": 1,
+      "explanation": "Ursula transforms into a beautiful woman named Vanessa using Ariel's stolen voice.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-vil29",
+      "category_id": "cat-villains",
+      "question": "Who is the villain in Mulan?",
+      "options": [
+        "Li Shang",
+        "Shan Yu",
+        "The Emperor",
+        "Chi-Fu"
+      ],
+      "correct_answer": 1,
+      "explanation": "Shan Yu is the ruthless leader of the Hun army who invades China.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-vil30",
+      "category_id": "cat-villains",
+      "question": "What animal is Kaa in The Jungle Book?",
+      "options": [
+        "A bear",
+        "A monkey",
+        "A snake",
+        "A tiger"
+      ],
+      "correct_answer": 2,
+      "explanation": "Kaa is the hypnotic python who tries to eat Mowgli.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-vil31",
+      "category_id": "cat-villains",
+      "question": "Who is the villain in The Fox and the Hound?",
+      "options": [
+        "Amos Slade",
+        "Cruella",
+        "Shere Khan",
+        "McLeach"
+      ],
+      "correct_answer": 0,
+      "explanation": "Amos Slade is the grumpy hunter who wants to kill Tod the fox.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pri26",
+      "category_id": "cat-princesses",
+      "question": "What is the name of Ariel's prince?",
+      "options": [
+        "Prince Charming",
+        "Prince Phillip",
+        "Prince Eric",
+        "Prince Naveen"
+      ],
+      "correct_answer": 2,
+      "explanation": "Prince Eric is the human prince that Ariel falls in love with.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pri27",
+      "category_id": "cat-princesses",
+      "question": "What is the name of Rapunzel's kingdom in Tangled?",
+      "options": [
+        "Arendelle",
+        "Corona",
+        "Enchancia",
+        "Maldonia"
+      ],
+      "correct_answer": 1,
+      "explanation": "Corona is the kingdom where Rapunzel was born as a princess.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pri28",
+      "category_id": "cat-princesses",
+      "question": "Who is Tiana's prince in The Princess and the Frog?",
+      "options": [
+        "Prince Eric",
+        "Prince Charming",
+        "Prince Naveen",
+        "Prince Adam"
+      ],
+      "correct_answer": 2,
+      "explanation": "Prince Naveen of Maldonia is turned into a frog by Dr. Facilier's voodoo.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pri29",
+      "category_id": "cat-princesses",
+      "question": "What is Cinderella's stepmother's name?",
+      "options": [
+        "Lady Tremaine",
+        "Madame Medusa",
+        "Mother Gothel",
+        "Queen Grimhilde"
+      ],
+      "correct_answer": 0,
+      "explanation": "Lady Tremaine is Cinderella's cold and cruel stepmother.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pri30",
+      "category_id": "cat-princesses",
+      "question": "What is the name of Belle's enchanted rose?",
+      "options": [
+        "The Eternal Rose",
+        "The Enchanted Rose",
+        "The Magic Rose",
+        "The Cursed Rose"
+      ],
+      "correct_answer": 1,
+      "explanation": "The Enchanted Rose wilts as the Beast's deadline to break the curse approaches.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-pri31",
+      "category_id": "cat-princesses",
+      "question": "What is the name of Snow White's prince?",
+      "options": [
+        "Prince Charming",
+        "The Prince",
+        "Prince Ferdinand",
+        "Prince Florian"
+      ],
+      "correct_answer": 1,
+      "explanation": "Snow White's prince is officially known simply as The Prince in the original film.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mus26",
+      "category_id": "cat-music",
+      "question": "What movie features 'I Just Can't Wait to Be King'?",
+      "options": [
+        "Aladdin",
+        "The Lion King",
+        "Moana",
+        "Hercules"
+      ],
+      "correct_answer": 1,
+      "explanation": "Young Simba sings I Just Can't Wait to Be King in The Lion King.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mus27",
+      "category_id": "cat-music",
+      "question": "Who sings 'Surface Pressure' in Encanto?",
+      "options": [
+        "Mirabel",
+        "Isabela",
+        "Luisa",
+        "Bruno"
+      ],
+      "correct_answer": 2,
+      "explanation": "Luisa sings Surface Pressure about the weight of expectations on her shoulders.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mus28",
+      "category_id": "cat-music",
+      "question": "What song does the Genie sing when first appearing in Aladdin?",
+      "options": [
+        "A Whole New World",
+        "Prince Ali",
+        "Friend Like Me",
+        "One Jump Ahead"
+      ],
+      "correct_answer": 2,
+      "explanation": "Friend Like Me is the Genie's big introductory number when freed from the lamp.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mus29",
+      "category_id": "cat-music",
+      "question": "Which movie features 'The Bare Necessities'?",
+      "options": [
+        "Tarzan",
+        "The Jungle Book",
+        "The Lion King",
+        "Robin Hood"
+      ],
+      "correct_answer": 1,
+      "explanation": "The Bare Necessities is sung by Baloo in The Jungle Book about enjoying a simple life.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mus30",
+      "category_id": "cat-music",
+      "question": "What Frozen 2 song is Elsa's signature power ballad?",
+      "options": [
+        "Show Yourself",
+        "Into the Unknown",
+        "All Is Found",
+        "Some Things Never Change"
+      ],
+      "correct_answer": 1,
+      "explanation": "Into the Unknown is Elsa's power ballad from Frozen 2, nominated for an Oscar.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mus31",
+      "category_id": "cat-music",
+      "question": "Who sings 'Be Prepared' in The Lion King?",
+      "options": [
+        "Mufasa",
+        "Simba",
+        "Scar",
+        "Zazu"
+      ],
+      "correct_answer": 2,
+      "explanation": "Scar sings Be Prepared as he plots to overthrow Mufasa and take the throne.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-prk26",
+      "category_id": "cat-parks",
+      "question": "What ride lets you fly on a banshee at Animal Kingdom?",
+      "options": [
+        "Soarin'",
+        "Flight of Passage",
+        "Star Tours",
+        "Peter Pan's Flight"
+      ],
+      "correct_answer": 1,
+      "explanation": "Avatar Flight of Passage is a 3D flying simulator ride in Pandora.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-prk27",
+      "category_id": "cat-parks",
+      "question": "What is the name of the TRON ride at Magic Kingdom?",
+      "options": [
+        "TRON Speedway",
+        "TRON Lightcycle / Run",
+        "TRON Coaster",
+        "TRON Grid"
+      ],
+      "correct_answer": 1,
+      "explanation": "TRON Lightcycle / Run opened at Magic Kingdom in 2023 in Tomorrowland.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-prk28",
+      "category_id": "cat-parks",
+      "question": "Which EPCOT country pavilion has a Frozen ride?",
+      "options": [
+        "Germany",
+        "Norway",
+        "United Kingdom",
+        "Canada"
+      ],
+      "correct_answer": 1,
+      "explanation": "Norway pavilion features Frozen Ever After, which replaced the original Maelstrom ride.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-prk29",
+      "category_id": "cat-parks",
+      "question": "What attraction lets you soar over world landmarks?",
+      "options": [
+        "Star Tours",
+        "Soarin' Around the World",
+        "Flight of Passage",
+        "Peter Pan's Flight"
+      ],
+      "correct_answer": 1,
+      "explanation": "Soarin' Around the World is a hang-gliding simulator over iconic landmarks.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-prk30",
+      "category_id": "cat-parks",
+      "question": "What dark ride takes you flying to Neverland?",
+      "options": [
+        "Dumbo",
+        "It's a Small World",
+        "Peter Pan's Flight",
+        "Winnie the Pooh"
+      ],
+      "correct_answer": 2,
+      "explanation": "Peter Pan's Flight takes you flying over London and into Neverland.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-prk31",
+      "category_id": "cat-parks",
+      "question": "What roller coaster goes through Mount Everest at Animal Kingdom?",
+      "options": [
+        "Mount Everest",
+        "Everest Express",
+        "Expedition Everest",
+        "Yeti Mountain"
+      ],
+      "correct_answer": 2,
+      "explanation": "Expedition Everest - Legend of the Forbidden Mountain features the terrifying Yeti.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-cru26",
+      "category_id": "cat-cruise",
+      "question": "What is the name of the buffet restaurant on the Disney Dream and Fantasy?",
+      "options": [
+        "Cabanas",
+        "Beach Blanket Buffet",
+        "Topsiders",
+        "Marceline Market"
+      ],
+      "correct_answer": 0,
+      "explanation": "Cabanas is the casual buffet restaurant found on Disney Dream and Fantasy.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-cru27",
+      "category_id": "cat-cruise",
+      "question": "What makes Disney the only cruise line to do this at sea?",
+      "options": [
+        "Character dining",
+        "Fireworks at sea",
+        "Broadway shows",
+        "Waterslides"
+      ],
+      "correct_answer": 1,
+      "explanation": "Disney Cruise Line is the only cruise line to set off fireworks at sea during Pirate Night.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-cru28",
+      "category_id": "cat-cruise",
+      "question": "What Frozen-themed restaurant is on the Disney Wish?",
+      "options": [
+        "Olaf's Cafe",
+        "Arendelle: A Frozen Dining Adventure",
+        "Ice Palace",
+        "Oaken's Tavern"
+      ],
+      "correct_answer": 1,
+      "explanation": "Arendelle: A Frozen Dining Adventure features singing and live entertainment during dinner.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-cru29",
+      "category_id": "cat-cruise",
+      "question": "What color is the hull of Disney cruise ships?",
+      "options": [
+        "White",
+        "Navy blue",
+        "Black",
+        "Red"
+      ],
+      "correct_answer": 1,
+      "explanation": "Disney cruise ships have a distinctive navy blue hull with red and yellow accents.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-cru30",
+      "category_id": "cat-cruise",
+      "question": "What is the premium restaurant on the Disney Dream and Fantasy?",
+      "options": [
+        "Remy",
+        "Palo",
+        "Enchante",
+        "Lumiere's"
+      ],
+      "correct_answer": 0,
+      "explanation": "Remy is the premium French-inspired dining experience named after the Ratatouille character.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-cru31",
+      "category_id": "cat-cruise",
+      "question": "What Marvel-themed restaurant is on the Disney Wish?",
+      "options": [
+        "Avengers Kitchen",
+        "Worlds of Marvel",
+        "Stark's Steakhouse",
+        "Hero's Galley"
+      ],
+      "correct_answer": 1,
+      "explanation": "Worlds of Marvel is an interactive dining experience with Avengers-themed storytelling.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-wlt26",
+      "category_id": "cat-walt-history",
+      "question": "What was the name of Walt Disney's first business that failed?",
+      "options": [
+        "Disney Brothers Studio",
+        "Laugh-O-Gram Studio",
+        "Hyperion Studio",
+        "Walt Disney Animation"
+      ],
+      "correct_answer": 1,
+      "explanation": "Laugh-O-Gram Studio in Kansas City went bankrupt in 1923 before Walt moved to Hollywood.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-wlt27",
+      "category_id": "cat-walt-history",
+      "question": "Who is the CEO of The Walt Disney Company as of 2025?",
+      "options": [
+        "Bob Chapek",
+        "Bob Iger",
+        "Michael Eisner",
+        "Tom Staggs"
+      ],
+      "correct_answer": 1,
+      "explanation": "Bob Iger returned as CEO of Disney in November 2022.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-wlt28",
+      "category_id": "cat-walt-history",
+      "question": "What animated short won Disney's first Academy Award?",
+      "options": [
+        "Steamboat Willie",
+        "Flowers and Trees",
+        "The Three Little Pigs",
+        "The Old Mill"
+      ],
+      "correct_answer": 1,
+      "explanation": "Flowers and Trees (1932) won the first Academy Award for Best Animated Short Film.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-wlt29",
+      "category_id": "cat-walt-history",
+      "question": "What year did Disneyland Paris open?",
+      "options": [
+        "1983",
+        "1988",
+        "1992",
+        "1998"
+      ],
+      "correct_answer": 2,
+      "explanation": "Disneyland Paris (originally Euro Disney) opened on April 12, 1992.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-wlt30",
+      "category_id": "cat-walt-history",
+      "question": "What year did Tokyo Disneyland open?",
+      "options": [
+        "1978",
+        "1983",
+        "1988",
+        "1992"
+      ],
+      "correct_answer": 1,
+      "explanation": "Tokyo Disneyland opened on April 15, 1983 as the first Disney park outside the US.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-wlt31",
+      "category_id": "cat-walt-history",
+      "question": "What Disney animated feature combined live-action and animation in 1944?",
+      "options": [
+        "Song of the South",
+        "Mary Poppins",
+        "Saludos Amigos",
+        "The Three Caballeros"
+      ],
+      "correct_answer": 3,
+      "explanation": "The Three Caballeros (1944) was a groundbreaking blend of animation and live-action.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-bwy26",
+      "category_id": "cat-broadway",
+      "question": "What song from The Little Mermaid musical is Ariel's signature number?",
+      "options": [
+        "Under the Sea",
+        "Part of Your World",
+        "Kiss the Girl",
+        "She's in Love"
+      ],
+      "correct_answer": 1,
+      "explanation": "Part of Your World is Ariel's iconic I Want song in both the film and musical.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-bwy27",
+      "category_id": "cat-broadway",
+      "question": "Which Disney musical features the song 'King of New York'?",
+      "options": [
+        "Aladdin",
+        "The Lion King",
+        "Newsies",
+        "The Little Mermaid"
+      ],
+      "correct_answer": 2,
+      "explanation": "King of New York is the celebratory Act 2 number in Newsies.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-bwy28",
+      "category_id": "cat-broadway",
+      "question": "Which Disney Broadway show won the Tony for Best Musical in 1998?",
+      "options": [
+        "Beauty and the Beast",
+        "The Lion King",
+        "Aladdin",
+        "Newsies"
+      ],
+      "correct_answer": 1,
+      "explanation": "The Lion King won the Tony Award for Best Musical in 1998.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-bwy29",
+      "category_id": "cat-broadway",
+      "question": "What Disney musical features the song 'Step in Time'?",
+      "options": [
+        "Newsies",
+        "Mary Poppins",
+        "Beauty and the Beast",
+        "The Lion King"
+      ],
+      "correct_answer": 1,
+      "explanation": "Step in Time is the chimney sweeps big dance number in Mary Poppins.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-bwy30",
+      "category_id": "cat-broadway",
+      "question": "What year did Beauty and the Beast close on Broadway?",
+      "options": [
+        "2001",
+        "2003",
+        "2007",
+        "2010"
+      ],
+      "correct_answer": 2,
+      "explanation": "Beauty and the Beast ran for 13 years and closed in 2007 after 5,461 performances.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-bwy31",
+      "category_id": "cat-broadway",
+      "question": "What is Prince Hans' villain reveal song in Frozen the Musical?",
+      "options": [
+        "Let It Go",
+        "Monster",
+        "Hans of the Southern Isles",
+        "True Love"
+      ],
+      "correct_answer": 2,
+      "explanation": "Hans of the Southern Isles is Prince Hans' villain reveal number in the stage show.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-fod26",
+      "category_id": "cat-food",
+      "question": "What is the signature snack at Sleepy Hollow in Magic Kingdom?",
+      "options": [
+        "Turkey leg",
+        "Funnel cake",
+        "Waffle sandwich",
+        "Corn dog"
+      ],
+      "correct_answer": 2,
+      "explanation": "Sleepy Hollow is famous for its sweet and savory fresh waffle sandwiches.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-fod27",
+      "category_id": "cat-food",
+      "question": "What character dining restaurant is at the Contemporary Resort?",
+      "options": [
+        "Chef Mickey's",
+        "Cinderella's Royal Table",
+        "Crystal Palace",
+        "'Ohana"
+      ],
+      "correct_answer": 0,
+      "explanation": "Chef Mickey's is a popular character dining buffet at the Contemporary Resort.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-fod28",
+      "category_id": "cat-food",
+      "question": "What shape are Mickey Waffles?",
+      "options": [
+        "Round",
+        "Square",
+        "Mickey's head",
+        "Castle"
+      ],
+      "correct_answer": 2,
+      "explanation": "Mickey Waffles shaped like Mickey's head are a beloved Disney resort breakfast staple.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-fod29",
+      "category_id": "cat-food",
+      "question": "What is the popular frozen drink at the France pavilion in EPCOT?",
+      "options": [
+        "Frozen lemonade",
+        "Grand Marnier Orange Slush",
+        "Champagne float",
+        "Frozen sangria"
+      ],
+      "correct_answer": 1,
+      "explanation": "The Grand Marnier Orange Slush is a cult favorite treat at EPCOT's France pavilion.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-fod30",
+      "category_id": "cat-food",
+      "question": "What Marvel-themed dining is available at Disney parks?",
+      "options": [
+        "Stark's Steakhouse",
+        "Pym Test Kitchen",
+        "Avengers Cafe",
+        "Hero's Grill"
+      ],
+      "correct_answer": 1,
+      "explanation": "Pym Test Kitchen at Avengers Campus serves food in hilariously oversized and tiny portions.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-fod31",
+      "category_id": "cat-food",
+      "question": "What is the iconic breakfast item at Disney resort hotels?",
+      "options": [
+        "Pancakes",
+        "Mickey Waffles",
+        "French Toast",
+        "Eggs Benedict"
+      ],
+      "correct_answer": 1,
+      "explanation": "Mickey-shaped waffles are the quintessential Disney resort breakfast item.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mix26",
+      "category_id": "cat-mixed",
+      "question": "What are the names of Cinderella's stepsisters?",
+      "options": [
+        "Ella and Bella",
+        "Anastasia and Drizella",
+        "Victoria and Elizabeth",
+        "Rose and Lily"
+      ],
+      "correct_answer": 1,
+      "explanation": "Anastasia and Drizella are Cinderella's mean stepsisters.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mix27",
+      "category_id": "cat-mixed",
+      "question": "What is the name of the toy store in Toy Story 2?",
+      "options": [
+        "Toys R Us",
+        "Al's Toy Barn",
+        "Andy's Toy Box",
+        "Buzz's Toy Store"
+      ],
+      "correct_answer": 1,
+      "explanation": "Al's Toy Barn is the toy store owned by Al McWhiggin who steals Woody.",
+      "difficulty": "medium",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mix28",
+      "category_id": "cat-mixed",
+      "question": "Which Disney film was the first to have a theatrical sequel?",
+      "options": [
+        "The Lion King",
+        "Aladdin",
+        "The Rescuers",
+        "Fantasia"
+      ],
+      "correct_answer": 2,
+      "explanation": "The Rescuers Down Under (1990) was the first Disney animated theatrical sequel.",
+      "difficulty": "hard",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mix29",
+      "category_id": "cat-mixed",
+      "question": "What is the name of the villain queen in Snow White?",
+      "options": [
+        "Maleficent",
+        "The Evil Queen",
+        "Ursula",
+        "Mother Gothel"
+      ],
+      "correct_answer": 1,
+      "explanation": "The Evil Queen (Queen Grimhilde) is Snow White's vain stepmother.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mix30",
+      "category_id": "cat-mixed",
+      "question": "What year was the first Toy Story released?",
+      "options": [
+        "1993",
+        "1995",
+        "1997",
+        "1999"
+      ],
+      "correct_answer": 1,
+      "explanation": "Toy Story released in 1995 as the first fully computer-animated feature film.",
+      "difficulty": "easy",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "q-mix31",
+      "category_id": "cat-mixed",
+      "question": "What Disney character is known for losing a glass slipper?",
+      "options": [
+        "Snow White",
+        "Aurora",
+        "Cinderella",
+        "Rapunzel"
+      ],
+      "correct_answer": 2,
+      "explanation": "Cinderella famously loses her glass slipper at the stroke of midnight.",
+      "difficulty": "easy",
       "created_at": "2024-01-01T00:00:00Z"
     }
   ]

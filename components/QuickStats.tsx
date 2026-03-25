@@ -3,14 +3,13 @@
 import { useState, useCallback } from 'react';
 import Link from 'next/link';
 
-const stats = [
-  { label: 'Categories', value: '13', icon: '📚' },
-  { label: 'Questions', value: '700+', icon: '❓' },
-  { label: 'Quiz Modes', value: '3', icon: '🎮' },
-  { label: 'Works Offline', value: 'Yes!', icon: '📱' },
-];
-
-export default function QuickStats() {
+export default function QuickStats({ totalQuestions }: { totalQuestions: number }) {
+  const stats = [
+    { label: 'Categories', value: '13', icon: '📚' },
+    { label: 'Questions', value: `${totalQuestions.toLocaleString()}+`, icon: '❓' },
+    { label: 'Quiz Modes', value: '3', icon: '🎮' },
+    { label: 'Works Offline', value: 'Yes!', icon: '📱' },
+  ];
   const [tapCount, setTapCount] = useState(0);
   const [revealed, setRevealed] = useState(false);
 

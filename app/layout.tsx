@@ -30,7 +30,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.disneytrivia.club'),
   title: "Disney Cruise Trivia - Study & Win at Trivia Night",
-  description: "The ultimate Disney trivia study app for cruise travelers! Practice 700+ questions on Disney movies, parks, princesses, villains, Marvel, Star Wars, and more. Perfect for Disney cruise trivia nights!",
+  description: "The ultimate Disney trivia study app for cruise travelers! Practice 1,000+ questions on Disney movies, parks, princesses, villains, Marvel, Star Wars, and more. Perfect for Disney cruise trivia nights!",
   keywords: ["Disney trivia", "Disney cruise", "trivia questions", "Disney quiz", "cruise trivia", "Disney movies", "Disney parks", "Disney princesses", "Marvel trivia", "Star Wars trivia"],
   authors: [{ name: "Disney Cruise Trivia" }],
   creator: "Disney Cruise Trivia",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     url: "https://www.disneytrivia.club",
     siteName: "Disney Cruise Trivia",
     title: "Disney Cruise Trivia - Study & Win at Trivia Night",
-    description: "Practice 700+ Disney trivia questions. Perfect for cruise trivia nights! Quiz yourself on movies, parks, characters, and more.",
+    description: "Practice 1,000+ Disney trivia questions. Perfect for cruise trivia nights! Quiz yourself on movies, parks, characters, and more.",
     images: [
       {
         url: "/og-image.jpg",
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Disney Cruise Trivia - Study & Win at Trivia Night",
-    description: "Practice 700+ Disney trivia questions. Perfect for cruise trivia nights!",
+    description: "Practice 1,000+ Disney trivia questions. Perfect for cruise trivia nights!",
     images: ["/og-image.jpg"],
   },
   robots: {
@@ -126,7 +126,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "WebApplication",
               "name": "Disney Cruise Trivia",
-              "description": "The ultimate Disney trivia study app for cruise travelers with 700+ questions.",
+              "description": "The ultimate Disney trivia study app for cruise travelers with 1,000+ questions.",
               "applicationCategory": "GameApplication",
               "operatingSystem": "Any",
               "offers": {

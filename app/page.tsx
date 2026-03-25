@@ -7,10 +7,11 @@ import OnboardingOverlay from '@/components/OnboardingOverlay';
 
 export default async function Home() {
   const categories = await getCategories();
+  const totalQuestions = categories.reduce((sum, c) => sum + (c.question_count ?? 0), 0);
 
   return (
     <div className="space-y-12">
-      <OnboardingOverlay />
+      <OnboardingOverlay totalQuestions={totalQuestions} />
 
       {/* Install App Banner - Shown at top for new visitors */}
       <InstallAppBanner />
@@ -18,7 +19,7 @@ export default async function Home() {
       {/* Hero Section */}
       <section className="text-center py-8 px-4">
         <div className="inline-block mb-4 px-4 py-2 bg-disney-gold/10 rounded-full">
-          <span className="text-disney-gold font-medium">✨ 700+ Trivia Questions</span>
+          <span className="text-disney-gold font-medium">✨ {totalQuestions.toLocaleString()}+ Trivia Questions</span>
         </div>
         <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-4">
           Disney Cruise <span className="text-disney-blue dark:text-disney-gold">Trivia</span>
@@ -43,7 +44,7 @@ export default async function Home() {
       </section>
 
       {/* Quick Stats */}
-      <QuickStats />
+      <QuickStats totalQuestions={totalQuestions} />
 
       {/* Cruise Guide CTA */}
       <section className="bg-gradient-to-r from-cyan-600 to-blue-600 rounded-2xl p-8 text-white text-center">

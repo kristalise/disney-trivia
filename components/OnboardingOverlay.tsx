@@ -3,25 +3,28 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
 
-const SLIDES = [
-  {
-    emoji: '🧠',
-    title: 'Welcome to Disney Cruise Trivia',
-    description: 'Study 700+ real questions from Disney cruise trivia nights. Practice with quizzes, flashcards, and timed challenges.',
-  },
-  {
-    emoji: '🚢',
-    title: 'Your Cruise Companion',
-    description: 'Explore staterooms, dining, characters, activities, and entertainment across all 8 Disney ships.',
-  },
-  {
-    emoji: '✨',
-    title: 'Get Started',
-    description: 'Jump into a quiz or explore the cruise guide — your Disney cruise adventure starts here!',
-  },
-];
+function getSlides(totalQuestions: number) {
+  return [
+    {
+      emoji: '🧠',
+      title: 'Welcome to Disney Cruise Trivia',
+      description: `Study ${totalQuestions.toLocaleString()}+ real questions from Disney cruise trivia nights. Practice with quizzes, flashcards, and timed challenges.`,
+    },
+    {
+      emoji: '🚢',
+      title: 'Your Cruise Companion',
+      description: 'Explore staterooms, dining, characters, activities, and entertainment across all 8 Disney ships.',
+    },
+    {
+      emoji: '✨',
+      title: 'Get Started',
+      description: 'Jump into a quiz or explore the cruise guide — your Disney cruise adventure starts here!',
+    },
+  ];
+}
 
-export default function OnboardingOverlay() {
+export default function OnboardingOverlay({ totalQuestions }: { totalQuestions: number }) {
+  const SLIDES = getSlides(totalQuestions);
   const [visible, setVisible] = useState(false);
   const [slide, setSlide] = useState(0);
   const touchStartX = useRef(0);
